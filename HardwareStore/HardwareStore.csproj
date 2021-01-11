@@ -215,13 +215,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="Styles\cssCatalogs.css" />
-    <Content Include="Styles\cssConfiguration.css" />
-    <Content Include="Styles\cssSales.css" />
-    <Content Include="Styles\ExistenciaStyles.css" />
-    <Content Include="Styles\FloatingButtonStyles.css" />
     <Content Include="Styles\OdModalStyle.css" />
-    <Content Include="Styles\OrdersStyle.css" />
     <Content Include="Styles\SideBarStyle.css" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Toast.css" />
@@ -412,7 +406,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Styles\Stepper.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

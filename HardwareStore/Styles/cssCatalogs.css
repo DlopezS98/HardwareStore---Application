@@ -1,0 +1,103 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+}
+
+.form-principal {
+    background: #F9F9F9;
+    height: 450px;
+    width: 60%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin: auto;
+    border-top: 1.5px solid #0D9DBB;
+    border-left: 0.5px solid #ddd;
+    border-right: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #ddd;
+    border-radius: 5px;
+}
+.form-principal-custmers {
+    background: #F9F9F9;
+    height: 450px;
+    width: 60%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin: auto;
+    border-top: 1.5px solid #0D9DBB;
+    border-left: 0.5px solid #ddd;
+    border-right: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-principal-employees {
+    background: #F9F9F9;
+    height: 450px;
+    width: 80%;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    margin: auto;
+    border-top: 1.5px solid #0D9DBB;
+    border-left: 0.5px solid #ddd;
+    border-right: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #ddd;
+    border-radius: 5px;
+
+}
+
+.containerCatalog {
+    display: flex;
+    background: #fff;
+    margin-bottom: 40px;
+}
+
+
+.input-50 {
+    height: 40px;
+    padding: 5px;
+    margin: 5px;
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    border: 0.5px solid #ddd;
+    max-width: 50%;
+}
+
+.col-95 {
+    width: 95%;
+    margin: 10px;
+}
+.col-46 {
+    width: 46%;
+    margin: 10px;
+}
+
+.col-31 {
+    width: 31%;
+    margin: 10px;
+}
+
+.col-mr-25 {
+    width: 25%;
+    margin: 10px;
+    margin-left: 21%;
+}
+
+@media screen and (max-width: 700px) {
+
+    .form-principal {
+        margin: auto;
+        width: 90%;
+    }
+    .form-principal-custmers {
+        margin: auto;
+        width: 90%;
+    }
+
+}
+

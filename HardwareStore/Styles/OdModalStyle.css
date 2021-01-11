@@ -1,0 +1,108 @@
+﻿:root {
+    --lightgray: #808080;
+    --blue: steelblue;
+    --white: #fff;
+    --black: rgba(0, 0, 0, 0.6);
+    --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+
+.btn-group {
+    text-align: center;
+}
+
+.open-modal {
+    font-weight: bold;
+    background: var(--blue);
+    color: var(--white);
+    padding: 0.75rem 1.75rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+
+/* MODAL
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.OdModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: var(--black);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.35s ease-in;
+}
+
+    .OdModal.is-visible {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.modal-dialog {
+    position: relative;
+    width: 1200px;
+    min-width: 500px;
+    max-height: 80vh;
+    border-radius: 5px;
+    background: var(--white);
+    overflow: hidden;
+    cursor: default;
+}
+
+    .modal-dialog > * {
+        padding: 1.5rem;
+    }
+
+.modal-header,
+.modal-footer {
+    background: #2F323A;
+}
+
+.modal-header {
+    display:flex;
+    align-items:center;
+    width: 100%;
+    position: relative;
+    height: 80px;
+}
+
+    .modal-header .close-modal {
+        font-size: 1.5rem;
+    }
+
+.modal-content {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.OdModal p + p {
+    margin-top: 1rem;
+}
+
+/* SLIDE ANIMATION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[data-animation="slideInOutLeft"] .modal-dialog {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s var(--bounceEasing);
+}
+
+[data-animation="slideInOutLeft"].is-visible .modal-dialog {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.2s;
+}
+
+.btnClose {
+    color: #00A441;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    padding: 7px;
+}

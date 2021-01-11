@@ -1,0 +1,637 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.card-shadow {
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+/*.Title1 {
+    font-size: 55px;
+    color: #73B7FE
+}
+
+
+.Title2 {
+    color: #4F4C54;
+    font-size: 25px;
+}*/
+/*Botones*/
+/*.btnSuccess {
+    background: #00A441;
+    color: #fff;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    padding: 5px;
+    margin: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+    border: none;
+}
+
+
+    .btnSuccess:hover {
+        background: #218838;
+        cursor: pointer;
+    }
+
+.btnDanger {
+    border: none;
+    background: #E63A40;
+    color: #fff;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    padding: 5px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+    .btnDanger:hover {
+        background: #C82333;
+        cursor: pointer;
+    }
+
+.btnDark {
+    background: #333333;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    width: 120px;
+    height: 45px;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 0px;
+    text-align: center
+}
+
+    .btnDark:hover {
+        background: #222222;
+        cursor: pointer;
+    }
+
+.btnPrimary {
+    background: #0084FF;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center
+}
+
+    .btnPrimary:hover {
+        background: #0069D9;
+        cursor: pointer;
+    }
+
+.LinkbtnDanger {
+    background: #E63A40;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 5px;
+}
+
+    .LinkbtnDanger:hover {
+        color: #fff;
+        text-decoration: none;
+        background: #C82333;
+    }
+
+.LinkbtnPrimary {
+    background: #0084FF;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 5px;
+}
+
+    .LinkbtnPrimary:hover {
+        color: #fff;
+        text-decoration: none;
+        background: #0069D9;
+    }
+
+
+.btnAdd {
+    border: none;
+    background: #00A350;
+    color: #fff;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;*/
+    /*font-size: 15px;*/
+    /*padding: 0px;
+    margin: 5px;
+    margin-top: 5px;
+}
+
+    .btnAdd:hover {
+        background: #218838;
+        cursor: pointer;
+    }*/
+/*Site Master*/
+/*.MainSection {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    background: #FCFDFF;
+    display: flex;
+    
+}
+
+.ContainerPrincipal {
+    background-color: #FCFDFF;
+    height: calc(100% - 70px);*/
+    /*height: 100%;*/
+    /*width: 100%;
+    margin-top: 4rem;
+    margin-right: 10px;
+    margin-left: 80px;
+}*/
+
+header {
+    /*background: #FFD428;*/
+    background: #212B38;
+    /*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); 
+    background: linear-gradient(to right, #FF4B2B, #FF416C); */
+    width: 100%;
+    height: 60px;
+    margin: 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-bottom: #2F323A 0.1px solid;
+/*    opacity: 0.97;*/
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.left_area {
+    padding-left: 10px;
+    padding-top: 15px;
+    width: 185px;
+    height: 60px;
+    background: #222A35;
+    box-shadow: none;
+}
+
+    .left_area h3 {
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+        font-size: 22px;
+        font-weight: 900;
+    }
+
+    .left_area span {
+        color: #fff;
+    }
+
+.Logout_btn {
+    padding: 5px;
+    background: #19B3D3;
+    text-decoration: none;
+    float: right;
+    margin-top: -45px;
+    margin-right: 40px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition-property: background;
+}
+
+    .Logout_btn:hover {
+        background: #0D9DBB;
+        text-decoration: none;
+        color: #fff;
+    }
+
+/*.SideBar {
+    background: #1F2126;
+    margin-top: 50px;
+    padding-top: 5px;
+    position: fixed;
+    left: 0;
+    width: 60px;
+    height: calc(100% + 20px);
+    transition: 0.5s;
+    transition-property: left;
+}
+
+    .SideBar .Avatar {
+        height: 30px;
+        width: 30px;
+        margin-left: 15px;
+        border-radius: 100px;
+        margin-bottom: 10px;
+    }*/
+
+/*.SideBar h4 {
+        color: #ccc;
+        margin-top: 0;
+        margin-bottom: 20px;
+        margin-left: 45px;
+    }*/
+
+/*.SideBar a {
+        color: #fff;
+        display: block;
+        width: 100%;
+        line-height: 45px;
+        text-decoration: none;
+        padding-left: 20px;
+        box-sizing: border-box;
+        transition: 0.5s;
+        transition-property: background;
+        font-size: 15px;
+    }
+
+        .SideBar a:hover {
+            background: #19B3D3;
+            color: #fff;
+        }*/
+
+/*.SideBar span {
+        padding-left: 15px;
+        font-size: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }*/
+
+/*@media screen and (max-width: 1100px) {
+    .SideBar {
+        left: -190px;
+    }
+
+        .SideBar a span {
+            display: none;
+        }
+
+        .SideBar a {
+            font-size: 20px;
+            margin-left: 170px;
+            width: 80px
+        }
+
+        .SideBar i {
+            margin-left: 20px;
+        }
+
+    .ContainerPrincipal {
+        margin-left: 70px;
+    }
+
+    .SideBar .Avatar {
+        height: 30px;
+        width: 30px;
+        margin-left: 205px
+    }
+}*/
+/*Administrados de Catálogos*/
+* {
+    box-sizing: border-box;
+}
+
+/*.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+}
+
+
+
+.rowcard {
+    margin: 0 -5px;
+}
+
+    .rowcard:after {
+        content: "";
+        display: flex;
+        clear: both;
+    }
+
+.card {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px;
+    text-align: center;*/
+    /*background-color: #f1f1f1;*/
+    /*border-color: #dedede;
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+.card .btninfoborder {
+    border-color: #19B3D3;
+    border-width: 1px;
+    border-style: solid;
+    color: #19B3D3;
+    border-radius: 10px;
+    width: 70px;
+    height: 25px;
+    font-size: 15px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+    .card .btninfoborder:hover {
+        background: #19B3D3;
+        color: #fff;
+    }
+
+.card h4 {
+    color: #2F323A;
+}*/
+/*Módulo Seguridad*/
+/*.Button_Group {
+    margin: 10px;
+}*/
+
+/*Administrar Catálogos*/
+/*.Txt_Titulo {
+    padding-left: 10px;
+}*/
+
+
+/*Productos*/
+/*#mtvContenedor .BtnAgregar {
+    text-decoration: none;
+}
+
+
+.TableContainer {
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    table-layout: unset;
+}
+
+    .table tr {
+        border: 1px solid #ddd;
+    }
+
+    .table th {
+        font-size: 13px;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table td {
+        font-size: 13px;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table thead th {
+        text-transform: uppercase;
+        background: #2F323A;
+        color: #fff;
+    }
+
+    .table i {
+        color: brown;
+        margin: 5px;
+    }*/
+
+
+
+/*Reportes*/
+/*.ContainerReportes .txtFechaRep {
+    height: 30px;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+.imgExport {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 20px;
+}*/
+
+
+/*DlopezS98 - Styles*/
+
+/*.container-Existencias {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.formSection {
+    border-top: 1.5px solid #0D9DBB;
+    background-color: white;
+    width: 90%;
+    padding: 40px 10px 40px 10px;
+    margin: 10px auto;*/ /*centrar el formulario*/
+    /*border-radius: 5px;
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+}*/
+
+/*.form-control {
+    height: 50px;
+    padding: 5px;
+    padding-left: 15px;
+    margin: 5px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+    outline: none;
+}*/
+/*
+    .form-control:focus {
+        border: 1.5px solid #0084FF;
+    }*/
+
+/*.form-disable {
+    background: #ccc;
+    border: 0.5px solid #aaa;
+}*/
+/*orderPages*/
+/*.headerTable {
+    width: 100%;
+    background-color: #fff;
+    margin: 5px 0 10px 0;
+    border: none;*/
+    /*border-collapse: collapse;*/
+/*}
+
+    .headerTable td {
+        padding: 2px;
+        border: none;
+        color: #717171;
+    }
+
+    .headerTable th {
+        padding: 4px 2px;
+        color: #fff;
+        background: #2F323A url(grd_head.png) repeat-x top;
+        border-left: none;
+        font-size: 0.9em;
+    }
+
+    .headerTable .alt {
+        background: #fcfcfc url(grd_alt.png) repeat-x top;
+    }
+
+    .headerTable .pgr {
+        background: #424242 url(grd_pgr.png) repeat-x top;
+    }
+
+        .headerTable .pgr table {
+            margin: 5px 0;
+        }
+
+        .headerTable .pgr td {
+            padding: 0 6px;
+            border-left: none;
+            font-weight: bold;
+            color: #fff;*/
+            /*line-height: 12px;*/
+        /*}
+
+        .headerTable .pgr a {
+            color: #666;
+            text-decoration: none;
+        }
+
+            .headerTable .pgr a:hover {
+                color: #000;
+                text-decoration: none;
+            }*/
+
+/*columns*/
+/*.col-mr-25 {
+    width: 25%;
+    margin: 10px;
+    float: left;
+}
+
+.col-95 {
+    width: 95%;
+    margin: 10px;
+}
+
+.col-23 {
+    width: 23%;
+    margin: 0px;
+}
+
+.col-46 {
+    width: 46%;
+    margin: 10px;
+}
+
+.col-48 {
+    width: 48%;
+    margin: 10px;
+}
+
+.col-31 {
+    width: 31%;
+    margin: 0px;
+}
+
+.col-33 {
+    width: 33%;
+    margin: 0px;
+}
+
+
+
+.col-42 {
+    width: 42%;
+    margin: 10px;
+}
+
+.col-24 {
+    width: 24%;
+    margin: 0px;
+}
+
+.col-25 {
+    width: 25%;
+    margin: 0px;
+}
+
+.col-70 {
+    width: 70%;
+    margin: 10px;
+}
+
+.col-100 {
+    width: 100%;
+    margin: 10px;
+}
+
+.col-50 {
+    width: 50%;
+    margin: 10px;
+}
+
+.col-47 {
+    width: 47%;
+    margin: 10px;
+}
+
+
+@media screen and (max-width: 1172px) {
+    .col-31 {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .col-31 {
+        width: 90%;
+    }
+}*/

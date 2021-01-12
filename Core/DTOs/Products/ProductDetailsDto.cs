@@ -9,6 +9,7 @@ namespace HardwareStore.Core.DTOs.Products
     public class ProductDetailsDto
     {
         public int Id { get; set; }
+        public int UnitTypeId { get; set; }
         public string ProductName { get; set; }
         public string MeasureUnit { get; set; }
         public string Abbreviation { get; set; }
@@ -18,7 +19,6 @@ namespace HardwareStore.Core.DTOs.Products
         public string Code { get; set; }
         public string DefaultCode { get; set; }
         public string Dimensions { get; set; }
-        public string ExpirationDate { get; set; }
         public string CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedAt { get; set; }

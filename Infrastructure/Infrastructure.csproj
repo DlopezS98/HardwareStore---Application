@@ -53,8 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AplicationContext.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\ProductsRepository.cs" />
+    <Compile Include="Data\WarehouseRepository.cs" />
     <Compile Include="Identity\Models\Brands.cs">
       <DependentUpon>HardawareStoreModel.tt</DependentUpon>
     </Compile>

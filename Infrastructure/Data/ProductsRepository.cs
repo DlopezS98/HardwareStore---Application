@@ -33,7 +33,7 @@ namespace HardwareStore.Infrastructure.Data
             }
         }
 
-        public List<ProductDetailsDto> ListAllProducts(bool Deleted, string Search)
+        public List<ProductDetailsDto> ListAllProductDetails(bool Deleted, string Search)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace HardwareStore.Infrastructure.Data
             }
         }
 
-        public List<ProductDetailsDto> ListAllProducts()
+        public List<ProductDetailsDto> ListAllProductDetails()
         {
             try
             {

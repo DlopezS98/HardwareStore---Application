@@ -1,4 +1,5 @@
 ﻿using HardwareStore.Core.Interfaces;
+using HardwareStore.Core.Interfaces.Billing;
 using Ninject;
 using Ninject.Web;
 using System;
@@ -13,18 +14,30 @@ namespace HardwareStore.Modules.Billing
     public partial class Purchases : PageBase
     {
         [Inject]
-        public IProductsRepository vProductsRepository { get; set; }
+        public IPurchasesService _PurchaseService { get; set; }
 
         public void LoadProductDetails(bool deleted = false, string search = "")
         {
-            var list = this.vProductsRepository.ListAllProducts(deleted, search);
+            var list = this._PurchaseService.GetProductDetails(deleted, search);
             this.GridViewProductDetails.DataSource = list;
             this.GridViewProductDetails.DataBind();
+        }
+
+        public void LoadDropdownWarehouses()
+        {
+            var list = this._PurchaseService.GetWarehousesForDropdowns();
+            this.ddlstWarehouses.DataSource = list;
+            this.ddlstWarehouses.DataTextField = "Name";
+            this.ddlstWarehouses.DataValueField = "Id";
+            this.ddlstWarehouses.DataBind();
+
+            this.ddlstWarehouses.Items.Insert(0, new ListItem("Seleccione una bodega", "0"));
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             this.LoadProductDetails();
+            this.LoadDropdownWarehouses();
         }
     }
 }

@@ -10,8 +10,8 @@ namespace HardwareStore.Core.Interfaces
 {
     public interface IProductsRepository
     {
-        List<ProductDetailsDto> ListAllProducts(Boolean Deleted, string Search);
-        List<ProductDetailsDto> ListAllProducts();
+        List<ProductDetailsDto> ListAllProductDetails(Boolean Deleted, string Search);
+        List<ProductDetailsDto> ListAllProductDetails();
         DataTable GetProductDetailsFromDatabase(Boolean Deleted, string Search);
     }
 }

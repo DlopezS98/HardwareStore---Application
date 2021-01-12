@@ -6,6 +6,8 @@ namespace HardwareStore.App_Start
     using System;
     using System.Web;
     using HardwareStore.Core.Interfaces;
+    using HardwareStore.Core.Interfaces.Billing;
+    using HardwareStore.Core.Services.Billing;
     using HardwareStore.Infrastructure.Data;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
@@ -64,6 +66,8 @@ namespace HardwareStore.App_Start
         {
             kernel.Bind<IEntityRepository>().To<EntityRepository>();
             kernel.Bind<IProductsRepository>().To<ProductsRepository>();
+            kernel.Bind<IPurchasesService>().To<PurchaseService>();
+            kernel.Bind<IWarehouseRepository>().To<WarehouseRepository>();
         }
     }
 }

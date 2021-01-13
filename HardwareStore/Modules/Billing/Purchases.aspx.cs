@@ -34,10 +34,22 @@ namespace HardwareStore.Modules.Billing
             this.ddlstWarehouses.Items.Insert(0, new ListItem("Seleccione una bodega", "0"));
         }
 
+        public void LoadDropDownSuppliers()
+        {
+            var list = this._PurchaseService.GetSuppliersForDropDowns();
+            this.ddlstSuppliers.DataSource = list;
+            this.ddlstSuppliers.DataTextField = "Name";
+            this.ddlstSuppliers.DataValueField = "Id";
+            this.ddlstSuppliers.DataBind();
+
+            this.ddlstSuppliers.Items.Insert(0, new ListItem("Seleccione un proveedor", "0"));
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.LoadProductDetails();
             this.LoadDropdownWarehouses();
+            this.LoadDropDownSuppliers();
         }
     }
 }

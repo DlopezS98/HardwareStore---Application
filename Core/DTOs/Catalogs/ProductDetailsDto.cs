@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareStore.Core.DTOs.Products
+namespace HardwareStore.Core.DTOs.Catalogs
 {
     public class ProductDetailsDto
     {

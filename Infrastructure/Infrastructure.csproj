@@ -55,8 +55,9 @@
   <ItemGroup>
     <Compile Include="Data\AplicationContext.cs" />
     <Compile Include="Data\EntityRepository.cs" />
-    <Compile Include="Data\ProductsRepository.cs" />
-    <Compile Include="Data\WarehouseRepository.cs" />
+    <Compile Include="Data\Catalogs\ProductsRepository.cs" />
+    <Compile Include="Data\Catalogs\SuppliersReporsitory.cs" />
+    <Compile Include="Data\Catalogs\WarehouseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +71,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\Billing\" />
     <Folder Include="Identity\" />
   </ItemGroup>
   <ItemGroup>

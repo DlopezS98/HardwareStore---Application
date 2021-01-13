@@ -1,5 +1,4 @@
-﻿using HardwareStore.Core.DTOs.Products;
-using HardwareStore.Core.DTOs.Warehouses;
+﻿using HardwareStore.Core.DTOs.Catalogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +11,6 @@ namespace HardwareStore.Core.Interfaces.Billing
     {
         List<ProductDetailsDto> GetProductDetails(Boolean Deleted, string Search);
         List<WarehousesDropDto> GetWarehousesForDropdowns();
+        List<SuppliersDropDto> GetSuppliersForDropDowns();
     }
 }

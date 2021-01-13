@@ -1,6 +1,5 @@
-﻿using HardwareStore.Core.DTOs.Products;
-using HardwareStore.Core.DTOs.Warehouses;
-using HardwareStore.Core.Interfaces;
+﻿using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.Interfaces.Catalogs;
 using HardwareStore.Core.Interfaces.Billing;
 using System;
 using System.Collections.Generic;
@@ -14,11 +13,13 @@ namespace HardwareStore.Core.Services.Billing
     {
         private readonly IProductsRepository _ProductsRepository;
         private readonly IWarehouseRepository _WarehouseRepository;
+        private readonly ISuppliersRepository _SuppliersRepository;
 
-        public PurchaseService(IProductsRepository vProductsRepository, IWarehouseRepository WarehouseRepository)
+        public PurchaseService(IProductsRepository _ProductsRepository, IWarehouseRepository _WarehouseRepository, ISuppliersRepository _SuppliersRepository)
         {
-            this._ProductsRepository = vProductsRepository;
-            this._WarehouseRepository = WarehouseRepository;
+            this._ProductsRepository = _ProductsRepository;
+            this._WarehouseRepository = _WarehouseRepository;
+            this._SuppliersRepository = _SuppliersRepository;
         }
         public List<ProductDetailsDto> GetProductDetails(bool Deleted, string Search)
         {
@@ -26,6 +27,21 @@ namespace HardwareStore.Core.Services.Billing
             {
                 List<ProductDetailsDto> list = new List<ProductDetailsDto>();
                 list = this._ProductsRepository.ListAllProductDetails(Deleted, Search);
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<SuppliersDropDto> GetSuppliersForDropDowns()
+        {
+            try
+            {
+                List<SuppliersDropDto> list = new List<SuppliersDropDto>();
+                list = this._SuppliersRepository.ListSuppliersForDropDowns();
                 return list;
             }
             catch (Exception exc)

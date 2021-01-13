@@ -1,4 +1,4 @@
-﻿using HardwareStore.Core.DTOs.Products;
+﻿using HardwareStore.Core.DTOs.Catalogs;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareStore.Core.Interfaces
+namespace HardwareStore.Core.Interfaces.Catalogs
 {
     public interface IProductsRepository
     {

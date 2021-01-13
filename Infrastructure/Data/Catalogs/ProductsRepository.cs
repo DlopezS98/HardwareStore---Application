@@ -1,5 +1,5 @@
-﻿using HardwareStore.Core.DTOs.Products;
-using HardwareStore.Core.Interfaces;
+﻿using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.Interfaces.Catalogs;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareStore.Infrastructure.Data
+namespace HardwareStore.Infrastructure.Data.Catalogs
 {
     public class ProductsRepository : EntityRepository, IProductsRepository
     {
-        private readonly AplicationContext Context;
-        public ProductsRepository(AplicationContext Context) : base(Context)
+        private readonly AplicationContext _dbContext;
+        public ProductsRepository(AplicationContext _dbContext) : base(_dbContext)
         {
-            this.Context = Context;
+            this._dbContext = _dbContext;
         }
 
         public DataTable GetProductDetailsFromDatabase(bool Deleted, string Search)

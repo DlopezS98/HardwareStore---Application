@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +12,17 @@ namespace HardwareStore.Infrastructure.Data
 {
     public class EntityRepository : IEntityRepository
     {
-        private readonly AplicationContext Context;
-        public EntityRepository(AplicationContext Context)
+        private readonly AplicationContext _dbContext;
+        public EntityRepository(AplicationContext _dbContext)
         {
-            this.Context = Context;
+            this._dbContext = _dbContext;
         }
         public SqlConnection GetConnection()
         {
             try
             {
-                string StringConnection = @"" + this.Context.Database.Connection.ConnectionString;
+                //this._dbContext.Categories.SqlQuery("Select * from Students").ToListAsync();
+                string StringConnection = @"" + this._dbContext.Database.Connection.ConnectionString;
                 return new SqlConnection(StringConnection);
             }
             catch (Exception exc)

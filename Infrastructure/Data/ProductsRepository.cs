@@ -1,6 +1,5 @@
 ﻿using HardwareStore.Core.DTOs.Products;
 using HardwareStore.Core.Interfaces;
-using HardwareStore.Infrastructure.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,8 +11,8 @@ namespace HardwareStore.Infrastructure.Data
 {
     public class ProductsRepository : EntityRepository, IProductsRepository
     {
-        private readonly HardwareStoreEntities Context;
-        public ProductsRepository(HardwareStoreEntities Context) : base(Context)
+        private readonly AplicationContext Context;
+        public ProductsRepository(AplicationContext Context) : base(Context)
         {
             this.Context = Context;
         }

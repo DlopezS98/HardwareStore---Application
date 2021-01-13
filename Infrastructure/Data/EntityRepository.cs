@@ -1,5 +1,4 @@
 ﻿using HardwareStore.Core.Interfaces;
-using HardwareStore.Infrastructure.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,8 +12,8 @@ namespace HardwareStore.Infrastructure.Data
 {
     public class EntityRepository : IEntityRepository
     {
-        private readonly HardwareStoreEntities Context;
-        public EntityRepository(HardwareStoreEntities Context)
+        private readonly AplicationContext Context;
+        public EntityRepository(AplicationContext Context)
         {
             this.Context = Context;
         }

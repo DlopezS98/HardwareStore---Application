@@ -1,6 +1,5 @@
 ﻿using HardwareStore.Core.DTOs.Warehouses;
 using HardwareStore.Core.Interfaces;
-using HardwareStore.Infrastructure.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +10,8 @@ namespace HardwareStore.Infrastructure.Data
 {
     public class WarehouseRepository : EntityRepository, IWarehouseRepository
     {
-        private readonly HardwareStoreEntities Context;
-        public WarehouseRepository(HardwareStoreEntities Context) : base(Context)
+        private readonly AplicationContext Context;
+        public WarehouseRepository(AplicationContext Context) : base(Context)
         {
             this.Context = Context;
         }

@@ -53,6 +53,38 @@
   <ItemGroup>
     <Compile Include="DTOs\Products\ProductDetailsDto.cs" />
     <Compile Include="DTOs\Warehouses\WarehousesDropDto.cs" />
+    <Compile Include="Entities\Billing\PurchaseDetails.cs" />
+    <Compile Include="Entities\Billing\PurchaseInvoices.cs" />
+    <Compile Include="Entities\Billing\SalesDetails.cs" />
+    <Compile Include="Entities\Billing\SalesInvoices.cs" />
+    <Compile Include="Entities\Catalogs\Brands.cs" />
+    <Compile Include="Entities\Catalogs\Categories.cs" />
+    <Compile Include="Entities\Catalogs\Customers.cs" />
+    <Compile Include="Entities\Catalogs\Employees.cs" />
+    <Compile Include="Entities\Catalogs\MaterialsTypes.cs" />
+    <Compile Include="Entities\Catalogs\MeasureUnits.cs" />
+    <Compile Include="Entities\Catalogs\ProductDetails.cs" />
+    <Compile Include="Entities\Catalogs\Products.cs" />
+    <Compile Include="Entities\Catalogs\UnitConversion.cs" />
+    <Compile Include="Entities\Catalogs\UnitTypes.cs" />
+    <Compile Include="Entities\Catalogs\Warehouses.cs" />
+    <Compile Include="Entities\Persons.cs" />
+    <Compile Include="Entities\ProductsAdmin\DetailProductStocks.cs" />
+    <Compile Include="Entities\ProductsAdmin\PendingTransfers.cs" />
+    <Compile Include="Entities\ProductsAdmin\ProductStocks.cs" />
+    <Compile Include="Entities\ProductsAdmin\ProductTransfers.cs" />
+    <Compile Include="Entities\ProductsAdmin\RemovedProducts.cs" />
+    <Compile Include="Entities\ProductsAdmin\TransfersDetails.cs" />
+    <Compile Include="Entities\Security\Roles.cs" />
+    <Compile Include="Entities\Security\UserRoles.cs" />
+    <Compile Include="Entities\Security\Users.cs" />
+    <Compile Include="Entities\Providers\Suppliers.cs" />
+    <Compile Include="Entities\Providers\Vendors.cs" />
+    <Compile Include="Entities\SysConfiguration\Configurations.cs" />
+    <Compile Include="Entities\SysConfiguration\ContactInfo.cs" />
+    <Compile Include="Entities\SysConfiguration\CurrencyExchange.cs" />
+    <Compile Include="Entities\SysConfiguration\ForeignCurrencies.cs" />
+    <Compile Include="Entities\SysConfiguration\LocalCurrencies.cs" />
     <Compile Include="Interfaces\Billing\IPurchasesService.cs" />
     <Compile Include="Interfaces\IEntityRepository.cs" />
     <Compile Include="Interfaces\IProductsRepository.cs" />
@@ -67,7 +99,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entities\Reports\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

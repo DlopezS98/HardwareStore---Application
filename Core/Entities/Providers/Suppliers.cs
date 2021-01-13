@@ -1,0 +1,25 @@
+﻿using HardwareStore.Core.Entities.ProductsAdmin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HardwareStore.Core.Entities.Providers
+{
+    public class Suppliers
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public bool Deleted { get; set; }
+        public virtual ICollection<ProductStocks> ProductStocks { get; set; }
+        public virtual ICollection<Vendors> Vendors { get; set; }
+    }
+}

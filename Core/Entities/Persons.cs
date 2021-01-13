@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities
 {
-    public class Persons
+    public class Persons : BaseEntity
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }

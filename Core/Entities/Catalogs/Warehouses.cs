@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Catalogs
 {
-    public class Warehouses
+    public class Warehouses : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }

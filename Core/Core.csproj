@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DTOs\Products\ProductDetailsDto.cs" />
     <Compile Include="DTOs\Warehouses\WarehousesDropDto.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Billing\PurchaseDetails.cs" />
     <Compile Include="Entities\Billing\PurchaseInvoices.cs" />
     <Compile Include="Entities\Billing\SalesDetails.cs" />

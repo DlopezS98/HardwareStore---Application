@@ -7,9 +7,8 @@ using HardwareStore.Core.Entities.Catalogs;
 
 namespace HardwareStore.Core.Entities.ProductsAdmin
 {
-    public class ProductTransfers
+    public class ProductTransfers : BaseEntity
     {
-        public int Id { get; set; }
         public int ProductStocksId { get; set; }
         public int TargetWarehouseId { get; set; }
         public DateTime CreatedAt { get; set; }

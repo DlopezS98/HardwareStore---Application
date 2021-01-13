@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HardwareStore.Core.Entities.ProductsAdmin
 {
-    public class TransfersDetails
+    public class TransfersDetails : BaseEntity
     {
         public int ProductTransferId { get; set; }
         public int ProductStocksId { get; set; }

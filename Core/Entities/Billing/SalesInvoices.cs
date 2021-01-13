@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Billing
 {
-    public class SalesInvoices
+    public class SalesInvoices : BaseEntity
     {
-        public int Id { get; set; }
         public string InvoiceNumber { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public string CustomerInvoice { get; set; }

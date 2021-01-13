@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +9,7 @@ using HardwareStore.Core.Entities.Catalogs;
 
 namespace HardwareStore.Core.Entities.Billing
 {
-    public class PurchaseDetails
+    public class PurchaseDetails : BaseEntity
     {
         public int PurchaseInvoiceId { get; set; }
         public string ProductDetailCode { get; set; }

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Catalogs
 {
-    public class Employees
+    public class Employees : BaseEntity
     {
-        public int Id { get; set; }
         public int PersonId { get; set; }
         public string Initials { get; set; }
         public string Code { get; set; }

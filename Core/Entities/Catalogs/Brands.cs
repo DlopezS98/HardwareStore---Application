@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Catalogs
 {
-    public class Brands
+    public class Brands : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Initials { get; set; }
         public string Code { get; set; }

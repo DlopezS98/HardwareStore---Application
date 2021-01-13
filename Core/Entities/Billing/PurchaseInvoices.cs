@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Billing
 {
-    public class PurchaseInvoices
+    public class PurchaseInvoices : BaseEntity
     {
-        public int Id { get; set; }
         public string VendorCode { get; set; }
         public string InvoiceNumber { get; set; }
         public string SupplierInvoiceNumber { get; set; }

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Security
 {
-    public class Users
+    public class Users : BaseEntity
     {
-        public int Id { get; set; }
         public int EmployeeId { get; set; }
         public string Code { get; set; }
         public string UserName { get; set; }

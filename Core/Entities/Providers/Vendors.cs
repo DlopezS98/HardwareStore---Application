@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Providers
 {
-    public class Vendors
+    public class Vendors : BaseEntity
     {
-        public int Id { get; set; }
         public int PersonId { get; set; }
         public int SupplierId { get; set; }
         public string Code { get; set; }

@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Catalogs
 {
-    public class MeasureUnits
+    public class MeasureUnits : BaseEntity
     {
-        public int Id { get; set; }
         public int UnitTypeId { get; set; }
         public string Name { get; set; }
         public string Abbrevation { get; set; }

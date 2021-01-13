@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.ProductsAdmin
 {
-    public class PendingTransfers
+    public class PendingTransfers : BaseEntity
     {
-        public int Id { get; set; }
         public string Code { get; set; }
         public int ProductStocksId { get; set; }
         public int TargetWarehouseId { get; set; }

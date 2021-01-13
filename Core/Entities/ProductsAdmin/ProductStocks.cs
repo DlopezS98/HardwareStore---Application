@@ -7,9 +7,8 @@ using HardwareStore.Core.Entities.Providers;
 
 namespace HardwareStore.Core.Entities.ProductsAdmin
 {
-    public class ProductStocks
+    public class ProductStocks : BaseEntity
     {
-        public int Id { get; set; }
         public int SupplierId { get; set; }
         public string LotNumber { get; set; }
         public int Quantity { get; set; }

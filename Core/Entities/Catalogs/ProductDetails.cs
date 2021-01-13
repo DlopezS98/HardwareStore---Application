@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.Catalogs
 {
-    public class ProductDetails
+    public class ProductDetails : BaseEntity
     {
-        public int Id { get; set; }
         public int ProductId { get; set; }
         public int BrandId { get; set; }
         public int CategoryId { get; set; }
@@ -16,7 +15,6 @@ namespace HardwareStore.Core.Entities.Catalogs
         public string Code { get; set; }
         public string DefaultCode { get; set; }
         public string Dimensions { get; set; }
-        public Nullable<DateTime> ExpiryDate { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }

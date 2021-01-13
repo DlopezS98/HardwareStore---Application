@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.ProductsAdmin
 {
-    public class RemovedProducts
+    public class RemovedProducts : BaseEntity
     {
-        public int Id { get; set; }
         public int ProductStocksId { get; set; }
         public string LotNumber { get; set; }
         public string StocksDetailCode { get; set; }

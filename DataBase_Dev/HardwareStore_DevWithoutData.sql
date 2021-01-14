@@ -1,0 +1,528 @@
+--DROP DATABASE HardwareStore_Dev
+GO
+CREATE DATABASE HardwareStore_Dev
+GO
+USE HardwareStore_Dev
+GO
+CREATE TABLE Categories(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Initials NVARCHAR(10) NOT NULL, --INITIALS OF THE BRAND NAME
+	Code AS UPPER(CONCAT(Initials, '00'+ CONVERT(VARCHAR, Id))), --CUSTOM CODE
+	Description NVARCHAR(250) NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_CATEGORIES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE Brands(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Initials NVARCHAR(10) NOT NULL, --INITIALS OF THE BRAND NAME
+	Code AS UPPER(CONCAT(Initials, '00'+ CONVERT(VARCHAR, Id))), --CUSTOM CODE
+	Deleted BIT,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	CONSTRAINT PK_BRANDS PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE UnitTypes(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Code AS UPPER(CONCAT(LEFT(Name, 3), '00'+ CONVERT(VARCHAR, Id))),
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PKUNITTYPES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE MeasureUnits(
+	Id INT IDENTITY(1,1) NOT NULL,
+	UnitTypeId INT NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Abbrevation NVARCHAR(5) NOT NULL,
+	Code AS UPPER(CONCAT_WS('', Abbrevation, '00', Id, '-00' + UnitTypeId)),
+	Description NVARCHAR(250) NULL,
+	BaseUnit BIT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_MEASUREUNITS PRIMARY KEY(Id),
+	CONSTRAINT FK_MU_UNITTYPE FOREIGN KEY(UnitTypeId) REFERENCES UnitTypes(Id)
+)
+GO
+
+CREATE TABLE Products(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(80) NOT NULL,
+	Initials NVARCHAR(10),
+	MeasureUnitId INT NOT NULL, --MIN MEASURE UNIT FOR THE PRODUCT ON SALE
+	Code AS UPPER(CONCAT_WS('', Initials, 00, Id, MeasureUnitId)), --CUSTOM CODE
+	Description NVARCHAR(350) NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_PRODUCTS PRIMARY KEY(Id),
+	CONSTRAINT FK_PROD_MSU FOREIGN KEY(MeasureUnitId) REFERENCES MeasureUnits(Id)
+)
+GO
+
+CREATE TABLE MaterialsTypes(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Description NVARCHAR(250) NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_MATERIALSTYPES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE ProductDetails(
+	Id INT IDENTITY(1,1) NOT NULL,
+	ProductId INT NOT NULL,
+	--ProductCode NVARCHAR(255) NOT NULL,
+	BrandId INT NOT NULL,
+	CategoryId INT NOT NULL,
+	MaterialTypeId INT NOT NULL,
+	Code AS UPPER(CONCAT_WS('', 0, Id, ProductId, BrandId, CategoryId, MaterialTypeId, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	DefaultCode NVARCHAR(MAX) NULL,
+	Dimensions NVARCHAR(250) NULL,
+	ExpiryDate DATETIME NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT FK_PD_PRODUCTS FOREIGN KEY(ProductId) REFERENCES Products(Id),
+	CONSTRAINT FK_PD_BRANDS FOREIGN KEY(BrandId) REFERENCES Brands(Id),
+	CONSTRAINT FK_PD_CATEGORIES FOREIGN KEY(CategoryId) REFERENCES Categories(Id),
+	CONSTRAINT FK_PD_MATERIALSTYPES FOREIGN KEY(MaterialTypeId) REFERENCES MaterialsTypes(Id),
+	CONSTRAINT PK_PRODUCTDETAILS PRIMARY KEY(Id, ProductId, BrandId, CategoryId, MaterialTypeId),
+)
+GO
+
+CREATE TABLE UnitConversions(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Unit INT NOT NULL,
+	IdMeasureUnitFrom INT NOT NULL, --MEASURE UNIT SOURCE
+	IdMeasureUnitTo INT NOT NULL, --TARGET UNIT OF MEASURE
+	ConversionNameFrom NVARCHAR(50) NOT NULL,
+	ConversionNameTo NVARCHAR(50) NOT NULL,
+	ConversionValue FLOAT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_UNITCONVERSION PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE Warehouses(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Code AS UPPER(CONCAT(LEFT(Name, 2), '00' + CONVERT(VARCHAR, Id))), --CUSTOM CODE
+	Description NVARCHAR(250) NULL,
+	Location NVARCHAR(80) NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_WAREHOUSES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE Persons(
+	Id INT IDENTITY(1,1) NOT NULL,
+	FirstName NVARCHAR(50) NOT NULL,
+	LastName NVARCHAR(50) NOT NULL,
+	FullName AS (CONCAT_WS('', FirstName, ' ',LastName)),
+	EmailAddress NVARCHAR(80) NOT NULL UNIQUE,
+	Address NVARCHAR(250) NULL,
+	CardId NVARCHAR(20) NULL,
+	PhoneNumber NVARCHAR(12) NULL,
+	CONSTRAINT PK_PERSONS PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE Suppliers(
+	Id INT IDENTITY(1,1) NOT NULL,
+	--VendorId INT NOT NULL, -- Agent 
+	Name NVARCHAR(50) NOT NULL,
+	Code AS UPPER(CONCAT_WS('', LEFT(Name, 3), 00, Id, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	Email NVARCHAR(80) NOT NULL,
+	Address NVARCHAR(250) NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_SUPPLIERS PRIMARY KEY(Id),
+	--CONSTRAINT FKSP_VENDORS FOREIGN KEY(VendorId) REFERENCES Vendors(Id)
+)
+GO
+
+--CREATE TABLE Vendors(
+--	Id INT IDENTITY(1,1) NOT NULL,
+--	PersonId INT NOT NULL,
+--	SupplierId INT NOT NULL,
+--	Code AS UPPER(CONCAT_WS('', 00, Id, SupplierId, PersonId, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+--	CreatedAt DATETIME NOT NULL,
+--	CreatedBy NVARCHAR(80) NOT NULL,
+--	UpdatedAt DATETIME NOT NULL,
+--	UpdatedBy NVARCHAR(80) NOT NULL,
+--	Deleted BIT NOT NULL,
+--	CONSTRAINT FK_VENDORS_PERSONS FOREIGN KEY(PersonId) REFERENCES Persons(Id),
+--	CONSTRAINT FK_VENDORS_SUPPLIERS FOREIGN KEY(SupplierId) REFERENCES Suppliers(Id),
+--	CONSTRAINT PK_VENDORS PRIMARY KEY(Id, PersonId, SupplierId),
+--)
+--GO
+
+CREATE TABLE Roles(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(50) NOT NULL,
+	Description NVARCHAR(450) NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_ROLES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE Employees(
+	Id INT IDENTITY(1,1) NOT NULL,
+	PersonId INT NOT NULL,
+	Initials NVARCHAR(10) NOT NULL,
+	Code AS UPPER(CONCAT_WS('', Initials, 0, Id, PersonId, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	Position NVARCHAR(50) NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_EMPLOYEES PRIMARY KEY(Id),
+	CONSTRAINT FK_EMP_PERSONS FOREIGN KEY(PersonId) REFERENCES Persons(Id)
+)
+GO
+
+CREATE TABLE Users(
+	Id INT IDENTITY(1,1) NOT NULL,
+	EmployeeId INT NOT NULL,
+	Code AS UPPER(CONCAT_WS('', LEFT(UserName, 3), 0, Id, EmployeeId, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	UserName NVARCHAR(80) NOT NULL UNIQUE,
+	Password NVARCHAR(80) NOT NULL,
+	ImageUrl NVARCHAR(250) NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_USERS PRIMARY KEY(Id),
+	CONSTRAINT FKUSERS_EMPLOYEES FOREIGN KEY(EmployeeId) REFERENCES Employees(Id)
+)
+GO
+
+CREATE TABLE UserRoles(
+	Id INT IDENTITY(1,1) NOT NULL,
+	UserId INT NOT NULL,
+	RoleId INT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT FK_UR_USERS FOREIGN KEY(UserId) REFERENCES Users(Id),
+	CONSTRAINT FK_UR_ROLES FOREIGN KEY(RoleId) REFERENCES Roles(Id),
+	CONSTRAINT PK_USERROLES PRIMARY KEY(Id, UserId, RoleId)
+)
+GO
+
+CREATE TABLE ProductStocks(
+	Id INT IDENTITY(1,1) NOT NULL,
+	SupplierId INT NOT NULL,
+	LotNumber AS UPPER(CONCAT_WS('', 0, Id, SupplierId, '-0', Quantity, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	Quantity INT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Available BIT NOT NULL,
+	CONSTRAINT PK_PRODUCTSTOCKS PRIMARY KEY(Id),
+	CONSTRAINT FK_PS_SUPPLIERS FOREIGN KEY(SupplierId) REFERENCES Suppliers(Id)
+)
+GO
+
+CREATE TABLE DetailProductStocks(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Code AS (CONCAT_WS('', ProductDetailCode, '-',WarehouseId, ProductStocksId, TargetUnitId, UnitConversionId)) UNIQUE,
+	ProductStocksId INT NOT NULL,
+	WarehouseId INT NOT NULL,
+	ProductDetailCode NVARCHAR(255) NOT NULL,
+	--ProductDetailId INT NOT NULL,
+	TargetUnitId INT NOT NULL, --Target unit
+	UnitConversionId INT NOT NULL, --Id of the Unit measure conversions where (TargetUnitId = UnitConversion(TargetUnitId).IdMeasureUnitFrom AND Products(ProductDetailCode).MeasureUnitId = UnitConversion.ConversionNameTo)
+	UnitsPurchased INT NOT NULL, -- Units purchased 
+	ConversionQuantity FLOAT NOT NULL, -- Conversion quantity = (Units * UnitConversion(UnitConversionId).ConversionValue)
+	PurchasePrice FLOAT NOT NULL,
+	SalePrice FLOAT NOT NULL, --Sale price (update) = Sale / quantity
+	--CONSTRAINT PKDTPRODSTOCKS PRIMARY KEY(Id),
+	Available BIT NOT NULL,
+	CONSTRAINT FKDPS_WAREHOUSES FOREIGN KEY(WarehouseId) REFERENCES Warehouses(Id),
+	CONSTRAINT FKDPS_PRODUCTSTOCKS FOREIGN KEY(ProductStocksId) REFERENCES ProductStocks(Id),
+	--CONSTRAINT FKDPS_PRODUCTDETAILS FOREIGN KEY(ProductDetailId) REFERENCES ProductDetails(Id),
+	CONSTRAINT FK_DPS_MEASUREUNITS FOREIGN KEY(TargetUnitId) REFERENCES MeasureUnits(Id),
+	CONSTRAINT FK_DPS_UNITCONVERSION FOREIGN KEY(UnitConversionId) REFERENCES UnitConversion(Id),
+	CONSTRAINT PK_DETAILPRODUCTSTOCKS PRIMARY KEY(Id, WarehouseId, ProductStocksId, ProductDetailCode, TargetUnitId, UnitConversionId)
+)
+GO
+
+CREATE TABLE Customers(
+	Id INT IDENTITY(1,1) NOT NULL,
+	PersonId INT NULL,
+	Initials NVARCHAR(10) NOT NULL,
+	Code AS UPPER(CONCAT_WS('', Initials, 0,Id, ISNULL(PersonId, 0), '-', FORMAT(CreatedAt, 'ddMMyyy', 'vi'))),
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80),
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_CUSTOMERS PRIMARY KEY(Id),
+	CONSTRAINT FK_CS_PERSONS FOREIGN KEY(PersonId) REFERENCES Persons(Id)
+)
+GO
+
+CREATE TABLE PurchaseInvoices(
+	Id INT IDENTITY(1,1) NOT NULL,
+	SupplierId INT NOT NULL,
+--	UserId INT NOT NULL,
+	InvoiceNumber AS (CONCAT_WS('', 00, Id, '-', SupplierInvoiceNumber, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	SupplierInvoiceNumber NVARCHAR(255) NOT NULL,
+	Tax FLOAT NOT NULL, -- Min value must be 0
+	Subtotal FLOAT NOT NULL,
+	Discount INT NOT NULL, --Min value must be 0
+	TotalAmount FLOAT NOT NULL,
+	Deleted BIT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	CONSTRAINT PK_PURCHASEINVOICE PRIMARY KEY(Id),
+	CONSTRAINT FKPI_SUPPLIERS FOREIGN KEY(SupplierId) REFERENCES Suppliers(Id),
+--	CONSTRAINT FKPI_USERS FOREIGN KEY(UserId) REFERENCES Users(Id)
+)
+GO
+
+CREATE TABLE PurchaseDetails(
+	Id INT IDENTITY(1,1) NOT NULL,
+	PurchaseInvoiceId INT NOT NULL,
+	ProductDetailCode NVARCHAR(255) NOT NULL,
+	WarehouseId INT NOT NULL,
+	TargetUnitId INT NOT NULL,
+	Quantity INT NOT NULL,
+	PurchasePrice FLOAT NOT NULL,
+	Subtotal FLOAT NOT NULL,
+	Tax FLOAT NOT NULL,
+	Discount INT NOT NULL,
+	Total FLOAT NOT NULL,
+	CONSTRAINT FKPD_PURCHASEINVOICES FOREIGN KEY(PurchaseInvoiceId) REFERENCES PurchaseInvoices(Id),
+	--CONSTRAINT FKPD_PRODUCTDETAILS FOREIGN KEY(ProductDetailId) REFERENCES ProductDetails(Id),
+	CONSTRAINT FK_PD_WAREHOUSEID FOREIGN KEY(WarehouseId) REFERENCES Warehouses(Id),
+	CONSTRAINT FK_PD_MEASUREUNITS FOREIGN KEY(TargetUnitId) REFERENCES MeasureUnits(Id),
+	CONSTRAINT PK_PURCHASEDETAILS PRIMARY KEY(Id, PurchaseInvoiceId, ProductDetailCode, WarehouseId, TargetUnitId)
+)
+GO
+
+CREATE TABLE LocalCurrencies(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(20) NOT NULL,
+	Symbol NVARCHAR(5) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_LOCALCURRENCIES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE ForeignCurrencies(
+	Id INT IDENTITY(1,1) NOT NULL,
+	Name NVARCHAR(20) NOT NULL,
+	Symbol NVARCHAR(5) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_FOREIGNCURRENCIES PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE CurrencyExchange(
+	Id INT IDENTITY(1,1) NOT NULL,
+	LocalId INT NOT NULL,
+	ForeignId INT NOT NULL,
+	Sale FLOAT NOT NULL,
+	Purchase FLOAT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PKCURRENCYEXCHANGE PRIMARY KEY(Id),
+	CONSTRAINT FK_CE_LOCALCURRENCIES FOREIGN KEY(LocalId) REFERENCES LocalCurrencies(Id),
+	CONSTRAINT FK_CE_FOREIGNCURRENCIES FOREIGN KEY(ForeignId) REFERENCES ForeignCurrencies(Id)
+)
+GO
+
+CREATE TABLE SalesInvoices(
+	Id INT IDENTITY(1,1) NOT NULL,
+	InvoiceNumber AS (CONCAT_WS('', 00, Id, ISNULL(CustomerId, 00), '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
+	CustomerId INT NULL,
+	CustomerInvoice NVARCHAR(80),
+	CurrencyExchangeId INT NOT NULL,
+	Tax FLOAT NOT NULL,
+	Subtotal FLOAT NOT NULL,
+	Discount INT NOT NULL,
+	TotalAmount FLOAT NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_SALESINVOICES PRIMARY KEY(Id),
+	CONSTRAINT FK_SI_CUSTOMERS FOREIGN KEY(CustomerId) REFERENCES Customers(Id),
+	CONSTRAINT FK_SI_CURRENCYEXCHANGE FOREIGN KEY(CurrencyExchangeId) REFERENCES CurrencyExchange(Id)
+)
+GO
+
+CREATE TABLE SalesDetails(
+	Id INT IDENTITY(1,1) NOT NULL,
+	SaleInvoiceId INT NOT NULL,
+	ProductDetailCode NVARCHAR(255) NOT NULL,
+	WarehouseId INT NOT NULL,
+	TargetUnitId INT NOT NULL,
+	UnitConversionId INT NOT NULL,
+	Quantity INT NOT NULL,
+	Price FLOAT NOT NULL,
+	Subtotal FLOAT NOT NULL,
+	Tax FLOAT NOT NULL, 
+	Discount FLOAT NOT NULL,
+	Total FLOAT NOT NULL,
+	CONSTRAINT FK_SD_SALESINVOICES FOREIGN KEY(SaleInvoiceId) REFERENCES SalesInvoices(Id),
+	CONSTRAINT FK_SD_WAREHOUSES FOREIGN KEY(WarehouseId) REFERENCES Warehouses(Id),
+	CONSTRAINT FK_SD_MEASUREUNITS FOREIGN KEY(TargetUnitId) REFERENCES MeasureUnits(Id),
+	CONSTRAINT FK_SD_UNITCONVERSION FOREIGN KEY(UnitConversionId) REFERENCES UnitConversion(Id),
+	CONSTRAINT PK_SALEDETAILS PRIMARY KEY(Id, SaleInvoiceId, ProductDetailCode, WarehouseId,TargetUnitId)
+	--CONSTRAINT FKSD_PRODUCTDETAILS FOREIGN KEY(ProductDetailId) REFERENCES 
+)
+GO
+
+CREATE TABLE ProductTransfers(
+	Id INT IDENTITY(1,1) NOT NULL,
+	ProductStocksId INT NOT NULL,
+	TargetWarehouseId INT NOT NULL, --Warehouse destination to transfer the products
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL, --User Name who created the record and made the transfer
+	UpdatedBy NVARCHAR(80) NOT NULL, --User Name who Updated the record.
+	TransferStatus BIT NOT NULL, -- Transfer status, it means if the transfer was made. Status example -> 0 - cancelled, 1 - done
+	CONSTRAINT FK_PT_PRODUCTSTOCKS FOREIGN KEY(ProductStocksId) REFERENCES ProductStocks(Id),
+	CONSTRAINT FK_PT_WAREHOUSES FOREIGN KEY(TargetWarehouseId) REFERENCES Warehouses(Id),
+	CONSTRAINT PK_PRODUCTTRANSFERS PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE TransfersDetails(
+	Id INT IDENTITY(1,1) NOT NULL,
+	ProductTransferId INT NOT NULL,
+	ProductStocksId INT NOT NULL,
+	ProductDetailCode NVARCHAR(255) NOT NULL,
+	SourceWarehouseId INT NOT NULL, --Source Warehouse of the products
+	TargetUnitId INT NOT NULL,
+	UnitConversionId INT NOT NULL,
+	UnitsPurchased INT NOT NULL,
+	ConversionQuantity FLOAT NOT NULL,
+	PurchasePrice FLOAT NOT NULL,
+	SalePrice FLOAT NOT NULL,
+	CONSTRAINT FK_TD_PRODUCTTRANFERS FOREIGN KEY(ProductTransferId) REFERENCES ProductTransfers(Id),
+	CONSTRAINT PK_TRASNFERDETAILS PRIMARY KEY(Id, ProductTransferId,SourceWarehouseId, ProductStocksId, ProductDetailCode, TargetUnitId, UnitConversionId)
+)
+GO
+
+CREATE TABLE PendingTransfers(
+	Id INT IDENTITY(1,1) NOT NULL, --****
+	Code AS(CONCAT_WS('', ProductStocksId, TargetWarehouseId, '-', ProductDetailCode, '-', SourceWarehouseId, TargetUnitId, UnitConversionId)) UNIQUE, -- To check if the record already exists and increase the quantity to transfer
+	ProductStocksId INT NOT NULL, --****
+	TargetWarehouseId INT NOT NULL, --**** Warehouse destination to transfer the products
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL, --User Name who created the record and made the transfer
+	UpdatedBy NVARCHAR(80) NOT NULL, --User Name who Updated the record.
+	TransferStatus BIT NOT NULL,
+
+	--ProductTransferId INT NOT NULL,
+	ProductDetailCode NVARCHAR(255) NOT NULL, --****
+	SourceWarehouseId INT NOT NULL, --**** --Source Warehouse of the products
+	TargetUnitId INT NOT NULL, --****
+	UnitConversionId INT NOT NULL, --****
+	UnitsPurchased INT NOT NULL,
+	ConversionQuantity FLOAT NOT NULL,
+	PurchasePrice FLOAT NOT NULL,
+	SalePrice FLOAT NOT NULL,
+	CONSTRAINT PK_PENDINGTRANFERS PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE RemovedProducts(
+	Id INT IDENTITY(1,1) NOT NULL,
+	ProductStocksId INT NOT NULL,
+	LotNumber NVARCHAR(MAX) NOT NULL,
+	StocksDetailCode NVARCHAR(MAX) NOT NULL,
+	UnitQuantity INT NOT NULL,
+	ConversionQuantity FLOAT NOT NULL,
+	Title NVARCHAR(80) NOT NULL,
+	Description NVARCHAR(450) NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80) NOT NULL,
+	CONSTRAINT PK_REMOVEDPRODUCTS PRIMARY KEY(Id),
+	CONSTRAINT FK_RP_PRODUCTSTOCKS FOREIGN KEY(ProductStocksId) REFERENCES ProductStocks(Id)
+)
+GO
+
+CREATE TABLE ContactInfo(
+	Id INT IDENTITY(1,1) NOT NULL,
+	EmailAddress1 NVARCHAR(80) NOT NULL,
+	EmailAddress2 NVARCHAR(80) NULL,
+	PhoneNumber1 NVARCHAR(15) NOT NULL,
+	PhoneNumber2 NVARCHAR(15) NULL,
+	FixedLineNumber1 NVARCHAR(15) NULL,
+	FixedLineNumber2 NVARCHAR(15) NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80),
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_CONTACTINFORMATION PRIMARY KEY(Id)
+)
+GO
+
+CREATE TABLE Configurations(
+	Id INT IDENTITY(1,1) NOT NULL,
+	ContactInfoId INT NOT NULL,
+	BusinessName NVARCHAR(80) NOT NULL,
+	OwnerName NVARCHAR(50) NOT NULL,
+	RucNumber NVARCHAR(255) NOT NULL,
+	Address NVARCHAR(350) NULL,
+	Description NVARCHAR(250) NULL,
+	CreatedAt DATETIME NOT NULL,
+	CreatedBy NVARCHAR(80),
+	UpdatedAt DATETIME NOT NULL,
+	UpdatedBy NVARCHAR(80) NOT NULL,
+	Deleted BIT NOT NULL,
+	CONSTRAINT PK_CONFIGURATIONS PRIMARY KEY(Id),
+	CONSTRAINT FK_CONFIG_CONTACTINFO FOREIGN KEY(ContactInfoId) REFERENCES ContactInfo(Id)
+)
+GO
+
+CREATE TABLE BillingConfiguration(
+	Id INT IDENTITY(1,1) NOT NULL
+	PurchasePricePercentage
+)
+GO

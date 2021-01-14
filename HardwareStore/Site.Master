@@ -19,7 +19,7 @@
     <link runat="server" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <%--<webopt:bundlereference runat="server" path="~/Content/css" />--%>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link runat="server" type="text/css" href="~/Styles/Toast.css" rel="stylesheet" media="screen" />
 </head>
 <body>
     <form runat="server">

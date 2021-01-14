@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Purchases.aspx.cs" Inherits="HardwareStore.Modules.Billing.Purchases" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <%-- Modals section... --%>
     <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="min-width: 1300px;">
@@ -62,8 +61,6 @@
     </div>
     <%-- End Modals section --%>
 
-
-
     <%-- Main container or main view --%>
     <div class="container mt-4">
         <div class="row">
@@ -118,7 +115,7 @@
                                                                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ventanaModal">...</button>
                                                                     </div>
                                                                     <div title="Crea un nuevo Producto" class="input-group-append">
-                                                                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ModalnewProduct">+</button>
+                                                                        <button class="btn btn-success btn-sm" onclick="launch_Toast_ItemAddedToTempList()" data-toggle="modal" data-target="#ModalnewProduct">+</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -270,7 +267,7 @@
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button runat="server" Text="Agregar" ID="btnAddToPurchaseDetailList" OnClientClick="onClickEvent()" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button runat="server" Text="Agregar" ID="btnAddToPurchaseDetailList" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2 p-1">
                                                                 <asp:Button runat="server" Text="Cancelar" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
@@ -290,7 +287,7 @@
                                                 <div class="card card-shadow pr-4 pl-4">
                                                     <div class="table-responsive mt-3 mb-3">
                                                         <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                                                            ID="GridViewPurchaseDetails" CssClass="table" CellPadding="5">
+                                                            ID="GridViewPurchaseDetails" CssClass="table" CellPadding="5" OnRowCommand="GridViewPurchaseDetails_RowCommand">
                                                             <HeaderStyle CssClass="thead-dark" />
                                                             <Columns>
                                                                 <asp:BoundField HeaderText="Código" DataField="Code" />
@@ -307,6 +304,16 @@
                                                                 <asp:BoundField HeaderText="Discount" DataField="Discount" />
                                                                 <asp:BoundField HeaderText="IVA" DataField="Tax" />
                                                                 <asp:BoundField HeaderText="Total" DataField="Total" />
+                                                                <asp:TemplateField HeaderText="Opciones">
+                                                                    <ItemTemplate>
+                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                            CssClass="LinkbtnPrimary" ID="EditLink" ToolTip="Editar Producto"
+                                                                            CommandName="cmdEdit" runat="server">Editar</asp:LinkButton>
+                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                            CssClass="LinkbtnDanger" ID="DeleteLink" ToolTip="Eliminar Producto"
+                                                                            CommandName="cmdDelete" runat="server">Eliminar</asp:LinkButton>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                             </Columns>
                                                         </asp:GridView>
                                                     </div>
@@ -360,13 +367,13 @@
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button runat="server" Text="Calcular" ID="btnRecalculatePurchaseTotal" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button runat="server" Text="Calcular" ID="btnRecalculatePurchaseTotal" OnClick="btnRecalculatePurchaseTotal_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button runat="server" Text="Registrar Orden" ID="btnGeneratePurchase" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button runat="server" Text="Registrar Orden" ID="btnGeneratePurchase" OnClick="btnGeneratePurchase_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button runat="server" Text="Cancelar" ID="btnPurchaseCancel" CssClass="btn btn-danger btn-block" />
+                                                                <asp:Button runat="server" Text="Cancelar" ID="btnPurchaseCancel" OnClick="btnPurchaseCancel_Click" CssClass="btn btn-danger btn-block" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -379,7 +386,7 @@
                                 </div>
                             </ContentTemplate>
                             <Triggers>
-                                <asp:PostBackTrigger ControlID="btnAddToPurchaseDetailList" />
+                                <%--<asp:PostBackTrigger ControlID="btnAddToPurchaseDetailList" />--%>
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>
@@ -388,11 +395,42 @@
         </div>
     </div>
     <%-- End of Main container --%>
+
+    <%-- start Toaster section --%>
+    <div id="Toast_ItemAddedToTempList" class="toast">
+        <div class="toast-img toast-img-success"><i class="fas fa-exclamation"></i></div>
+        <div class="toast-body">
+            <p style="text-align: justify;">
+                Producto agregado al detalle!
+            </p>
+        </div>
+    </div>
+
+    <div id="Toast_ItemAreadyExist" class="toast">
+        <div class="toast-img toast-img-danger"><i class="fas fa-exclamation"></i></div>
+        <div class="toast-body">
+            <p style="text-align: justify;">
+                El producto ya existe en la lista!
+                <br />
+                Edite el existente en su lugar
+            </p>
+        </div>
+    </div>
+    <%-- End toaster section --%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
     <script>
-        function onClickEvent() {
-            console.log("hello world");
+        function launch_Toast_ItemAddedToTempList() {
+            console.log("Hello World");
+            var el = document.getElementById("Toast_ItemAddedToTempList")
+            el.classList.add("show");
+            setTimeout(function () { el.classList.remove("show") }, 5000);
+        }
+
+        function Toast_ItemAlreadyExists() {
+            var el = document.getElementById("Toast_ItemAreadyExist")
+            el.classList.add("show");
+            setTimeout(function () { el.classList.remove("show") }, 5000);
         }
     </script>
 </asp:Content>

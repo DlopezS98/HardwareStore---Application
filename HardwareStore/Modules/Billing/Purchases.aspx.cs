@@ -122,6 +122,7 @@ namespace HardwareStore.Modules.Billing
             txtUnitMeasureBase.Text = ""; txtQuantity.Text = ""; txtSalePrice.Text = ""; txtMeasureUnitId.Text = ""; txtCategoryName.Text = "";
             txtUnitConversion.Text = ""; SpanUnitMeasureAbbreviation.InnerHtml = "U"; txtProductName.Value = ""; txtProductDetailCode.Text = "";
             txtDimensions.Text = ""; txtDefaultCode.Text = ""; txtMeasureUnitId.Text = ""; btnAddToPurchaseDetailList.Text = "Agregar";
+            ddlistMeasureUnits.Enabled = false; ddlistMeasureUnits.SelectedIndex = 0;
         }
 
         protected void ddlistMeasureUnits_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,10 +146,13 @@ namespace HardwareStore.Modules.Billing
         protected void btnAddToPurchaseDetailList_Click(object sender, EventArgs e)
         {
             string Option = btnAddToPurchaseDetailList.Text;
+            string ShowToaster;
             switch (btnAddToPurchaseDetailList.Text)
             {
                 case "Agregar":
+                    ShowToaster = "launch_Toast_ItemAddedToTempList()";
                     this.AddItemToTempList();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
                     break;
 
                 case "Editar":
@@ -163,7 +167,7 @@ namespace HardwareStore.Modules.Billing
         public void AddItemToTempList()
         {
             bool AlreadyExist;
-            string ShowToaster = "Toast_ItemAlreadyExists";
+            string ShowToaster = "Toast_ItemAlreadyExists()";
             TempPurchaseList Temp = this.CreateObjectForTempList();
             if (Session[TempListKey] == null)
             {
@@ -174,7 +178,7 @@ namespace HardwareStore.Modules.Billing
             {
                 TempList = Session[TempListKey] as List<TempPurchaseList>;
                 AlreadyExist = TempList.Exists(x => x.Code == Temp.Code);
-                if (AlreadyExist) { TempList.Add(Temp); } else { ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true); }
+                if (!AlreadyExist) { TempList.Add(Temp); } else { ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true); }
             }
 
             this.LoadGridViewForTempList(TempList);
@@ -185,6 +189,7 @@ namespace HardwareStore.Modules.Billing
 
         private void EditItemFromTempList()
         {
+            TempList = Session[TempListKey] as List<TempPurchaseList>;
 
         }
         public void calculateTotalAmount()
@@ -264,6 +269,54 @@ namespace HardwareStore.Modules.Billing
         {
             int value = Convert.ToInt32(ddlistValidateSalePrice.SelectedValue);
             if (value == 1) { this.txtSalePrice.ReadOnly = true; } else if (value == 2) { this.txtSalePrice.ReadOnly = false; }
+        }
+
+        protected void btnRecalculatePurchaseTotal_Click(object sender, EventArgs e)
+        {
+            this.calculateTotalAmount();
+        }
+
+        protected void btnGeneratePurchase_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnPurchaseCancel_Click(object sender, EventArgs e)
+        {
+            this.ResetAllForm();
+        }
+
+        private void ResetAllForm()
+        {
+            this.txtSupplierInvoiceNumber.Text = ""; txtTotalTax.Text = "";
+            this.txtTotal.Text = ""; txtSubtotal.Value = ""; txtTotalDiscount.Text = "";
+            this.ResetInputsForPurchaseDetail();
+        }
+
+        protected void GridViewPurchaseDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow Row = (GridViewRow)(((LinkButton)e.CommandSource).NamingContainer);
+            int Index = Row.RowIndex;
+            string Code = Convert.ToString(GridViewPurchaseDetails.DataKeys[Index].Value);
+            switch (e.CommandName)
+            {
+                case "cmdEdit":
+                    this.SendElementsToTextboxFromTempList(Code);
+                    this.btnAddToPurchaseDetailList.Text = "Editar";
+                    break;
+                case "cmdDelete":
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SendElementsToTextboxFromTempList(string Code)
+        {
+            this.TempList = Session[TempListKey] as List<TempPurchaseList>;
+            TempPurchaseList temp = this.TempList.FirstOrDefault(x => x.Code == Code);
+            txtProductDetailCode.Text = temp.Code;
+            txtProductName.Value = temp.ProductName;
         }
     }
 }

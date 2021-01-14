@@ -17,6 +17,7 @@ namespace HardwareStore.Core.DTOs.Billing
         public string Dimensions { get; set; }
         public string WarehouseName { get; set; }
         public int WarehouseId { get; set; }
+        public string Abbreviation { get; set; }
         public string UnitPurchased { get; set; }
         public int TargetUnitId { get; set; }
         public double UnitConversion { get; set; }

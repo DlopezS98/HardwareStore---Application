@@ -11,6 +11,7 @@ namespace HardwareStore.Core.Interfaces.Catalogs
     public interface IProductsRepository
     {
         List<ProductDetailsDto> ListAllProductDetails(Boolean Deleted, string Search);
+        ProductDetailsDto GetAProductDetail(string Code);
         List<ProductDetailsDto> ListAllProductDetails();
         DataTable GetProductDetailsFromDatabase(Boolean Deleted, string Search);
     }

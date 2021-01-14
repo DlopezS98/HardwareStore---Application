@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HardwareStore.Core.Entities.Providers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace HardwareStore.Core.Entities.Billing
 {
     public class PurchaseInvoices : BaseEntity
     {
-        public string VendorCode { get; set; }
+        public int SupplierId { get; set; }
         public string InvoiceNumber { get; set; }
         public string SupplierInvoiceNumber { get; set; }
         public double Tax { get; set; }
@@ -21,5 +22,6 @@ namespace HardwareStore.Core.Entities.Billing
         public DateTime UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
         public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
+        public virtual Suppliers Suppliers { get; set; }
     }
 }

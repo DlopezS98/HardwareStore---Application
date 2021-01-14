@@ -12,5 +12,8 @@ namespace HardwareStore.Core.Interfaces.Billing
         List<ProductDetailsDto> GetProductDetails(Boolean Deleted, string Search);
         List<WarehousesDropDto> GetWarehousesForDropdowns();
         List<SuppliersDropDto> GetSuppliersForDropDowns();
+        List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
+        ProductDetailsDto GetAProductDetail(string Code);
+        double GetConversionValueById(int From, int To);
     }
 }

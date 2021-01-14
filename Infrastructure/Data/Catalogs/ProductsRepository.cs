@@ -17,6 +17,23 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
             this._dbContext = _dbContext;
         }
 
+        public ProductDetailsDto GetAProductDetail(string Code)
+        {
+            try
+            {
+                ProductDetailsDto dto = new ProductDetailsDto();
+                List<ProductDetailsDto> list = new List<ProductDetailsDto>();
+                list = this.ListAllProductDetails();
+                dto = list.FirstOrDefault(x => x.Code == Code);
+                return dto;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
         public DataTable GetProductDetailsFromDatabase(bool Deleted, string Search)
         {
             try

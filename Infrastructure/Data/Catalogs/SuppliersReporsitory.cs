@@ -21,18 +21,7 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
             try
             {
                 List<SuppliersDropDto> list = new List<SuppliersDropDto>();
-                list = (from vendor in this._dbContext.Vendors
-                        join supplier in this._dbContext.Suppliers
-                        on vendor.SupplierId equals supplier.Id
-                        join person in this._dbContext.Persons
-                        on vendor.PersonId equals person.Id
-                        where vendor.Deleted == false && supplier.Deleted == false
-                        select new SuppliersDropDto
-                        {
-                            Id = supplier.Id,
-                            Code = vendor.Code,
-                            Name = supplier.Name + " - " + person.FullName
-                        }).ToList();
+                list = this._dbContext.Suppliers.Select(x => new SuppliersDropDto() { Id = x.Id, Name = x.Name, Code = x.Code }).ToList();
                 return list;
             }
             catch (Exception exc)

@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\Billing\TempPurchaseList.cs" />
+    <Compile Include="DTOs\Catalogs\MeasureUnitsDropDto.cs" />
     <Compile Include="DTOs\Catalogs\ProductDetailsDto.cs" />
     <Compile Include="DTOs\Catalogs\SuppliersDropDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDropDto.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Entities\SysConfiguration\ForeignCurrencies.cs" />
     <Compile Include="Entities\SysConfiguration\LocalCurrencies.cs" />
     <Compile Include="Interfaces\Billing\IPurchasesService.cs" />
+    <Compile Include="Interfaces\Catalogs\IMeasureUnitsRepository.cs" />
     <Compile Include="Interfaces\IEntityRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IProductsRepository.cs" />
     <Compile Include="Interfaces\ISpecification.cs" />

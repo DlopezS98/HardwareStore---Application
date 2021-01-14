@@ -47,7 +47,7 @@ namespace HardwareStore.Infrastructure.Data
         public DbSet<SalesInvoices> SalesInvoices { get; set; }
         public DbSet<Suppliers> Suppliers { get; set; }
         public DbSet<TransfersDetails> TransfersDetails { get; set; }
-        public DbSet<UnitConversion> UnitConversion { get; set; }
+        public DbSet<UnitConversions> UnitConversions { get; set; }
         public DbSet<UnitTypes> UnitTypes { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Users> Users { get; set; }

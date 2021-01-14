@@ -40,7 +40,7 @@ namespace HardwareStore.Core.Entities.Billing
 
         public virtual MeasureUnits MeasureUnits { get; set; }
         public virtual SalesInvoices SalesInvoices { get; set; }
-        public virtual UnitConversion UnitConversion { get; set; }
+        public virtual UnitConversions UnitConversions { get; set; }
         public virtual Warehouses Warehouses { get; set; }
     }
 }

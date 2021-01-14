@@ -60,6 +60,15 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.UpdatePanel UpdatePanelForTabsContent;
 
         /// <summary>
+        /// txtMeasureUnitId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMeasureUnitId;
+
+        /// <summary>
         /// txtSupplierInvoiceNumber control.
         /// </summary>
         /// <remarks>
@@ -258,13 +267,13 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.Button btnCancelOrClearDetailForm;
 
         /// <summary>
-        /// GridView1 control.
+        /// GridViewPurchaseDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridViewPurchaseDetails;
 
         /// <summary>
         /// txtSubtotal control.

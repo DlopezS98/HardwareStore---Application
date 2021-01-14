@@ -26,7 +26,7 @@
                             </div>
                             <div class="table-responsive mt-3">
                                 <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                                    ID="GridViewProductDetails" CssClass="table table-hover" CellPadding="5">
+                                    ID="GridViewProductDetails" OnRowCommand="GridViewProductDetails_RowCommand" CssClass="table table-hover" CellPadding="5">
                                     <HeaderStyle CssClass="thead-dark" />
                                     <Columns>
                                         <asp:BoundField HeaderText="Código" DataField="Code" />
@@ -98,6 +98,7 @@
                                             <div class="col-md-12">
                                                 <div class="card card-shadow">
                                                     <div class="card-body">
+                                                        <asp:TextBox runat="server" ID="txtMeasureUnitId" ReadOnly="true" Visible="false" />
                                                         <div class="form-row">
                                                             <div class="form-group col-md-4">
                                                                 <asp:Label Text="Factura" runat="server" />
@@ -176,15 +177,15 @@
                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtDimensions" ReadOnly="true" placeholder="Dimensiones" />
                                                             </div>
                                                             <div class="form-group col-md-2">
-                                                                <asp:Label Text="Unidad de medida" runat="server" />
+                                                                <asp:Label Text="Unidad base" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtUnitMeasureBase" ReadOnly="true" placeholder="Unidad" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-md-4">
-                                                                <label>Unidad medida</label>
+                                                                <label>Unidad Compra</label>
                                                                 <div class="input-group">
-                                                                    <asp:DropDownList ID="ddlistMeasureUnits" CssClass="form-control" runat="server">
+                                                                    <asp:DropDownList ID="ddlistMeasureUnits" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlistMeasureUnits_SelectedIndexChanged" CssClass="form-control" runat="server">
                                                                     </asp:DropDownList>
                                                                     <div class="input-group-append">
                                                                         <button data-toggle="modal" data-target="#MeasureUnits" class="btn btn-info btn-sm" type="button">+</button>
@@ -205,13 +206,13 @@
                                                             <div class="form-group col-md-4">
                                                                 <asp:Label Text="Codigo producto" runat="server" />
                                                                 <div class="input-group">
-                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtDefaultCode" placeholder="Codigo por defecto" />
+                                                                    <asp:TextBox ReadOnly="true" runat="server" CssClass="form-control" ID="txtDefaultCode" placeholder="Codigo por defecto" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-md-3">
                                                                 <asp:Label Text="Cantidad" runat="server" />
                                                                 <div class="input-group">
-                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" TextMode="Number" step="1" placeholder="Cantidad" />
+                                                                    <asp:TextBox AutoPostBack="true" OnTextChanged="txtQuantity_TextChanged" runat="server" CssClass="form-control" ID="txtQuantity" TextMode="Number" step="1" placeholder="Cantidad" />
                                                                     <div class="input-group-append">
                                                                         <span class="input-group-text">#</span>
                                                                     </div>
@@ -249,9 +250,9 @@
                                                             <div class="form-group col-md-4">
                                                                 <label>Precio compra</label>
                                                                 <div class="input-group">
-                                                                    <asp:DropDownList ID="ddlistValidateSalePrice" CssClass="form-control" runat="server">
-                                                                        <asp:ListItem Text="Imponible por el sistema" />
-                                                                        <asp:ListItem Text="Digitado por el usuario" />
+                                                                    <asp:DropDownList AutoPostBack="true" ID="ddlistValidateSalePrice" OnSelectedIndexChanged="ddlistValidateSalePrice_SelectedIndexChanged" CssClass="form-control" runat="server">
+                                                                        <asp:ListItem Value="1" Text="Imponible por el sistema" />
+                                                                        <asp:ListItem Value="2" Text="Digitado por el usuario" />
                                                                     </asp:DropDownList>
                                                                 </div>
                                                             </div>
@@ -269,10 +270,10 @@
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button Text="Agregar" runat="server" ID="btnAddToPurchaseDetailList" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button Text="Agregar" runat="server" ID="btnAddToPurchaseDetailList" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button Text="Cancelar" runat="server" ID="btnCancelOrClearDetailForm" CssClass="btn btn-warning btn-block" />
+                                                                <asp:Button Text="Cancelar" runat="server" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,18 +289,22 @@
                                             <div class="col">
                                                 <div class="card card-shadow">
                                                     <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                                                        ID="GridView1" CssClass="table" CellPadding="5">
+                                                        ID="GridViewPurchaseDetails" CssClass="table" CellPadding="5">
                                                         <Columns>
                                                             <asp:BoundField HeaderText="Código" DataField="Code" />
+                                                            <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
                                                             <asp:BoundField HeaderText="Producto" DataField="ProductName" />
-                                                            <asp:BoundField HeaderText="Unidad de medida" DataField="MeasureUnit" />
-                                                            <asp:BoundField HeaderText="Categoría" DataField="CategoryName" />
+                                                            <asp:BoundField HeaderText="Marca" DataField="BrandName" />
                                                             <asp:BoundField HeaderText="Material" DataField="MaterialName" />
                                                             <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
-                                                            <asp:BoundField HeaderText="Expiración" DataField="ExpirationDate" />
-                                                            <asp:BoundField HeaderText="Fecha registro" DataField="CreatedAt" />
-                                                            <asp:BoundField HeaderText="Creado por" DataField="CreatedBy" />
-                                                            <asp:BoundField HeaderText="Estado" DataField="Status" />
+                                                            <asp:BoundField HeaderText="Unidad base" DataField="MeasureUnitBase" />
+                                                            <asp:BoundField HeaderText="Unidad compra" DataField="UnitPurchased" />
+                                                            <asp:BoundField HeaderText="Cantidad" DataField="UnitsPurchasedString" />
+                                                            <asp:BoundField HeaderText="Conversion" DataField="UnitsBaseConversion" />
+                                                            <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" />
+                                                            <asp:BoundField HeaderText="Discount" DataField="Discount" />
+                                                            <asp:BoundField HeaderText="IVA" DataField="Tax" />
+                                                            <asp:BoundField HeaderText="Total" DataField="Total" />
                                                         </Columns>
                                                     </asp:GridView>
                                                 </div>
@@ -369,6 +374,9 @@
                                 <%-- End Detail Sale --%>
                                 </div>
                             </ContentTemplate>
+                            <Triggers>
+                                <asp:PostBackTrigger ControlID="btnAddToPurchaseDetailList" />
+                            </Triggers>
                         </asp:UpdatePanel>
                     </div>
                 </div>

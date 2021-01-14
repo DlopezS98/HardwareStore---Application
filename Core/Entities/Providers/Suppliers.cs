@@ -1,4 +1,5 @@
-﻿using HardwareStore.Core.Entities.ProductsAdmin;
+﻿using HardwareStore.Core.Entities.Billing;
+using HardwareStore.Core.Entities.ProductsAdmin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,6 @@ namespace HardwareStore.Core.Entities.Providers
         public bool Deleted { get; set; }
         public virtual ICollection<ProductStocks> ProductStocks { get; set; }
         public virtual ICollection<Vendors> Vendors { get; set; }
+        public virtual ICollection<PurchaseInvoices> PurchaseInvoices { get; set; }
     }
 }

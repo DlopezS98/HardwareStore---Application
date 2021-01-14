@@ -22,7 +22,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public bool Available { get; set; }
 
         public virtual MeasureUnits MeasureUnits { get; set; }
-        public virtual UnitConversion UnitConversion { get; set; }
+        public virtual UnitConversions UnitConversions { get; set; }
         public virtual ProductStocks ProductStocks { get; set; }
         public virtual Warehouses Warehouses { get; set; }
     }

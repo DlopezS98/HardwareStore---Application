@@ -148,8 +148,7 @@ namespace HardwareStore.Modules.Billing
             switch (btnAddToPurchaseDetailList.Text)
             {
                 case "Agregar":
-                    //this.AddItemToTempList();
-                    this.ResetInputsForPurchaseDetail();
+                    this.AddItemToTempList();
                     break;
 
                 case "Editar":
@@ -193,16 +192,16 @@ namespace HardwareStore.Modules.Billing
             double Total, Subtotal; int Discount;
             Subtotal = this.CalculateSubTotalAmount();
             Total = Subtotal;
-            if (txtTotalTax.Value != "")
-                Total = Total + Convert.ToDouble(txtTotalTax.Value);
+            if (txtTotalTax.Text != "")
+                Total = Total + Convert.ToDouble(txtTotalTax.Text);
 
-            if (txtTotalDiscount.Value != "")
+            if (txtTotalDiscount.Text != "")
             {
-                Discount = Convert.ToInt32(txtTotalDiscount.Value);
+                Discount = Convert.ToInt32(txtTotalDiscount.Text);
                 Total = Total - (((double)Discount / 100) * Total);
             }
 
-            txtTotal.Value = Total.ToString();
+            txtTotal.Text = Total.ToString();
         }
 
         public double CalculateSubTotalAmount()

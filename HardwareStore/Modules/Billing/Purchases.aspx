@@ -270,10 +270,10 @@
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button Text="Agregar" runat="server" ID="btnAddToPurchaseDetailList" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button runat="server" Text="Agregar" ID="btnAddToPurchaseDetailList" OnClientClick="onClickEvent()" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button Text="Cancelar" runat="server" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
+                                                                <asp:Button runat="server" Text="Cancelar" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -287,26 +287,29 @@
                                     <div class="tab-pane fade" id="purchasedetail-content" role="tabpanel" aria-labelledby="purchasedetail-tab">
                                         <div class="row mt-3">
                                             <div class="col">
-                                                <div class="card card-shadow">
-                                                    <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                                                        ID="GridViewPurchaseDetails" CssClass="table" CellPadding="5">
-                                                        <Columns>
-                                                            <asp:BoundField HeaderText="Código" DataField="Code" />
-                                                            <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
-                                                            <asp:BoundField HeaderText="Producto" DataField="ProductName" />
-                                                            <asp:BoundField HeaderText="Marca" DataField="BrandName" />
-                                                            <asp:BoundField HeaderText="Material" DataField="MaterialName" />
-                                                            <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
-                                                            <asp:BoundField HeaderText="Unidad base" DataField="MeasureUnitBase" />
-                                                            <asp:BoundField HeaderText="Unidad compra" DataField="UnitPurchased" />
-                                                            <asp:BoundField HeaderText="Cantidad" DataField="UnitsPurchasedString" />
-                                                            <asp:BoundField HeaderText="Conversion" DataField="UnitsBaseConversion" />
-                                                            <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" />
-                                                            <asp:BoundField HeaderText="Discount" DataField="Discount" />
-                                                            <asp:BoundField HeaderText="IVA" DataField="Tax" />
-                                                            <asp:BoundField HeaderText="Total" DataField="Total" />
-                                                        </Columns>
-                                                    </asp:GridView>
+                                                <div class="card card-shadow pr-4 pl-4">
+                                                    <div class="table-responsive mt-3 mb-3">
+                                                        <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
+                                                            ID="GridViewPurchaseDetails" CssClass="table" CellPadding="5">
+                                                            <HeaderStyle CssClass="thead-dark" />
+                                                            <Columns>
+                                                                <asp:BoundField HeaderText="Código" DataField="Code" />
+                                                                <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
+                                                                <asp:BoundField HeaderText="Producto" DataField="ProductName" />
+                                                                <asp:BoundField HeaderText="Marca" DataField="BrandName" />
+                                                                <asp:BoundField HeaderText="Material" DataField="MaterialName" />
+                                                                <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
+                                                                <asp:BoundField HeaderText="Unidad base" DataField="MeasureUnitBase" />
+                                                                <asp:BoundField HeaderText="Unidad compra" DataField="UnitPurchased" />
+                                                                <asp:BoundField HeaderText="Cantidad" DataField="UnitsPurchasedString" />
+                                                                <asp:BoundField HeaderText="Conversion" DataField="UnitsBaseConversion" />
+                                                                <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" />
+                                                                <asp:BoundField HeaderText="Discount" DataField="Discount" />
+                                                                <asp:BoundField HeaderText="IVA" DataField="Tax" />
+                                                                <asp:BoundField HeaderText="Total" DataField="Total" />
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,7 +330,7 @@
                                                             <div class="form-group col-md-2">
                                                                 <label>Impuesto</label>
                                                                 <div class="input-group">
-                                                                    <input required textmode="Number" step="0.01" runat="server" id="txtTotalTax" placeholder="Impuesto" class="form-control" />
+                                                                    <asp:TextBox runat="server" TextMode="Number" step="0.01" ID="txtTotalTax" placeholder="Impuesto" CssClass="form-control" />
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">IVA</span>
                                                                     </div>
@@ -336,7 +339,7 @@
                                                             <div class="form-group col-md-3">
                                                                 <label for="txtTotalDiscount">Descuento</label>
                                                                 <div class="input-group">
-                                                                    <input required textmode="Number" runat="server" id="txtTotalDiscount" placeholder="Descuento" class="form-control" />
+                                                                    <asp:TextBox TextMode="Number" runat="server" step="1" ID="txtTotalDiscount" placeholder="Descuento" CssClass="form-control" />
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">%</span>
                                                                     </div>
@@ -345,7 +348,8 @@
                                                             <div class="form-group col-md-4">
                                                                 <label>Total</label>
                                                                 <div class="input-group">
-                                                                    <input required readonly placeholder="Total" runat="server" id="txtTotal" class="form-control" />
+                                                                    <asp:TextBox runat="server" ID="txtTotal" placeholder="Total" CssClass="form-control" />
+                                                                    <%--<input required readonly placeholder="Total" runat="server" id="txtTotal" class="form-control" />--%>
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">C$</span>
                                                                     </div>
@@ -386,4 +390,9 @@
     <%-- End of Main container --%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
+    <script>
+        function onClickEvent() {
+            console.log("hello world");
+        }
+    </script>
 </asp:Content>

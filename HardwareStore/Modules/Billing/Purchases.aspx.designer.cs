@@ -291,7 +291,7 @@ namespace HardwareStore.Modules.Billing
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTotalTax;
+        protected global::System.Web.UI.WebControls.TextBox txtTotalTax;
 
         /// <summary>
         /// txtTotalDiscount control.
@@ -300,7 +300,7 @@ namespace HardwareStore.Modules.Billing
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTotalDiscount;
+        protected global::System.Web.UI.WebControls.TextBox txtTotalDiscount;
 
         /// <summary>
         /// txtTotal control.
@@ -309,7 +309,7 @@ namespace HardwareStore.Modules.Billing
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTotal;
+        protected global::System.Web.UI.WebControls.TextBox txtTotal;
 
         /// <summary>
         /// btnRecalculatePurchaseTotal control.

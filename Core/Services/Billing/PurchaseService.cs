@@ -239,5 +239,35 @@ namespace HardwareStore.Core.Services.Billing
                 throw exc;
             }
         }
+
+        public List<InvoicesDto> GetPurhaseInvoices(DateTime StartDate, DateTime EndDate, string Search)
+        {
+            try
+            {
+                List<InvoicesDto> Invoices = new List<InvoicesDto>();
+                Invoices = this._PurchaseRepository.GetPurhaseInvoices(StartDate, EndDate, Search);
+                return Invoices;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<InvoiceDetailsDto> GetPurchaseInvoiceDetails(int InvoiceId)
+        {
+            try
+            {
+                List<InvoiceDetailsDto> Details = new List<InvoiceDetailsDto>();
+                Details = this._PurchaseRepository.GetPurchaseInvoiceDetails(InvoiceId);
+                return Details;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
     }
 }

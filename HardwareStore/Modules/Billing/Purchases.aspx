@@ -4,7 +4,6 @@
     <div style="margin-top: 10px;">
         <%-- Alert for transaction Info --%>
         <div id="section-alerts">
-
         </div>
         <%-- End Alert --%>
         <%-- Modals section... --%>
@@ -80,7 +79,6 @@
                                 </button>
                             </div>
                             <div id="modal-body-content" class="modal-body">
-                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
@@ -118,7 +116,78 @@
                             <!-- Tabs content -->
                             <div class="tab-content" id="myTabContent">
                                 <%-- purchases list --%>
-                                <div class="tab-pane fade" id="purchaselist-content" role="tabpanel" aria-labelledby="purchaselist-tab">historial</div>
+                                <div class="tab-pane fade" id="purchaselist-content" role="tabpanel" aria-labelledby="purchaselist-tab">
+                                    <asp:UpdatePanel runat="server" ID="UpdatePanelForInvoiceList">
+                                        <ContentTemplate>
+                                            <div class="row mt-3">
+                                                <div class="col">
+                                                    <div class="card card-shadow">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <div class="form-row align-items-center">
+                                                                                <div class="form-group col-md-4">
+                                                                                    <asp:Label Text="Buscar" runat="server" />
+                                                                                    <asp:TextBox runat="server" ID="txtSearchInvoiceRecords" CssClass="form-control" placeholder="Buscar..." />
+                                                                                </div>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <asp:Label Text="Fecha Inicio" runat="server" />
+                                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="PickerStartDateInvoceFilter" TextMode="Date" />
+                                                                                </div>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <asp:Label Text="Fecha Final" runat="server" />
+                                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="PickerEndDateInvoiceFilter" TextMode="Date" />
+                                                                                </div>
+                                                                                <div class="form-group col-md-2">
+                                                                                    <br />
+                                                                                    <asp:Button Text="Filtrar" runat="server" ID="btnInvoiceFilter" OnClick="btnInvoiceFilter_Click" CssClass="btn btn-primary btn-block" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4">
+                                                                <div class="col">
+                                                                    <div class="card">
+                                                                        <div class="card-body table-responsive mt-3 mb-3">
+                                                                            <asp:GridView runat="server" DataKeyNames="Id" AutoGenerateColumns="false"
+                                                                                ID="GridViewInvoices" CssClass="table" CellPadding="5" OnRowCommand="GridViewInvoices_RowCommand">
+                                                                                <HeaderStyle CssClass="thead-dark" />
+                                                                                <Columns>
+                                                                                    <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                                                                    <asp:BoundField HeaderText="No. Factura" DataField="InvoiceNumber" />
+                                                                                    <asp:BoundField HeaderText="Proveedor" DataField="SupplierName" />
+                                                                                    <asp:BoundField HeaderText="Factura proveedor" DataField="SupplierInvoiceNumber" />
+                                                                                    <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" />
+                                                                                    <asp:BoundField HeaderText="IVA" DataField="Tax" />
+                                                                                    <asp:BoundField HeaderText="Descuento" DataField="Discount" />
+                                                                                    <asp:BoundField HeaderText="Total" DataField="TotalAmount" />
+                                                                                    <asp:BoundField HeaderText="Fecha creación" DataField="CreationDate" />
+                                                                                    <asp:BoundField HeaderText="Fecha actualización" DataField="UpdateDate" />
+                                                                                    <asp:BoundField HeaderText="Realizada por" DataField="CreatedBy" />
+                                                                                    <asp:TemplateField HeaderText="Opciones">
+                                                                                        <ItemTemplate>
+                                                                                            <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                                                CssClass="btn btn-primary btn-sm mb-3" ID="DetailsLink" ToolTip="Detalle de compra"
+                                                                                                CommandName="cmdDetails" runat="server">Detalles</asp:LinkButton>
+                                                                                        </ItemTemplate>
+                                                                                    </asp:TemplateField>
+                                                                                </Columns>
+                                                                            </asp:GridView>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </div>
                                 <%-- End list --%>
 
                                 <%-- New Sale Section --%>
@@ -491,15 +560,15 @@
             strong.appendChild(contentTitle);
             div.appendChild(strong);
             div.appendChild(contentMessage);
-            setTimeout(function(){
+            setTimeout(function () {
                 document.getElementById("section-alerts").remove();
             }, 7000);
             console.log("showAlert")
             //<div class="alert alert-warning alert-dismissible fade show" role="alert">
-          //      <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-          //<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          //          <span aria-hidden="true">&times;</span>
-          //      </button>
+            //      <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            //<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            //          <span aria-hidden="true">&times;</span>
+            //      </button>
             //</div>
         }
 

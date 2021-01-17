@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\Billing\PurchasesDto.cs" />
+    <Compile Include="DTOs\Billing\InvoiceDetailsDto.cs" />
+    <Compile Include="DTOs\Billing\InvoicesDto.cs" />
     <Compile Include="DTOs\Billing\PurchaseTransacDto.cs" />
     <Compile Include="DTOs\Billing\TempPurchaseList.cs" />
     <Compile Include="DTOs\Catalogs\MeasureUnitsDropDto.cs" />

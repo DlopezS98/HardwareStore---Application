@@ -14,6 +14,8 @@ namespace HardwareStore.Core.Interfaces.Billing
         List<ProductDetailsDto> GetProductDetails(Boolean Deleted, string Search);
         List<WarehousesDropDto> GetWarehousesForDropdowns();
         List<SuppliersDropDto> GetSuppliersForDropDowns();
+        List<InvoicesDto> GetPurhaseInvoices(DateTime StartDate, DateTime EndDate, string Search);
+        List<InvoiceDetailsDto> GetPurchaseInvoiceDetails(int InvoiceId);
         ProductDetailsDto GetAProductDetail(string Code);
         Response RegisterPurchaseTransaction(PurchaseTransacDto Invoice);
     }

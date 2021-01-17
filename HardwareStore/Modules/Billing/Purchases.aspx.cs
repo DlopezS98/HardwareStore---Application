@@ -70,6 +70,27 @@ namespace HardwareStore.Modules.Billing
             }
         }
 
+        public void LoadGridVewInvoces(DateTime? StartDate, DateTime? EndDate, string Search = "")
+        {
+            DateTime Start, End;
+            List<InvoicesDto> Invoices = new List<InvoicesDto>();
+            if (StartDate != null && EndDate != null)
+            {
+                Start = (DateTime)StartDate;
+                End = (DateTime)EndDate;
+                Invoices = this._PurchaseService.GetPurhaseInvoices(Start, End, Search);
+            }
+            else
+            {
+                Start = Convert.ToDateTime("1998-10-01");
+                End = DateTime.Now.AddDays(1);
+                Invoices = this._PurchaseService.GetPurhaseInvoices(Start, End, Search);
+            }
+
+            this.GridViewInvoices.DataSource = Invoices;
+            this.GridViewInvoices.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -77,6 +98,7 @@ namespace HardwareStore.Modules.Billing
                 this.LoadProductDetails();
                 this.LoadDropdownWarehouses();
                 this.LoadDropDownSuppliers();
+                this.LoadGridVewInvoces(null, null);
             }
 
             Session[UserKey] = "01dlopezs98@gmail.com";
@@ -453,6 +475,31 @@ namespace HardwareStore.Modules.Billing
         {
             Session.Remove(TempListKey);
             this.LoadGridViewForTempList();
+        }
+
+        protected void GridViewInvoices_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnInvoiceFilter_Click(object sender, EventArgs e)
+        {
+            string Invoice, ShowToastDate, StartDateString, EndDateString;
+
+            Invoice = txtSearchInvoiceRecords.Text;
+            ShowToastDate = "ToastDate()";
+            StartDateString = PickerStartDateInvoceFilter.Text;
+            EndDateString = PickerEndDateInvoiceFilter.Text;
+            if(StartDateString != "" && EndDateString != "")
+            {
+                DateTime Start = Convert.ToDateTime(StartDateString);
+                DateTime End = Convert.ToDateTime(EndDateString);
+                if (Start >= End) { ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToastDate, true); } else { this.LoadGridVewInvoces(Start, End, Invoice); }
+            }
+            else
+            {
+                this.LoadGridVewInvoces(null, null, Invoice);
+            }
         }
     }
 }

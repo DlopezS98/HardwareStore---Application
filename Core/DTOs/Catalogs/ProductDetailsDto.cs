@@ -12,6 +12,7 @@ namespace HardwareStore.Core.DTOs.Catalogs
         public int UnitTypeId { get; set; }
         public int MeasureUnitId { get; set; }
         public string ProductName { get; set; }
+        public string MeasureUnitAndAbbreviation { get => this.MeasureUnit + " ("+ this.Abbreviation + ")"; }
         public string MeasureUnit { get; set; }
         public string Abbreviation { get; set; }
         public string BrandName { get; set; }

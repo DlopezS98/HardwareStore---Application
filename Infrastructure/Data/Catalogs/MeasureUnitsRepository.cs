@@ -23,7 +23,7 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
             {
                 List<MeasureUnitsDropDto> list = new List<MeasureUnitsDropDto>();
                 var msu = this._dbContext.MeasureUnits.Where(x => x.UnitTypeId == TypeId);
-                list = msu.Select(x => new MeasureUnitsDropDto() { Id = x.Id, Name = x.Name + " - " + x.Abbrevation}).ToList();
+                list = msu.Select(x => new MeasureUnitsDropDto() { Id = x.Id, Name = x.Name + " (" + x.Abbrevation + ")"}).ToList();
                 return list;
             }
             catch (Exception exc)

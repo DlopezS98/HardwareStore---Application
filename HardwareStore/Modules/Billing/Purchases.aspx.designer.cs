@@ -51,13 +51,31 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.GridView GridViewProductDetails;
 
         /// <summary>
-        /// UpdatePanelForTabsContent control.
+        /// UpdatePanelDeleteItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelForTabsContent;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelDeleteItem;
+
+        /// <summary>
+        /// btnConfirmDeleteProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmDeleteProduct;
+
+        /// <summary>
+        /// UpdatePanelForPurchaseDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelForPurchaseDetail;
 
         /// <summary>
         /// txtMeasureUnitId control.
@@ -69,13 +87,31 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtMeasureUnitId;
 
         /// <summary>
-        /// txtSupplierInvoiceNumber control.
+        /// txtMeasureUnitTypeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSupplierInvoiceNumber;
+        protected global::System.Web.UI.WebControls.TextBox txtMeasureUnitTypeId;
+
+        /// <summary>
+        /// txtProductCodeForDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductCodeForDelete;
+
+        /// <summary>
+        /// txtWarehouseId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtWarehouseId;
 
         /// <summary>
         /// txtProductName control.
@@ -87,6 +123,15 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtProductName;
 
         /// <summary>
+        /// txtProductDetailCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductDetailCode;
+
+        /// <summary>
         /// ddlstWarehouses control.
         /// </summary>
         /// <remarks>
@@ -96,22 +141,13 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.DropDownList ddlstWarehouses;
 
         /// <summary>
-        /// ddlstSuppliers control.
+        /// pickerExpiryDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlstSuppliers;
-
-        /// <summary>
-        /// txtProductDetailCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductDetailCode;
+        protected global::System.Web.UI.WebControls.TextBox pickerExpiryDate;
 
         /// <summary>
         /// txtBrandName control.
@@ -157,42 +193,6 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUnitMeasureBase;
-
-        /// <summary>
-        /// ddlistMeasureUnits control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlistMeasureUnits;
-
-        /// <summary>
-        /// txtUnitConversion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUnitConversion;
-
-        /// <summary>
-        /// SpanUnitMeasureAbbreviation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SpanUnitMeasureAbbreviation;
-
-        /// <summary>
-        /// txtDefaultCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDefaultCode;
 
         /// <summary>
         /// txtQuantity control.
@@ -265,6 +265,33 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelOrClearDetailForm;
+
+        /// <summary>
+        /// UpdatePanelForNewPurchase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelForNewPurchase;
+
+        /// <summary>
+        /// txtSupplierInvoiceNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSupplierInvoiceNumber;
+
+        /// <summary>
+        /// ddlstSuppliers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlstSuppliers;
 
         /// <summary>
         /// GridViewPurchaseDetails control.

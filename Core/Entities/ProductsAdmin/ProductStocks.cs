@@ -12,6 +12,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public int SupplierId { get; set; }
         public string LotNumber { get; set; }
         public int Quantity { get; set; }
+        public double TotalAmount { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }

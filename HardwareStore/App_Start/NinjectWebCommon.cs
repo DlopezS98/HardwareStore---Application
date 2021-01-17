@@ -16,6 +16,9 @@ namespace HardwareStore.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using HardwareStore.Infrastructure.Data.Billing;
+    using HardwareStore.Core.Interfaces.ProductsAdmin;
+    using HardwareStore.Infrastructure.Data.ProductsAdmin;
 
     public static class NinjectWebCommon 
     {
@@ -72,6 +75,8 @@ namespace HardwareStore.App_Start
             kernel.Bind<IWarehouseRepository>().To<WarehouseRepository>();
             kernel.Bind<ISuppliersRepository>().To<SuppliersReporsitory>();
             kernel.Bind<IMeasureUnitsRepository>().To<MeasureUnitsRepository>();
+            kernel.Bind<IPurchaseRepository>().To<PurchaseRepository>();
+            kernel.Bind<IProductsStocksRepository>().To<ProductsStocksRepository>();
         }
     }
 }

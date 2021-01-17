@@ -1,70 +1,92 @@
-﻿body {
+﻿html{
+    height: 100%;
+}
+
+body {
     margin: 0px;
     padding: 0px;
     font-family: 'Noto Sans JP', sans-serif;
+    height: 100%;
+}
+
+form{
+    height: 100%;
 }
 
 .card-shadow {
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
 
-header {
-    background: #212B38;
-    /*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); 
+/*header {
+    background: #212B38;*/
+/*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); 
     background: linear-gradient(to right, #FF4B2B, #FF416C); */
-    width: 100%;
+/*width: 100%;
     height: 60px;
     margin: 0px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
-    border-bottom: #2F323A 0.1px solid;
-    /*    opacity: 0.97;*/
+    border-bottom: #2F323A 0.1px solid;*/
+/*    opacity: 0.97;*/
+/*box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}*/
+
+header {
+    background: #212B38;
+    z-index: 1;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.left_area {
-    padding-left: 10px;
-    padding-top: 15px;
-    width: 185px;
-    height: 60px;
-    background: #222A35;
-    box-shadow: none;
+.container-grid {
+    display: grid;
+    height: 100%;
+    grid-template-columns:minmax(100px, 250px) 1fr;
+    grid-template-rows: minmax(80px, 85px) 1fr;
+    grid-template-areas: "sidevar-grid       navbar-grid" 
+                         "sidevar-grid      content-main-grid";
 }
 
-    .left_area h3 {
-        color: #fff;
-        margin: 0;
-        text-transform: uppercase;
-        font-size: 22px;
-        font-weight: 900;
+    .container-grid .navbar-grid {
+        grid-column-start: navbar-grid;
+        grid-column-end: navbar-grid;
+        
     }
 
-    .left_area span {
-        color: #fff;
+    .container-grid .sidevar-grid {
+        grid-column-start: sidevar-grid;
+        grid-column-end: sidevar-grid;
+        grid-row-start: sidevar-grid;
+        grid-row-end: sidevar-grid;
+        overflow-y: hidden;
+        background: #212B38;
     }
 
-.Logout_btn {
-    padding: 5px;
-    background: #19B3D3;
-    text-decoration: none;
-    float: right;
-    margin-top: -45px;
-    margin-right: 40px;
-    border-radius: 2px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    transition-property: background;
+    .container-grid .content-main-grid {
+        grid-column-start: content-main-grid;
+        grid-column-end: content-main-grid;
+        overflow-y:scroll;
+        padding-bottom: 50px;
+    }
+
+.content-main-grid::-webkit-scrollbar {
+    width: 0.8rem;
 }
 
-    .Logout_btn:hover {
-        background: #0D9DBB;
-        text-decoration: none;
-        color: #fff;
-    }
+.content-main-grid::-webkit-scrollbar-track {
+    background: #212B38;
+}
 
-* {
-    box-sizing: border-box;
+.content-main-grid::-webkit-scrollbar-thumb {
+    background-color: #F54B64;
+    border-radius: 5px;
+}
+
+.content-main-grid::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.navbar{
+    min-height: 85px;
 }

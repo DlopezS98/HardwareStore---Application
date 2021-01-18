@@ -68,6 +68,7 @@ header {
         grid-column-end: content-main-grid;
         overflow-y:scroll;
         padding-bottom: 50px;
+        position: relative;
     }
 
 .content-main-grid::-webkit-scrollbar {
@@ -89,4 +90,14 @@ header {
 
 .navbar{
     min-height: 85px;
+}
+
+.section-alert {
+    position: fixed;
+    width: 178vh;
+    z-index: 1000;
+    right: 30px;
+    top: 100px;
+    height: 51px;
+    display: none;
 }

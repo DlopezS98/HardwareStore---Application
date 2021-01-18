@@ -54,6 +54,7 @@ namespace HardwareStore.Modules.Billing
 
         public void LoadGridViewForTempList(List<TempPurchaseList> list = null)
         {
+            List<TempPurchaseList> EmptyList = new List<TempPurchaseList>();
             if (list != null)
             {
                 this.GridViewPurchaseDetails.DataSource = list;
@@ -65,6 +66,11 @@ namespace HardwareStore.Modules.Billing
                 {
                     this.TempList = Session[TempListKey] as List<TempPurchaseList>;
                     this.GridViewPurchaseDetails.DataSource = TempList;
+                    this.GridViewPurchaseDetails.DataBind();
+                }
+                else
+                {
+                    this.GridViewPurchaseDetails.DataSource = EmptyList;
                     this.GridViewPurchaseDetails.DataBind();
                 }
             }
@@ -293,6 +299,7 @@ namespace HardwareStore.Modules.Billing
         private TempPurchaseList CreateObjectForTempList()
         {
             DateTime expirydate;
+            double purchaseprice = Convert.ToDouble(txtPurchasePrice.Text);
             TempPurchaseList Temp = new TempPurchaseList();
             Temp.Code = txtProductDetailCode.Text;
             Temp.ProductName = txtProductName.Value;
@@ -305,10 +312,10 @@ namespace HardwareStore.Modules.Billing
             Temp.MaterialName = txtMaterialName.Text;
             Temp.MeasureUnitBase = txtUnitMeasureBase.Text;
             Temp.Quantity = Convert.ToInt32(txtQuantity.Text);
-            Temp.PurchasePrice = Convert.ToDouble(txtPurchasePrice.Text);
+            Temp.PurchasePrice = purchaseprice;
             Temp.Discount = Convert.ToInt32(txtDetailDiscount.Text);
             Temp.Tax = Convert.ToDouble(txtTaxDetail.Text);
-            Temp.SalePrice = Convert.ToDouble(txtSalePrice.Text);
+            if (txtSalePrice.Text != "") { Temp.SalePrice = Convert.ToDouble(txtSalePrice.Text); } else { Temp.SalePrice = purchaseprice + (((double)40 / 100) * purchaseprice); }
             Temp.Dimensions = txtDimensions.Text;
             Temp.CategoryName = txtCategoryName.Text;
             if (pickerExpiryDate.Text != "")
@@ -362,12 +369,14 @@ namespace HardwareStore.Modules.Billing
             };
 
             Response res = this._PurchaseService.RegisterPurchaseTransaction(Invoice);
-            this.ResetAllForm();
-            this.DeleteAllProductsFromList();
+            
             if (res.Success) { showAlert = string.Format("ShowAlert('{0}', '{1}', 'success')", res.Title, res.Message); }
             else { showAlert = string.Format("ShowAlert('{0}', '{1}', 'danger')", res.Title, res.Message); }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", showAlert, true);
+            this.ResetAllForm();
+            this.DeleteAllProductsFromList();
+            this.LoadGridVewInvoces(null, null);
         }
 
         protected void btnPurchaseCancel_Click(object sender, EventArgs e)
@@ -479,7 +488,28 @@ namespace HardwareStore.Modules.Billing
 
         protected void GridViewInvoices_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            GridViewRow Row = (GridViewRow)(((LinkButton)e.CommandSource).NamingContainer);
+            int Index = Row.RowIndex;
+            int Id = Convert.ToInt32(GridViewInvoices.DataKeys[Index]["Id"]);
+            string InvoiceNumber = Convert.ToString(GridViewInvoices.DataKeys[Index]["InvoiceNumber"]);
+            string ShowModalDetails = string.Format("ShowModal_InvoiceDetails('{0}')", InvoiceNumber);
+            switch (e.CommandName)
+            {
+                case "cmdDetails":
+                    this.LoadGridviewforInvoiceDetails(Id);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowModalDetails, true);
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        private void LoadGridviewforInvoiceDetails(int id)
+        {
+            List<InvoiceDetailsDto> Details = new List<InvoiceDetailsDto>();
+            Details = this._PurchaseService.GetPurchaseInvoiceDetails(id);
+            this.GridviewInvoiceDetails.DataSource = Details;
+            this.GridviewInvoiceDetails.DataBind();
         }
 
         protected void btnInvoiceFilter_Click(object sender, EventArgs e)
@@ -490,7 +520,7 @@ namespace HardwareStore.Modules.Billing
             ShowToastDate = "ToastDate()";
             StartDateString = PickerStartDateInvoceFilter.Text;
             EndDateString = PickerEndDateInvoiceFilter.Text;
-            if(StartDateString != "" && EndDateString != "")
+            if (StartDateString != "" && EndDateString != "")
             {
                 DateTime Start = Convert.ToDateTime(StartDateString);
                 DateTime End = Convert.ToDateTime(EndDateString);
@@ -500,6 +530,70 @@ namespace HardwareStore.Modules.Billing
             {
                 this.LoadGridVewInvoces(null, null, Invoice);
             }
+        }
+
+        protected void btnSearchProductDetails_Click(object sender, EventArgs e)
+        {
+            string Search = txtSearchProductDetails.Value;
+            this.LoadProductDetails(search: Search);
+        }
+
+        protected void btnCreateNewWarehouse_Click(object sender, EventArgs e)
+        {
+            string ShowAlert;
+            this.UserName = Session[UserKey] as string;
+            WarehousesDto dto = new WarehousesDto()
+            {
+                Name = txtFormWhsWarehouseName.Text,
+                Description = txtFormWhsDescription.Text,
+                Location = txtFormWhsLocation.Text,
+                CreatedBy = this.UserName,
+                UpdatedBy = this.UserName
+            };
+
+            Response res = this._PurchaseService.CreateWarehouse(dto);
+
+            this.LoadDropdownWarehouses();
+            this.ClearModalForms();
+
+            if (res.Success) { ShowAlert = string.Format("ShowAlert('{0}', '{1}', 'success')", res.Title, res.Message); }
+            else { ShowAlert = string.Format("ShowAlert('{0}', '{1}', 'danger')", res.Title, res.Message); }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowAlert, true);
+        }
+
+        protected void btnCreateNewSupplier_Click(object sender, EventArgs e)
+        {
+            string ShowAlert;
+            this.UserName = Session[UserKey] as string;
+            SuppliersDto dto = new SuppliersDto()
+            {
+                Name = txtFormSpSupplierName.Text,
+                Email = txtFormSpEmailAddres.Text,
+                Address = txtFormSpAddress.Text,
+                CreatedBy = this.UserName,
+                UpdatedBy = this.UserName,
+            };
+
+            Response res = this._PurchaseService.CreateSupplier(dto);
+            this.LoadDropDownSuppliers();
+            this.ClearModalForms();
+
+            if (res.Success) { ShowAlert = string.Format("ShowAlert('{0}', '{1}', 'success')", res.Title, res.Message); }
+            else { ShowAlert = string.Format("ShowAlert('{0}', '{1}', 'danger')", res.Title, res.Message); }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowAlert, true);
+        }
+
+        public void ClearModalForms()
+        {
+            txtFormSpSupplierName.Text = "";
+            txtFormSpEmailAddres.Text = "";
+            txtFormSpAddress.Text = "";
+
+            txtFormWhsWarehouseName.Text = "";
+            txtFormWhsDescription.Text = "";
+            txtFormWhsLocation.Text = "";
         }
     }
 }

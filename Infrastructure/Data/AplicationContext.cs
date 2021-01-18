@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HardwareStore.Core.DTOs.Catalogs;
 
 namespace HardwareStore.Infrastructure.Data
 {
@@ -53,5 +54,15 @@ namespace HardwareStore.Infrastructure.Data
         public DbSet<Users> Users { get; set; }
         public DbSet<Vendors> Vendors { get; set; }
         public DbSet<Warehouses> Warehouses { get; set; }
+
+        //Not mapped objects...
+        public DbSet<SuppliersDto> SuppliersDto { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Ignore<SuppliersDto>();
+            modelBuilder.Ignore<WarehousesDto>();
+        }
     }
 }

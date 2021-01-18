@@ -66,9 +66,21 @@ header {
     .container-grid .content-main-grid {
         grid-column-start: content-main-grid;
         grid-column-end: content-main-grid;
-        overflow-y:scroll;
-        padding-bottom: 30px;
+        overflow-y: scroll;
+        padding-bottom: 50px;
+        position: relative;
     }
+
+
+.section-alert {
+    position: fixed;
+    width: 178vh;
+    z-index: 1000;
+    right: 30px;
+    top: 100px;
+    height: 51px;
+    display: none;
+}
 
 .content-main-grid::-webkit-scrollbar {
     width: 0.6rem;
@@ -110,17 +122,17 @@ header {
         clear: both;
     }
 
-.card {
+/*.card {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     padding-bottom: 20px;
-    text-align: center;
+    text-align: center;*/
     /*background-color: #f1f1f1;*/
-    border-color: #dedede;
+    /*border-color: #dedede;
     border-width: 1px;
     border-style: solid;
     margin-top: 20px;
     border-radius: 10px;
-}
+}*/
 
 
 

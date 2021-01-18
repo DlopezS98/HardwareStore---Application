@@ -92,7 +92,6 @@ CREATE TABLE ProductDetails(
 	Code AS UPPER(CONCAT_WS('', 0, Id, ProductId, BrandId, CategoryId, MaterialTypeId, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
 	DefaultCode NVARCHAR(MAX) NULL,
 	Dimensions NVARCHAR(250) NULL,
-	ExpiryDate DATETIME NULL,
 	CreatedAt DATETIME NOT NULL,
 	CreatedBy NVARCHAR(80) NOT NULL,
 	UpdatedAt DATETIME NOT NULL,
@@ -246,6 +245,7 @@ CREATE TABLE ProductStocks(
 	SupplierId INT NOT NULL,
 	LotNumber AS UPPER(CONCAT_WS('', 0, Id, SupplierId, '-0', Quantity, '-', FORMAT(CreatedAt, 'ddMMyyyy', 'vi'))),
 	Quantity INT NOT NULL,
+	TotalAmount FLOAT NOT NULL,
 	CreatedAt DATETIME NOT NULL,
 	CreatedBy NVARCHAR(80) NOT NULL,
 	UpdatedAt DATETIME NOT NULL,
@@ -258,15 +258,16 @@ GO
 
 CREATE TABLE DetailProductStocks(
 	Id INT IDENTITY(1,1) NOT NULL,
-	Code AS (CONCAT_WS('', ProductDetailCode, '-',WarehouseId, ProductStocksId, TargetUnitId, UnitConversionId)) UNIQUE,
+	Code AS (CONCAT_WS('', ProductDetailCode, '-',Id, WarehouseId, ProductStocksId, TargetUnitId)) UNIQUE,
 	ProductStocksId INT NOT NULL,
 	WarehouseId INT NOT NULL,
 	ProductDetailCode NVARCHAR(255) NOT NULL,
 	--ProductDetailId INT NOT NULL,
 	TargetUnitId INT NOT NULL, --Target unit
-	UnitConversionId INT NOT NULL, --Id of the Unit measure conversions where (TargetUnitId = UnitConversion(TargetUnitId).IdMeasureUnitFrom AND Products(ProductDetailCode).MeasureUnitId = UnitConversion.ConversionNameTo)
-	UnitsPurchased INT NOT NULL, -- Units purchased 
-	ConversionQuantity FLOAT NOT NULL, -- Conversion quantity = (Units * UnitConversion(UnitConversionId).ConversionValue)
+	UnitConversionId INT NULL, --Id of the Unit measure conversions where (TargetUnitId = UnitConversion(TargetUnitId).IdMeasureUnitFrom AND Products(ProductDetailCode).MeasureUnitId = UnitConversion.ConversionNameTo)
+	ExpirationDate DATETIME NULL,
+	Quantity INT NOT NULL, -- Units purchased 
+	ConversionQuantity FLOAT NULL, -- Conversion quantity = (Units * UnitConversion(UnitConversionId).ConversionValue)
 	PurchasePrice FLOAT NOT NULL,
 	SalePrice FLOAT NOT NULL, --Sale price (update) = Sale / quantity
 	--CONSTRAINT PKDTPRODSTOCKS PRIMARY KEY(Id),
@@ -275,8 +276,8 @@ CREATE TABLE DetailProductStocks(
 	CONSTRAINT FKDPS_PRODUCTSTOCKS FOREIGN KEY(ProductStocksId) REFERENCES ProductStocks(Id),
 	--CONSTRAINT FKDPS_PRODUCTDETAILS FOREIGN KEY(ProductDetailId) REFERENCES ProductDetails(Id),
 	CONSTRAINT FK_DPS_MEASUREUNITS FOREIGN KEY(TargetUnitId) REFERENCES MeasureUnits(Id),
-	CONSTRAINT FK_DPS_UNITCONVERSION FOREIGN KEY(UnitConversionId) REFERENCES UnitConversion(Id),
-	CONSTRAINT PK_DETAILPRODUCTSTOCKS PRIMARY KEY(Id, WarehouseId, ProductStocksId, ProductDetailCode, TargetUnitId, UnitConversionId)
+	CONSTRAINT FK_DPS_UNITCONVERSION FOREIGN KEY(UnitConversionId) REFERENCES UnitConversions(Id),
+	CONSTRAINT PK_DETAILPRODUCTSTOCKS PRIMARY KEY(Id, WarehouseId, ProductStocksId, ProductDetailCode, TargetUnitId)
 )
 GO
 
@@ -395,10 +396,12 @@ GO
 CREATE TABLE SalesDetails(
 	Id INT IDENTITY(1,1) NOT NULL,
 	SaleInvoiceId INT NOT NULL,
+	StockLotNumber NVARCHAR(255) NOT NULL,
 	ProductDetailCode NVARCHAR(255) NOT NULL,
 	WarehouseId INT NOT NULL,
 	TargetUnitId INT NOT NULL,
 	UnitConversionId INT NOT NULL,
+	ConversionValue FLOAT NOT NULL,
 	Quantity INT NOT NULL,
 	Price FLOAT NOT NULL,
 	Subtotal FLOAT NOT NULL,

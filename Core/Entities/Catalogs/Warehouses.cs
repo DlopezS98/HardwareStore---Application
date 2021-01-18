@@ -2,6 +2,7 @@
 using HardwareStore.Core.Entities.ProductsAdmin;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace HardwareStore.Core.Entities.Catalogs
     public class Warehouses : BaseEntity
     {
         public string Name { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Code { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }

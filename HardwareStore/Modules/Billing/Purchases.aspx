@@ -3,8 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div style="margin-top: 10px;">
         <%-- Alert for transaction Info --%>
-        <div id="section-alerts">
-
+        <div id="section-alerts" class="section-alert">
+            <%--<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>--%>
         </div>
         <%-- End Alert --%>
         <%-- Modals section... --%>
@@ -27,7 +32,7 @@
                                         <input class="form-control" runat="server" id="txtSearchProductDetails" placeholder="Buscar..." />
                                     </div>
                                     <div class="col-md-4 mt-3 pl-3">
-                                        <asp:Button CssClass="btn btn-primary" runat="server" Text="Buscar" ID="btnSearchProductDetails" />
+                                        <asp:Button CssClass="btn btn-primary" runat="server" Text="Buscar" ID="btnSearchProductDetails" OnClick="btnSearchProductDetails_Click" />
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-3">
@@ -67,6 +72,149 @@
             </div>
         </div>
 
+        <%-- Modal Invoice Details table --%>
+        <div class="modal fade" id="ModalInvoiceDetails" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="min-width: 1200px;">
+                <div class="modal-content">
+                    <div id="InvoiceDetail_Header" class="modal-header bg-dark">
+                        <div id="Header_Info"></div>
+                        <strong id="strongtag1"></strong>
+                        <strong id="strongtag2"></strong>
+                        <%--<label runat="server" id="getidFromtable"></label>--%>
+                        <button class="close text-light" data-dismiss="modal" aria-label="cerrar">
+                            <span class="text-light" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div class="table-responsive mt-3">
+                                    <asp:GridView runat="server" AutoGenerateColumns="false" ID="GridviewInvoiceDetails" CssClass="table table-hover" CellPadding="5">
+                                        <HeaderStyle CssClass="thead-dark" />
+                                        <Columns>
+                                            <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                            <asp:BoundField HeaderText="Purchase Id" DataField="PurchaseInvoiceId" Visible="false" />
+                                            <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
+                                            <asp:BoundField HeaderText="Codigo Producto" DataField="ProductDetailCode" />
+                                            <asp:BoundField HeaderText="Producto" DataField="ProductName" />
+                                            <asp:BoundField HeaderText="Unidad" DataField="MeasureUnit" />
+                                            <asp:BoundField HeaderText="Cantidad" DataField="Quantity" />
+                                            <asp:BoundField HeaderText="Precio Compra" DataField="PurchasePrice" />
+                                            <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" />
+                                            <asp:BoundField HeaderText="Impuestos" DataField="Tax" />
+                                            <asp:BoundField HeaderText="Descuento" DataField="Discount" />
+                                            <asp:BoundField HeaderText="Total" DataField="Total" />
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- End of the Invoice Details records --%>
+
+        <%-- Modal catalogo bodega --%>
+        <div class="modal fade" id="ModalWarehouses" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server" ID="UpdatePanelFormWarehouses">
+                            <ContentTemplate>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card card-shadow">
+                                            <div class="card-header text-center">
+                                                <h4>Crear nueva bodega</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Nombre" runat="server" />
+                                                    <asp:TextBox runat="server" ID="txtFormWhsWarehouseName" placeholder="Nombre bodega" CssClass="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label Text="Descripción" runat="server" />
+                                                    <asp:TextBox runat="server" ID="txtFormWhsDescription" placeholder="Description" CssClass="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label Text="Ubicación" runat="server" />
+                                                    <asp:TextBox runat="server" ID="txtFormWhsLocation" placeholder="Ubicación" CssClass="form-control" />
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-3 p-1">
+                                                        <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
+                                                    </div>
+                                                    <div class="col-md-3 p-1">
+                                                        <asp:Button runat="server" Text="Agregar" ID="btnCreateNewWarehouse" OnClick="btnCreateNewWarehouse_Click" CssClass="btn btn-success btn-block" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Fin Modal de bodegas --%>
+
+        <%-- Modal proveedores --%>
+        <div class="modal fade" id="ModalSuppliers" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server" ID="UpdatePanelSupplierForm">
+                            <ContentTemplate>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card card-shadow">
+                                            <div class="card-header text-center">
+                                                <h4>Crear Nuevo Proveedor</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <%--<form>--%>
+                                                <div class="form-group">
+                                                    <asp:Label Text="Nombre" runat="server" />
+                                                    <asp:TextBox runat="server" ID="txtFormSpSupplierName" placeholder="Nombre proveedor" CssClass="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label Text="Correo Electrónico" runat="server" />
+                                                    <asp:TextBox runat="server" TextMode="Email" ID="txtFormSpEmailAddres" placeholder="Correo electrónico" CssClass="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label Text="Dirección" runat="server" />
+                                                    <asp:TextBox runat="server" ID="txtFormSpAddress" placeholder="Dirección" CssClass="form-control" />
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-3 p-1">
+                                                        <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
+                                                    </div>
+                                                    <div class="col-md-3 p-1">
+                                                        <asp:Button runat="server" Text="Agregar" ID="btnCreateNewSupplier" OnClick="btnCreateNewSupplier_Click" CssClass="btn btn-success btn-block" />
+                                                    </div>
+                                                </div>
+                                                <%--                                                </form>--%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Fin Modal Proveedores --%>
+
         <%-- Modal confirmación eliminar --%>
         <div style="margin-top: 120px" class="modal fade" id="ConfirmDeletions" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
             <div class="modal-dialog">
@@ -80,7 +228,6 @@
                                 </button>
                             </div>
                             <div id="modal-body-content" class="modal-body">
-                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
@@ -118,7 +265,78 @@
                             <!-- Tabs content -->
                             <div class="tab-content" id="myTabContent">
                                 <%-- purchases list --%>
-                                <div class="tab-pane fade" id="purchaselist-content" role="tabpanel" aria-labelledby="purchaselist-tab">historial</div>
+                                <div class="tab-pane fade" id="purchaselist-content" role="tabpanel" aria-labelledby="purchaselist-tab">
+                                    <asp:UpdatePanel runat="server" ID="UpdatePanelForInvoiceList">
+                                        <ContentTemplate>
+                                            <div class="row mt-3">
+                                                <div class="col">
+                                                    <div class="card card-shadow">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <div class="form-row align-items-center">
+                                                                                <div class="form-group col-md-4">
+                                                                                    <asp:Label Text="Buscar" runat="server" />
+                                                                                    <asp:TextBox runat="server" ID="txtSearchInvoiceRecords" CssClass="form-control" placeholder="Buscar..." />
+                                                                                </div>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <asp:Label Text="Fecha Inicio" runat="server" />
+                                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="PickerStartDateInvoceFilter" TextMode="Date" />
+                                                                                </div>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <asp:Label Text="Fecha Final" runat="server" />
+                                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="PickerEndDateInvoiceFilter" TextMode="Date" />
+                                                                                </div>
+                                                                                <div class="form-group col-md-2">
+                                                                                    <br />
+                                                                                    <asp:Button Text="Filtrar" runat="server" ID="btnInvoiceFilter" OnClick="btnInvoiceFilter_Click" CssClass="btn btn-primary btn-block" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4">
+                                                                <div class="col">
+                                                                    <div class="card">
+                                                                        <div class="card-body table-responsive mt-3 mb-3">
+                                                                            <asp:GridView runat="server" DataKeyNames="Id, InvoiceNumber" AutoGenerateColumns="false"
+                                                                                ID="GridViewInvoices" CssClass="table" CellPadding="5" OnRowCommand="GridViewInvoices_RowCommand">
+                                                                                <HeaderStyle CssClass="thead-dark" />
+                                                                                <Columns>
+                                                                                    <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                                                                    <asp:BoundField HeaderText="No. Factura" DataField="InvoiceNumber" />
+                                                                                    <asp:BoundField HeaderText="Proveedor" DataField="SupplierName" />
+                                                                                    <asp:BoundField HeaderText="Factura proveedor" DataField="SupplierInvoiceNumber" />
+                                                                                    <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" />
+                                                                                    <asp:BoundField HeaderText="IVA" DataField="Tax" />
+                                                                                    <asp:BoundField HeaderText="Descuento" DataField="Discount" />
+                                                                                    <asp:BoundField HeaderText="Total" DataField="TotalAmount" />
+                                                                                    <asp:BoundField HeaderText="Fecha creación" DataField="CreationDate" />
+                                                                                    <asp:BoundField HeaderText="Fecha actualización" DataField="UpdateDate" />
+                                                                                    <asp:BoundField HeaderText="Realizada por" DataField="CreatedBy" />
+                                                                                    <asp:TemplateField HeaderText="Opciones">
+                                                                                        <ItemTemplate>
+                                                                                            <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                                                CssClass="btn btn-primary btn-sm mb-3" ID="DetailsLink" ToolTip="Detalle de compra"
+                                                                                                CommandName="cmdDetails" runat="server">Detalles</asp:LinkButton>
+                                                                                        </ItemTemplate>
+                                                                                    </asp:TemplateField>
+                                                                                </Columns>
+                                                                            </asp:GridView>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </div>
                                 <%-- End list --%>
 
                                 <%-- New Sale Section --%>
@@ -143,7 +361,7 @@
                                                                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ventanaModal">...</button>
                                                                         </div>
                                                                         <div title="Crea un nuevo Producto" class="input-group-append">
-                                                                            <button class="btn btn-success btn-sm" onclick="launch_Toast_ItemAddedToTempList()" data-toggle="modal" data-target="#ModalnewProduct">+</button>
+                                                                            <button class="btn btn-success btn-sm" onclick="ShowAlert('title', 'message', 'warning')" data-toggle="modal" data-target="#ModalnewProduct">+</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -161,7 +379,7 @@
                                                                         <asp:DropDownList ID="ddlstWarehouses" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
                                                                         <div class="input-group-append">
-                                                                            <button data-toggle="modal" data-target="#ModalWarehause" class="btn btn-info btn-sm" type="button">+</button>
+                                                                            <asp:Button runat="server" Text="+" ID="btnAddNewWarehouse" data-toggle="modal" data-target="#ModalWarehouses" CssClass="btn btn-info btn-sm" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -457,6 +675,16 @@
                 </p>
             </div>
         </div>
+
+        <div id="toastDate" class="toast">
+            <div class="toast-img toast-img-danger"><i class="fas fa-exclamation"></i></div>
+            <div class="toast-body">
+                <p style="text-align: justify;">
+                    La fecha incio no debe<br />
+                    ser mayor a la fecha final!
+                </p>
+            </div>
+        </div>
         <%-- End toaster section --%>
     </div>
 </asp:Content>
@@ -482,25 +710,26 @@
         }
 
         function ShowAlert(title, message, CssClass) {
+            console.log("Hello World");
+            $('#ModalWarehouses').modal('hide');
+            $('#ModalSuppliers').modal('hide');
             const div = document.getElementById("section-alerts");
-            div.className = `alert alert-${CssClass} m-2 alert-dismissible fade show`;
+            const divalert = document.createElement('div');
+            div.style.display = "block"
+            divalert.className = `alert alert-${CssClass} m-2 alert-dismissible fade show`;
             const contentMessage = document.createTextNode(message);
             const strong = document.createElement('strong');
             strong.style.marginRight = "10px";
             const contentTitle = document.createTextNode(title);
             strong.appendChild(contentTitle);
-            div.appendChild(strong);
-            div.appendChild(contentMessage);
-            setTimeout(function(){
-                document.getElementById("section-alerts").remove();
+            divalert.appendChild(strong);
+            divalert.appendChild(contentMessage);
+            div.appendChild(divalert);
+            setTimeout(function () {
+                $('.alert').alert('close')
+                div.style.display = "none";
+                divalert.remove();
             }, 7000);
-            console.log("showAlert")
-            //<div class="alert alert-warning alert-dismissible fade show" role="alert">
-          //      <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-          //<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          //          <span aria-hidden="true">&times;</span>
-          //      </button>
-            //</div>
         }
 
         function ShowAlertInfo(message) {
@@ -508,6 +737,48 @@
             let content = document.createTextNode(message);
             element.appendChild(content);
             $('#ConfirmDeletions').modal('show');
+        }
+
+        function ShowModal_InvoiceDetails(InvoiceNumber) {
+            //let div = document.getElementById("InvoiceDetail_Header");
+            document.getElementById("strongtag1").remove();
+            document.getElementById("strongtag2").remove();
+            let div = document.getElementById("Header_Info");
+            let strongtag1 = document.createElement("strong");
+            let strongtag2 = document.createElement("strong");
+            let content1 = document.createTextNode("Detalle de compra: Factura #")
+            let content2 = document.createTextNode(InvoiceNumber);
+
+            strongtag1.style.marginRight = "10px"; strongtag1.classList.add("text-light"); strongtag1.setAttribute("id", "strongtag1");
+            strongtag2.classList.add("text-light"); strongtag2.setAttribute("id", "strongtag2");
+            strongtag1.appendChild(content1);
+            strongtag2.appendChild(content2);
+
+            div.appendChild(strongtag1);
+            div.appendChild(strongtag2);
+
+            setTimeout(function () {
+                $('#ModalInvoiceDetails').modal('show');
+                
+            }, 300);
+
+            //<h5 class="text-light">Detalle de compra:   Factura #</h5>
+            //            <h5 class="text-light"></h5>
+        }
+
+        $('#ModalInvoiceDetails').on('hidde.bs.modal', function (e) {
+            //let div = document.getElementById("Header_Info");
+            //let strongtag1 = 
+            //let strongtag2 = 
+            //strongtag1.remove();
+            //strongtag2.remove();
+            //let content = document.createTextNode(InvoiceNumber);
+        });
+
+        function ToastDate() {
+            var el = document.getElementById("toastDate")
+            el.classList.add("show");
+            setTimeout(function () { el.classList.remove("show") }, 5000);
         }
     </script>
 </asp:Content>

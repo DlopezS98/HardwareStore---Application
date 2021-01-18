@@ -51,6 +51,105 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.GridView GridViewProductDetails;
 
         /// <summary>
+        /// GridviewInvoiceDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridviewInvoiceDetails;
+
+        /// <summary>
+        /// UpdatePanelFormWarehouses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelFormWarehouses;
+
+        /// <summary>
+        /// txtFormWhsWarehouseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFormWhsWarehouseName;
+
+        /// <summary>
+        /// txtFormWhsDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFormWhsDescription;
+
+        /// <summary>
+        /// txtFormWhsLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFormWhsLocation;
+
+        /// <summary>
+        /// btnCreateNewWarehouse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateNewWarehouse;
+
+        /// <summary>
+        /// UpdatePanelSupplierForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelSupplierForm;
+
+        /// <summary>
+        /// txtFormSpSupplierName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFormSpSupplierName;
+
+        /// <summary>
+        /// txtFormSpEmailAddres control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFormSpEmailAddres;
+
+        /// <summary>
+        /// txtFormSpAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFormSpAddress;
+
+        /// <summary>
+        /// btnCreateNewSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateNewSupplier;
+
+        /// <summary>
         /// UpdatePanelDeleteItem control.
         /// </summary>
         /// <remarks>
@@ -67,6 +166,60 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmDeleteProduct;
+
+        /// <summary>
+        /// UpdatePanelForInvoiceList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelForInvoiceList;
+
+        /// <summary>
+        /// txtSearchInvoiceRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchInvoiceRecords;
+
+        /// <summary>
+        /// PickerStartDateInvoceFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PickerStartDateInvoceFilter;
+
+        /// <summary>
+        /// PickerEndDateInvoiceFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PickerEndDateInvoiceFilter;
+
+        /// <summary>
+        /// btnInvoiceFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInvoiceFilter;
+
+        /// <summary>
+        /// GridViewInvoices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewInvoices;
 
         /// <summary>
         /// UpdatePanelForPurchaseDetail control.
@@ -139,6 +292,15 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlstWarehouses;
+
+        /// <summary>
+        /// btnAddNewWarehouse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddNewWarehouse;
 
         /// <summary>
         /// pickerExpiryDate control.

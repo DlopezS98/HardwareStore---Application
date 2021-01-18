@@ -2,6 +2,7 @@
 using HardwareStore.Core.Entities.ProductsAdmin;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace HardwareStore.Core.Entities.Providers
     public class Suppliers : BaseEntity
     {
         public string Name { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Code { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }

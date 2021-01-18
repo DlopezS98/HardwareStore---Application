@@ -51,13 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\Billing\PurchasesDto.cs" />
+    <Compile Include="DTOs\Billing\InvoiceDetailsDto.cs" />
+    <Compile Include="DTOs\Billing\InvoicesDto.cs" />
     <Compile Include="DTOs\Billing\PurchaseTransacDto.cs" />
     <Compile Include="DTOs\Billing\TempPurchaseList.cs" />
     <Compile Include="DTOs\Catalogs\MeasureUnitsDropDto.cs" />
     <Compile Include="DTOs\Catalogs\ProductDetailsDto.cs" />
     <Compile Include="DTOs\Catalogs\SuppliersDropDto.cs" />
+    <Compile Include="DTOs\Catalogs\SuppliersDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDropDto.cs" />
+    <Compile Include="DTOs\Catalogs\WarehousesDto.cs" />
     <Compile Include="DTOs\Response.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Billing\PurchaseDetails.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="Entities\SysConfiguration\LocalCurrencies.cs" />
     <Compile Include="Interfaces\Billing\IPurchaseRepository.cs" />
     <Compile Include="Interfaces\Billing\IPurchasesService.cs" />
+    <Compile Include="Interfaces\Billing\ISalesServices.cs" />
     <Compile Include="Interfaces\Catalogs\IMeasureUnitsRepository.cs" />
     <Compile Include="Interfaces\IEntityRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IProductsRepository.cs" />

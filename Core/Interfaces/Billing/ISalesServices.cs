@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareStore.Core.DTOs.Billing
+namespace HardwareStore.Core.Interfaces.Billing
 {
-    public class PurchasesDto
+    public interface ISalesServices
     {
     }
 }

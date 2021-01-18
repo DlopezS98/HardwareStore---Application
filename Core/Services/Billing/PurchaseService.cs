@@ -11,6 +11,8 @@ using HardwareStore.Core.DTOs.Billing;
 using HardwareStore.Core.Interfaces.ProductsAdmin;
 using HardwareStore.Core.Entities.Billing;
 using HardwareStore.Core.Entities.ProductsAdmin;
+using HardwareStore.Core.Entities.Catalogs;
+using HardwareStore.Core.Entities.Providers;
 
 namespace HardwareStore.Core.Services.Billing
 {
@@ -239,5 +241,176 @@ namespace HardwareStore.Core.Services.Billing
                 throw exc;
             }
         }
+
+        public List<InvoicesDto> GetPurhaseInvoices(DateTime StartDate, DateTime EndDate, string Search)
+        {
+            try
+            {
+                List<InvoicesDto> Invoices = new List<InvoicesDto>();
+                Invoices = this._PurchaseRepository.GetPurhaseInvoices(StartDate, EndDate, Search);
+                return Invoices;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<InvoiceDetailsDto> GetPurchaseInvoiceDetails(int InvoiceId)
+        {
+            try
+            {
+                List<InvoiceDetailsDto> Details = new List<InvoiceDetailsDto>();
+                Details = this._PurchaseRepository.GetPurchaseInvoiceDetails(InvoiceId);
+                return Details;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        //public List<WarehousesDto> ListAllWarehouses()
+        //{
+        //    try
+        //    {
+        //        List<WarehousesDto> list = new List<WarehousesDto>();
+        //        list = this._WarehouseRepository.GetWarehouses();
+        //        return list;
+        //    }
+        //    catch (Exception exc)
+        //    {
+
+        //        throw exc;
+        //    }
+        //}
+
+        public Response CreateWarehouse(WarehousesDto warehouses)
+        {
+            try
+            {
+                Warehouses obj = new Warehouses()
+                {
+                    Name = warehouses.Name,
+                    Description = warehouses.Description,
+                    Location = warehouses.Location,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    CreatedBy = warehouses.CreatedBy,
+                    UpdatedBy = warehouses.UpdatedBy,
+                    Deleted = false
+                };
+
+                this._WarehouseRepository.CreateWarehouse(obj);
+
+                return new Response() { Title = "¡Operación exitosa!", Message = "Bodega creada exitosamente", Success = true };
+            }
+            catch (Exception exc)
+            {
+
+                return new Response() { Title = "Error al crear la bodega", Message = exc.Message, Success = false };
+            }
+        }
+
+        //public Response UpadteWarehouse(int Id, WarehousesDto warehouses)
+        //{
+        //    try
+        //    {
+        //        this._WarehouseRepository.UpdateWarehouse(Id, warehouses);
+        //        return new Response() { Title = "¡Operación exitosa!", Message = "Bodega actualizada exitosamente", Success = true };
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        return new Response() { Title = "Error al actualizar la bodega", Message = exc.Message, Success = false };
+        //    }
+        //}
+
+        //public Response DeleteWarehouse(int Id, string username)
+        //{
+        //    try
+        //    {
+        //        this._WarehouseRepository.DeleteWarehouse(Id, username);
+        //        return new Response() { Title = "¡Operación exitosa!", Message = "Bodega eliminada exitosamente", Success = true };
+        //    }
+        //    catch (Exception exc)
+        //    {
+
+        //        return new Response() { Title = "¡Error al eliminar la bodega!", Message = exc.Message, Success = false };
+        //    }
+        //}
+
+        //public List<SuppliersDto> ListAllSuppliers(string search)
+        //{
+        //    try
+        //    {
+        //        List<SuppliersDto> list = new List<SuppliersDto>();
+        //        list = this._SuppliersRepository.GetSuppliers(search);
+        //        return list;
+        //    }
+        //    catch (Exception exc)
+        //    {
+
+        //        throw exc;
+        //    }
+        //}
+
+        public Response CreateSupplier(SuppliersDto suppliers)
+        {
+            try
+            {
+                Suppliers obj = new Suppliers()
+                {
+                    Name = suppliers.Name,
+                    Email = suppliers.Email,
+                    Address = suppliers.Address,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = suppliers.CreatedBy,
+                    UpdatedAt = DateTime.Now,
+                    UpdatedBy = suppliers.UpdatedBy,
+                    Deleted = false
+                };
+
+                this._SuppliersRepository.CreateSupplier(obj);
+
+                return new Response() { Title = "¡Operación exitosa!", Message = "Proveedor registrado correctamente", Success = true };
+            }
+            catch (Exception exc)
+            {
+
+                return new Response() { Title = "¡Error al registrar el proveedor!", Message = exc.Message, Success = false };
+            }
+        }
+
+        //public Response UpdateSupplier(int Id, SuppliersDto suppliers)
+        //{
+        //    try
+        //    {
+        //        this._SuppliersRepository.UpdateSupplier(Id, suppliers);
+
+        //        return new Response() { Title = "¡Operación exitosa!", Message = "Proveedor actualizado correctamente", Success = true };
+        //    }
+        //    catch (Exception exc)
+        //    {
+
+        //        return new Response() { Title = "¡Error al actualizar los datos del proveedor!", Message = exc.Message, Success = false };
+        //    }
+        //}
+
+        //public Response DeleteSupplier(int Id, string username)
+        //{
+        //    try
+        //    {
+        //        this._SuppliersRepository.DeleteSupplier(Id, username);
+
+        //        return new Response() { Title = "¡Operación exitosa!", Message = "Proveedor eliminado correctamente", Success = true };
+        //    }
+        //    catch (Exception exc)
+        //    {
+
+        //        return new Response() { Title = "¡Error al eliminar el proveedor!", Message = exc.Message, Success = false };
+        //    }
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.Entities.Catalogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace HardwareStore.Core.Interfaces.Catalogs
     public interface IWarehouseRepository
     {
         List<WarehousesDropDto> GetWarehousesForDropdownsList();
+        List<WarehousesDto> GetWarehouses();
+        void CreateWarehouse(Warehouses warehouses);
+        void UpdateWarehouse(int Id, WarehousesDto warehouses);
+        void DeleteWarehouse(int Id, string username);
     }
 }

@@ -42,8 +42,8 @@ header {
 .container-grid {
     display: grid;
     height: 100%;
-    grid-template-columns:minmax(100px, 250px) 1fr;
-    grid-template-rows: minmax(80px, 85px) 1fr;
+    grid-template-columns:minmax(100px, 200px) 1fr;
+    grid-template-rows: minmax(60px, 65px) 1fr;
     grid-template-areas: "sidevar-grid       navbar-grid" 
                          "sidevar-grid      content-main-grid";
 }
@@ -67,11 +67,11 @@ header {
         grid-column-start: content-main-grid;
         grid-column-end: content-main-grid;
         overflow-y:scroll;
-        padding-bottom: 50px;
+        padding-bottom: 30px;
     }
 
 .content-main-grid::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 0.6rem;
 }
 
 .content-main-grid::-webkit-scrollbar-track {
@@ -89,4 +89,101 @@ header {
 
 .navbar{
     min-height: 85px;
+}
+
+
+.column {
+    float: left;
+    width: 14%;
+    padding: 0 10px;
+}
+
+
+
+.rowcard {
+   width: 100%;
+}
+
+    .rowcard:after {
+        content: "";
+        display: flex;
+        clear: both;
+    }
+
+.card {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px;
+    text-align: center;
+    /*background-color: #f1f1f1;*/
+    border-color: #dedede;
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+
+
+
+@media screen and (max-width: 1500px) {
+    .column {
+        width: 14%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .column {
+        width: 19%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .column {
+        width: 25%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .column {
+        width: 33%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+
+.card .btninfoborder {
+    border-color: #19B3D3;
+    border-width: 1px;
+    border-style: solid;
+    color: #19B3D3;
+    border-radius: 10px;
+    width: 70px;
+    height: 25px;
+    font-size: 15px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+    .card .btninfoborder:hover {
+        background: #19B3D3;
+        color: #fff;
+    }
+
+.card h4 {
+    color: #2F323A;
 }

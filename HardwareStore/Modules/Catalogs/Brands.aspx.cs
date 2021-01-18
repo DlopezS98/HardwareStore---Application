@@ -14,5 +14,20 @@ namespace HardwareStore.Modules.Catalogs
         {
 
         }
+
+        protected void BtnMarTodos_Click(object sender, EventArgs e)
+        {
+            mtvContenedor.ActiveViewIndex = 1;
+        }
+
+        protected void Btnatras_Click(object sender, EventArgs e)
+        {
+            mtvContenedor.ActiveViewIndex = 0;
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Modules/Catalogs.Module/MainCatalogs.aspx");
+        }
     }
 }

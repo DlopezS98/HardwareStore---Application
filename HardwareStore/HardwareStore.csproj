@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -50,6 +50,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -122,11 +125,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -146,6 +144,18 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="fonts\Roboto-Black.ttf" />
+    <Content Include="fonts\Roboto-BlackItalic.ttf" />
+    <Content Include="fonts\Roboto-Bold.ttf" />
+    <Content Include="fonts\Roboto-BoldItalic.ttf" />
+    <Content Include="fonts\Roboto-Italic.ttf" />
+    <Content Include="fonts\Roboto-Light.ttf" />
+    <Content Include="fonts\Roboto-LightItalic.ttf" />
+    <Content Include="fonts\Roboto-Medium.ttf" />
+    <Content Include="fonts\Roboto-MediumItalic.ttf" />
+    <Content Include="fonts\Roboto-Regular.ttf" />
+    <Content Include="fonts\Roboto-Thin.ttf" />
+    <Content Include="fonts\Roboto-ThinItalic.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\Avatar.png" />
     <Content Include="Images\Bodegas.png" />
@@ -164,17 +174,25 @@
     <Content Include="Images\product.png" />
     <Content Include="Images\Proveedores.png" />
     <Content Include="Images\Roles.png" />
+    <Content Include="Images\tools.jpg" />
     <Content Include="Images\UMedidas.png" />
     <Content Include="Images\unnamed.png" />
+    <Content Include="Login.aspx" />
     <Content Include="Modules\Billing\Purchases.aspx" />
     <Content Include="Modules\Billing\Sales.aspx" />
     <Content Include="Modules\Catalogs\Brands.aspx" />
     <Content Include="Modules\Catalogs\Categories.aspx" />
     <Content Include="Modules\Catalogs\Customers.aspx" />
     <Content Include="Modules\Catalogs\Employees.aspx" />
+    <Content Include="Modules\Catalogs\MainCatalogs.aspx" />
+    <Content Include="Modules\Catalogs\MaterialsTypes.aspx" />
+    <Content Include="Modules\Catalogs\Privileges.aspx" />
     <Content Include="Modules\Catalogs\Products.aspx" />
     <Content Include="Modules\Catalogs\Suppliers.aspx" />
+    <Content Include="Modules\Catalogs\UnitConversions.aspx" />
     <Content Include="Modules\Catalogs\UnitMeasures.aspx" />
+    <Content Include="Modules\Catalogs\UnitTypes.aspx" />
+    <Content Include="Modules\UsersAdmin\UserRoles.aspx" />
     <Content Include="Modules\Catalogs\Warehouses.aspx" />
     <Content Include="Modules\ProductsAdmin\AdministrationIndex.aspx" />
     <Content Include="Modules\ProductsAdmin\RemovedProducts.aspx" />
@@ -192,6 +210,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\map-custom.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -215,10 +235,30 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Styles\main.css" />
     <Content Include="Styles\OdModalStyle.css" />
     <Content Include="Styles\SideBarStyle.css" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Toast.css" />
+    <Content Include="Styles\util.css" />
+    <Content Include="vendor\animate\animate.css" />
+    <Content Include="vendor\animsition\css\animsition.css" />
+    <Content Include="vendor\animsition\css\animsition.min.css" />
+    <Content Include="vendor\animsition\js\animsition.js" />
+    <Content Include="vendor\animsition\js\animsition.min.js" />
+    <Content Include="vendor\countdowntime\countdowntime.js" />
+    <Content Include="vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="vendor\daterangepicker\moment.js" />
+    <Content Include="vendor\daterangepicker\moment.min.js" />
+    <Content Include="vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="vendor\select2\select2.css" />
+    <Content Include="vendor\select2\select2.js" />
+    <Content Include="vendor\select2\select2.min.css" />
+    <Content Include="vendor\select2\select2.min.js" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -252,6 +292,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Billing\Purchases.aspx.cs">
       <DependentUpon>Purchases.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -261,24 +308,28 @@
     </Compile>
     <Compile Include="Modules\Billing\Sales.aspx.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Billing\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Catalogs\Brands.aspx.cs">
       <DependentUpon>Brands.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\Brands.aspx.designer.cs">
       <DependentUpon>Brands.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Catalogs\Categories.aspx.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Catalogs\Customers.aspx.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\Customers.aspx.designer.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
@@ -290,26 +341,72 @@
     <Compile Include="Modules\Catalogs\Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Catalogs\MainCatalogs.aspx.cs">
+      <DependentUpon>MainCatalogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Catalogs\MainCatalogs.aspx.designer.cs">
+      <DependentUpon>MainCatalogs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Catalogs\MaterialsTypes.aspx.cs">
+      <DependentUpon>MaterialsTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Catalogs\MaterialsTypes.aspx.designer.cs">
+      <DependentUpon>MaterialsTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Catalogs\Privileges.aspx.cs">
+      <DependentUpon>Privileges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Catalogs\Privileges.aspx.designer.cs">
+      <DependentUpon>Privileges.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Catalogs\Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Catalogs\Suppliers.aspx.cs">
       <DependentUpon>Suppliers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\Suppliers.aspx.designer.cs">
       <DependentUpon>Suppliers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Catalogs\UnitConversions.aspx.cs">
+      <DependentUpon>UnitConversions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Catalogs\UnitConversions.aspx.designer.cs">
+      <DependentUpon>UnitConversions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Catalogs\UnitMeasures.aspx.cs">
       <DependentUpon>UnitMeasures.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\UnitMeasures.aspx.designer.cs">
       <DependentUpon>UnitMeasures.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Catalogs\UnitTypes.aspx.cs">
+      <DependentUpon>UnitTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Catalogs\UnitTypes.aspx.designer.cs">
+      <DependentUpon>UnitTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UsersAdmin\UserRoles.aspx.cs">
+      <DependentUpon>UserRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\UsersAdmin\UserRoles.aspx.designer.cs">
+      <DependentUpon>UserRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Catalogs\Warehouses.aspx.cs">
       <DependentUpon>Warehouses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Catalogs\Warehouses.aspx.designer.cs">
       <DependentUpon>Warehouses.aspx</DependentUpon>
@@ -344,6 +441,7 @@
     </Compile>
     <Compile Include="Modules\Reports\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Reports\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -452,9 +550,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

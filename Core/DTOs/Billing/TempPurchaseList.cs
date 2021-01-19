@@ -26,6 +26,7 @@ namespace HardwareStore.Core.DTOs.Billing
         public string Abbreviation { get; set; }
         public string UnitPurchased { get; set; }
         public int TargetUnitId { get; set; }
+        public string TargetUnitName { get; set; }
         public double PurchasePrice { get; set; } //Precio venta se calcula en base a la conversion
         public string PurchasePriceStr { get => "C$" + this.PurchasePrice; }
         public double SalePrice { get; set; }

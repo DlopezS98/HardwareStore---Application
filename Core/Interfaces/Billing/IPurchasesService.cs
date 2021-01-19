@@ -13,6 +13,7 @@ namespace HardwareStore.Core.Interfaces.Billing
 {
     public interface IPurchasesService
     {
+        List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
         List<ProductDetailsDto> GetProductDetails(Boolean Deleted, string Search);
         List<WarehousesDropDto> GetWarehousesForDropdowns();
         List<SuppliersDropDto> GetSuppliersForDropDowns();

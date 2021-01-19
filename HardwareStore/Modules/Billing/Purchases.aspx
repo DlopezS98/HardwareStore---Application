@@ -351,6 +351,7 @@
                                                             <asp:TextBox runat="server" ID="txtMeasureUnitTypeId" ReadOnly="true" Visible="false" />
                                                             <asp:TextBox runat="server" ID="txtProductCodeForDelete" ReadOnly="true" Visible="false" />
                                                             <asp:TextBox runat="server" ID="txtWarehouseId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtUnitMeasureBase" ReadOnly="true" Visible="false" placeholder="Unidad" />
 
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-3">
@@ -416,13 +417,21 @@
                                                             </div>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-3">
-                                                                    <asp:Label Text="Unidad base" runat="server" />
+                                                                    <div style="margin-bottom: .5rem;">
+                                                                        <label>Unidad de medida</label>
+                                                                    </div>
                                                                     <div class="input-group">
-                                                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtUnitMeasureBase" ReadOnly="true" placeholder="Unidad" />
+                                                                        <asp:DropDownList ID="DropDownListUnitsMeasure" CssClass="form-control" runat="server">
+                                                                        </asp:DropDownList>
+                                                                        <div class="input-group-append">
+                                                                            <asp:Button runat="server" Text="+" ID="btnAddUnitMeasure" data-toggle="modal" data-target="#ModalUnitMeasure" CssClass="btn btn-info btn-sm" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <asp:Label Text="Cantidad" runat="server" />
+                                                                    <div style="margin-bottom: .5rem;">
+                                                                        <label>Cantidad</label>
+                                                                    </div>
                                                                     <div class="input-group">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">#</span>
@@ -431,7 +440,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <asp:Label Text="Precio compra" runat="server" />
+                                                                    <div style="margin-bottom: .5rem;">
+                                                                        <label>Precio compra</label>
+                                                                    </div>
                                                                     <div class="input-group">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">C$</span>
@@ -440,7 +451,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <asp:Label Text="Impuesto" runat="server" />
+                                                                    <div style="margin-bottom: .5rem;">
+                                                                        <label>Impuesto</label>
+                                                                    </div>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtTaxDetail" TextMode="Number" step="0.001" placeholder="Impuesto" />
                                                                         <div class="input-group-append">
@@ -546,7 +559,7 @@
                                                                         <asp:BoundField HeaderText="Material" DataField="MaterialName" />
                                                                         <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
                                                                         <asp:BoundField HeaderText="Expiración" DataField="ExpiryDate" />
-                                                                        <asp:BoundField HeaderText="Unidad" DataField="MeasureUnitBase" />
+                                                                        <asp:BoundField HeaderText="Unidad" DataField="TargetUnitName" />
                                                                         <asp:BoundField HeaderText="Precio venta" DataField="SalePriceStr" />
                                                                         <asp:BoundField HeaderText="Precio compra" DataField="PurchasePriceStr" />
                                                                         <asp:BoundField HeaderText="Cantidad" DataField="Quantity" />

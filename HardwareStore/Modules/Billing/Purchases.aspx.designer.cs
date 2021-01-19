@@ -267,6 +267,15 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtWarehouseId;
 
         /// <summary>
+        /// txtUnitMeasureBase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUnitMeasureBase;
+
+        /// <summary>
         /// txtProductName control.
         /// </summary>
         /// <remarks>
@@ -348,13 +357,22 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtDimensions;
 
         /// <summary>
-        /// txtUnitMeasureBase control.
+        /// DropDownListUnitsMeasure control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUnitMeasureBase;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListUnitsMeasure;
+
+        /// <summary>
+        /// btnAddUnitMeasure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddUnitMeasure;
 
         /// <summary>
         /// txtQuantity control.

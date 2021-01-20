@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.DTOs.ProductsAdmin;
 
 namespace HardwareStore.Infrastructure.Data
 {
@@ -57,12 +58,16 @@ namespace HardwareStore.Infrastructure.Data
 
         //Not mapped objects...
         public DbSet<SuppliersDto> SuppliersDto { get; set; }
+        public DbSet<ProductStocksDto> ProductStocksDto { get; set; }
+        public DbSet<StocksDetailsDto> StocksDetailsDto { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Ignore<SuppliersDto>();
             modelBuilder.Ignore<WarehousesDto>();
+            modelBuilder.Entity<ProductStocksDto>().HasKey(x => x.LotNumber);
+            modelBuilder.Entity<StocksDetailsDto>().HasKey(x => new { x.LotNumber, x.StocksCode });
         }
     }
 }

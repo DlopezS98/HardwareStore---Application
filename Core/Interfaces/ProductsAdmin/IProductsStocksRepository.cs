@@ -1,4 +1,5 @@
 ﻿using HardwareStore.Core.DTOs;
+using HardwareStore.Core.DTOs.ProductsAdmin;
 using HardwareStore.Core.Entities.ProductsAdmin;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,7 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
     {
         void RegisterNewProductStocks(ProductStocks Product);
         void RegisterProductStocksDetails(List<DetailProductStocks> Details);
+        List<ProductStocksDto> GetProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate);
+        List<StocksDetailsDto> GetProductStocksDetails(string LotNumber, string Search, int WarehouseId);
     }
 }

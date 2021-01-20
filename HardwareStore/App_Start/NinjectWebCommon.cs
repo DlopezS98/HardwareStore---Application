@@ -77,6 +77,7 @@ namespace HardwareStore.App_Start
             kernel.Bind<IMeasureUnitsRepository>().To<MeasureUnitsRepository>();
             kernel.Bind<IPurchaseRepository>().To<PurchaseRepository>();
             kernel.Bind<IProductsStocksRepository>().To<ProductsStocksRepository>();
+            kernel.Bind<ISalesServices>().To<SalesServices>();
         }
     }
 }

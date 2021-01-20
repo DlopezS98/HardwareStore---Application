@@ -1,4 +1,5 @@
-﻿using HardwareStore.Core.Entities.ProductsAdmin;
+﻿using HardwareStore.Core.DTOs.ProductsAdmin;
+using HardwareStore.Core.Entities.ProductsAdmin;
 using HardwareStore.Core.Interfaces.ProductsAdmin;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,50 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
         public ProductsStocksRepository(AplicationContext _dbContext) : base(_dbContext)
         {
             this._dbContext = _dbContext;
+        }
+
+        public List<ProductStocksDto> GetProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate)
+        {
+            try
+            {
+                List<ProductStocksDto> list = new List<ProductStocksDto>();
+                SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+                SqlParameter available = new SqlParameter("@Available", SqlDbType.Bit); available.Direction = ParameterDirection.Input;
+                SqlParameter startdate = new SqlParameter("@StartDate", SqlDbType.VarChar); startdate.Direction = ParameterDirection.Input;
+                SqlParameter enddate = new SqlParameter("@EndDate", SqlDbType.VarChar); enddate.Direction = ParameterDirection.Input;
+                search.Value = Search;
+                available.Value = Available;
+                startdate.Value = StartDate.ToString("yyyy-MM-dd");
+                enddate.Value = EndDate.ToString("yyyy-MM-dd");
+                list = this._dbContext.Database.SqlQuery<ProductStocksDto>("EXEC [dbo].[Sp_ListProductStocks] @Search, @Available, @StartDate, @EndDate", search, available, startdate, enddate).ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<StocksDetailsDto> GetProductStocksDetails(string LotNumber, string Search, int WarehouseId)
+        {
+            try
+            {
+                List<StocksDetailsDto> list = new List<StocksDetailsDto>();
+                SqlParameter lotnumber = new SqlParameter("@LotNumber", SqlDbType.NVarChar); lotnumber.Direction = ParameterDirection.Input;
+                SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+                SqlParameter warehouseid = new SqlParameter("@WarehouseId", SqlDbType.Int); warehouseid.Direction = ParameterDirection.Input;
+                lotnumber.Value = LotNumber;
+                search.Value = Search;
+                warehouseid.Value = WarehouseId;
+                list = this._dbContext.Database.SqlQuery<StocksDetailsDto>("[dbo].[Sp_ListProductStocksDetails] @LotNumber, @Search, @WarehouseId", lotnumber, search, warehouseid).ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
         }
 
         public void RegisterNewProductStocks(ProductStocks Product)

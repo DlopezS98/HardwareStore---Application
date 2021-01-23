@@ -6,7 +6,8 @@
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="min-width: 1300px;">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
-                    <h4 class="text-light">Detalle de lote: </h4> <div id="section_info"><strong id="strong_info_lotnumber"></strong></div>
+                    <h4 class="text-light">Detalle de lote: </h4>
+                    <div id="section_info"><strong id="strong_info_lotnumber"></strong></div>
                     <%--<label runat="server" id="getidFromtable"></label>--%>
                     <button class="close text-light" data-dismiss="modal" aria-label="cerrar">
                         <span class="text-light" aria-hidden="true">&times;</span>
@@ -50,11 +51,11 @@
                                         <asp:BoundField HeaderText="Categoría" DataField="CategoryName" />
                                         <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
                                         <asp:BoundField HeaderText="Material" DataField="MaterialName" />
+                                        <asp:BoundField HeaderText="Unidades" DataField="StocksQuantity" />
                                         <asp:BoundField HeaderText="Unidad compra" DataField="PurchaseUnitName" />
                                         <asp:BoundField HeaderText="Unidad base" DataField="UnitBaseName" />
                                         <asp:BoundField HeaderText="Conversion" DataField="ConversionValue" />
-                                        <asp:BoundField HeaderText="Unidad compra" DataField="StocksQuantity" />
-                                        <asp:BoundField HeaderText="Precio venta" DataField="SalePrice" />
+                                        <asp:BoundField HeaderText="Precio unidad" DataField="SalePrice" />
                                         <asp:BoundField HeaderText="Fecha expiración" DataField="ExpirationDate" />
                                         <asp:BoundField HeaderText="Estado" DataField="Available" />
                                         <asp:TemplateField HeaderText="Opciones">
@@ -235,27 +236,29 @@
                                             <div class="col-md-12">
                                                 <div class="card card-shadow">
                                                     <div class="card-body">
-                                                        <asp:TextBox runat="server" ID="txtMeasureUnitId" ReadOnly="true" Visible="false" />
+                                                        <asp:TextBox runat="server" ID="txtMeasureUnitBaseId" ReadOnly="true" Visible="false" />
+                                                        <asp:TextBox runat="server" ID="txtMeasureUnitPurchasedId" ReadOnly="true" Visible="false" />
                                                         <asp:TextBox runat="server" ID="txtMeasureUnitTypeId" ReadOnly="true" Visible="false" />
                                                         <asp:TextBox runat="server" ID="txtWarehouseId" ReadOnly="true" Visible="false" />
+                                                        <asp:TextBox runat="server" ID="txtStocksCode" ReadOnly="true" Visible="false" />
                                                         <div class="form-row">
                                                             <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Producto" runat="server" />
-                                                                <input type="text" readonly placeholder="Producto" runat="server" id="txtProductName" class="form-control form-disable">
+                                                                <asp:TextBox ReadOnly="true" placeholder="Producto" runat="server" ID="txtProductName" CssClass="form-control" />
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <%--<div style="margin-bottom: .5rem;">--%>
                                                                 <asp:Label Text="Codigo" runat="server" />
                                                                 <%--</div>--%>
                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtProductDetailCode" ReadOnly="true" placeholder="Código" />
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <%--<div style="margin-bottom: .5rem;">--%>
                                                                 <asp:Label Text="Fecha expiración" runat="server" />
                                                                 <%--</div>--%>
                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtExpiryDate" ReadOnly="true" placeholder="Fecha expiración" />
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Bodega" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtWarehouseName" placeholder="Bodega" />
@@ -263,64 +266,58 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Marca" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtBrandName" placeholder="Marca" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Categoría" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtCategoryName" placeholder="Categoría" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Material" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtMaterialName" placeholder="Tipo de material" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Dimensiones" runat="server" />
                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtDimensions" ReadOnly="true" placeholder="Dimensiones" />
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-2">
-                                                                <div style="margin-bottom: .5rem;">
-                                                                    <asp:Label Text="Existencia inicial" runat="server" />
-                                                                </div>
+                                                            <div class="form-group col-lg-3">
+                                                                <asp:Label Text="Existencia inicial" runat="server" />
                                                                 <div class="input-group">
+                                                                    <div class="input-group-append">
+                                                                        <span runat="server" id="SpanForInitialsStocks" class="input-group-text"></span>
+                                                                    </div>
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtInitialsStocks" placeholder="Cantidad" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-2">
-                                                                <div style="margin-bottom: .5rem;">
-                                                                    <asp:Label Text="Existencia actual" runat="server" />
-                                                                </div>
+                                                            <div class="form-group col-lg-3">
+                                                                <asp:Label Text="Existencia actual" runat="server" />
                                                                 <div class="input-group">
+                                                                    <div class="input-group-append">
+                                                                        <span runat="server" id="SpanForCurrentStocks" class="input-group-text"></span>
+                                                                    </div>
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtCurrentStocks" placeholder="Cantidad" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-2">
+                                                            <%--<div class="form-group col-lg-2">
                                                                 <div style="margin-bottom: .5rem;">
                                                                     <asp:Label Text="Unidad" runat="server" />
                                                                 </div>
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" ReadOnly="true" CssClass="form-control" ID="txtUnitMeasureName" placeholder="Unidad de medida" />
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group col-md-2">
-                                                                <div style="margin-bottom: .5rem;">
-                                                                    <asp:Label Text="Cantidad" runat="server" />
-                                                                </div>
-                                                                <div class="input-group">
-                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" placeholder="Cantidad" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-2">
-                                                                <label>Unidad venta</label>
+                                                            </div>--%>
+                                                            <div class="form-group col-lg-4">
+                                                                <asp:Label Text="Unidad venta" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:DropDownList ID="ddlistMeasureUnits" CssClass="form-control" runat="server">
                                                                     </asp:DropDownList>
@@ -329,15 +326,54 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group col-lg-2">
+                                                                <asp:Label Text="Cantidad" runat="server" />
+                                                                <div class="input-group">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">#</span>
+                                                                    </div>
+                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" placeholder="Cantidad" />
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="form-group col-lg-4">
+                                                                <asp:Label Text="Precio" runat="server" />
+                                                                <div class="input-group">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">C$</span>
+                                                                    </div>
+                                                                    <asp:TextBox runat="server" ID="txtSalePrice" ReadOnly="true" placeholder="Precio" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-lg-4">
+                                                                <asp:Label Text="Impuesto" runat="server" />
+                                                                <div class="input-group">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">C$</span>
+                                                                    </div>
+                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtDetailTax" placeholder="Impuesto" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-lg-4">
+                                                                <asp:Label Text="Descuento" runat="server" />
+                                                                <div class="input-group">
+                                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtDetailDiscount" placeholder="Descuento" />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">%</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button runat="server" Text="Agregar" ID="btnAddToSaleDetailsList" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button runat="server" Text="Agregar" ID="btnAddToSaleDetailsList" OnClick="btnAddToSaleDetailsList_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2 p-1">
-                                                                <asp:Button runat="server" Text="Cancelar" ID="btnCancelOrClearDetailForm" CssClass="btn btn-warning btn-block" />
+                                                                <asp:Button runat="server" Text="Cancelar" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
                                                             </div>
                                                         </div>
                                                     </div>

@@ -123,7 +123,7 @@ namespace HardwareStore.Core.Services.Billing
                 this._PurchaseRepository.CreatePurchaseDetails(Details);
                 TotalProducts = this.RegisterStocksProducts(data);
 
-                return new Response() { Title = "¡Compra registrada correctamente!", Message = "Se han registrado " + TotalProducts + " productos a las existencias", Success = true };
+                return new Response() { Title = "¡Compra registrada correctamente!", Message = "Se han registrado " + TotalProducts + " tipos productos a las existencias", Success = true };
             }
             catch (Exception exc)
             {

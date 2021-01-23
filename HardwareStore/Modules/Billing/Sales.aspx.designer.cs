@@ -177,13 +177,22 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.UpdatePanel UpdatePanelForNewSale;
 
         /// <summary>
-        /// txtMeasureUnitId control.
+        /// txtMeasureUnitBaseId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMeasureUnitId;
+        protected global::System.Web.UI.WebControls.TextBox txtMeasureUnitBaseId;
+
+        /// <summary>
+        /// txtMeasureUnitPurchasedId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMeasureUnitPurchasedId;
 
         /// <summary>
         /// txtMeasureUnitTypeId control.
@@ -204,13 +213,22 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtWarehouseId;
 
         /// <summary>
+        /// txtStocksCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStocksCode;
+
+        /// <summary>
         /// txtProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtProductName;
+        protected global::System.Web.UI.WebControls.TextBox txtProductName;
 
         /// <summary>
         /// txtProductDetailCode control.
@@ -276,6 +294,15 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtDimensions;
 
         /// <summary>
+        /// SpanForInitialsStocks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SpanForInitialsStocks;
+
+        /// <summary>
         /// txtInitialsStocks control.
         /// </summary>
         /// <remarks>
@@ -285,6 +312,15 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtInitialsStocks;
 
         /// <summary>
+        /// SpanForCurrentStocks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SpanForCurrentStocks;
+
+        /// <summary>
         /// txtCurrentStocks control.
         /// </summary>
         /// <remarks>
@@ -292,24 +328,6 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCurrentStocks;
-
-        /// <summary>
-        /// txtUnitMeasureName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUnitMeasureName;
-
-        /// <summary>
-        /// txtQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
 
         /// <summary>
         /// ddlistMeasureUnits control.
@@ -328,6 +346,42 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddNewMeasureUnits;
+
+        /// <summary>
+        /// txtQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
+
+        /// <summary>
+        /// txtSalePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSalePrice;
+
+        /// <summary>
+        /// txtDetailTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetailTax;
+
+        /// <summary>
+        /// txtDetailDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetailDiscount;
 
         /// <summary>
         /// btnAddToSaleDetailsList control.

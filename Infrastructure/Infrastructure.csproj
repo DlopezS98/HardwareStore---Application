@@ -56,11 +56,13 @@
     <Compile Include="Data\AplicationContext.cs" />
     <Compile Include="Data\Billing\PurchaseRepository.cs" />
     <Compile Include="Data\Catalogs\MeasureUnitsRepository.cs" />
+    <Compile Include="Data\CommonServices.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\Catalogs\ProductsRepository.cs" />
     <Compile Include="Data\Catalogs\SuppliersReporsitory.cs" />
     <Compile Include="Data\Catalogs\WarehouseRepository.cs" />
     <Compile Include="Data\ProductsAdmin\ProductsStocksRepository.cs" />
+    <Compile Include="Data\SysConfiguration\CurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

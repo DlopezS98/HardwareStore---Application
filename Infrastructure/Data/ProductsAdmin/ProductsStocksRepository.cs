@@ -64,6 +64,22 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
             }
         }
 
+        public StocksDetailsDto GetStocksDetail(string StocksCode)
+        {
+            try
+            {
+                StocksDetailsDto details = new StocksDetailsDto();
+                List<StocksDetailsDto> data = this.GetProductStocksDetails("0", "", 0);
+                details = data.FirstOrDefault(x => x.StocksCode == StocksCode);
+                return details;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
         public void RegisterNewProductStocks(ProductStocks Product)
         {
             try

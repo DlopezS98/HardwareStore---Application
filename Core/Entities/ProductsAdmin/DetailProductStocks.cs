@@ -16,7 +16,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public int TargetUnitId { get; set; }
         public int UnitConversionId { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public double ConversionQuantity { get; set; }
         public double PurchasePrice { get; set; }
         public double SalePrice { get; set; }

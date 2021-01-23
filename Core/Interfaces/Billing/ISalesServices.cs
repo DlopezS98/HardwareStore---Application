@@ -1,4 +1,6 @@
-﻿using HardwareStore.Core.DTOs.Catalogs;
+﻿using HardwareStore.Core.DTOs;
+using HardwareStore.Core.DTOs.Billing;
+using HardwareStore.Core.DTOs.Catalogs;
 using HardwareStore.Core.DTOs.ProductsAdmin;
 using System;
 using System.Collections.Generic;
@@ -13,5 +15,9 @@ namespace HardwareStore.Core.Interfaces.Billing
         List<ProductStocksDto> ListProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate);
         List<StocksDetailsDto> ListStocksDetails(string LotNumber, string Search, int WarehouseId);
         List<WarehousesDropDto> ListWarehousesForDropDowns();
+        List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
+        Response RegisterSaleTransaction(SaleTransactionDto Invoice);
+        StocksDetailsDto GetAStocksDetail(string StocksCode);
+
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareStore.Core.DTOs.ProductsAdmin
+namespace HardwareStore.Core.DTOs.Billing
 {
-    public class StocksDetailsDto
+    public class TempSaleList
     {
         public string LotNumber { get; set; }
         public string StocksCode { get; set; }
@@ -15,19 +15,20 @@ namespace HardwareStore.Core.DTOs.ProductsAdmin
         public string ProductDetailCode { get; set; }
         public string ProductName { get; set; }
         public string BrandName { get; set; }
-        public int PurchaseUnitId { get; set; }
-        public string PurchaseUnitName { get; set; }
-        public int UnitBaseId { get; set; }
-        public string UnitBaseName { get; set; }
-        public int UnitTypeId { get; set; }
-        public Nullable<double> ConversionValue { get; set; }
         public string CategoryName { get; set; }
         public string MaterialName { get; set; }
         public string Dimensions { get; set; }
-        public double StocksQuantity { get; set; }
-        public double PurchasePrice { get; set; }
-        public double SalePrice { get; set; }
         public string ExpirationDate { get; set; }
-        public string Available { get; set; }
+        public int SaleUnitId { get; set; } //dropdowlistmeasureunits
+        public string SaleUnitName { get; set; }
+        public int PurchasedUnitId { get; set; }
+        public string PurchaseUnitName { get; set; }
+        public double ConversionValue { get; set; }
+        public int Quantity { get; set; }
+        public double SalePrice { get; set; }
+        public double Subtotal { get; set; }
+        public double Tax { get; set; }
+        public int Discount { get; set; }
+        public double Total { get; set; }
     }
 }

@@ -16,9 +16,9 @@ using HardwareStore.Core.DTOs.ProductsAdmin;
 
 namespace HardwareStore.Infrastructure.Data
 {
-    public class AplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
-        public AplicationContext() : base("name=HardwareStoreEntities")
+        public ApplicationContext() : base("name=HardwareStoreEntities")
         {
 
         }

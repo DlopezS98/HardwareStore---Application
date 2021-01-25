@@ -28,6 +28,7 @@ namespace HardwareStore.Core.DTOs.Billing
         public int TargetUnitId { get; set; }
         public string TargetUnitName { get; set; }
         public double PurchasePrice { get; set; } //Precio venta se calcula en base a la conversion
+        public double SalePriceByUnitBase { get; set; }
         public string PurchasePriceStr { get => "C$" + this.PurchasePrice; }
         public double SalePrice { get; set; }
         public string SalePriceStr { get => "C$" + this.SalePrice; }
@@ -38,7 +39,7 @@ namespace HardwareStore.Core.DTOs.Billing
         public string SubtotalStr { get => "C$" + this.Subtotal; }
         public double Tax { get; set; }
         public string TaxStr { get => "C$" + this.Tax; }
-        public double Total { get => (this.Subtotal - (((double)this.Discount / 100) * this.Subtotal)); }
+        public double Total { get => (this.Subtotal - (((double)this.Discount / 100) * this.Subtotal)) + (this.Quantity * this.Tax); }
         public string TotalStr { get => "C$" + this.Total; }
     }
 }

@@ -32,6 +32,29 @@ namespace HardwareStore.Modules.Billing
         //    DataGridViewColumn column = grid.Columns[2];
         //    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         //}
+        private void LoadGridViewForTempList(List<TempSaleList> tempList = null)
+        {
+            List<TempSaleList> EmptyList = new List<TempSaleList>();
+            if (tempList != null)
+            {
+                this.GridViewSaleDetails.DataSource = tempList;
+                this.GridViewSaleDetails.DataBind();
+            }
+            else
+            {
+                if (Session[TempListKey] != null)
+                {
+                    this.TempList = Session[TempListKey] as List<TempSaleList>;
+                    this.GridViewSaleDetails.DataSource = TempList;
+                    this.GridViewSaleDetails.DataBind();
+                }
+                else
+                {
+                    this.GridViewSaleDetails.DataSource = EmptyList;
+                    this.GridViewSaleDetails.DataBind();
+                }
+            }
+        }
 
         public void LoadGridViewProductStocks(DateTime? Start, DateTime? End, string search = "")
         {
@@ -72,11 +95,12 @@ namespace HardwareStore.Modules.Billing
             this.DropDownListWarehousesFilter.Items.Insert(0, new ListItem("Seleccione una bodega", "0"));
         }
 
-        public void LoadDropDownListMeasureUnits(int TypeId)
+        public void LoadDropDownListMeasureUnits(int? TypeId = null)
         {
             List<MeasureUnitsDropDto> list = new List<MeasureUnitsDropDto>();
+            if (TypeId != null)
+                list = this._SalesServices.ListMeasureUnitForDropdownsByType((int)TypeId);
 
-            list = this._SalesServices.ListMeasureUnitForDropdownsByType(TypeId);
             this.ddlistMeasureUnits.DataSource = list;
             this.ddlistMeasureUnits.DataTextField = "Name";
             this.ddlistMeasureUnits.DataValueField = "Id";
@@ -94,6 +118,7 @@ namespace HardwareStore.Modules.Billing
             }
 
             Session[UserKey] = "01dlopezs98@gmail.com";
+            this.LoadGridViewForTempList();
         }
 
         protected void btnSearchProductStocks_Click(object sender, EventArgs e)
@@ -165,9 +190,12 @@ namespace HardwareStore.Modules.Billing
             txtMeasureUnitBaseId.Text = dto.UnitBaseId.ToString();
             txtMeasureUnitPurchasedId.Text = dto.PurchaseUnitId.ToString();
             txtMeasureUnitTypeId.Text = dto.UnitTypeId.ToString();
-            txtWarehouseId.Text = dto.WarehouseName;
+            txtWarehouseId.Text = dto.WarehouseId.ToString();
 
             //Other Fields
+            txtLotNumber.Text = dto.LotNumber;
+            txtSupplierName.Text = dto.SupplierName;
+            txtStocksCode.Text = dto.StocksCode;
             txtProductName.Text = dto.ProductName;
             txtProductDetailCode.Text = dto.ProductDetailCode;
             txtExpiryDate.Text = dto.ExpirationDate;
@@ -181,18 +209,16 @@ namespace HardwareStore.Modules.Billing
             txtCurrentStocks.Text = dto.ConversionValue.ToString();
             SpanForCurrentStocks.InnerText = dto.UnitBaseName;
             txtSalePrice.Text = dto.SalePrice.ToString();
+            txtSalePriceByUnitBase.Text = dto.SalePriceByUnitBase.ToString();
         }
 
         protected void btnAddToSaleDetailsList_Click(object sender, EventArgs e)
         {
             string Option = btnAddToSaleDetailsList.Text;
-            string ShowToaster;
             switch (Option)
             {
                 case "Agregar":
-                    ShowToaster = "";
                     this.AddItemToTempList();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
                     break;
 
                 case "Editar":
@@ -206,52 +232,222 @@ namespace HardwareStore.Modules.Billing
 
         private void EditItemFromTempList()
         {
-            throw new NotImplementedException();
+            double conversion;
+            string StocksCode, ShowToaster;
+            conversion = 0;
+            StocksCode = txtStocksCode.Text;
+            this.TempList = Session[TempListKey] as List<TempSaleList>;
+            TempSaleList temp = this.TempList.FirstOrDefault(x => x.StocksCode == StocksCode);
+            temp.Quantity = Convert.ToInt32(txtQuantity.Text);
+            temp.Tax = Convert.ToDouble(txtDetailTax.Text);
+            temp.Discount = Convert.ToInt32(txtDetailDiscount.Text);
+
+            temp.SaleUnitId = Convert.ToInt32(ddlistMeasureUnits.SelectedValue);
+            temp.SaleUnitName = ddlistMeasureUnits.SelectedItem.Text;
+            conversion = this._CommonService.GetConversionValue(temp.PurchasedUnitId, temp.SaleUnitId, null);
+            temp.SalePrice = temp.PurchasedPrice / conversion;
+            temp.ConversionToUpdate = this._CommonService.GetConversionValue(temp.SaleUnitId, temp.UnitBaseId, temp.Quantity);
+
+            ShowToaster = "ShowToaster('Producto actualizado!', 'success')";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
+
+            this.LoadGridViewForTempList(TempList);
+            this.ResetInputsForSalesDetail();
+            //this.calculateTotalAmount();
         }
 
         private void AddItemToTempList()
         {
             bool AlreadyExist;
             string ShowToaster;
-            TempSaleList Temp = this.CreateObjectForTempList();
             int idconvertfrom = Convert.ToInt32(ddlistMeasureUnits.SelectedValue);
             int idconvertto = Convert.ToInt32(txtMeasureUnitBaseId.Text);
             int quantity = Convert.ToInt32(txtQuantity.Text);
             double value = this._CommonService.GetConversionValue(idconvertfrom, idconvertto, quantity);
             double stocks = Convert.ToDouble(txtCurrentStocks.Text);
-            double newstocks;
-            if(value > stocks)
+            if (value > stocks)
             {
                 //no add
+                ShowToaster = "ShowToaster('Cantidad no disponible <br/>en las existencias!', 'warning')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
             }
             else
             {
-                if(Session[TempListKey] == null)
+                TempSaleList Temp = this.CreateObjectForTempList();
+                if (Session[TempListKey] == null)
                 {
+                    ShowToaster = "ShowToaster('Producto agregado a lista!', 'success')";
                     TempList = new List<TempSaleList>();
                     TempList.Add(Temp); Session[TempListKey] = TempList;
                     this.ResetInputsForSalesDetail();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
                 }
                 else
                 {
+                    ShowToaster = "ShowToaster('El producto ya existe en la lista!', 'info')";
                     TempList = Session[TempListKey] as List<TempSaleList>;
-                    AlreadyExist = TempList.Exists(x => x.s);
+                    AlreadyExist = TempList.Exists(x => x.StocksCode == Temp.StocksCode);
+                    if (!AlreadyExist) { TempList.Add(Temp); this.ResetInputsForSalesDetail(); } else { ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true); }
                 }
+
+                this.LoadGridViewForTempList(TempList);
+                //this.calculateTotalAmount();
             }
 
         }
 
         private TempSaleList CreateObjectForTempList()
         {
-            throw new NotImplementedException();
+            double conversion = 0;
+            TempSaleList temp = new TempSaleList();
+            temp.LotNumber = txtLotNumber.Text;
+            temp.StocksCode = txtStocksCode.Text;
+            temp.SupplierName = txtSupplierName.Text;
+            temp.ProductName = txtProductName.Text;
+            temp.ProductDetailCode = txtProductDetailCode.Text;
+            temp.ExpirationDate = txtExpiryDate.Text;
+            temp.WarehouseId = Convert.ToInt32(txtWarehouseId.Text);
+            temp.WarehouseName = txtWarehouseName.Text;
+            temp.BrandName = txtBrandName.Text;
+            temp.CategoryName = txtCategoryName.Text;
+            temp.MaterialName = txtMaterialName.Text;
+            temp.Dimensions = txtDimensions.Text;
+            temp.Quantity = Convert.ToInt32(txtQuantity.Text);
+            temp.Tax = Convert.ToDouble(txtDetailTax.Text);
+            temp.Discount = Convert.ToInt32(txtDetailDiscount.Text);
+
+            temp.UnitTypeId = Convert.ToInt32(txtMeasureUnitTypeId.Text);
+
+            temp.PurchasedUnitId = Convert.ToInt32(txtMeasureUnitPurchasedId.Text);
+            temp.PurchaseUnitName = SpanForInitialsStocks.InnerText;
+            temp.StocksQuantity = Convert.ToDouble(txtInitialsStocks.Text);
+            temp.PurchasedPrice = Convert.ToDouble(txtSalePrice.Text);
+
+            temp.UnitBaseId = Convert.ToInt32(txtMeasureUnitBaseId.Text);
+            temp.UnitBaseName = SpanForCurrentStocks.InnerText;
+            temp.UnitBaseStocks = Convert.ToDouble(txtCurrentStocks.Text);
+            temp.SalePriceByUnitBase = Convert.ToDouble(txtSalePriceByUnitBase.Text);
+
+            temp.SaleUnitId = Convert.ToInt32(ddlistMeasureUnits.SelectedValue);
+            temp.SaleUnitName = ddlistMeasureUnits.SelectedItem.Text;
+            conversion = this._CommonService.GetConversionValue(temp.PurchasedUnitId, temp.SaleUnitId, null);
+            temp.SalePrice = temp.PurchasedPrice / conversion;
+
+            temp.ConversionToUpdate = this._CommonService.GetConversionValue(temp.SaleUnitId, temp.UnitBaseId, temp.Quantity);
+
+            return temp;
+            //throw new NotImplementedException();
         }
 
         private void ResetInputsForSalesDetail()
         {
-            throw new NotImplementedException();
+            txtMeasureUnitBaseId.Text = "";
+            txtMeasureUnitPurchasedId.Text = "";
+            txtMeasureUnitTypeId.Text = "";
+            txtWarehouseId.Text = "";
+            txtLotNumber.Text = "";
+            txtSupplierName.Text = "";
+            txtStocksCode.Text = "";
+            txtProductName.Text = "";
+            txtProductDetailCode.Text = "";
+            txtExpiryDate.Text = "";
+            txtWarehouseName.Text = "";
+            txtBrandName.Text = "";
+            txtCategoryName.Text = "";
+            txtMaterialName.Text = "";
+            txtDimensions.Text = "";
+            txtInitialsStocks.Text = "";
+            SpanForInitialsStocks.InnerText = "";
+            txtCurrentStocks.Text = "";
+            SpanForCurrentStocks.InnerText = "";
+            txtSalePrice.Text = "";
+            txtSalePriceByUnitBase.Text = "";
+            ddlistMeasureUnits.SelectedIndex = 0;
+            txtQuantity.Text = "";
+            txtDetailTax.Text = "";
+            txtDetailDiscount.Text = "";
+            btnAddToSaleDetailsList.Text = "Agregar";
+            this.LoadDropDownListMeasureUnits(null);
         }
 
         protected void btnCancelOrClearDetailForm_Click(object sender, EventArgs e)
+        {
+            this.ResetInputsForSalesDetail();
+        }
+
+        private void calculateTotalAmount()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void GridViewSaleDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow Row = (GridViewRow)(((LinkButton)e.CommandSource).NamingContainer);
+            int Index = Row.RowIndex;
+            string Code = Convert.ToString(GridViewSaleDetails.DataKeys[Index]["StocksCode"]);
+            string ShowModal = string.Format("ShowAlertInfo('¿Estás seguro de querer eliminar el producto de la lista?')");
+            switch (e.CommandName)
+            {
+                case "cmdEdit":
+                    this.SendElementsToTextboxFromTempList(Code);
+                    this.btnAddToSaleDetailsList.Text = "Editar";
+                    break;
+                case "cmdDelete":
+                    txtStocksCodeDelete.Text = Code;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowModal, true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SendElementsToTextboxFromTempList(string Code)
+        {
+            this.TempList = Session[TempListKey] as List<TempSaleList>;
+            TempSaleList temp = this.TempList.FirstOrDefault(x => x.StocksCode == Code);
+            this.LoadDropDownListMeasureUnits(temp.UnitTypeId);
+            txtMeasureUnitBaseId.Text = temp.UnitBaseId.ToString();
+            txtMeasureUnitPurchasedId.Text = temp.PurchasedUnitId.ToString();
+            txtMeasureUnitTypeId.Text = temp.UnitTypeId.ToString();
+            txtWarehouseId.Text = temp.WarehouseId.ToString();
+
+            //Other Fields
+            txtLotNumber.Text = temp.LotNumber;
+            txtSupplierName.Text = temp.SupplierName;
+            txtStocksCode.Text = temp.StocksCode;
+            txtProductName.Text = temp.ProductName;
+            txtProductDetailCode.Text = temp.ProductDetailCode;
+            txtExpiryDate.Text = temp.ExpirationDate;
+            txtWarehouseName.Text = temp.WarehouseName;
+            txtBrandName.Text = temp.BrandName;
+            txtCategoryName.Text = temp.CategoryName;
+            txtMaterialName.Text = temp.MaterialName;
+            txtDimensions.Text = temp.Dimensions;
+            txtInitialsStocks.Text = temp.StocksQuantity.ToString();
+            SpanForInitialsStocks.InnerText = temp.PurchaseUnitName;
+            txtCurrentStocks.Text = temp.UnitBaseStocks.ToString();
+            SpanForCurrentStocks.InnerText = temp.UnitBaseName;
+            txtSalePrice.Text = temp.PurchasedPrice.ToString();
+            txtSalePriceByUnitBase.Text = temp.SalePriceByUnitBase.ToString();
+            ddlistMeasureUnits.SelectedValue = temp.SaleUnitId.ToString();
+            txtQuantity.Text = temp.Quantity.ToString();
+            txtDetailTax.Text = temp.Tax.ToString();
+            txtDetailDiscount.Text = temp.Discount.ToString();
+        }
+
+        protected void btnConfirmDeleteProduct_Click(object sender, EventArgs e)
+        {
+            string Code = txtStocksCodeDelete.Text;
+            this.TempList = Session[TempListKey] as List<TempSaleList>;
+            TempSaleList temp = this.TempList.FirstOrDefault(x => x.StocksCode == Code);
+            TempList.Remove(temp);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "$('#ConfirmDeletions').modal('hide')", true);
+            this.LoadGridViewForTempList(TempList);
+            this.ResetInputsForSalesDetail();
+            //this.calculateTotalAmount();
+        }
+
+        protected void DropDownListCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -1,6 +1,7 @@
 ﻿using HardwareStore.Core.DTOs;
 using HardwareStore.Core.DTOs.Billing;
 using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.Interfaces;
 using HardwareStore.Core.Interfaces.Billing;
 using Ninject;
 using Ninject.Web;
@@ -18,6 +19,7 @@ namespace HardwareStore.Modules.Billing
     {
         [Inject]
         public IPurchasesService _PurchaseService { get; set; }
+        public ICommonServices _CommonServices { get; set; }
         public List<TempPurchaseList> TempList = null;
         public string UserName;
         private string TempListKey = "PurchaseDetailList";
@@ -266,6 +268,7 @@ namespace HardwareStore.Modules.Billing
             {
                 temp.ExpirationDate = DateTime.Now;
             }
+            //temp.SalePriceByUnitBase = this.CalculateSalePriceByUnitBase(temp.TargetUnitId, temp.MeasureUnitBaseId, temp.SalePrice);
 
             ShowToaster = "Toaster_ProductUpdated()";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
@@ -344,9 +347,17 @@ namespace HardwareStore.Modules.Billing
             {
                 Temp.ExpirationDate = DateTime.Now;
             }
+            //Temp.SalePriceByUnitBase = this.CalculateSalePriceByUnitBase(Temp.TargetUnitId, Temp.MeasureUnitBaseId, Temp.SalePrice);
             return Temp;
         }
 
+        //private double CalculateSalePriceByUnitBase(int IdConvertFrom, int IdConvertTo, double? saleprice)
+        //{
+        //    double Result;
+        //    double conversion = this._CommonServices.GetConversionValue(IdConvertFrom, IdConvertTo, null);
+        //    Result = (double)saleprice / conversion;
+        //    return Result;
+        //}
         protected void btnCancelOrClearDetailForm_Click(object sender, EventArgs e)
         {
             this.ResetInputsForPurchaseDetail();

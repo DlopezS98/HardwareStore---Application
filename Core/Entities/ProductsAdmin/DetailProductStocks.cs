@@ -1,6 +1,7 @@
 ﻿using HardwareStore.Core.Entities.Catalogs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
 {
     public class DetailProductStocks : BaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Code { get; set; }
         public int ProductStocksId { get; set; }
         public int WarehouseId { get; set; }
@@ -20,6 +22,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public double ConversionQuantity { get; set; }
         public double PurchasePrice { get; set; }
         public double SalePrice { get; set; }
+        public Nullable<double> SalePriceByUnitBase { get; set; }
         public bool Available { get; set; }
 
         public virtual MeasureUnits MeasureUnits { get; set; }

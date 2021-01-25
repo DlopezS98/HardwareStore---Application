@@ -107,7 +107,84 @@ namespace HardwareStore.Core.Services.Billing
 
         public Response RegisterSaleTransaction(SaleTransactionDto Invoice)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                this.UpdateProductStocks(Invoice);
+                return new Response() { Title = "¡Operación Exitosa!", Message = "Venta realizada con éxito", Success = true };
+            }
+            catch (Exception exc)
+            {
+                return new Response() { Title = "¡Error al realizar la venta!", Message = exc.Message, Success = false };
+            }
+        }
+
+        public void CreateSaleInvoice(SaleTransactionDto invoice)
+        {
+            try
+            {
+
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public void UpdateProductStocks(SaleTransactionDto Sales)
+        {
+            try
+            {
+                double stock;
+                List<StocksUpdateDto> details = new List<StocksUpdateDto>();
+                List<TempSaleList> temp = new List<TempSaleList>();
+                temp = Sales.Details;
+                foreach (TempSaleList item in temp)
+                {
+                    stock = 0;
+                    StocksUpdateDto data = new StocksUpdateDto();
+                    StocksDetailsDto dto = new StocksDetailsDto();
+                    dto = this.GetAStocksDetail(item.StocksCode);
+                    data.UnitBaseQuantity = (double)dto.ConversionValue - item.ConversionToUpdate;
+                    stock = this.GetConversionValue(dto.UnitBaseId, dto.PurchaseUnitId, data.UnitBaseQuantity);
+                    data.UnitPurchasedQuantity = stock;
+                    data.LotNumber = dto.LotNumber;
+                    data.StockCode = dto.StocksCode;
+                    details.Add(data);
+                }
+
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public double GetConversionValue(int IdConvertFrom, int IdConvertTo, double? Value = null)
+        {
+            try
+            {
+                double ConversionValue = 0;
+
+                if (Value != null)
+                {
+                    double BaseValue = this._MeasureUnitsRepository.GetConversionValueById(IdConvertFrom, IdConvertTo);
+                    ConversionValue = (double)Value * BaseValue;
+                }
+                else
+                {
+                    ConversionValue = this._MeasureUnitsRepository.GetConversionValueById(IdConvertFrom, IdConvertTo);
+                }
+
+                return ConversionValue;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
         }
     }
 }

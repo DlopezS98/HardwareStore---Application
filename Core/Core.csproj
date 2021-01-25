@@ -54,6 +54,8 @@
     <Compile Include="DTOs\Billing\InvoiceDetailsDto.cs" />
     <Compile Include="DTOs\Billing\InvoicesDto.cs" />
     <Compile Include="DTOs\Billing\PurchaseTransacDto.cs" />
+    <Compile Include="DTOs\Billing\SalesDetailsDto.cs" />
+    <Compile Include="DTOs\Billing\SalesInvoiceDto.cs" />
     <Compile Include="DTOs\Billing\SaleTransactionDto.cs" />
     <Compile Include="DTOs\Billing\TempPurchaseList.cs" />
     <Compile Include="DTOs\Billing\TempSaleList.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="DTOs\Catalogs\WarehousesDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\ProductStocksDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksDetailsDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\StocksUpdateDto.cs" />
     <Compile Include="DTOs\Response.cs" />
     <Compile Include="DTOs\SysConfiguration\CurrencyExchangeDto.cs" />
     <Compile Include="DTOs\SysConfiguration\ForeignCurrencyDropDto.cs" />
@@ -104,11 +107,13 @@
     <Compile Include="Entities\SysConfiguration\LocalCurrencies.cs" />
     <Compile Include="Interfaces\Billing\IPurchaseRepository.cs" />
     <Compile Include="Interfaces\Billing\IPurchasesService.cs" />
+    <Compile Include="Interfaces\Billing\ISalesRepository.cs" />
     <Compile Include="Interfaces\Billing\ISalesServices.cs" />
     <Compile Include="Interfaces\Catalogs\IMeasureUnitsRepository.cs" />
     <Compile Include="Interfaces\ICommonServices.cs" />
     <Compile Include="Interfaces\IEntityRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IProductsRepository.cs" />
+    <Compile Include="Interfaces\IPersonsRepository.cs" />
     <Compile Include="Interfaces\ISpecification.cs" />
     <Compile Include="Interfaces\Catalogs\ISuppliersRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IWarehouseRepository.cs" />

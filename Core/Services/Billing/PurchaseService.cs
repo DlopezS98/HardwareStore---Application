@@ -244,6 +244,7 @@ namespace HardwareStore.Core.Services.Billing
                         TargetUnitId = row.TargetUnitId,
                         Quantity = row.Quantity,
                         PurchasePrice = row.PurchasePrice,
+                        //SalePriceByUnitBase = row.SalePriceByUnitBase,
                         SalePrice = row.SalePrice,
                         ExpirationDate = row.ExpirationDate
                     };

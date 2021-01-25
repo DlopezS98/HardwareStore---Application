@@ -13,9 +13,9 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
 {
     public class ProductsStocksRepository : EntityRepository, IProductsStocksRepository
     {
-        private readonly AplicationContext _dbContext;
+        private readonly ApplicationContext _dbContext;
         private SqlCommand Command;
-        public ProductsStocksRepository(AplicationContext _dbContext) : base(_dbContext)
+        public ProductsStocksRepository(ApplicationContext _dbContext) : base(_dbContext)
         {
             this._dbContext = _dbContext;
         }
@@ -72,6 +72,57 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
                 List<StocksDetailsDto> data = this.GetProductStocksDetails("0", "", 0);
                 details = data.FirstOrDefault(x => x.StocksCode == StocksCode);
                 return details;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public void UpdateStocksDetails(List<StocksUpdateDto> dto)
+        {
+            try
+            {
+                if(dto.Count > 0)
+                {
+                    foreach (StocksUpdateDto stocks in dto)
+                    {
+                        DetailProductStocks details = this._dbContext.DetailProductStocks.FirstOrDefault(x => x.Code == stocks.StockCode);
+                        details.Quantity = stocks.UnitPurchasedQuantity;
+                        details.ConversionQuantity = stocks.UnitBaseQuantity;
+                        if(stocks.UnitPurchasedQuantity <= 0)
+                        {
+                            details.Available = false;
+                        }
+
+                        this._dbContext.SaveChanges();
+                    }
+
+                    this.UpdateProductStocks(dto);
+                }
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        private void UpdateProductStocks(List<StocksUpdateDto> dto)
+        {
+            try
+            {
+                foreach (StocksUpdateDto item in dto)
+                {
+                    ProductStocks stocks = this._dbContext.ProductStocks.FirstOrDefault(x => x.LotNumber == item.LotNumber);
+                    int availables = this._dbContext.DetailProductStocks.Where(x => x.ProductStocksId == stocks.Id && x.Available == true).ToList().Count;
+                    if (availables < 1)
+                    {
+                        stocks.Available = false;
+                        this._dbContext.SaveChanges();
+                    }
+                }
             }
             catch (Exception exc)
             {

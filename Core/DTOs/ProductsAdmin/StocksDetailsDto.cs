@@ -9,6 +9,7 @@ namespace HardwareStore.Core.DTOs.ProductsAdmin
     public class StocksDetailsDto
     {
         public string LotNumber { get; set; }
+        public string SupplierName { get; set; }
         public string StocksCode { get; set; }
         public int WarehouseId { get; set; }
         public string WarehouseName { get; set; }
@@ -26,6 +27,7 @@ namespace HardwareStore.Core.DTOs.ProductsAdmin
         public string Dimensions { get; set; }
         public double StocksQuantity { get; set; }
         public double PurchasePrice { get; set; }
+        public Nullable<double> SalePriceByUnitBase { get; set; }
         public double SalePrice { get; set; }
         public string ExpirationDate { get; set; }
         public string Available { get; set; }

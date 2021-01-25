@@ -16,5 +16,6 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
         List<ProductStocksDto> GetProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate);
         List<StocksDetailsDto> GetProductStocksDetails(string LotNumber, string Search, int WarehouseId);
         StocksDetailsDto GetStocksDetail(string StocksCode);
+        void UpdateStocksDetails(List<StocksUpdateDto> dto);
     }
 }

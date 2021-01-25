@@ -11,8 +11,8 @@ namespace HardwareStore.Infrastructure.Data.SysConfiguration
 {
     public class CurrenciesRepository : EntityRepository, ICurrenciesRepository
     {
-        private readonly AplicationContext _dbContext;
-        public CurrenciesRepository(AplicationContext _dbContext) : base(_dbContext)
+        private readonly ApplicationContext _dbContext;
+        public CurrenciesRepository(ApplicationContext _dbContext) : base(_dbContext)
         {
             this._dbContext = _dbContext;
         }

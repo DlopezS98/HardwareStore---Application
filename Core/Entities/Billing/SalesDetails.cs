@@ -15,12 +15,12 @@ namespace HardwareStore.Core.Entities.Billing
         //[Column(Order = 0)]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SaleInvoiceId { get; set; }
-
+        public string StockLotNumber { get; set; }
         //[Key]
         //[Column(Order = 1)]
         //[StringLength(255)]
         public string ProductDetailCode { get; set; }
-
+        public double ConversionValue { get; set; }
         //[Key]
         //[Column(Order = 2)]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]

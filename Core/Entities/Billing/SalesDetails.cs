@@ -29,7 +29,7 @@ namespace HardwareStore.Core.Entities.Billing
         //[Key]
         //[Column(Order = 3)]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TargetUnitId { get; set; }
+        public int SaleUnitId { get; set; }
         public int PurchasedUnitId { get; set; }
         public int UnitConversionId { get; set; }
         public int Quantity { get; set; }

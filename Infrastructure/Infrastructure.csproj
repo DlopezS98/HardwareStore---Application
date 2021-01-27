@@ -56,6 +56,7 @@
     <Compile Include="Data\ApplicationContext.cs" />
     <Compile Include="Data\Billing\PurchaseRepository.cs" />
     <Compile Include="Data\Billing\SalesRepository.cs" />
+    <Compile Include="Data\Catalogs\CustomersRepository.cs" />
     <Compile Include="Data\Catalogs\MeasureUnitsRepository.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\Catalogs\ProductsRepository.cs" />

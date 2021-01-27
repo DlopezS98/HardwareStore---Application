@@ -38,7 +38,7 @@ namespace HardwareStore.Infrastructure.Data.Billing
                         Command.Parameters.AddWithValue("@StockLotNumber", e.StockLotNumber);
                         Command.Parameters.AddWithValue("@ProductDetailCode", e.ProductDetailCode);
                         Command.Parameters.AddWithValue("@WarehouseId", e.WarehouseId);
-                        Command.Parameters.AddWithValue("@TargetUnitId", e.TargetUnitId);
+                        Command.Parameters.AddWithValue("@SaleUnitId", e.SaleUnitId);
                         Command.Parameters.AddWithValue("@PurchasedUnitId", e.PurchasedUnitId);
                         Command.Parameters.AddWithValue("@UnitConversionId", e.UnitConversionId);
                         Command.Parameters.AddWithValue("@ConversionValue", e.ConversionValue);
@@ -72,6 +72,7 @@ namespace HardwareStore.Infrastructure.Data.Billing
                 Connection.Open();
                 Command.Parameters.AddWithValue("@CustomerId", Invoice.CustomerId);
                 Command.Parameters.AddWithValue("@CustomerInvoice", Invoice.CustomerInvoice);
+                Command.Parameters.AddWithValue("@CurrencyExchangeId", Invoice.CurrencyExchangeId);
                 Command.Parameters.AddWithValue("@Tax", Invoice.Tax);
                 Command.Parameters.AddWithValue("@Subtotal", Invoice.Subtotal);
                 Command.Parameters.AddWithValue("@Discount", Invoice.Discount);

@@ -2,6 +2,7 @@
 using HardwareStore.Core.DTOs.Billing;
 using HardwareStore.Core.DTOs.Catalogs;
 using HardwareStore.Core.DTOs.ProductsAdmin;
+using HardwareStore.Core.DTOs.SysConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,11 @@ namespace HardwareStore.Core.Interfaces.Billing
         List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
         Response RegisterSaleTransaction(SaleTransactionDto Invoice);
         StocksDetailsDto GetAStocksDetail(string StocksCode);
+        List<CustomersDropDto> ListCustomersForDropDownList();
+        Response CreateCustomer(string User, CustomersDto customer);
+        CurrencyExchangeDto GetACurrencyExchange(int local, int foreign);
+        List<ForeignCurrencyDropDto> ListForeignCurrencies();
+        LocalCurrencyDropDto GetALocalCurrencies();
 
     }
 }

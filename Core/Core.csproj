@@ -59,6 +59,8 @@
     <Compile Include="DTOs\Billing\SaleTransactionDto.cs" />
     <Compile Include="DTOs\Billing\TempPurchaseList.cs" />
     <Compile Include="DTOs\Billing\TempSaleList.cs" />
+    <Compile Include="DTOs\Catalogs\CustomersDropDto.cs" />
+    <Compile Include="DTOs\Catalogs\CustomersDto.cs" />
     <Compile Include="DTOs\Catalogs\MeasureUnitsDropDto.cs" />
     <Compile Include="DTOs\Catalogs\ProductDetailsDto.cs" />
     <Compile Include="DTOs\Catalogs\SuppliersDropDto.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="DTOs\SysConfiguration\CurrencyExchangeDto.cs" />
     <Compile Include="DTOs\SysConfiguration\ForeignCurrencyDropDto.cs" />
     <Compile Include="DTOs\SysConfiguration\LocalCurrencyDropDto.cs" />
+    <Compile Include="DTOs\SysConfiguration\TupleConversionDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Billing\PurchaseDetails.cs" />
     <Compile Include="Entities\Billing\PurchaseInvoices.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Interfaces\Billing\IPurchasesService.cs" />
     <Compile Include="Interfaces\Billing\ISalesRepository.cs" />
     <Compile Include="Interfaces\Billing\ISalesServices.cs" />
+    <Compile Include="Interfaces\Catalogs\ICustomerRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IMeasureUnitsRepository.cs" />
     <Compile Include="Interfaces\ICommonServices.cs" />
     <Compile Include="Interfaces\IEntityRepository.cs" />

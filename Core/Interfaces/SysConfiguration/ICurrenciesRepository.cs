@@ -11,7 +11,7 @@ namespace HardwareStore.Core.Interfaces.SysConfiguration
     public interface ICurrenciesRepository
     {
         List<ForeignCurrencyDropDto> ListForeignCurrencies();
-        List<LocalCurrencyDropDto> ListLocalCurrencies();
+        LocalCurrencyDropDto GetALocalCurrencies();
         CurrencyExchangeDto GetACurrencyExchange(int local, int foreign);
     }
 }

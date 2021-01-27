@@ -20,6 +20,7 @@ namespace HardwareStore.Core.DTOs.Billing
         public string MaterialName { get; set; }
         public string Dimensions { get; set; }
         public string ExpirationDate { get; set; }
+        public int UnitConversionId { get; set; } // Id of the conversion units
         public int UnitTypeId { get; set; }
         public int UnitBaseId { get; set; }
         public double UnitBaseStocks { get; set; }

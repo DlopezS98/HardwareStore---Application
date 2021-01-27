@@ -1,4 +1,5 @@
-﻿using HardwareStore.Core.Interfaces;
+﻿using HardwareStore.Core.DTOs.SysConfiguration;
+using HardwareStore.Core.Interfaces;
 using HardwareStore.Core.Interfaces.Catalogs;
 using System;
 using System.Collections.Generic;
@@ -39,23 +40,23 @@ namespace HardwareStore.Core.Services
             }
         }
 
-        public double GetConversionValue(int IdConvertFrom, int IdConvertTo, double? Value = null)
+        public TupleConversionDto GetConversionValue(int IdConvertFrom, int IdConvertTo, double? Value = null)
         {
             try
             {
-                double ConversionValue = 0;
+                TupleConversionDto dto = new TupleConversionDto();
 
                 if(Value != null)
                 {
-                    double BaseValue = this._UnitsRepository.GetConversionValueById(IdConvertFrom, IdConvertTo);
-                    ConversionValue = (double)Value * BaseValue;
+                    dto = this._UnitsRepository.GetConversionValueById(IdConvertFrom, IdConvertTo);
+                    dto.Value = (double)Value * dto.Value;
                 }
                 else
                 {
-                    ConversionValue = this._UnitsRepository.GetConversionValueById(IdConvertFrom, IdConvertTo);
+                    dto = this._UnitsRepository.GetConversionValueById(IdConvertFrom, IdConvertTo);
                 }
 
-                return ConversionValue;
+                return dto;
             }
             catch (Exception exc)
             {

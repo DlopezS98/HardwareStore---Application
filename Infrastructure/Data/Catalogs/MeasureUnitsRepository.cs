@@ -1,4 +1,5 @@
 ﻿using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.DTOs.SysConfiguration;
 using HardwareStore.Core.Entities.Catalogs;
 using HardwareStore.Core.Interfaces.Catalogs;
 using System;
@@ -33,14 +34,14 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
             }
         }
 
-        public double GetConversionValueById(int From, int To)
+        public TupleConversionDto GetConversionValueById(int From, int To)
         {
             try
             {
-                //string query = string.Format("SELECT * FROM UnitConversion WHERE IdMeasureUnitFrom = {0} AND IdMeasureUnitTo = {1}", From, To);
-                /*this._dbContext.Database.SqlQuery<UnitConversion>(query).First();*/
-                var conversion =  this._dbContext.UnitConversions.FirstOrDefault(x => x.IdMeasureUnitFrom == From && x.IdMeasureUnitTo == To);
-                return conversion.ConversionValue;
+                TupleConversionDto dto = new TupleConversionDto();
+                var data =  this._dbContext.UnitConversions.FirstOrDefault(x => x.IdMeasureUnitFrom == From && x.IdMeasureUnitTo == To);
+                dto.Id = data.Id; dto.Value = data.ConversionValue;
+                return dto;
             }
             catch (Exception exc)
             {

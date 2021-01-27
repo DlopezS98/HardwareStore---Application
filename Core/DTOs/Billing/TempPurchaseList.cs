@@ -35,11 +35,11 @@ namespace HardwareStore.Core.DTOs.Billing
         public int Quantity { get; set; }
         public int Discount { get; set; }
         public string DiscountStr { get => this.Discount + "%"; }
-        public double Subtotal { get => this.Quantity * this.PurchasePrice; }
+        public double Subtotal { get => (this.Quantity * this.PurchasePrice) + (this.Quantity * this.Tax); }
         public string SubtotalStr { get => "C$" + this.Subtotal; }
         public double Tax { get; set; }
         public string TaxStr { get => "C$" + this.Tax; }
-        public double Total { get => (this.Subtotal - (((double)this.Discount / 100) * this.Subtotal)) + (this.Quantity * this.Tax); }
+        public double Total { get => (this.Subtotal - (((double)this.Discount / 100) * this.Subtotal)); }
         public string TotalStr { get => "C$" + this.Total; }
     }
 }

@@ -1,6 +1,8 @@
-﻿using HardwareStore.Core.DTOs.Billing;
+﻿using HardwareStore.Core.DTOs;
+using HardwareStore.Core.DTOs.Billing;
 using HardwareStore.Core.DTOs.Catalogs;
 using HardwareStore.Core.DTOs.ProductsAdmin;
+using HardwareStore.Core.DTOs.SysConfiguration;
 using HardwareStore.Core.Interfaces;
 using HardwareStore.Core.Interfaces.Billing;
 using Ninject;
@@ -109,12 +111,40 @@ namespace HardwareStore.Modules.Billing
             this.ddlistMeasureUnits.Items.Insert(0, new ListItem("Selecciona la Unidad de medida", "0"));
         }
 
+        public void LoadCurrencies()
+        {
+            LocalCurrencyDropDto local = this._SalesServices.GetALocalCurrencies();
+            List<ForeignCurrencyDropDto> list = this._SalesServices.ListForeignCurrencies();
+            this.ddlistForeignCurrencies.DataSource = list;
+            this.ddlistForeignCurrencies.DataTextField = "Name";
+            this.ddlistForeignCurrencies.DataValueField = "Id";
+            this.ddlistForeignCurrencies.DataBind();
+
+            //this.ddlistForeignCurrencies.Items.Insert(0, new ListItem("Seleccione el tipo de moneda", "0"));
+
+            txtLocalCurrency.Text = local.Name;
+            txtLocalCurrencyId.Text = local.Id.ToString();
+        }
+
+        public void LoadDropDownListCustomers()
+        {
+            List<CustomersDropDto> list = this._SalesServices.ListCustomersForDropDownList();
+            this.DropDownListCustomers.DataSource = list;
+            this.DropDownListCustomers.DataTextField = "Name";
+            this.DropDownListCustomers.DataValueField = "Id";
+            this.DropDownListCustomers.DataBind();
+
+            this.DropDownListCustomers.Items.Insert(0, new ListItem("Seleccione el cliente", "0"));
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 this.LoadGridViewProductStocks(null, null);
                 this.LoadDropdownlistWarehouses();
+                this.LoadCurrencies();
+                this.LoadDropDownListCustomers();
             }
 
             Session[UserKey] = "01dlopezs98@gmail.com";
@@ -236,6 +266,7 @@ namespace HardwareStore.Modules.Billing
             string StocksCode, ShowToaster;
             conversion = 0;
             StocksCode = txtStocksCode.Text;
+            TupleConversionDto tuple = new TupleConversionDto();
             this.TempList = Session[TempListKey] as List<TempSaleList>;
             TempSaleList temp = this.TempList.FirstOrDefault(x => x.StocksCode == StocksCode);
             temp.Quantity = Convert.ToInt32(txtQuantity.Text);
@@ -244,16 +275,19 @@ namespace HardwareStore.Modules.Billing
 
             temp.SaleUnitId = Convert.ToInt32(ddlistMeasureUnits.SelectedValue);
             temp.SaleUnitName = ddlistMeasureUnits.SelectedItem.Text;
-            conversion = this._CommonService.GetConversionValue(temp.PurchasedUnitId, temp.SaleUnitId, null);
-            temp.SalePrice = temp.PurchasedPrice / conversion;
-            temp.ConversionToUpdate = this._CommonService.GetConversionValue(temp.SaleUnitId, temp.UnitBaseId, temp.Quantity);
+            tuple = this._CommonService.GetConversionValue(temp.PurchasedUnitId, temp.SaleUnitId, null);
+            temp.SalePrice = temp.PurchasedPrice / tuple.Value;
+            tuple = null;
+            tuple = this._CommonService.GetConversionValue(temp.SaleUnitId, temp.UnitBaseId, temp.Quantity);
+            temp.ConversionToUpdate = tuple.Value;
+            temp.UnitConversionId = tuple.Id;
 
             ShowToaster = "ShowToaster('Producto actualizado!', 'success')";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
 
             this.LoadGridViewForTempList(TempList);
             this.ResetInputsForSalesDetail();
-            //this.calculateTotalAmount();
+            this.CalculateTotalAmount();
         }
 
         private void AddItemToTempList()
@@ -263,7 +297,7 @@ namespace HardwareStore.Modules.Billing
             int idconvertfrom = Convert.ToInt32(ddlistMeasureUnits.SelectedValue);
             int idconvertto = Convert.ToInt32(txtMeasureUnitBaseId.Text);
             int quantity = Convert.ToInt32(txtQuantity.Text);
-            double value = this._CommonService.GetConversionValue(idconvertfrom, idconvertto, quantity);
+            double value = this._CommonService.GetConversionValue(idconvertfrom, idconvertto, quantity).Value;
             double stocks = Convert.ToDouble(txtCurrentStocks.Text);
             if (value > stocks)
             {
@@ -291,15 +325,16 @@ namespace HardwareStore.Modules.Billing
                 }
 
                 this.LoadGridViewForTempList(TempList);
-                //this.calculateTotalAmount();
+                this.CalculateTotalAmount();
+                this.CalculatePaymentChange();
             }
 
         }
 
         private TempSaleList CreateObjectForTempList()
         {
-            double conversion = 0;
             TempSaleList temp = new TempSaleList();
+            TupleConversionDto tuple = new TupleConversionDto();
             temp.LotNumber = txtLotNumber.Text;
             temp.StocksCode = txtStocksCode.Text;
             temp.SupplierName = txtSupplierName.Text;
@@ -330,10 +365,12 @@ namespace HardwareStore.Modules.Billing
 
             temp.SaleUnitId = Convert.ToInt32(ddlistMeasureUnits.SelectedValue);
             temp.SaleUnitName = ddlistMeasureUnits.SelectedItem.Text;
-            conversion = this._CommonService.GetConversionValue(temp.PurchasedUnitId, temp.SaleUnitId, null);
-            temp.SalePrice = temp.PurchasedPrice / conversion;
-
-            temp.ConversionToUpdate = this._CommonService.GetConversionValue(temp.SaleUnitId, temp.UnitBaseId, temp.Quantity);
+            tuple = this._CommonService.GetConversionValue(temp.PurchasedUnitId, temp.SaleUnitId, null);
+            temp.SalePrice = temp.PurchasedPrice / tuple.Value;
+            tuple = null;
+            tuple = this._CommonService.GetConversionValue(temp.SaleUnitId, temp.UnitBaseId, temp.Quantity);
+            temp.ConversionToUpdate = tuple.Value;
+            temp.UnitConversionId = tuple.Id;
 
             return temp;
             //throw new NotImplementedException();
@@ -362,7 +399,6 @@ namespace HardwareStore.Modules.Billing
             SpanForCurrentStocks.InnerText = "";
             txtSalePrice.Text = "";
             txtSalePriceByUnitBase.Text = "";
-            ddlistMeasureUnits.SelectedIndex = 0;
             txtQuantity.Text = "";
             txtDetailTax.Text = "";
             txtDetailDiscount.Text = "";
@@ -375,9 +411,38 @@ namespace HardwareStore.Modules.Billing
             this.ResetInputsForSalesDetail();
         }
 
-        private void calculateTotalAmount()
+        private void CalculateTotalAmount()
         {
-            throw new NotImplementedException();
+            double total, subtotal;
+            int discount;
+            subtotal = this.CalculateSubtotalAmount();
+            total = subtotal;
+
+            if (txtTotalDiscount.Text != "")
+            {
+                discount = Convert.ToInt32(txtTotalDiscount.Text);
+                total = total - (((double)discount / 100) * total);
+            }
+
+            txtTotal.Text = total.ToString();
+        }
+
+        private double CalculateSubtotalAmount()
+        {
+            double subtotal = 0;
+            TempList = Session[TempListKey] as List<TempSaleList>;
+
+            if (TempList != null && TempList.Count > 0)
+            {
+                foreach (var item in TempList)
+                {
+                    subtotal = subtotal + item.Total;
+                }
+
+                txtSubtotal.Text = subtotal.ToString();
+            }
+
+            return subtotal;
         }
 
         protected void GridViewSaleDetails_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -444,12 +509,119 @@ namespace HardwareStore.Modules.Billing
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "$('#ConfirmDeletions').modal('hide')", true);
             this.LoadGridViewForTempList(TempList);
             this.ResetInputsForSalesDetail();
-            //this.calculateTotalAmount();
+            this.CalculateTotalAmount();
+            this.CalculatePaymentChange();
         }
 
         protected void DropDownListCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int Index = this.DropDownListCustomers.SelectedIndex;
+            string Name = this.DropDownListCustomers.SelectedItem.Text;
+            var result = Index != 0 ? Name : "";
+            txtCustomerName.Text = result;
+        }
 
+        protected void ddlistForeignCurrencies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.FetchCurrencyExchangeFromDataBase();
+        }
+
+        private void FetchCurrencyExchangeFromDataBase()
+        {
+            int local = Convert.ToInt32(txtLocalCurrencyId.Text);
+            int foreign = Convert.ToInt32(ddlistForeignCurrencies.SelectedValue);
+            var Currency = this._SalesServices.GetACurrencyExchange(local, foreign);
+            txtCurrencySale.Text = Currency.Sale.ToString();
+            txtCurrencyPurchase.Text = Currency.Purchase.ToString();
+            txtCurrencyExchangeId.Text = Currency.Id.ToString();
+        }
+
+        private void CalculatePaymentChange()
+        {
+            this.FetchCurrencyExchangeFromDataBase();
+            double purchase, payment, conversion, paymentChange, totalToPay;
+            if (txtCurrencyPurchase.Text != "" && txtPayment.Text != "")
+            {
+                purchase = Convert.ToDouble(txtCurrencyPurchase.Text);
+                payment = Convert.ToDouble(txtPayment.Text);
+                totalToPay = Convert.ToDouble(txtTotal.Text);
+                conversion = purchase * payment;
+                txtConversion.Text = conversion.ToString();
+                paymentChange = conversion - totalToPay;
+                txtPaymentChange.Text = paymentChange.ToString();
+            }
+        }
+
+        protected void btnCalculateTotal_Click(object sender, EventArgs e)
+        {
+            this.CalculateTotalAmount();
+            this.CalculatePaymentChange();
+        }
+
+        protected void btnCreateSale_Click(object sender, EventArgs e)
+        {
+            int? CustomerId;
+            string showAlert;
+            this.UserName = Session[UserKey] as string;
+            int Id = Convert.ToInt32(DropDownListCustomers.SelectedValue);
+            this.CalculateTotalAmount();
+            this.CalculatePaymentChange();
+            if (Id > 0)
+                CustomerId = Id;
+            else
+                CustomerId = null;
+
+            this.TempList = Session[TempListKey] as List<TempSaleList>;
+
+            SaleTransactionDto dto = new SaleTransactionDto()
+            {
+                User = this.UserName,
+                CustomerId = CustomerId,
+                CustomerName = txtCustomerName.Text,
+                CurrencyExchangeId = Convert.ToInt32(txtCurrencyExchangeId.Text),
+                Tax = Convert.ToDouble(txtTotalTax.Text),
+                Subtotal = Convert.ToDouble(txtSubtotal.Text),
+                Discount = Convert.ToInt32(txtTotalDiscount.Text),
+                TotalAmount = Convert.ToDouble(txtTotal.Text),
+                Details = this.TempList
+            };
+
+            Response res = this._SalesServices.RegisterSaleTransaction(dto);
+            if (res.Success) { showAlert = string.Format("ShowSaleAlert('{0}', '{1}', 'success')", res.Title, res.Message); }
+            else { showAlert = string.Format("ShowSaleAlert('{0}', '{1}', 'danger')", res.Title, res.Message); }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", showAlert, true);
+
+            this.RemoveItemsFromSaleDetailList();
+            this.ResetInputsForSalesDetail();
+            this.ResetSaleInputs();
+            this.LoadGridViewProductStocks(null, null);
+            // Load Grid for Sale history
+        }
+
+        protected void btnAbortTransaction_Click(object sender, EventArgs e)
+        {
+            this.RemoveItemsFromSaleDetailList();
+            this.ResetInputsForSalesDetail();
+            this.ResetSaleInputs();
+        }
+
+        private void ResetSaleInputs()
+        {
+            txtSubtotal.Text = "";
+            txtTotalDiscount.Text = "";
+            txtTotal.Text = "";
+            txtPayment.Text = "";
+            txtConversion.Text = "";
+            txtPaymentChange.Text = "";
+            DropDownListCustomers.SelectedValue = "0";
+            txtCustomerName.Text = "";
+        }
+
+        private void RemoveItemsFromSaleDetailList()
+        {
+            Session.Remove(TempListKey);
+            this.LoadGridViewForTempList();
         }
     }
 }

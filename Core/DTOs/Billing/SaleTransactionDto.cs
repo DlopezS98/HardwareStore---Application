@@ -8,7 +8,8 @@ namespace HardwareStore.Core.DTOs.Billing
 {
     public class SaleTransactionDto
     {
-        public int CustomerId { get; set; }
+        public string User { get; set; }
+        public int? CustomerId { get; set; }
         public string CustomerName { get; set; }
         public int CurrencyExchangeId { get; set; }
         public double Tax { get; set; }

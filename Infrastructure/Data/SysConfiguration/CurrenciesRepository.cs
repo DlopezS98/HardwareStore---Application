@@ -43,10 +43,11 @@ namespace HardwareStore.Infrastructure.Data.SysConfiguration
                 List<ForeignCurrencies> list = new List<ForeignCurrencies>();
                 List<ForeignCurrencyDropDto> ForeignCurrency = new List<ForeignCurrencyDropDto>();
                 list = this._dbContext.ForeignCurrencies.Where(x => x.Deleted == false).ToList();
-                list.ForEach(x => ForeignCurrency.Add(new ForeignCurrencyDropDto() {
+                list.ForEach(x => ForeignCurrency.Add(new ForeignCurrencyDropDto()
+                {
                     Id = x.Id,
-                    Name = x.Name
-                })) ;
+                    Name = x.Name + " (" + x.Symbol + ")",
+                }));
 
                 return ForeignCurrency;
             }
@@ -57,18 +58,17 @@ namespace HardwareStore.Infrastructure.Data.SysConfiguration
             }
         }
 
-        public List<LocalCurrencyDropDto> ListLocalCurrencies()
+        public LocalCurrencyDropDto GetALocalCurrencies()
         {
             try
             {
-                List<LocalCurrencies> list = new List<LocalCurrencies>();
-                List<LocalCurrencyDropDto> LocalCurrency = new List<LocalCurrencyDropDto>();
-                list = this._dbContext.LocalCurrencies.Where(x => x.Deleted == false).ToList();
-                list.ForEach(x => LocalCurrency.Add(new LocalCurrencyDropDto()
+                LocalCurrencies currency = this._dbContext.LocalCurrencies.FirstOrDefault(x => x.Deleted == false && x.IsActive == true);
+                LocalCurrencyDropDto LocalCurrency = new LocalCurrencyDropDto()
                 {
-                    Id = x.Id,
-                    Name = x.Name
-                }));
+                    Id = currency.Id,
+                    Name = currency.Name,
+                };
+
 
                 return LocalCurrency;
             }

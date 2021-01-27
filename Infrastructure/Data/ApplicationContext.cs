@@ -68,6 +68,9 @@ namespace HardwareStore.Infrastructure.Data
             modelBuilder.Ignore<WarehousesDto>();
             modelBuilder.Entity<ProductStocksDto>().HasKey(x => x.LotNumber);
             modelBuilder.Entity<StocksDetailsDto>().HasKey(x => new { x.LotNumber, x.StocksCode });
+            modelBuilder.Entity<CurrencyExchange>().ToTable("CurrencyExchange").HasKey(x => x.Id);
+            modelBuilder.Entity<CurrencyExchange>().Property(x => x .LocalId).HasColumnName("LocalId");
+            modelBuilder.Entity<CurrencyExchange>().Property(x => x .ForeignId).HasColumnName("ForeignId");
         }
     }
 }

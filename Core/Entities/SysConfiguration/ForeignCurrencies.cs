@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Core.Entities.SysConfiguration
 {
-    public class ForeignCurrencies
+    public class ForeignCurrencies : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
         public bool Deleted { get; set; }

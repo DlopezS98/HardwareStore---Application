@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Sales.aspx.cs" Inherits="HardwareStore.Modules.Billing.Sales" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <%-- Alert for transaction Info --%>
+        <div id="section-alerts" class="section-alert">
+        </div>
+        <%-- End Alert --%>
+
     <%-- Modal section --%>
     <%-- Modal product stocks details --%>
     <div class="modal fade" id="ModalStocksDetails" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
@@ -453,7 +458,7 @@
                                                                     <asp:DropDownList ID="DropDownListCustomers" AutoPostBack="true" OnSelectedIndexChanged="DropDownListCustomers_SelectedIndexChanged" CssClass="form-control" runat="server">
                                                                     </asp:DropDownList>
                                                                     <div class="input-group-append">
-                                                                        <asp:Button runat="server" Text="+" ID="btnAddNewCustomer" data-toggle="modal" data-target="#ModalCustomers" CssClass="btn btn-success btn-sm" />
+                                                                        <asp:Button runat="server" Text="+" ID="btnAddNewCustomer" OnClientClick="ShowSaleAlert('Alert Works!', 'my alert message!', 'primary')" data-toggle="modal" data-target="#ModalCustomers" CssClass="btn btn-success btn-sm" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -506,8 +511,9 @@
                                                 <div class="card card-shadow">
                                                     <div class="card-body">
                                                         <div class="form-row">
+                                                            <asp:TextBox runat="server" ID="txtCurrencyExchangeId" ReadOnly="true" Visible="false" />
                                                             <div class="form-group col-md-3">
-                                                                    <asp:Label Text="Subtotal" runat="server" />
+                                                                <asp:Label Text="Subtotal" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">C$</span>
@@ -527,7 +533,7 @@
                                                             <div class="form-group col-md-3">
                                                                 <asp:Label Text="IVA" runat="server" />
                                                                 <div class="input-group">
-                                                                    <asp:TextBox runat="server" ID="txtTotalTax" TextMode="Number" CssClass="form-control" placeholder="Impuesto"/>
+                                                                    <asp:TextBox runat="server" ID="txtTotalTax" TextMode="Number" CssClass="form-control" placeholder="Impuesto" />
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">%</span>
                                                                     </div>
@@ -549,7 +555,7 @@
                                                         <div class="form-row">
                                                             <div class="form-group col-md-4">
                                                                 <asp:Label Text="Tipo de moneda" runat="server" />
-                                                                <asp:DropDownList ID="ddlistForeignCurrencies" AutoPostBack="true" CssClass="form-control" Width="100%" runat="server">
+                                                                <asp:DropDownList ID="ddlistForeignCurrencies" AutoPostBack="true" OnSelectedIndexChanged="ddlistForeignCurrencies_SelectedIndexChanged" CssClass="form-control" Width="100%" runat="server">
                                                                 </asp:DropDownList>
                                                             </div>
                                                             <div class="form-group col-md-4">
@@ -610,13 +616,13 @@
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
                                                             <div class="col-md-2">
-                                                                <asp:Button ID="btnCalculateTotal" Text="Calcular" runat="server" CssClass="btn btn-primary btn-block" />
+                                                                <asp:Button ID="btnCalculateTotal" OnClick="btnCalculateTotal_Click" Text="Calcular" runat="server" CssClass="btn btn-primary btn-block" />
                                                             </div>
                                                             <div class="col-md-2">
-                                                                <asp:Button ID="btnCreateSale" Text="Crear venta" runat="server" CssClass="btn btn-success btn-block" />
+                                                                <asp:Button ID="btnCreateSale" OnClick="btnCreateSale_Click" Text="Crear venta" runat="server" CssClass="btn btn-success btn-block" />
                                                             </div>
                                                             <div class="col-md-2">
-                                                                <asp:Button ID="btnAbortTransaction" Text="Cancelar" runat="server" CssClass="btn btn-danger btn-block" />
+                                                                <asp:Button ID="btnAbortTransaction" OnClick="btnAbortTransaction_Click" Text="Cancelar" runat="server" CssClass="btn btn-danger btn-block" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -688,6 +694,29 @@
             let content = document.createTextNode(message);
             element.appendChild(content);
             $('#ConfirmDeletions').modal('show');
+        }
+
+        function ShowSaleAlert(title, message, CssClass) {
+            console.log("Hello World");
+            $('#ModalWarehouses').modal('hide');
+            $('#ModalSuppliers').modal('hide');
+            const div = document.getElementById("section-alerts");
+            const divalert = document.createElement('div');
+            div.style.display = "block"
+            divalert.className = `alert alert-${CssClass} m-2 alert-dismissible fade show`;
+            const contentMessage = document.createTextNode(message);
+            const strong = document.createElement('strong');
+            strong.style.marginRight = "10px";
+            const contentTitle = document.createTextNode(title);
+            strong.appendChild(contentTitle);
+            divalert.appendChild(strong);
+            divalert.appendChild(contentMessage);
+            div.appendChild(divalert);
+            setTimeout(function () {
+                $('.alert').alert('close')
+                div.style.display = "none";
+                divalert.remove();
+            }, 7000);
         }
 
     </script>

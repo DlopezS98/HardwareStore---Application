@@ -210,7 +210,7 @@ namespace HardwareStore.Core.Services.Billing
                     dto = this.GetAStocksDetail(item.StocksCode);
                     data.UnitBaseQuantity = (double)dto.ConversionValue - item.ConversionToUpdate;
                     stock = this.GetConversionValue(dto.UnitBaseId, dto.PurchaseUnitId, data.UnitBaseQuantity);
-                    data.UnitPurchasedQuantity = Math.Round(stock);
+                    data.UnitPurchasedQuantity = stock;
                     data.LotNumber = dto.LotNumber;
                     data.StockCode = dto.StocksCode;
                     details.Add(data);

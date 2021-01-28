@@ -21,14 +21,19 @@ namespace HardwareStore.Core.DTOs.ProductsAdmin
         public int UnitBaseId { get; set; }
         public string UnitBaseName { get; set; }
         public int UnitTypeId { get; set; }
-        public Nullable<double> ConversionValue { get; set; }
+        public double ConversionValue { get; set; }
+        public string ConversionValueStr { get => this.ConversionValue.ToString("F2"); }
         public string CategoryName { get; set; }
         public string MaterialName { get; set; }
         public string Dimensions { get; set; }
+        public int OriginalQuantity { get; set; }
         public double StocksQuantity { get; set; }
+        public string StocksQuantityStr { get => this.StocksQuantity.ToString("F2"); }
         public double PurchasePrice { get; set; }
-        public Nullable<double> SalePriceByUnitBase { get; set; }
+        public double SalePriceByUnitBase { get; set; }
+        public string SalePriceByUnitBaseStr { get => this.SalePriceByUnitBase.ToString("F2"); }
         public double SalePrice { get; set; }
+        public string SalePriceStr { get => "C$" + this.SalePrice.ToString("F2"); }
         public string ExpirationDate { get; set; }
         public string Available { get; set; }
     }

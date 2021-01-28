@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HardwareStore.Core.DTOs.Catalogs;
 using HardwareStore.Core.DTOs.ProductsAdmin;
+using HardwareStore.Core.DTOs.Billing;
 
 namespace HardwareStore.Infrastructure.Data
 {
@@ -60,12 +61,14 @@ namespace HardwareStore.Infrastructure.Data
         public DbSet<SuppliersDto> SuppliersDto { get; set; }
         public DbSet<ProductStocksDto> ProductStocksDto { get; set; }
         public DbSet<StocksDetailsDto> StocksDetailsDto { get; set; }
+        public DbSet<SalesInvoiceDto> MyPropeSalesInvoiceDtorty { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Ignore<SuppliersDto>();
             modelBuilder.Ignore<WarehousesDto>();
+            modelBuilder.Ignore<SalesInvoiceDto>();
             modelBuilder.Entity<ProductStocksDto>().HasKey(x => x.LotNumber);
             modelBuilder.Entity<StocksDetailsDto>().HasKey(x => new { x.LotNumber, x.StocksCode });
             modelBuilder.Entity<CurrencyExchange>().ToTable("CurrencyExchange").HasKey(x => x.Id);

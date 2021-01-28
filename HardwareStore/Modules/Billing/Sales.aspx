@@ -2,9 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%-- Alert for transaction Info --%>
-        <div id="section-alerts" class="section-alert">
-        </div>
-        <%-- End Alert --%>
+    <div id="section-alerts" class="section-alert">
+    </div>
+    <%-- End Alert --%>
 
     <%-- Modal section --%>
     <%-- Modal product stocks details --%>
@@ -57,12 +57,13 @@
                                         <asp:BoundField HeaderText="Categoría" DataField="CategoryName" />
                                         <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
                                         <asp:BoundField HeaderText="Material" DataField="MaterialName" />
-                                        <asp:BoundField HeaderText="Unidades" DataField="StocksQuantity" />
                                         <asp:BoundField HeaderText="Unidad compra" DataField="PurchaseUnitName" />
+                                        <asp:BoundField HeaderText="Compra Unidad inicial" DataField="OriginalQuantity" />
+                                        <asp:BoundField HeaderText="Unidad actual" DataField="StocksQuantityStr" />
                                         <asp:BoundField HeaderText="Unidad base" DataField="UnitBaseName" />
-                                        <asp:BoundField HeaderText="Conversion" DataField="ConversionValue" />
-                                        <asp:BoundField HeaderText="Precio unidad compra" DataField="SalePrice" />
-                                        <asp:BoundField HeaderText="Precio unidad base" DataField="SalePriceByUnitBase" />
+                                        <asp:BoundField HeaderText="Conversion" DataField="ConversionValueStr" />
+                                        <asp:BoundField HeaderText="Precio unidad compra" DataField="SalePriceStr" />
+                                        <asp:BoundField HeaderText="Precio unidad base" DataField="SalePriceByUnitBaseStr" />
                                         <asp:BoundField HeaderText="Fecha expiración" DataField="ExpirationDate" />
                                         <asp:BoundField HeaderText="Estado" DataField="Available" />
                                         <asp:TemplateField HeaderText="Opciones">
@@ -540,9 +541,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-md-3">
-                                                                <div class="d-flex justify-content-start">
-                                                                    <label for="txtTotal">Total</label>
-                                                                </div>
+                                                                <asp:Label Text="Total" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text">C$</span>

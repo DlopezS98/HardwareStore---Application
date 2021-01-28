@@ -18,6 +18,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public int TargetUnitId { get; set; }
         public int UnitConversionId { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public int OriginalQuantity { get; set; }
         public double Quantity { get; set; }
         public double ConversionQuantity { get; set; }
         public double PurchasePrice { get; set; }
@@ -25,9 +26,13 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public Nullable<double> SalePriceByUnitBase { get; set; }
         public bool Available { get; set; }
 
+        [ForeignKey("TargetUnitId")]
         public virtual MeasureUnits MeasureUnits { get; set; }
+        [ForeignKey("UnitConversionId")]
         public virtual UnitConversions UnitConversions { get; set; }
+        [ForeignKey("ProductStocksId")]
         public virtual ProductStocks ProductStocks { get; set; }
+        [ForeignKey("WarehouseId")]
         public virtual Warehouses Warehouses { get; set; }
     }
 }

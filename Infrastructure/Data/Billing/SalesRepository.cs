@@ -95,7 +95,23 @@ namespace HardwareStore.Infrastructure.Data.Billing
 
         public List<SalesInvoiceDto> ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<SalesInvoiceDto> list = new List<SalesInvoiceDto>();
+                SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+                SqlParameter startdate = new SqlParameter("@StartDate", SqlDbType.VarChar); startdate.Direction = ParameterDirection.Input;
+                SqlParameter enddate = new SqlParameter("@EndDate", SqlDbType.VarChar); enddate.Direction = ParameterDirection.Input;
+                search.Value = Search;
+                startdate.Value = StartDate.ToString("yyyy-MM-dd");
+                enddate.Value = EndDate.ToString("yyyy-MM-dd");
+                list = this._dbContext.Database.SqlQuery<SalesInvoiceDto>("EXEC [dbo].[Sp_ListSaleInvoices] @Search, @StartDate, @EndDate", search, startdate, enddate).ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
         }
     }
 }

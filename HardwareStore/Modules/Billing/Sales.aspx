@@ -165,7 +165,7 @@
                                                                             </div>
                                                                             <div class="form-group col-md-2">
                                                                                 <br />
-                                                                                <asp:Button Text="Filtrar" runat="server" ID="btnInvoiceListFilter" CssClass="btn btn-primary btn-block" />
+                                                                                <asp:Button Text="Filtrar" runat="server" ID="btnInvoiceListFilter" OnClick="btnInvoiceListFilter_Click" CssClass="btn btn-primary btn-block" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -176,6 +176,34 @@
                                                             <div class="col">
                                                                 <div class="card">
                                                                     <div class="card-body table-responsive mt-3 mb-3">
+                                                                        <asp:GridView runat="server" DataKeyNames="Id" AutoGenerateColumns="false"
+                                                                            ID="GridViewSaleInvoices" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewSaleInvoices_RowCommand">
+                                                                            <HeaderStyle CssClass="thead-dark" />
+                                                                            <Columns>
+                                                                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                                                                <asp:BoundField HeaderText="N° Factura" DataField="InvoiceNumber" />
+                                                                                <asp:BoundField HeaderText="Cliente" DataField="CustomerName" />
+                                                                                <asp:BoundField HeaderText="Moneda local" DataField="LocalCurrency" />
+                                                                                <asp:BoundField HeaderText="Impuesto" DataField="DisplayTax" />
+                                                                                <asp:BoundField HeaderText="Subtotal" DataField="DisplaySubtotal" />
+                                                                                <asp:BoundField HeaderText="Descuento" DataField="DisplayDiscount" />
+                                                                                <asp:BoundField HeaderText="Total" DataField="DisplayTotalAmount" />
+                                                                                <asp:BoundField HeaderText="Moneda pago" DataField="ForeignCurrency" />
+                                                                                <asp:BoundField HeaderText="Pago" DataField="DisplayPayment" />
+                                                                                <asp:BoundField HeaderText="Venta" DataField="DisplayCurrencySale" />
+                                                                                <asp:BoundField HeaderText="Compra" DataField="DisplayCurrencyPurchase" />
+                                                                                <asp:BoundField HeaderText="Cambio" DataField="DisplayPaymentChange" />
+                                                                                <asp:BoundField HeaderText="Fecha" DataField="CreatedAt" />
+                                                                                <asp:BoundField HeaderText="Realizada por" DataField="CreatedBy" />
+                                                                                <asp:TemplateField HeaderText="Opciones">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkShowSaleDetails" ToolTip="Detalle de venta"
+                                                                                            CommandName="cmdSaleDetails" runat="server">Detalles</asp:LinkButton>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                            </Columns>
+                                                                        </asp:GridView>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -391,9 +419,9 @@
                                                                 <div class="input-group">
                                                                     <asp:DropDownList ID="ddlistMeasureUnits" CssClass="form-control" runat="server">
                                                                     </asp:DropDownList>
-                                                                    <div class="input-group-append">
+                                                                    <%--<div class="input-group-append">
                                                                         <asp:Button runat="server" Text="+" ID="btnAddNewMeasureUnits" OnClientClick="ShowToaster('alet works!<br/>This is a message', 'success')" data-toggle="modal" data-target="#ModalMeasureUnits" CssClass="btn btn-success btn-sm" />
-                                                                    </div>
+                                                                    </div>--%>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-lg-2">
@@ -523,6 +551,15 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-md-3">
+                                                                <asp:Label Text="IVA" runat="server" />
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">C$</span>
+                                                                    <asp:TextBox runat="server" ID="txtTotalTax" TextMode="Number" CssClass="form-control" placeholder="Impuesto" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
                                                                 <asp:Label Text="Descuento" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" TextMode="Number" CssClass="form-control" ID="txtTotalDiscount" placeholder="Descuento" />
@@ -530,16 +567,7 @@
                                                                         <span class="input-group-text">%</span>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <asp:Label Text="IVA" runat="server" />
-                                                                <div class="input-group">
-                                                                    <asp:TextBox runat="server" ID="txtTotalTax" TextMode="Number" CssClass="form-control" placeholder="Impuesto" />
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text">%</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            </div>                                                            
                                                             <div class="form-group col-md-3">
                                                                 <asp:Label Text="Total" runat="server" />
                                                                 <div class="input-group">

@@ -14,6 +14,8 @@ namespace HardwareStore.Core.Entities.Billing
         public Nullable<int> CustomerId { get; set; }
         public string CustomerInvoice { get; set; }
         public int CurrencyExchangeId { get; set; }
+        public double? Payment { get; set; }
+        public double? PaymentChange { get; set; }
         public double Tax { get; set; }
         public double Subtotal { get; set; }
         public int Discount { get; set; }

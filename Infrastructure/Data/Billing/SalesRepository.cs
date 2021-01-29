@@ -73,6 +73,8 @@ namespace HardwareStore.Infrastructure.Data.Billing
                 Command.Parameters.AddWithValue("@CustomerId", Invoice.CustomerId);
                 Command.Parameters.AddWithValue("@CustomerInvoice", Invoice.CustomerInvoice);
                 Command.Parameters.AddWithValue("@CurrencyExchangeId", Invoice.CurrencyExchangeId);
+                Command.Parameters.AddWithValue("@Payment", Invoice.Payment);
+                Command.Parameters.AddWithValue("@PaymentChange", Invoice.PaymentChange);
                 Command.Parameters.AddWithValue("@Tax", Invoice.Tax);
                 Command.Parameters.AddWithValue("@Subtotal", Invoice.Subtotal);
                 Command.Parameters.AddWithValue("@Discount", Invoice.Discount);
@@ -90,7 +92,19 @@ namespace HardwareStore.Infrastructure.Data.Billing
 
         public List<SalesDetailsDto> ListSalesDetails(int InvoiceId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<SalesDetailsDto> list = new List<SalesDetailsDto>();
+                SqlParameter invoiceid = new SqlParameter("@InvoiceId", SqlDbType.Int); invoiceid.Direction = ParameterDirection.Input;
+                invoiceid.Value = InvoiceId;
+                list = this._dbContext.Database.SqlQuery<SalesDetailsDto>("[dbo].[Sp_ListSalesDetails] @InvoiceId", invoiceid).ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
         }
 
         public List<SalesInvoiceDto> ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)

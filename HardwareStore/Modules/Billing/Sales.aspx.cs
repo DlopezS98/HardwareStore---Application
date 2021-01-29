@@ -137,6 +137,27 @@ namespace HardwareStore.Modules.Billing
             this.DropDownListCustomers.Items.Insert(0, new ListItem("Seleccione el cliente", "0"));
         }
 
+        public void LoadGridVewSaleInvoces(DateTime? StartDate, DateTime? EndDate, string Search = "")
+        {
+            DateTime Start, End;
+            List<SalesInvoiceDto> Invoices = new List<SalesInvoiceDto>();
+            if (StartDate != null && EndDate != null)
+            {
+                Start = (DateTime)StartDate;
+                End = (DateTime)EndDate;
+                Invoices = this._SalesServices.ListSalesInvoices(Start, End, Search);
+            }
+            else
+            {
+                Start = Convert.ToDateTime("1998-10-01");
+                End = DateTime.Now.AddDays(1);
+                Invoices = this._SalesServices.ListSalesInvoices(Start, End, Search);
+            }
+
+            this.GridViewSaleInvoices.DataSource = Invoices;
+            this.GridViewSaleInvoices.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -145,6 +166,7 @@ namespace HardwareStore.Modules.Billing
                 this.LoadDropdownlistWarehouses();
                 this.LoadCurrencies();
                 this.LoadDropDownListCustomers();
+                this.LoadGridVewSaleInvoces(null, null);
             }
 
             Session[UserKey] = "01dlopezs98@gmail.com";
@@ -439,6 +461,11 @@ namespace HardwareStore.Modules.Billing
                     subtotal = subtotal + item.Total;
                 }
 
+                if(txtTotalTax.Text != "")
+                {
+                    subtotal = subtotal + Convert.ToDouble(txtTotalTax.Text);
+                }
+
                 txtSubtotal.Text = subtotal.ToString();
             }
 
@@ -579,6 +606,8 @@ namespace HardwareStore.Modules.Billing
                 CustomerId = CustomerId,
                 CustomerName = txtCustomerName.Text,
                 CurrencyExchangeId = Convert.ToInt32(txtCurrencyExchangeId.Text),
+                Payment = Convert.ToDouble(txtPayment.Text),
+                PaymentChange = Convert.ToDouble(txtPaymentChange.Text),
                 Tax = Convert.ToDouble(txtTotalTax.Text),
                 Subtotal = Convert.ToDouble(txtSubtotal.Text),
                 Discount = Convert.ToInt32(txtTotalDiscount.Text),
@@ -622,6 +651,31 @@ namespace HardwareStore.Modules.Billing
         {
             Session.Remove(TempListKey);
             this.LoadGridViewForTempList();
+        }
+
+        protected void GridViewSaleInvoices_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnInvoiceListFilter_Click(object sender, EventArgs e)
+        {
+            string Invoice, ShowToaster, StartDateString, EndDateString;
+
+            Invoice = txtSearchInvoiceRecords.Text;
+            ShowToaster = "ShowToaster('!La fecha inicio no debe <br/> ser mayor a la fecha final!', 'danger')";
+            StartDateString = PickerStartDateInvoceListFilter.Text;
+            EndDateString = PickerEndDateInvoiceListFilter.Text;
+            if (StartDateString != "" && EndDateString != "")
+            {
+                DateTime Start = Convert.ToDateTime(StartDateString);
+                DateTime End = Convert.ToDateTime(EndDateString);
+                if (Start >= End) { ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true); } else { this.LoadGridVewSaleInvoces(Start, End, Invoice); }
+            }
+            else
+            {
+                this.LoadGridVewSaleInvoces(null, null, Invoice);
+            }
         }
     }
 }

@@ -24,6 +24,8 @@ namespace HardwareStore.Core.Interfaces.Billing
         CurrencyExchangeDto GetACurrencyExchange(int local, int foreign);
         List<ForeignCurrencyDropDto> ListForeignCurrencies();
         LocalCurrencyDropDto GetALocalCurrencies();
+        List<SalesInvoiceDto> ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search);
+        List<SalesDetailsDto> ListSalesDetails(int InvoiceId);
 
     }
 }

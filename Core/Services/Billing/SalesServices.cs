@@ -144,6 +144,8 @@ namespace HardwareStore.Core.Services.Billing
                     CustomerId = dto.CustomerId,
                     CustomerInvoice = dto.CustomerName,
                     CurrencyExchangeId = dto.CurrencyExchangeId,
+                    Payment = dto.Payment,
+                    PaymentChange = dto.PaymentChange,
                     Tax = dto.Tax,
                     Subtotal = dto.Subtotal,
                     Discount = dto.Discount,
@@ -351,6 +353,36 @@ namespace HardwareStore.Core.Services.Billing
                 LocalCurrencyDropDto dto = new LocalCurrencyDropDto();
                 dto = this._CurrencyRepository.GetALocalCurrencies();
                 return dto;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<SalesInvoiceDto> ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)
+        {
+            try
+            {
+                List<SalesInvoiceDto> list = new List<SalesInvoiceDto>();
+                list = this._SalesRepository.ListSalesInvoices(StartDate, EndDate, Search);
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<SalesDetailsDto> ListSalesDetails(int InvoiceId)
+        {
+            try
+            {
+                List<SalesDetailsDto> list = new List<SalesDetailsDto>();
+                list = this._SalesRepository.ListSalesDetails(InvoiceId);
+                return list;
             }
             catch (Exception exc)
             {

@@ -132,6 +132,15 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.Button btnInvoiceListFilter;
 
         /// <summary>
+        /// GridViewSaleInvoices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewSaleInvoices;
+
+        /// <summary>
         /// UpdatePanelForProductStocks control.
         /// </summary>
         /// <remarks>
@@ -402,15 +411,6 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.DropDownList ddlistMeasureUnits;
 
         /// <summary>
-        /// btnAddNewMeasureUnits control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddNewMeasureUnits;
-
-        /// <summary>
         /// txtQuantity control.
         /// </summary>
         /// <remarks>
@@ -519,15 +519,6 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.TextBox txtSubtotal;
 
         /// <summary>
-        /// txtTotalDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotalDiscount;
-
-        /// <summary>
         /// txtTotalTax control.
         /// </summary>
         /// <remarks>
@@ -535,6 +526,15 @@ namespace HardwareStore.Modules.Billing
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalTax;
+
+        /// <summary>
+        /// txtTotalDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotalDiscount;
 
         /// <summary>
         /// txtTotal control.

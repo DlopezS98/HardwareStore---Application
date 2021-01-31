@@ -11,8 +11,8 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
 {
     public class ProductsRepository : EntityRepository, IProductsRepository
     {
-        private readonly AplicationContext _dbContext;
-        public ProductsRepository(AplicationContext _dbContext) : base(_dbContext)
+        private readonly ApplicationContext _dbContext;
+        public ProductsRepository(ApplicationContext _dbContext) : base(_dbContext)
         {
             this._dbContext = _dbContext;
         }

@@ -14,20 +14,6 @@ namespace HardwareStore.Modules.Catalogs
         {
 
         }
-        protected void BtnTodos_Click(object sender, EventArgs e)
-        {
-            mtvContenedor.ActiveViewIndex = 1;
-        }
-
-        protected void BtnAtras_Click(object sender, EventArgs e)
-        {
-            mtvContenedor.ActiveViewIndex = 0;
-        }
-
-        protected void BtnAgregarPro_Click(object sender, EventArgs e)
-        {
-            mtvContenedor.ActiveViewIndex = 2;
-        }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

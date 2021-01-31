@@ -23,15 +23,32 @@ namespace HardwareStore.Core.Services.Billing
         private readonly ISuppliersRepository _SuppliersRepository;
         private readonly IPurchaseRepository _PurchaseRepository;
         private readonly IProductsStocksRepository _StocksRepository;
+        private readonly IMeasureUnitsRepository _MeasureUnitsRepository;
 
         public PurchaseService(IProductsRepository _ProductsRepository, IWarehouseRepository _WarehouseRepository, ISuppliersRepository _SuppliersRepository,
-                               IPurchaseRepository _PurchaseRepository, IProductsStocksRepository _StocksRepository)
+                               IPurchaseRepository _PurchaseRepository, IProductsStocksRepository _StocksRepository, IMeasureUnitsRepository _MeasureUnitsRepository)
         {
             this._ProductsRepository = _ProductsRepository;
             this._WarehouseRepository = _WarehouseRepository;
             this._SuppliersRepository = _SuppliersRepository;
             this._PurchaseRepository = _PurchaseRepository;
             this._StocksRepository = _StocksRepository;
+            this._MeasureUnitsRepository = _MeasureUnitsRepository;
+        }
+
+        public List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId)
+        {
+            try
+            {
+                List<MeasureUnitsDropDto> List = new List<MeasureUnitsDropDto>();
+                List = this._MeasureUnitsRepository.ListMeasureUnitForDropdownsByType(TypeId);
+                return List;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
         }
 
         public ProductDetailsDto GetAProductDetail(string Code)
@@ -106,7 +123,7 @@ namespace HardwareStore.Core.Services.Billing
                 this._PurchaseRepository.CreatePurchaseDetails(Details);
                 TotalProducts = this.RegisterStocksProducts(data);
 
-                return new Response() { Title = "¡Compra registrada correctamente!", Message = "Se han registrado " + TotalProducts + " productos a las existencias", Success = true };
+                return new Response() { Title = "¡Compra registrada correctamente!", Message = "Se han registrado " + TotalProducts + " tipos productos a las existencias", Success = true };
             }
             catch (Exception exc)
             {
@@ -170,7 +187,7 @@ namespace HardwareStore.Core.Services.Billing
                     {
                         ProductDetailCode = row.Code,
                         WarehouseId = row.WarehouseId,
-                        TargetUnitId = row.MeasureUnitBaseId,
+                        TargetUnitId = row.TargetUnitId,
                         Quantity = row.Quantity,
                         PurchasePrice = row.PurchasePrice,
                         Subtotal = row.Subtotal,
@@ -227,6 +244,7 @@ namespace HardwareStore.Core.Services.Billing
                         TargetUnitId = row.TargetUnitId,
                         Quantity = row.Quantity,
                         PurchasePrice = row.PurchasePrice,
+                        //SalePriceByUnitBase = row.SalePriceByUnitBase,
                         SalePrice = row.SalePrice,
                         ExpirationDate = row.ExpirationDate
                     };

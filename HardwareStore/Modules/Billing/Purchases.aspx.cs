@@ -1,6 +1,7 @@
 ﻿using HardwareStore.Core.DTOs;
 using HardwareStore.Core.DTOs.Billing;
 using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.Interfaces;
 using HardwareStore.Core.Interfaces.Billing;
 using Ninject;
 using Ninject.Web;
@@ -18,6 +19,7 @@ namespace HardwareStore.Modules.Billing
     {
         [Inject]
         public IPurchasesService _PurchaseService { get; set; }
+        public ICommonServices _CommonServices { get; set; }
         public List<TempPurchaseList> TempList = null;
         public string UserName;
         private string TempListKey = "PurchaseDetailList";
@@ -76,6 +78,18 @@ namespace HardwareStore.Modules.Billing
             }
         }
 
+        public void LoadDropdownForMeasureUnits(int TypeId)
+        {
+            List<MeasureUnitsDropDto> list = new List<MeasureUnitsDropDto>();
+            list = this._PurchaseService.ListMeasureUnitForDropdownsByType(TypeId);
+            this.DropDownListUnitsMeasure.DataSource = list;
+            this.DropDownListUnitsMeasure.DataTextField = "Name";
+            this.DropDownListUnitsMeasure.DataValueField = "Id";
+            this.DropDownListUnitsMeasure.DataBind();
+
+            this.DropDownListUnitsMeasure.Items.Insert(0, new ListItem("Unidades de medida", "0"));
+        }
+
         public void LoadGridVewInvoces(DateTime? StartDate, DateTime? EndDate, string Search = "")
         {
             DateTime Start, End;
@@ -131,10 +145,12 @@ namespace HardwareStore.Modules.Billing
         private void SendProductDetailToTextbox(string code)
         {
             var prod = this._PurchaseService.GetAProductDetail(code);
+            this.LoadDropdownForMeasureUnits(prod.UnitTypeId);
             txtMeasureUnitId.Text = prod.MeasureUnitId.ToString(); txtMeasureUnitTypeId.Text = prod.UnitTypeId.ToString();
             txtProductName.Value = prod.ProductName; txtProductDetailCode.Text = prod.Code; txtBrandName.Text = prod.BrandName;
             txtCategoryName.Text = prod.CategoryName; txtMaterialName.Text = prod.MaterialName; txtDimensions.Text = prod.Dimensions;
-            txtUnitMeasureBase.Text = prod.MeasureUnit;
+            txtUnitMeasureBase.Text = prod.MeasureUnit; DropDownListUnitsMeasure.SelectedValue = prod.MeasureUnitId.ToString();
+
         }
 
         public void ResetInputsForPurchaseDetail()
@@ -201,9 +217,6 @@ namespace HardwareStore.Modules.Billing
             int WarehouseId = Convert.ToInt32(txtWarehouseId.Text);
 
             this.TempList = Session[TempListKey] as List<TempPurchaseList>;
-            //x => x.Code != Code && x.WarehouseId != WarehouseId
-            //TempPurchaseList temp = this.TempList.FirstOrDefault(x => x.Code == Code && x.WarehouseId == WarehouseId);
-            //var list = TempList.Contains(temp);
             if (WarehouseId != newWarehouseid)
             {
                 AlreadyExist = TempList.Exists(x => x.Code == Code && x.WarehouseId == newWarehouseid);
@@ -234,6 +247,8 @@ namespace HardwareStore.Modules.Billing
 
             this.TempList = Session[TempListKey] as List<TempPurchaseList>;
             TempPurchaseList temp = this.TempList.FirstOrDefault(x => x.Code == Code && x.WarehouseId == WarehouseId);
+            temp.TargetUnitId = Convert.ToInt32(DropDownListUnitsMeasure.SelectedValue);
+            temp.TargetUnitName = DropDownListUnitsMeasure.SelectedItem.Text;
             temp.WarehouseName = ddlstWarehouses.SelectedItem.Text;
             temp.WarehouseId = newWarehouseid;
             temp.Quantity = Convert.ToInt32(txtQuantity.Text);
@@ -253,6 +268,7 @@ namespace HardwareStore.Modules.Billing
             {
                 temp.ExpirationDate = DateTime.Now;
             }
+            //temp.SalePriceByUnitBase = this.CalculateSalePriceByUnitBase(temp.TargetUnitId, temp.MeasureUnitBaseId, temp.SalePrice);
 
             ShowToaster = "Toaster_ProductUpdated()";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true);
@@ -305,12 +321,13 @@ namespace HardwareStore.Modules.Billing
             Temp.ProductName = txtProductName.Value;
             Temp.BrandName = txtBrandName.Text;
             Temp.MeasureUnitBaseId = Convert.ToInt32(txtMeasureUnitId.Text);
-            Temp.TargetUnitId = Convert.ToInt32(txtMeasureUnitId.Text);
+            Temp.TargetUnitId = Convert.ToInt32(DropDownListUnitsMeasure.SelectedValue);
             Temp.UnitTypeId = Convert.ToInt32(txtMeasureUnitTypeId.Text);
             Temp.WarehouseName = ddlstWarehouses.SelectedItem.Text;
             Temp.WarehouseId = Convert.ToInt32(ddlstWarehouses.SelectedValue);
             Temp.MaterialName = txtMaterialName.Text;
             Temp.MeasureUnitBase = txtUnitMeasureBase.Text;
+            Temp.TargetUnitName = DropDownListUnitsMeasure.SelectedItem.Text;
             Temp.Quantity = Convert.ToInt32(txtQuantity.Text);
             Temp.PurchasePrice = purchaseprice;
             Temp.Discount = Convert.ToInt32(txtDetailDiscount.Text);
@@ -330,9 +347,17 @@ namespace HardwareStore.Modules.Billing
             {
                 Temp.ExpirationDate = DateTime.Now;
             }
+            //Temp.SalePriceByUnitBase = this.CalculateSalePriceByUnitBase(Temp.TargetUnitId, Temp.MeasureUnitBaseId, Temp.SalePrice);
             return Temp;
         }
 
+        //private double CalculateSalePriceByUnitBase(int IdConvertFrom, int IdConvertTo, double? saleprice)
+        //{
+        //    double Result;
+        //    double conversion = this._CommonServices.GetConversionValue(IdConvertFrom, IdConvertTo, null);
+        //    Result = (double)saleprice / conversion;
+        //    return Result;
+        //}
         protected void btnCancelOrClearDetailForm_Click(object sender, EventArgs e)
         {
             this.ResetInputsForPurchaseDetail();
@@ -354,6 +379,7 @@ namespace HardwareStore.Modules.Billing
             string showAlert;
             this.TempList = Session[TempListKey] as List<TempPurchaseList>;
             this.UserName = Session[UserKey] as string;
+            this.calculateTotalAmount();
             double totalAmount = Convert.ToDouble(txtTotal.Text);
             PurchaseTransacDto Invoice = new PurchaseTransacDto()
             {
@@ -457,7 +483,7 @@ namespace HardwareStore.Modules.Billing
 
             this.TempList = Session[TempListKey] as List<TempPurchaseList>;
             TempPurchaseList temp = this.TempList.FirstOrDefault(x => x.Code == Code && x.WarehouseId == WarehouseId);
-
+            this.LoadDropdownForMeasureUnits(temp.UnitTypeId);
             txtMeasureUnitId.Text = temp.MeasureUnitBaseId.ToString();
             txtProductDetailCode.Text = temp.Code;
             txtWarehouseId.Text = temp.WarehouseId.ToString();
@@ -474,6 +500,7 @@ namespace HardwareStore.Modules.Billing
             txtDimensions.Text = temp.Dimensions;
             txtMeasureUnitTypeId.Text = temp.UnitTypeId.ToString();
             ddlstWarehouses.SelectedValue = temp.WarehouseId.ToString();
+            DropDownListUnitsMeasure.SelectedValue = temp.TargetUnitId.ToString();
             if (temp.ExpirationDate > DateTime.Now)
                 pickerExpiryDate.Text = temp.ExpirationDate.ToString("yyyy-MM-dd");
             else

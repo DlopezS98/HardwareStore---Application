@@ -15,9 +15,9 @@ namespace HardwareStore.Infrastructure.Data.Billing
     public class PurchaseRepository : EntityRepository, IPurchaseRepository
     {
         private SqlCommand Command;
-        private readonly AplicationContext _dbContext;
+        private readonly ApplicationContext _dbContext;
 
-        public PurchaseRepository(AplicationContext _dbContext) : base(_dbContext)
+        public PurchaseRepository(ApplicationContext _dbContext) : base(_dbContext)
         {
             this._dbContext = _dbContext;
         }

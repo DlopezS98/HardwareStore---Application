@@ -41,6 +41,16 @@
         background-color: #00A441;
         color: #fff;
     }
+    
+    .toast-img-warning {
+        background-color: #FFC925;
+        color: #000;
+    }
+    
+    .toast-img-info {
+        background-color: #17A1B7;
+        color: #fff;
+    }
 
     .toast-body {
         display: flex;

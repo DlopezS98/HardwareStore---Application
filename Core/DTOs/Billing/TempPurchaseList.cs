@@ -26,18 +26,20 @@ namespace HardwareStore.Core.DTOs.Billing
         public string Abbreviation { get; set; }
         public string UnitPurchased { get; set; }
         public int TargetUnitId { get; set; }
+        public string TargetUnitName { get; set; }
         public double PurchasePrice { get; set; } //Precio venta se calcula en base a la conversion
-        public string PurchasePriceStr { get => "C$" + this.PurchasePrice; }
+        public double SalePriceByUnitBase { get; set; }
+        public string PurchasePriceStr { get => "C$" + this.PurchasePrice.ToString("F2"); }
         public double SalePrice { get; set; }
-        public string SalePriceStr { get => "C$" + this.SalePrice; }
+        public string SalePriceStr { get => "C$" + this.SalePrice.ToString("F2"); }
         public int Quantity { get; set; }
         public int Discount { get; set; }
         public string DiscountStr { get => this.Discount + "%"; }
-        public double Subtotal { get => this.Quantity * this.PurchasePrice; }
-        public string SubtotalStr { get => "C$" + this.Subtotal; }
+        public double Subtotal { get => (this.Quantity * this.PurchasePrice) + (this.Quantity * this.Tax); }
+        public string SubtotalStr { get => "C$" + this.Subtotal.ToString("F2"); }
         public double Tax { get; set; }
-        public string TaxStr { get => "C$" + this.Tax; }
+        public string TaxStr { get => "C$" + this.Tax.ToString("F2"); }
         public double Total { get => (this.Subtotal - (((double)this.Discount / 100) * this.Subtotal)); }
-        public string TotalStr { get => "C$" + this.Total; }
+        public string TotalStr { get => "C$" + this.Total.ToString("F2"); }
     }
 }

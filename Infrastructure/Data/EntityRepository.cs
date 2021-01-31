@@ -12,8 +12,8 @@ namespace HardwareStore.Infrastructure.Data
 {
     public class EntityRepository : IEntityRepository
     {
-        private readonly AplicationContext _dbContext;
-        public EntityRepository(AplicationContext _dbContext)
+        private readonly ApplicationContext _dbContext;
+        public EntityRepository(ApplicationContext _dbContext)
         {
             this._dbContext = _dbContext;
         }

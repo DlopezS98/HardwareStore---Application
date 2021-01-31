@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace HardwareStore.Core.Entities.ProductsAdmin
         public string UpdatedBy { get; set; }
         public bool Available { get; set; }
         public virtual ICollection<DetailProductStocks> DetailProductStocks { get; set; }
+        [ForeignKey("SupplierId")]
         public virtual Suppliers Suppliers { get; set; }
         public virtual ICollection<ProductTransfers> ProductTransfers { get; set; }
         public virtual ICollection<RemovedProducts> RemovedProducts { get; set; }

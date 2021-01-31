@@ -13,8 +13,8 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
 {
     public class SuppliersReporsitory : EntityRepository, ISuppliersRepository
     {
-        private readonly AplicationContext _dbContext;
-        public SuppliersReporsitory(AplicationContext _dbContext) : base(_dbContext)
+        private readonly ApplicationContext _dbContext;
+        public SuppliersReporsitory(ApplicationContext _dbContext) : base(_dbContext)
         {
             this._dbContext = _dbContext;
         }

@@ -54,14 +54,27 @@
     <Compile Include="DTOs\Billing\InvoiceDetailsDto.cs" />
     <Compile Include="DTOs\Billing\InvoicesDto.cs" />
     <Compile Include="DTOs\Billing\PurchaseTransacDto.cs" />
+    <Compile Include="DTOs\Billing\SalesDetailsDto.cs" />
+    <Compile Include="DTOs\Billing\SalesInvoiceDto.cs" />
+    <Compile Include="DTOs\Billing\SaleTransactionDto.cs" />
     <Compile Include="DTOs\Billing\TempPurchaseList.cs" />
+    <Compile Include="DTOs\Billing\TempSaleList.cs" />
+    <Compile Include="DTOs\Catalogs\CustomersDropDto.cs" />
+    <Compile Include="DTOs\Catalogs\CustomersDto.cs" />
     <Compile Include="DTOs\Catalogs\MeasureUnitsDropDto.cs" />
     <Compile Include="DTOs\Catalogs\ProductDetailsDto.cs" />
     <Compile Include="DTOs\Catalogs\SuppliersDropDto.cs" />
     <Compile Include="DTOs\Catalogs\SuppliersDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDropDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\ProductStocksDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\StocksDetailsDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\StocksUpdateDto.cs" />
     <Compile Include="DTOs\Response.cs" />
+    <Compile Include="DTOs\SysConfiguration\CurrencyExchangeDto.cs" />
+    <Compile Include="DTOs\SysConfiguration\ForeignCurrencyDropDto.cs" />
+    <Compile Include="DTOs\SysConfiguration\LocalCurrencyDropDto.cs" />
+    <Compile Include="DTOs\SysConfiguration\TupleConversionDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Billing\PurchaseDetails.cs" />
     <Compile Include="Entities\Billing\PurchaseInvoices.cs" />
@@ -97,16 +110,23 @@
     <Compile Include="Entities\SysConfiguration\LocalCurrencies.cs" />
     <Compile Include="Interfaces\Billing\IPurchaseRepository.cs" />
     <Compile Include="Interfaces\Billing\IPurchasesService.cs" />
+    <Compile Include="Interfaces\Billing\ISalesRepository.cs" />
     <Compile Include="Interfaces\Billing\ISalesServices.cs" />
+    <Compile Include="Interfaces\Catalogs\ICustomerRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IMeasureUnitsRepository.cs" />
+    <Compile Include="Interfaces\ICommonServices.cs" />
     <Compile Include="Interfaces\IEntityRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IProductsRepository.cs" />
+    <Compile Include="Interfaces\IPersonsRepository.cs" />
     <Compile Include="Interfaces\ISpecification.cs" />
     <Compile Include="Interfaces\Catalogs\ISuppliersRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IWarehouseRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
+    <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Billing\SalesServices.cs" />
     <Compile Include="Services\Billing\PurchaseService.cs" />
+    <Compile Include="Services\CommonServices.cs" />
     <Compile Include="Specifications\BaseSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,12 +134,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\ProductsAdmin\" />
     <Folder Include="Entities\Reports\" />
     <Folder Include="Interfaces\Providers\" />
     <Folder Include="Interfaces\Reports\" />
     <Folder Include="Interfaces\Security\" />
-    <Folder Include="Interfaces\SysConfiguration\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

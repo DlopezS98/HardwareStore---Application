@@ -71,7 +71,7 @@ namespace HardwareStore.Core.Services.Billing
             try
             {
                 List<ProductDetailsDto> list = new List<ProductDetailsDto>();
-                //list = this._ProductsRepository.ListAllProductDetails(Deleted, Search);
+                list = this._ProductsRepository.ListAllProductDetails(Deleted, Search);
                 return list;
             }
             catch (Exception exc)

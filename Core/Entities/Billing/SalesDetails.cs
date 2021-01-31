@@ -36,7 +36,7 @@ namespace HardwareStore.Core.Entities.Billing
         public double Price { get; set; }
         public double Subtotal { get; set; }
         public double Tax { get; set; }
-        public double Discount { get; set; }
+        public int Discount { get; set; }
         public double Total { get; set; }
 
         public virtual MeasureUnits MeasureUnits { get; set; }

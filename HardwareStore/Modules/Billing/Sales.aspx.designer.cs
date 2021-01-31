@@ -69,6 +69,24 @@ namespace HardwareStore.Modules.Billing
         protected global::System.Web.UI.WebControls.GridView GridViewStocksDetails;
 
         /// <summary>
+        /// UpdatePanelForSaleInvoceDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelForSaleInvoceDetails;
+
+        /// <summary>
+        /// GridViewInvoceDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewInvoceDetails;
+
+        /// <summary>
         /// UpdatePanelDeleteItem control.
         /// </summary>
         /// <remarks>

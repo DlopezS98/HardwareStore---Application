@@ -86,7 +86,59 @@
         </div>
     </div>
     <%-- End modal stocks details --%>
-
+     
+    <%-- Modal for sale details history --%>
+    <div class="modal fade" id="ModalSaleInvoceDetails" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="min-width: 1300px;">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h4 class="text-light">Detalle de factura: </h4>
+                    <div id="section_InvoiceNumber_info"><strong id="strong_info_InvoiceNumber"></strong></div>
+                    <%--<label runat="server" id="getidFromtable"></label>--%>
+                    <button class="close text-light" data-dismiss="modal" aria-label="cerrar">
+                        <span class="text-light" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanelForSaleInvoceDetails">
+                        <ContentTemplate>
+                            <div class="table-responsive mt-3">
+                                <asp:GridView runat="server" DataKeyNames="Id, InvoiceNumber" AutoGenerateColumns="false"
+                                    ID="GridViewInvoceDetails" CssClass="table table-hover" CellPadding="5">
+                                    <HeaderStyle CssClass="thead-dark" />
+                                    <Columns>
+                                        <asp:BoundField HeaderText="Id" DataField="LotNumber" Visible="false" />
+                                        <asp:BoundField HeaderText="No. Lote" DataField="StockLotNumber" Visible="false" />
+                                        <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
+                                        <asp:BoundField HeaderText="Código producto" DataField="ProductDetailCode" />
+                                        <asp:BoundField HeaderText="Unidad" DataField="PurchasedUnitName" />
+                                        <asp:BoundField HeaderText="Unidad Venta" DataField="SaleUnitName" />
+                                        <asp:BoundField HeaderText="Cantidad" DataField="Quantity" />
+                                        <asp:BoundField HeaderText="Precio" DataField="DisplayPrice" />
+                                        <asp:BoundField HeaderText="Impuesto" DataField="DisplayTax" />
+                                        <asp:BoundField HeaderText="Subtotal" DataField="DisplaySubtotal" />
+                                        <asp:BoundField HeaderText="Descuento" DataField="DisplayDiscount" />
+                                        <asp:BoundField HeaderText="Total" DataField="DisplayTotal" />
+                                        <%--<asp:TemplateField HeaderText="Opciones">
+                                            <ItemTemplate>
+                                                <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                    CssClass="btn btn-primary btn-sm" ID="LinkSelect" ToolTip="Seleccionar Producto"
+                                                    CommandName="cmdSelect" runat="server">Seleccionar</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <%--<asp:PostBackTrigger ControlID="GridViewStocksDetails" />--%>
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-- End history detail --%>
     <%-- Modal confirmación eliminar --%>
     <div style="margin-top: 120px" class="modal fade" id="ConfirmDeletions" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
         <div class="modal-dialog">
@@ -684,7 +736,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
     <script>
-        function ShowModalStocksDetails(lotnumber) {
+        function ShowModalInvoiceDetails(InvoiceNumber) {
+            document.getElementById("strong_info_InvoiceNumber").remove();
+            let div = document.getElementById("section_InvoiceNumber_info");
+            let strong_info = document.createElement("strong");
+            let message = "#" + InvoiceNumber;
+            let inner_content = document.createTextNode(message);
+            strong_info.style.marginLeft = "10px"; strong_info.classList.add("text-light"); strong_info.setAttribute("id", "strong_info_InvoiceNumber");
+            strong_info.appendChild(inner_content);
+            div.appendChild(strong_info);
+            setTimeout(function () { $('#ModalSaleInvoceDetails').modal('show') }, 350);
+        }
+
+        function ShowModalStocksDetails(lotnumber){
             document.getElementById("strong_info_lotnumber").remove();
             let div = document.getElementById("section_info");
             let strong_info = document.createElement("strong");

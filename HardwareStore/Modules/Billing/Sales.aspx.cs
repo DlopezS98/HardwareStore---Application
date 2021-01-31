@@ -655,7 +655,29 @@ namespace HardwareStore.Modules.Billing
 
         protected void GridViewSaleInvoices_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            GridViewRow Row = (GridViewRow)(((LinkButton)e.CommandSource).NamingContainer);
+            int index = Row.RowIndex;
+            int Id = Convert.ToInt32(GridViewSaleInvoices.DataKeys[index]["Id"]);
+            string InvoiceNumber = Convert.ToString(GridViewSaleInvoices.DataKeys[index]["InvoiceNumber"]);
+            string ShowModal = string.Format("ShowModalInvoiceDetails('{0}')", InvoiceNumber);
+            switch (e.CommandName)
+            {
+                case "cmdSaleDetails":
+                    this.loadGridViewSaleInvoceDetails(Id);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowModal, true);
+                    break;
 
+                default:
+                    break;
+            }
+        }
+
+        private void loadGridViewSaleInvoceDetails(int id)
+        {
+            List<SalesDetailsDto> list = new List<SalesDetailsDto>();
+            list = this._SalesServices.ListSalesDetails(id);
+            this.GridViewInvoceDetails.DataSource = list;
+            this.GridViewInvoceDetails.DataBind(); 
         }
 
         protected void btnInvoiceListFilter_Click(object sender, EventArgs e)

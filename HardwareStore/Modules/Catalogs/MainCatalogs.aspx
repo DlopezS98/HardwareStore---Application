@@ -5,7 +5,7 @@
     <div style="text-align: center; margin: 5px; margin-top: 35px">
         <h2>Administrador de Catálogos</h2>
     </div>
-    <div style="margin-left: 0px" class="rowcard">
+    <div style="margin-left: 0px" class="rowcardcss">
 <%--        <div class="d-flex justify-content-center">
             <div class="col-md-7 col-lg-7 col-sm-6 col-xl-10 position-absolute">
                 <div style="z-index: 10; width: 100%; margin-right: 50%" class="alert alert-danger mr-3" role="alert">
@@ -13,9 +13,9 @@
                 </div>
             </div>
         </div>--%>
-        <div class="column">
-            <div class="card">
-                <h5>Productos</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Productos</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/product.png" runat="server" />
@@ -25,9 +25,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Categorías</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Categorías</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Categorias.png" runat="server" />
@@ -37,9 +37,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Empleados</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Empleados</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Empleados.png" runat="server" />
@@ -49,9 +49,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Marcas</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Marcas</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Marcas.png" runat="server" />
@@ -61,9 +61,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Medidas</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Medidas</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/UMedidas.png" runat="server" />
@@ -73,9 +73,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Bodegas</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Bodegas</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Bodegas.png" runat="server" />
@@ -85,9 +85,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Clientes</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Clientes</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/CatClientes.png" runat="server" />
@@ -97,9 +97,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Proveedores</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Proveedores</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Proveedores.png" runat="server" />
@@ -109,9 +109,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Roles</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Roles</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />
@@ -121,9 +121,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Materiales</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Materiales</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />
@@ -133,9 +133,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Conversión</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Conversión</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />
@@ -145,9 +145,9 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
-                <h5>Unidades</h5>
+        <div class="columncss">
+            <div class="cardcss">
+                <h5 class="mt-2">Unidades</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
                     <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />

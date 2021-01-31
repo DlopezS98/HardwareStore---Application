@@ -14,5 +14,19 @@ namespace HardwareStore.Modules.ProductsAdmin
         {
 
         }
+        protected void btnProductWarehouse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Modules/ProductsAdmin/WarehouseProducts.aspx");
+        }
+
+        protected void btntransferencies_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Modules/ProductsAdmin/TranfersAdministration.aspx");
+        }
+
+        protected void btnDamage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Modules/ProductsAdmin/RemovedProducts.aspx");
+        }
     }
 }

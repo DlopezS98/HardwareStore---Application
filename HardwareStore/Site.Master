@@ -85,13 +85,13 @@
                 <div class="sidebar">
                     <ul style="padding-top: 100px">
                         <li><a href="/Default.aspx"><i class="fas fa-home mr-4"></i>Home</a></li>
-                        <%--<li><a href="/Modules/Sales.Module/MainSales.aspx"><i class="fa fa-cash-register fa-lg mr-4"></i>Ventas</a></li>--%>
+                        <li><a href="/Modules/Sales.Module/MainSales.aspx"><i class="fa fa-cash-register fa-lg mr-4"></i>Ventas</a></li>
                         <li><a href="/Modules/Billing/Purchases.aspx"><i class="fa fa-file-invoice fa-lg mr-4"></i>Compras</a></li>
                         <li><a href="/Modules/Catalogs/MainCatalogs.aspx"><i class="fa fa-grip-horizontal fa-lg mr-4"></i>Catálogos</a></li>
-<%--                        <li><a href="/Modules/ProductsAdmin.Module/AdminExistencias.aspx"><i class="fa fa-cogs fa-lg mr-3"></i>Existencias</a></li>
+                        <li><a href="/Modules/ProductsAdmin/AdministrationIndex.aspx"><i class="fa fa-cogs fa-lg mr-3"></i>Existencias</a></li>
                         <li><a href="/Modules/Reports.Module/MainReports.aspx"><i class="fa fa-receipt fa-lg mr-4"></i>Reportes</a></li>
                         <li><a href="/Modules/Security.Module/MainSecurity.aspx"><i class="fa fa-shield-alt fa-lg mr-4"></i>Seguridad</a></li>
-                        <li><a href="/Modules/SystemConfiguration/Configuration.aspx"><i class="fa fa-cog mr-4"></i>Configuración</a></li>--%>
+                        <li><a href="/Modules/SystemConfiguration/Configuration.aspx"><i class="fa fa-cog mr-4"></i>Configuración</a></li>
                     </ul>
                 </div>
             </section>

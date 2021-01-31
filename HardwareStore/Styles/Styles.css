@@ -104,24 +104,6 @@ header {
 }
 
 
-.column {
-    float: left;
-    width: 14%;
-    padding: 0 10px;
-}
-
-
-
-.rowcard {
-   width: 100%;
-}
-
-    .rowcard:after {
-        content: "";
-        display: flex;
-        clear: both;
-    }
-
 /*.card {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     padding-bottom: 20px;
@@ -136,49 +118,45 @@ header {
 
 
 
+/*Cards*/
 
-@media screen and (max-width: 1500px) {
-    .column {
-        width: 14%;
-        display: block;
-        margin-bottom: 20px;
-    }
+.columncss {
+    float: left;
+    padding: 0 10px;
 }
 
-@media screen and (max-width: 1200px) {
-    .column {
-        width: 19%;
-        display: block;
-        margin-bottom: 20px;
-    }
+
+.rowcardcss {
+    margin: 0 -5px;
 }
 
-@media screen and (max-width: 1000px) {
-    .column {
-        width: 25%;
-        display: block;
-        margin-bottom: 20px;
+    .rowcardcss:after {
+        content: "";
+        display: flex;
+        clear: both;
     }
-}
 
-@media screen and (max-width: 800px) {
-    .column {
-        width: 33%;
-        display: block;
-        margin-bottom: 20px;
-    }
+.cardcss {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px;
+    text-align: center;
+    /*background-color: #f1f1f1;*/
+    border-color: #dedede;
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 20px;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 600px) {
-    .column {
+    .columncss {
         width: 100%;
         display: block;
         margin-bottom: 20px;
     }
 }
 
-
-.card .btninfoborder {
+.cardcss .btninfoborder {
     border-color: #19B3D3;
     border-width: 1px;
     border-style: solid;
@@ -191,11 +169,52 @@ header {
     text-decoration: none;
 }
 
-    .card .btninfoborder:hover {
+    .cardcss .btninfoborder:hover {
         background: #19B3D3;
         color: #fff;
     }
 
-.card h4 {
+.cardcss h4 {
     color: #2F323A;
+}
+
+
+@media screen and (max-width: 1500px) {
+    .columncss {
+        width: 16%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .columncss {
+        width: 19%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .columncss {
+        width: 25%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .columncss {
+        width: 33%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .columncss {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
 }

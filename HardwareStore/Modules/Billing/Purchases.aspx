@@ -436,7 +436,7 @@
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">#</span>
                                                                         </div>
-                                                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" TextMode="Number" step="1" placeholder="Cantidad" />
+                                                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" TextMode="Number" step="1" placeholder="Cantidad"  />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-3">

@@ -13,7 +13,7 @@
             <div class="modal-content">
                 <div class="modal-header bg-dark">
                     <h4 class="text-light">Detalle de lote: </h4>
-                    <div id="section_info"><strong id="strong_info_lotnumber"></strong></div>
+                    <div class="mt-1" id="section_info"><strong id="strong_info_lotnumber"></strong></div>
                     <%--<label runat="server" id="getidFromtable"></label>--%>
                     <button class="close text-light" data-dismiss="modal" aria-label="cerrar">
                         <span class="text-light" aria-hidden="true">&times;</span>
@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 mt-4">
                                     <div class="form-group">
                                         <asp:Button CssClass="btn btn-primary" runat="server" Text="Buscar" ID="btnSearchStocksDetails" OnClick="btnSearchStocksDetails_Click" />
                                     </div>
@@ -310,7 +310,7 @@
                                                                         <asp:GridView runat="server" DataKeyNames="LotNumber" AutoGenerateColumns="false"
                                                                             ID="GridViewProductStocks" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewProductStocks_RowCommand">
                                                                             <HeaderStyle CssClass="thead-dark" />
-                                                                            <Columns>
+                                                                            <Columns>                                                                                
                                                                                 <asp:BoundField HeaderText="Código de lote" DataField="LotNumber" />
                                                                                 <asp:BoundField HeaderText="Proveedor" DataField="SupplierName" />
                                                                                 <asp:BoundField HeaderText="Cantidad productos" DataField="Quantity" />
@@ -322,8 +322,8 @@
                                                                                 <asp:BoundField HeaderText="Estado" DataField="Available" />
                                                                                 <asp:TemplateField HeaderText="Opciones">
                                                                                     <ItemTemplate>
-                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
-                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkShowStocksDetails" ToolTip="Detalle de existencias"
+                                                                                        <asp:LinkButton Font-Size="12px" Height="35px" Width="120px"
+                                                                                            CssClass="btn btn-primary btn-lg" ID="LinkShowStocksDetails" ToolTip="Detalle de existencias"
                                                                                             CommandName="cmdShowStocksDetail" runat="server">Ver registros</asp:LinkButton>
                                                                                     </ItemTemplate>
                                                                                 </asp:TemplateField>

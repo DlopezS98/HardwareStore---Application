@@ -188,6 +188,7 @@ namespace HardwareStore.Modules.Billing
             int index = Row.RowIndex;
             string lotnumber = Convert.ToString(GridViewProductStocks.DataKeys[index]["LotNumber"]);
             string ShowModal = string.Format("ShowModalStocksDetails('{0}')", lotnumber);
+   
             switch (e.CommandName)
             {
                 case "cmdShowStocksDetail":

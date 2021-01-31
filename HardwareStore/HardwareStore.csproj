@@ -162,6 +162,7 @@
     <Content Include="Images\CatClientes.png" />
     <Content Include="Images\Categorias.png" />
     <Content Include="Images\clientes.png" />
+    <Content Include="Images\compra.png" />
     <Content Include="Images\crash.png" />
     <Content Include="Images\devoluciones.png" />
     <Content Include="Images\Empleados.png" />
@@ -173,10 +174,12 @@
     <Content Include="Images\mensajero-trabajando.png" />
     <Content Include="Images\product.png" />
     <Content Include="Images\Proveedores.png" />
+    <Content Include="Images\reportes.png" />
     <Content Include="Images\Roles.png" />
     <Content Include="Images\tools.jpg" />
     <Content Include="Images\UMedidas.png" />
     <Content Include="Images\unnamed.png" />
+    <Content Include="Images\ventas.png" />
     <Content Include="Login.aspx" />
     <Content Include="Modules\Billing\Purchases.aspx" />
     <Content Include="Modules\Billing\Sales.aspx" />

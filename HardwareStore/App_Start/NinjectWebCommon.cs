@@ -22,6 +22,7 @@ namespace HardwareStore.App_Start
     using HardwareStore.Core.Interfaces.SysConfiguration;
     using HardwareStore.Infrastructure.Data.SysConfiguration;
     using HardwareStore.Core.Services;
+    using HardwareStore.Core.Services.ProductsAdmin;
 
     public static class NinjectWebCommon 
     {
@@ -86,6 +87,7 @@ namespace HardwareStore.App_Start
             kernel.Bind<ICommonServices>().To<CommonServices>();
             kernel.Bind<ICustomerRepository>().To<CustomersRepository>();
             kernel.Bind<IPersonsRepository>().To<PersonsRepository>();
+            kernel.Bind<IProductsAdminService>().To<ProductsAdminService>();
         }
     }
 }

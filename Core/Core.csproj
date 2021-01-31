@@ -121,12 +121,14 @@
     <Compile Include="Interfaces\ISpecification.cs" />
     <Compile Include="Interfaces\Catalogs\ISuppliersRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IWarehouseRepository.cs" />
+    <Compile Include="Interfaces\ProductsAdmin\IProductsAdminService.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
     <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Billing\SalesServices.cs" />
     <Compile Include="Services\Billing\PurchaseService.cs" />
     <Compile Include="Services\CommonServices.cs" />
+    <Compile Include="Services\ProductsAdmin\ProductsAdminService.cs" />
     <Compile Include="Specifications\BaseSpecification.cs" />
   </ItemGroup>
   <ItemGroup>

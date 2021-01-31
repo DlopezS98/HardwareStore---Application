@@ -176,10 +176,17 @@ namespace HardwareStore.Modules.Billing
         protected void btnSearchProductStocks_Click(object sender, EventArgs e)
         {
             string search = txtSearchProductStocks.Text;
-            DateTime Start = Convert.ToDateTime(PickerStartDateProductStocks.Text);
-            DateTime End = Convert.ToDateTime(PickerEndDateProductStocks.Text);
+            string ShowToaster = "ShowToaster('!La fecha inicio no debe <br/> ser mayor a la fecha final!', 'danger')";
+            string StartDateString = PickerStartDateProductStocks.Text;
+            string EndDateString = PickerEndDateProductStocks.Text;
+            if (StartDateString != "" && EndDateString != "")
+            {
+                DateTime Start = Convert.ToDateTime(StartDateString);
+                DateTime End = Convert.ToDateTime(EndDateString);
 
-            this.LoadGridViewProductStocks(Start, End, search);
+                if (Start >= End) { ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowToaster, true); } else { this.LoadGridViewProductStocks(Start, End, search); }
+            }
+            else { this.LoadGridViewProductStocks(null, null, search); }
         }
 
         protected void GridViewProductStocks_RowCommand(object sender, GridViewCommandEventArgs e)

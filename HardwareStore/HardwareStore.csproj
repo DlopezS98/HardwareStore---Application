@@ -244,6 +244,7 @@
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Toast.css" />
     <Content Include="Styles\util.css" />
+    <Content Include="Styles\Validation_css.css" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
     <Content Include="vendor\animsition\css\animsition.min.css" />

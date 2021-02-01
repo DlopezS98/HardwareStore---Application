@@ -147,7 +147,7 @@ namespace HardwareStore.Modules.Billing
             var prod = this._PurchaseService.GetAProductDetail(code);
             this.LoadDropdownForMeasureUnits(prod.UnitTypeId);
             txtMeasureUnitId.Text = prod.MeasureUnitId.ToString(); txtMeasureUnitTypeId.Text = prod.UnitTypeId.ToString();
-            txtProductName.Value = prod.ProductName; txtProductDetailCode.Text = prod.Code; txtBrandName.Text = prod.BrandName;
+            txtProductName.Text = prod.ProductName; txtProductDetailCode.Text = prod.Code; txtBrandName.Text = prod.BrandName;
             txtCategoryName.Text = prod.CategoryName; txtMaterialName.Text = prod.MaterialName; txtDimensions.Text = prod.Dimensions;
             txtUnitMeasureBase.Text = prod.MeasureUnit; DropDownListUnitsMeasure.SelectedValue = prod.MeasureUnitId.ToString();
 
@@ -159,7 +159,7 @@ namespace HardwareStore.Modules.Billing
             ddlstWarehouses.SelectedIndex = 0; txtTaxDetail.Text = ""; txtDetailDiscount.Text = ""; txtBrandName.Text = "";
             txtPurchasePrice.Text = ""; ddlistValidateSalePrice.SelectedValue = "1"; txtMaterialName.Text = ""; txtProductCodeForDelete.Text = "";
             txtUnitMeasureBase.Text = ""; txtQuantity.Text = ""; txtSalePrice.Text = ""; txtMeasureUnitId.Text = ""; txtCategoryName.Text = "";
-            txtProductName.Value = ""; txtProductDetailCode.Text = ""; txtDimensions.Text = ""; txtMeasureUnitTypeId.Text = "";
+            txtProductName.Text = ""; txtProductDetailCode.Text = ""; txtDimensions.Text = ""; txtMeasureUnitTypeId.Text = "";
             pickerExpiryDate.Text = "";
         }
 
@@ -318,7 +318,7 @@ namespace HardwareStore.Modules.Billing
             double purchaseprice = Convert.ToDouble(txtPurchasePrice.Text);
             TempPurchaseList Temp = new TempPurchaseList();
             Temp.Code = txtProductDetailCode.Text;
-            Temp.ProductName = txtProductName.Value;
+            Temp.ProductName = txtProductName.Text;
             Temp.BrandName = txtBrandName.Text;
             Temp.MeasureUnitBaseId = Convert.ToInt32(txtMeasureUnitId.Text);
             Temp.TargetUnitId = Convert.ToInt32(DropDownListUnitsMeasure.SelectedValue);
@@ -487,7 +487,7 @@ namespace HardwareStore.Modules.Billing
             txtMeasureUnitId.Text = temp.MeasureUnitBaseId.ToString();
             txtProductDetailCode.Text = temp.Code;
             txtWarehouseId.Text = temp.WarehouseId.ToString();
-            txtProductName.Value = temp.ProductName;
+            txtProductName.Text = temp.ProductName;
             txtBrandName.Text = temp.BrandName;
             txtCategoryName.Text = temp.CategoryName;
             txtMaterialName.Text = temp.MaterialName;

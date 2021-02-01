@@ -133,7 +133,17 @@
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <asp:Label Text="Nombre" runat="server" />
-                                                    <asp:TextBox runat="server" ID="txtFormWhsWarehouseName" placeholder="Nombre bodega" CssClass="form-control" />
+                                                    <div class="input-group">
+                                                        <asp:TextBox runat="server" ID="txtFormWhsWarehouseName" placeholder="Nombre bodega" CssClass="form-control" />
+                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator9" ValidationGroup="DetailsGroupModal" ControlToValidate="txtTotalDiscount">
+                                                         <div class="ctrlvalidate">
+                                                              <div style="color: #fff">
+                                                                   Campo requerido  
+                                                              </div>
+                                                              <div class="fas fa-sort-down position-absolute"></div>
+                                                          </div>                                                      
+                                                        </asp:RequiredFieldValidator>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <asp:Label Text="Descripción" runat="server" />
@@ -148,7 +158,7 @@
                                                         <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
                                                     </div>
                                                     <div class="col-md-3 p-1">
-                                                        <asp:Button runat="server" Text="Agregar" ID="btnCreateNewWarehouse" OnClick="btnCreateNewWarehouse_Click" CssClass="btn btn-success btn-block" />
+                                                        <asp:Button runat="server" ValidationGroup="DetailsGroupModal" Text="Agregar" ID="btnCreateNewWarehouse" OnClick="btnCreateNewWarehouse_Click" CssClass="btn btn-success btn-block" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,12 +367,21 @@
                                                                 <div class="form-group col-md-3">
                                                                     <label>Producto</label>
                                                                     <div class="input-group">
-                                                                        <input type="text" readonly placeholder="Producto" runat="server" id="txtProductName" class="form-control form-disable">
+                                                                        <asp:TextBox ReadOnly placeholder="Producto" runat="server" ID="txtProductName" CssClass="form-control form-disable" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator1" ValidationGroup="DetailsGroup" ControlToValidate="txtProductName">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div title="Elige un Producto" class="input-group-append">
                                                                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ventanaModal">...</button>
                                                                         </div>
                                                                         <div title="Crea un nuevo Producto" class="input-group-append">
-                                                                            <button class="btn btn-success btn-sm" onclick="ShowAlert('title', 'message', 'warning')" data-toggle="modal" data-target="#ModalnewProduct">+</button>
+                                                                            <a href="../Catalogs/Products.aspx" class="btn btn-success btn-sm">+</a>
+                                                                            <%--<button class="btn btn-success btn-sm" onclick="ShowAlert('title', 'message', 'warning')" data-toggle="modal" data-target="#ModalnewProduct">+</button>--%>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -379,8 +398,16 @@
                                                                     <div class="input-group">
                                                                         <asp:DropDownList ID="ddlstWarehouses" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator10" ValidationGroup="DetailsGroup" ControlToValidate="ddlstWarehouses">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div class="input-group-append">
-                                                                            <asp:Button runat="server" Text="+" ID="btnAddNewWarehouse" data-toggle="modal" data-target="#ModalWarehouses" CssClass="btn btn-info btn-sm" />
+                                                                            <a href="~/Modules/Catalogs/Warehouses.aspx" runat="server" class="btn btn-success btn-sm">+</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -424,7 +451,7 @@
                                                                         <asp:DropDownList ID="DropDownListUnitsMeasure" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
                                                                         <div class="input-group-append">
-                                                                            <asp:Button runat="server" Text="+" ID="btnAddUnitMeasure" data-toggle="modal" data-target="#ModalUnitMeasure" CssClass="btn btn-info btn-sm" />
+                                                                            <a href="~/Modules/Catalogs/UnitMeasures.aspx" runat="server" class="btn btn-success btn-sm">+</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -436,7 +463,15 @@
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">#</span>
                                                                         </div>
-                                                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" TextMode="Number" step="1" placeholder="Cantidad"  />
+                                                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtQuantity" TextMode="Number" step="1" placeholder="Cantidad" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="reqPrice" ValidationGroup="DetailsGroup" ControlToValidate="txtQuantity">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
@@ -448,6 +483,14 @@
                                                                             <span class="input-group-text">C$</span>
                                                                         </div>
                                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtPurchasePrice" TextMode="Number" step="0.001" placeholder="Precio" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator2" ValidationGroup="DetailsGroup" ControlToValidate="txtPurchasePrice">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
@@ -456,6 +499,14 @@
                                                                     </div>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtTaxDetail" TextMode="Number" step="0.001" placeholder="Impuesto" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator3" ValidationGroup="DetailsGroup" ControlToValidate="txtTaxDetail">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">IVA</span>
                                                                         </div>
@@ -469,6 +520,14 @@
                                                                     </div>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtDetailDiscount" TextMode="Number" step="1" placeholder="Descuento" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator4" ValidationGroup="DetailsGroup" ControlToValidate="txtDetailDiscount">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">%</span>
                                                                         </div>
@@ -499,7 +558,7 @@
                                                         <div class="card-footer">
                                                             <div class="row justify-content-center">
                                                                 <div class="col-md-2 p-1">
-                                                                    <asp:Button runat="server" Text="Agregar" ID="btnAddToPurchaseDetailList" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
+                                                                    <asp:Button runat="server" ValidationGroup="DetailsGroup" Text="Agregar" ID="btnAddToPurchaseDetailList" OnClick="btnAddToPurchaseDetailList_Click" CssClass="btn btn-success btn-block" />
                                                                 </div>
                                                                 <div class="col-md-2 p-1">
                                                                     <asp:Button runat="server" Text="Cancelar" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
@@ -532,6 +591,14 @@
                                                                     </div>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtSupplierInvoiceNumber" placeholder="Número de factura" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator5" ValidationGroup="DetailsGroup" ControlToValidate="txtSupplierInvoiceNumber">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-4">
@@ -539,6 +606,14 @@
                                                                     <div class="input-group">
                                                                         <asp:DropDownList ID="ddlstSuppliers" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator6" ValidationGroup="DetailsGroup" ControlToValidate="ddlstSuppliers">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div class="input-group-append">
                                                                             <button data-toggle="modal" data-target="#ModalSuppliers" class="btn btn-info btn-sm" type="button">+</button>
                                                                         </div>
@@ -602,6 +677,14 @@
                                                                     <label>Impuesto</label>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" TextMode="Number" step="0.01" ID="txtTotalTax" placeholder="Impuesto" CssClass="form-control" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator7" ValidationGroup="DetailsGroup" ControlToValidate="txtTotalTax">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text">IVA</span>
                                                                         </div>
@@ -611,6 +694,14 @@
                                                                     <label for="txtTotalDiscount">Descuento</label>
                                                                     <div class="input-group">
                                                                         <asp:TextBox TextMode="Number" runat="server" step="1" ID="txtTotalDiscount" placeholder="Descuento" CssClass="form-control" />
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator8" ValidationGroup="DetailsGroup" ControlToValidate="txtTotalDiscount">
+                                                                            <div class="ctrlvalidate">
+                                                                                <div style="color: #fff">
+                                                                                    Campo requerido  
+                                                                                 </div>
+                                                                                <div class="fas fa-sort-down position-absolute"></div>
+                                                                            </div>                                                      
+                                                                        </asp:RequiredFieldValidator>
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text">%</span>
                                                                         </div>
@@ -633,7 +724,7 @@
                                                                     <asp:Button runat="server" Text="Calcular" ID="btnRecalculatePurchaseTotal" OnClick="btnRecalculatePurchaseTotal_Click" CssClass="btn btn-success btn-block" />
                                                                 </div>
                                                                 <div class="col-md-2 p-1">
-                                                                    <asp:Button runat="server" Text="Registrar Orden" ID="btnGeneratePurchase" OnClick="btnGeneratePurchase_Click" CssClass="btn btn-success btn-block" />
+                                                                    <asp:Button ValidationGroup="DetailsGroup" runat="server" Text="Registrar Orden" ID="btnGeneratePurchase" OnClick="btnGeneratePurchase_Click" CssClass="btn btn-success btn-block" />
                                                                 </div>
                                                                 <div class="col-md-2 p-1">
                                                                     <asp:Button runat="server" Text="Cancelar" ID="btnPurchaseCancel" OnClick="btnPurchaseCancel_Click" CssClass="btn btn-danger btn-block" />
@@ -772,7 +863,7 @@
 
             setTimeout(function () {
                 $('#ModalInvoiceDetails').modal('show');
-                
+
             }, 300);
 
             //<h5 class="text-light">Detalle de compra:   Factura #</h5>

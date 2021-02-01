@@ -17,6 +17,27 @@ form{
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
 
+/*Validaciones*/
+.ctrlvalidate {
+    /*    visibility: hidden;*/
+    width: 120px;
+    background-color: #C82333;
+    border-bottom: 1px dotted black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 70%;
+    margin-left: -60px;
+    /* Fade in tooltip */
+    /*    opacity: 0;
+    transition: opacity 0.3s;*/
+}
+
+
 /*header {
     background: #212B38;*/
 /*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); 

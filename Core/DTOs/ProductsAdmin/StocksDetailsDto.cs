@@ -11,6 +11,7 @@ namespace HardwareStore.Core.DTOs.ProductsAdmin
         public string LotNumber { get; set; }
         public string SupplierName { get; set; }
         public string StocksCode { get; set; }
+        public int ProductStocksId { get; set; }
         public int WarehouseId { get; set; }
         public string WarehouseName { get; set; }
         public string ProductDetailCode { get; set; }

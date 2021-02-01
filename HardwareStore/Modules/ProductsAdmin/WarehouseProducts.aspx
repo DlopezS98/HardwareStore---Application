@@ -2,6 +2,189 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../../Styles/Toast.css" rel="stylesheet" />
+    <style>
+        .spinner-container {
+            visibility: hidden;
+            display: block;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            z-index: 2000;
+            opacity: .7;
+        }
+
+            .spinner-container.show {
+                visibility: visible;
+            }
+
+            .spinner-container.hide {
+                visibility: hidden;
+                -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+                -moz-animation: fadein 1s; /* Firefox < 16 */
+                -ms-animation: fadein 1s; /* Internet Explorer */
+                -o-animation: fadein 1s; /* Opera < 12.1 */
+                animation: fadein 1s;
+            }
+
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Firefox < 16 */
+        @-moz-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Safari, Chrome and Opera > 12.1 */
+        @-webkit-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Internet Explorer */
+        @-ms-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Opera < 12.1 */
+        @-o-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <%-- Start Seccion alert --%>
+    <div id="section-alerts" class="section-alert">
+    </div>
+    <%-- End Section alert --%>
+
+    <div id="spinner-loader" class="spinner-container d-flex justify-content-center align-items-center">
+        <div class="spinner-border text-warning" style="width: 5rem; height: 5rem; border-width: 8px;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <%-- Modal section --%>
+
+    <div class="modal fade" id="ModalDeleteProduct" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanelFormDeleteProduct">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card card-shadow">
+                                        <div class="card-header text-center">
+                                            <h4>Eliminar producto</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mt-3">
+                                                <div class="col-md-5">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item text-center"><strong>Código:</strong> <span id="ProductDetailCode"></span></li>
+                                                                <li class="list-group-item"><strong>Producto:</strong>  <span id="ProductName"></span></li>
+                                                                <li class="list-group-item"><strong>Categoría:</strong> <span id="CategoryName"></span></li>
+                                                                <li class="list-group-item"><strong>Marca:</strong> <span id="BrandName"></span></li>
+                                                                <li class="list-group-item"><strong>Dimensiones:</strong>   <span id="Dimensions"></span></li>
+                                                                <li class="list-group-item"><strong>Material:</strong>  <span id="MaterialName"></span></li>
+                                                                <li class="list-group-item"><strong>Unidades:</strong>  <span id="StocksQuantity"></span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <asp:TextBox runat="server" ID="txtStocksQuantity" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtMeasureUnitBaseId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtMeasureUnitPurchasedId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtMeasureUnitTypeId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtProductStockId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtLotNumber" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtStocksDetailCode" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtCurrentStocks" ReadOnly="true" Visible="false" />
+                                                            <div class="form-row">
+                                                                <div class="form-group col">
+                                                                    <asp:Label Text="Titulo" runat="server" />
+                                                                    <asp:TextBox runat="server" ID="txtDeleteTitle" placeholder="Titulo" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-8">
+                                                                    <asp:Label Text="Unidad" runat="server" />
+                                                                    <asp:DropDownList ID="DropDownListUnitsMeasure" CssClass="form-control" runat="server">
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <asp:Label Text="Cantidad" runat="server" />
+                                                                    <asp:TextBox runat="server" TextMode="Number" ID="txtDeleteQuantity" placeholder="Cantidad" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col">
+                                                                    <asp:Label Text="Descripción" runat="server" />
+                                                                    <asp:TextBox runat="server" ID="txtDeleteDescription" placeholder="Descripcion" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-md-3 p-1">
+                                                                    <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
+                                                                </div>
+                                                                <div class="col-md-3 p-1">
+                                                                    <asp:Button runat="server" Text="Eliminar" OnClientClick="ShowLoader(true)" OnClick="btnDeleteProductFromStocks_Click" ID="btnDeleteProductFromStocks" CssClass="btn btn-danger btn-block" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-- End Modal section --%>
 
     <div class="container mt-4">
         <div class="row">
@@ -161,12 +344,12 @@
                                                                                 <asp:BoundField HeaderText="Estado" DataField="Available" />
                                                                                 <asp:TemplateField HeaderText="Opciones">
                                                                                     <ItemTemplate>
-                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
-                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkSelect" ToolTip="Seleccionar Producto"
-                                                                                            CommandName="cmdSelect" runat="server">Transferir</asp:LinkButton>
-                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
-                                                                                            CssClass="btn btn-danger btn-sm" ID="LinkButton1" ToolTip="Seleccionar Producto"
-                                                                                            CommandName="cmdSelect" runat="server">Eliminar</asp:LinkButton>
+                                                                                        <asp:LinkButton Font-Size="11px" OnClientClick="ShowLoader(true)" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkSelect" ToolTip="Transferir Producto"
+                                                                                            CommandName="cmdTransfer" runat="server">Transferir</asp:LinkButton>
+                                                                                        <asp:LinkButton Font-Size="11px" OnClientClick="ShowLoader(true)" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-danger btn-sm" ID="LinkDelete" ToolTip="Eliminar Producto"
+                                                                                            CommandName="cmdDelete" runat="server">Eliminar</asp:LinkButton>
                                                                                     </ItemTemplate>
                                                                                 </asp:TemplateField>
                                                                             </Columns>
@@ -201,6 +384,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
     <script>
+
+        //(function () {
+        //    this.ShowLoader(true);
+        //    $('#ModalDeleteProduct').modal('show');
+        //}())
         function ShowToaster(message, CssClass) {
             var style = "toast-img-" + CssClass;
 
@@ -219,6 +407,62 @@
                 content.innerHTML = "";
                 image.classList.remove(style);
             }, 5000);
+        }
+
+        function ShowLoader(status) {
+            console.log(status);
+            var spinner = document.getElementById('spinner-loader');
+            if (status) {
+                spinner.classList.remove("hide");
+                spinner.classList.add('show');
+            } else {
+                spinner.classList.add("hide");
+                //spinner.classList.remove("show");
+            }
+        }
+
+        function ShowModalDeleteProduct(StringStock) {
+            var Stock = JSON.parse(StringStock);
+            var ProductDetailCode = document.getElementById('ProductDetailCode');
+            var ProductName = document.getElementById('ProductName');
+            var CategoryName = document.getElementById('CategoryName');
+            var BrandName = document.getElementById('BrandName');
+            var Dimensions = document.getElementById('Dimensions');
+            var MaterialName = document.getElementById('MaterialName');
+            var StocksQuantity = document.getElementById('StocksQuantity');
+            ProductDetailCode.innerText = "#" + Stock.ProductDetailCode;
+            ProductName.innerText = Stock.ProductName;
+            CategoryName.innerText = Stock.CategoryName;
+            BrandName.innerText = Stock.BrandName;
+            Dimensions.innerText = Stock.Dimensions;
+            MaterialName.innerText = Stock.MaterialName;
+            StocksQuantity.innerText = Stock.StocksQuantity + " " + Stock.PurchaseUnitName;
+            setTimeout(function () { this.ShowLoader(false); $('#ModalDeleteProduct').modal('show') }, 350);
+        }
+
+        function ShowAlert(title, message, CssClass) {
+            setTimeout(function () {
+                this.ShowLoader(false);
+                $('#ModalWarehouses').modal('hide');
+                $('#ModalSuppliers').modal('hide');
+                const div = document.getElementById("section-alerts");
+                const divalert = document.createElement('div');
+                div.style.display = "block"
+                divalert.className = `alert alert-${CssClass} m-2 alert-dismissible fade show`;
+                const contentMessage = document.createTextNode(message);
+                const strong = document.createElement('strong');
+                strong.style.marginRight = "10px";
+                const contentTitle = document.createTextNode(title);
+                strong.appendChild(contentTitle);
+                divalert.appendChild(strong);
+                divalert.appendChild(contentMessage);
+                div.appendChild(divalert);
+                setTimeout(function () {
+                    $('.alert').alert('close')
+                    div.style.display = "none";
+                    divalert.remove();
+                }, 5000);
+            }, 1500);
         }
     </script>
 </asp:Content>

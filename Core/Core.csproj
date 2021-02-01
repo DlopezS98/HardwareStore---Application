@@ -67,7 +67,9 @@
     <Compile Include="DTOs\Catalogs\SuppliersDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDropDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\DeleteProductDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\ProductStocksDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\RemovedProductsDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksDetailsDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksUpdateDto.cs" />
     <Compile Include="DTOs\Response.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Interfaces\Catalogs\IWarehouseRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsAdminService.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
+    <Compile Include="Interfaces\ProductsAdmin\IRemovedProductsRepository.cs" />
     <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Billing\SalesServices.cs" />

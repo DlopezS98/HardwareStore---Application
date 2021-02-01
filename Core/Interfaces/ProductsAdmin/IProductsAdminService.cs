@@ -1,4 +1,5 @@
-﻿using HardwareStore.Core.DTOs.Catalogs;
+﻿using HardwareStore.Core.DTOs;
+using HardwareStore.Core.DTOs.Catalogs;
 using HardwareStore.Core.DTOs.ProductsAdmin;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
     {
         List<ProductStocksDto> ListProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate);
         List<StocksDetailsDto> ListStocksDetails(string LotNumber, string Search, int WarehouseId);
+        StocksDetailsDto GetAStocksDetail(string StocksCode);
         List<WarehousesDropDto> ListWarehousesForDropDowns();
+        List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
+        Response DeleteProductFromStocks(DeleteProductDto dto);
     }
 }

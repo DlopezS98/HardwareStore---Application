@@ -24,7 +24,7 @@
                         <ContentTemplate>
                             <div class="row">
                                 <asp:TextBox runat="server" ID="txtLotNumberForStockDetails" placeholder="LotNumber" CssClass="form-control" Visible="false" ReadOnly="true" />
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <asp:Label Text="Filtrar" runat="server" />
@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mt-4">
+                                <div class="col-lg-6 mt-4">
                                     <div class="form-group">
                                         <asp:Button CssClass="btn btn-primary" runat="server" Text="Buscar" ID="btnSearchStocksDetails" OnClick="btnSearchStocksDetails_Click" />
                                     </div>
@@ -203,19 +203,19 @@
                                                                 <div class="card">
                                                                     <div class="card-body">
                                                                         <div class="form-row align-items-center">
-                                                                            <div class="form-group col-md-4">
+                                                                            <div class="form-group col-lg-4">
                                                                                 <asp:Label Text="Buscar" runat="server" />
                                                                                 <asp:TextBox runat="server" ID="txtSearchInvoiceRecords" CssClass="form-control" placeholder="Buscar..." />
                                                                             </div>
-                                                                            <div class="form-group col-md-3">
+                                                                            <div class="form-group col-lg-3">
                                                                                 <asp:Label Text="Fecha Inicio" runat="server" />
                                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="PickerStartDateInvoceListFilter" TextMode="Date" />
                                                                             </div>
-                                                                            <div class="form-group col-md-3">
+                                                                            <div class="form-group col-lg-3">
                                                                                 <asp:Label Text="Fecha Final" runat="server" />
                                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="PickerEndDateInvoiceListFilter" TextMode="Date" />
                                                                             </div>
-                                                                            <div class="form-group col-md-2">
+                                                                            <div class="form-group col-lg-2">
                                                                                 <br />
                                                                                 <asp:Button Text="Filtrar" runat="server" ID="btnInvoiceListFilter" OnClick="btnInvoiceListFilter_Click" CssClass="btn btn-primary btn-block" />
                                                                             </div>
@@ -282,19 +282,19 @@
                                                                 <div class="card">
                                                                     <div class="card-body">
                                                                         <div class="form-row align-items-center">
-                                                                            <div class="form-group col-md-4">
+                                                                            <div class="form-group col-lg-4">
                                                                                 <asp:Label Text="Buscar" runat="server" />
                                                                                 <asp:TextBox runat="server" ID="txtSearchProductStocks" CssClass="form-control" placeholder="Buscar..." />
                                                                             </div>
-                                                                            <div class="form-group col-md-3">
+                                                                            <div class="form-group col-lg-3">
                                                                                 <asp:Label Text="Fecha Inicio" runat="server" />
                                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="PickerStartDateProductStocks" TextMode="Date" />
                                                                             </div>
-                                                                            <div class="form-group col-md-3">
+                                                                            <div class="form-group col-lg-3">
                                                                                 <asp:Label Text="Fecha Final" runat="server" />
                                                                                 <asp:TextBox runat="server" CssClass="form-control" ID="PickerEndDateProductStocks" TextMode="Date" />
                                                                             </div>
-                                                                            <div class="form-group col-md-2">
+                                                                            <div class="form-group col-lg-2">
                                                                                 <br />
                                                                                 <asp:Button Text="Filtrar" runat="server" ID="btnSearchProductStocks" OnClick="btnSearchProductStocks_Click" CssClass="btn btn-primary btn-block" />
                                                                             </div>
@@ -347,7 +347,7 @@
                                 <asp:UpdatePanel runat="server" ID="UpdatePanelForNewSale">
                                     <ContentTemplate>
                                         <div class="row mt-3">
-                                            <div class="col-md-12">
+                                            <div class="col-lg-12">
                                                 <div class="card card-shadow">
                                                     <div class="card-body">
                                                         <asp:TextBox runat="server" ID="txtMeasureUnitBaseId" ReadOnly="true" Visible="false" />
@@ -540,10 +540,10 @@
                                                     </div>
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
-                                                            <div class="col-md-2 p-1">
+                                                            <div class="col-lg-2 p-1">
                                                                 <asp:Button runat="server" ValidationGroup="DetailsGroup" Text="Agregar" ID="btnAddToSaleDetailsList" OnClick="btnAddToSaleDetailsList_Click" CssClass="btn btn-success btn-block" />
                                                             </div>
-                                                            <div class="col-md-2 p-1">
+                                                            <div class="col-lg-2 p-1">
                                                                 <asp:Button runat="server" Text="Cancelar" ID="btnCancelOrClearDetailForm" OnClick="btnCancelOrClearDetailForm_Click" CssClass="btn btn-warning btn-block" />
                                                             </div>
                                                         </div>
@@ -635,7 +635,7 @@
                                                     <div class="card-body">
                                                         <div class="form-row">
                                                             <asp:TextBox runat="server" ID="txtCurrencyExchangeId" ReadOnly="true" Visible="false" />
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Subtotal" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -644,7 +644,7 @@
                                                                     <asp:TextBox runat="server" ReadOnly="true" TextMode="Number" ID="txtSubtotal" CssClass="form-control" placeholder="Subtotal" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="IVA" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -661,7 +661,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Descuento" runat="server" />
                                                                 <div class="input-group">
                                                                     <asp:TextBox runat="server" TextMode="Number" CssClass="form-control" ID="txtTotalDiscount" placeholder="Descuento" />
@@ -678,7 +678,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-lg-3">
                                                                 <asp:Label Text="Total" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -690,7 +690,7 @@
                                                         </div>
 
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-lg-4">
                                                                 <asp:Label Text="Tipo de moneda" runat="server" />
                                                                 <asp:DropDownList ID="ddlistForeignCurrencies" AutoPostBack="true" OnSelectedIndexChanged="ddlistForeignCurrencies_SelectedIndexChanged" CssClass="form-control" Width="100%" runat="server">
                                                                 </asp:DropDownList>
@@ -703,12 +703,12 @@
                                                                             </div>                                                      
                                                                 </asp:RequiredFieldValidator>
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-lg-4">
                                                                 <asp:Label Text="Moneda local" runat="server" />
                                                                 <asp:TextBox runat="server" ID="txtLocalCurrency" ReadOnly="true" CssClass="form-control" placeholder="Moneda local" />
                                                                 <asp:TextBox runat="server" ID="txtLocalCurrencyId" Visible="false" ReadOnly="true" CssClass="form-control" placeholder="Moneda local" />
                                                             </div>
-                                                            <div class="form-group col-md-2">
+                                                            <div class="form-group col-lg-2">
                                                                 <asp:Label Text="Compra" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -717,7 +717,7 @@
                                                                     <asp:TextBox runat="server" ReadOnly="true" TextMode="Number" CssClass="form-control" ID="txtCurrencyPurchase" placeholder="compra" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-2">
+                                                            <div class="form-group col-lg-2">
                                                                 <asp:Label Text="Venta" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -729,7 +729,7 @@
                                                         </div>
 
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-lg-4">
                                                                 <asp:Label Text="Pago" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -746,7 +746,7 @@
                                                                     </asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-lg-4">
                                                                 <asp:Label Text="Cambio moneda" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -755,7 +755,7 @@
                                                                     <asp:TextBox runat="server" ReadOnly="true" TextMode="number" CssClass="form-control" ID="txtConversion" placeholder="Conversion" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-lg-4">
                                                                 <asp:Label Text="Cambio" runat="server" />
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
@@ -768,13 +768,13 @@
                                                     </div>
                                                     <div class="card-footer">
                                                         <div class="row justify-content-center">
-                                                            <div class="col-md-2">
+                                                            <div class="col-lg-2">
                                                                 <asp:Button ID="btnCalculateTotal" OnClick="btnCalculateTotal_Click" Text="Calcular" runat="server" CssClass="btn btn-primary btn-block" />
                                                             </div>
-                                                            <div class="col-md-2">
+                                                            <div class="col-lg-2">
                                                                 <asp:Button ID="btnCreateSale" ValidationGroup="DetailsGroup2" OnClick="btnCreateSale_Click" Text="Crear venta" runat="server" CssClass="btn btn-success btn-block" />
                                                             </div>
-                                                            <div class="col-md-2">
+                                                            <div class="col-lg-2">
                                                                 <asp:Button ID="btnAbortTransaction" OnClick="btnAbortTransaction_Click" Text="Cancelar" runat="server" CssClass="btn btn-danger btn-block" />
                                                             </div>
                                                         </div>

@@ -15,85 +15,76 @@ namespace HardwareStore.Modules.Catalogs
     {
 
         /// <summary>
-        /// Control ctvContenedor.
+        /// Control UpdatePanelForNew.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView ctvContenedor;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelForNew;
 
         /// <summary>
-        /// Control vVista0.
+        /// Control txtNameCategories.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vVista0;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNameCategories;
 
         /// <summary>
-        /// Control BtnCatTodos.
+        /// Control RequiredFieldValidator10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCatTodos;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator10;
 
         /// <summary>
-        /// Control Text2.
+        /// Control UpdatePanelList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelList;
 
         /// <summary>
-        /// Control Text1.
+        /// Control txtSearchInvoiceRecords.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchInvoiceRecords;
 
         /// <summary>
-        /// Control btnCancelar.
+        /// Control PickerStartDateFilter.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.TextBox PickerStartDateFilter;
 
         /// <summary>
-        /// Control vVista1.
+        /// Control PickerEndDateFilter.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vVista1;
+        protected global::System.Web.UI.WebControls.TextBox PickerEndDateFilter;
 
         /// <summary>
-        /// Control txtSearch.
+        /// Control btnProductFilter.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
-
-        /// <summary>
-        /// Control btnSearch.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Button btnProductFilter;
 
         /// <summary>
         /// Control GridViewCategories.

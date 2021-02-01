@@ -163,6 +163,7 @@
     <Content Include="Images\Categorias.png" />
     <Content Include="Images\clientes.png" />
     <Content Include="Images\compra.png" />
+    <Content Include="Images\Conversion.png" />
     <Content Include="Images\crash.png" />
     <Content Include="Images\devoluciones.png" />
     <Content Include="Images\Empleados.png" />
@@ -175,9 +176,12 @@
     <Content Include="Images\product.png" />
     <Content Include="Images\Proveedores.png" />
     <Content Include="Images\reportes.png" />
+    <Content Include="Images\Materiales.png" />
     <Content Include="Images\Roles.png" />
+    <Content Include="Images\TipodeUnidades.png" />
     <Content Include="Images\tools.jpg" />
     <Content Include="Images\UMedidas.png" />
+    <Content Include="Images\unidadesdeMedida.png" />
     <Content Include="Images\unnamed.png" />
     <Content Include="Images\ventas.png" />
     <Content Include="Login.aspx" />
@@ -216,6 +220,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\map-custom.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ValidationSiteMaster.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />

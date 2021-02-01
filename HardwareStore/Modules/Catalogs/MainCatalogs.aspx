@@ -5,7 +5,7 @@
     <div style="text-align: center; margin: 5px; margin-top: 35px">
         <h2>Administrador de Catálogos</h2>
     </div>
-    <div style="margin-left: 0px" class="rowcardcss">
+    <div style="margin-left: 10px" class="rowcardcss">
 <%--        <div class="d-flex justify-content-center">
             <div class="col-md-7 col-lg-7 col-sm-6 col-xl-10 position-absolute">
                 <div style="z-index: 10; width: 100%; margin-right: 50%" class="alert alert-danger mr-3" role="alert">
@@ -18,7 +18,7 @@
                 <h5 class="mt-2">Productos</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
-                    <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/product.png" runat="server" />
+                    <asp:Image Height="50px" Width="80px" ImageUrl="~/Images/product.png" runat="server" />
                 </div>
                 <div style="margin-top: 10px">
                     <a href="Products.aspx" class="btn btn-outline-primary">Administrar</a>
@@ -126,7 +126,7 @@
                 <h5 class="mt-2">Materiales</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
-                    <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />
+                    <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Materiales.png" runat="server" />
                 </div>
                 <div style="margin-top: 10px">
                     <a href="MaterialsTypes.aspx" class="btn btn-outline-primary">Administrar</a>
@@ -138,7 +138,7 @@
                 <h5 class="mt-2">Conversión</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
-                    <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />
+                    <asp:Image Height="50px" Width="90px" ImageUrl="~/Images/Conversion.png" runat="server" />
                 </div>
                 <div style="margin-top: 10px">
                     <a href="MaterialsTypes.aspx" class="btn btn-outline-primary">Administrar</a>
@@ -150,7 +150,7 @@
                 <h5 class="mt-2">Unidades</h5>
                 <p>(50 items)</p>
                 <div style="align-items: center">
-                    <asp:Image Height="50px" Width="50px" ImageUrl="~/Images/Roles.png" runat="server" />
+                    <asp:Image Height="50px" Width="80px" ImageUrl="~/Images/unidadesdeMedida.png" runat="server" />
                 </div>
                 <div style="margin-top: 10px">
                     <a href="UnitTypes.aspx" class="btn btn-outline-primary">Administrar</a>
@@ -158,7 +158,6 @@
             </div>
         </div>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
 </asp:Content>

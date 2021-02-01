@@ -8,8 +8,8 @@
     </div>
     <div style="margin-left: 0%; margin-top: 2%">
         <div class="container">
-            <div class="row mx-md-n5">
-                <div class="col px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="mx-3">
                     <div class="card shadow bg-white rounded" style="width: 18rem;">
                         <img runat="server" src="~/Images/ventas.png" class="card-img-top mt-4 mb-5" alt="...">
                         <div class="card-body">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <div class="col px-md-5">
+                <div class="mx-3">
                     <div class="card shadow bg-white rounded" style="width: 18rem;">
                         <img runat="server" src="~/Images/reportes.png" class="card-img-top mt-2 mb-1 px-1" alt="...">
                         <div class="card-body">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col px-md-5">
+                <div class="mx-3">
                     <div class="card shadow bg-white rounded" style="width: 18rem;">
                         <img runat="server" src="~/Images/compra.png" class="card-img-top mt-4 mb-5" alt="...">
                         <div class="card-body">

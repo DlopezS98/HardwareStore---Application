@@ -22,7 +22,6 @@ form{
     /*    visibility: hidden;*/
     width: 120px;
     background-color: #C82333;
-    border-bottom: 1px dotted black;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
@@ -32,6 +31,7 @@ form{
     bottom: 125%;
     left: 70%;
     margin-left: -60px;
+    border: 0.1px solid #851722;   
     /* Fade in tooltip */
     /*    opacity: 0;
     transition: opacity 0.3s;*/
@@ -145,10 +145,6 @@ header {
     padding: 0 10px;
 }
 
-
-.rowcardcss {
-    margin: 0 -5px;
-}
 
     .rowcardcss:after {
         content: "";

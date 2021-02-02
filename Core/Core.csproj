@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -126,12 +129,14 @@
     <Compile Include="Interfaces\ProductsAdmin\IProductsAdminService.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IRemovedProductsRepository.cs" />
+    <Compile Include="Interfaces\Reports\IReportsService.cs" />
     <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Billing\SalesServices.cs" />
     <Compile Include="Services\Billing\PurchaseService.cs" />
     <Compile Include="Services\CommonServices.cs" />
     <Compile Include="Services\ProductsAdmin\ProductsAdminService.cs" />
+    <Compile Include="Services\Reports\ReportsService.cs" />
     <Compile Include="Specifications\BaseSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +146,6 @@
   <ItemGroup>
     <Folder Include="Entities\Reports\" />
     <Folder Include="Interfaces\Providers\" />
-    <Folder Include="Interfaces\Reports\" />
     <Folder Include="Interfaces\Security\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

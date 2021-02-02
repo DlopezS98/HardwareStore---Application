@@ -1,8 +1,11 @@
-﻿using HardwareStore.Core.DTOs.SysConfiguration;
+﻿using FastMember;
+using HardwareStore.Core.DTOs.Catalogs;
+using HardwareStore.Core.DTOs.SysConfiguration;
 using HardwareStore.Core.Interfaces;
 using HardwareStore.Core.Interfaces.Catalogs;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,5 +67,24 @@ namespace HardwareStore.Core.Services
                 throw exc;
             }
         }
+
+        //Mapear lista y retornar en datatable
+        public DataTable ToDataTable<T>(IEnumerable<T> list)
+        {
+            DataTable dt = new DataTable();
+            using (var reader = ObjectReader.Create(list))
+            {
+                dt.Load(reader);
+            }
+
+            return dt;
+        }
+
+        //public DataTable test()
+        //{
+        //    var list = this._UnitsRepository.ListMeasureUnitForDropdownsByType(1);
+        //    DataTable dt = this.ToDataTable(list);
+        //    return dt;
+        //}
     }
 }

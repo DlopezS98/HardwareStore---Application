@@ -21,6 +21,8 @@
     <%--<webopt:bundlereference runat="server" path="~/Content/css" />--%>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link runat="server" type="text/css" href="~/Styles/Toast.css" rel="stylesheet" media="screen" />
+    <link runat="server" type="text/css" href="~/Styles/Spinner.css" rel="stylesheet" media="screen"/>
+    <link runat="server" type="text/css" href="~/Styles/Toast.css" rel="stylesheet" media="screen"/>
 </head>
 <body>
     <form runat="server">

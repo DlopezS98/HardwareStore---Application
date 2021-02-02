@@ -1,88 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WarehouseProducts.aspx.cs" Inherits="HardwareStore.Modules.ProductsAdmin.WarehouseProducts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../../Styles/Toast.css" rel="stylesheet" />
     <style>
-        .spinner-container {
-            visibility: hidden;
-            display: block;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000;
-            z-index: 2000;
-            opacity: .7;
-        }
-
-            .spinner-container.show {
-                visibility: visible;
-            }
-
-            .spinner-container.hide {
-                visibility: hidden;
-                -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-                -moz-animation: fadein 1s; /* Firefox < 16 */
-                -ms-animation: fadein 1s; /* Internet Explorer */
-                -o-animation: fadein 1s; /* Opera < 12.1 */
-                animation: fadein 1s;
-            }
-
-
-        @keyframes fadein {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Firefox < 16 */
-        @-moz-keyframes fadein {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Safari, Chrome and Opera > 12.1 */
-        @-webkit-keyframes fadein {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Internet Explorer */
-        @-ms-keyframes fadein {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Opera < 12.1 */
-        @-o-keyframes fadein {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
+        
     </style>
 
     <%-- Start Seccion alert --%>

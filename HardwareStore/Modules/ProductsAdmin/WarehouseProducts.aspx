@@ -2,365 +2,467 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../../Styles/Toast.css" rel="stylesheet" />
-    <div id="toast" class="toast">
-        <div class="toast-img toast-img-success"><i class="fas fa-exclamation"></i></div>
-        <div class="toast-body">
-            <div style="text-align: center;">
-                Producto Agregado!
-                <br />
-                <asp:Button ID="btnGo" Text="Ir" runat="server" CssClass="btn btn-success" />
-            </div>
-        </div>
-    </div>
+    <style>
+        .spinner-container {
+            visibility: hidden;
+            display: block;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            z-index: 2000;
+            opacity: .7;
+        }
 
-    <%-- Modal Alert --%>
-    <div style="margin-top: 120px" class="modal fade" id="ModalAlert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-dark">
-                    <h5 class="modal-title text-light" id="exampleModalLabel">Advertencia!</h5>
-                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                        <span class="text-light" aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Estás seguro que quieres eliminar el producto?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnDelete" OnClick="btnDelete_Click" Text="Confirmar" runat="server" CssClass="btn btn-success" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="ModalAlertError" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <ul class="d-flex justify-content-center">
-                        <li><a><i style="color: #C82333" class="fa fa-times fa-2x fa-lg"></i></a></li>
-                    </ul>
-                    <div class="d-flex justify-content-center">
-                        <div>
-                            <h4>¡Error al Registrar la Compra!</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <asp:Button ID="btnsuccessful" Text="Aceptar" runat="server" CssClass="btn btn-primary" />
-                </div>
-            </div>
-        </div>
-    </div>
+            .spinner-container.show {
+                visibility: visible;
+            }
 
-    <%-- Fin Modal Alert --%>
-    <%-- Sección del modal --%>
-    <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+            .spinner-container.hide {
+                visibility: hidden;
+                -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+                -moz-animation: fadein 1s; /* Firefox < 16 */
+                -ms-animation: fadein 1s; /* Internet Explorer */
+                -o-animation: fadein 1s; /* Opera < 12.1 */
+                animation: fadein 1s;
+            }
+
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Firefox < 16 */
+        @-moz-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Safari, Chrome and Opera > 12.1 */
+        @-webkit-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Internet Explorer */
+        @-ms-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Opera < 12.1 */
+        @-o-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <%-- Start Seccion alert --%>
+    <div id="section-alerts" class="section-alert">
+    </div>
+    <%-- End Section alert --%>
+
+    <div id="spinner-loader" class="spinner-container d-flex justify-content-center align-items-center">
+        <div class="spinner-border text-warning" style="width: 5rem; height: 5rem; border-width: 8px;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <%-- Modal section --%>
+
+    <div class="modal fade" id="ModalDeleteProduct" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark">
-                    <h4 class="text-light" style="text-align: center">Transferencia de Productos</h4>
-                    <button class="close" data-dismiss="modal" aria-label="cerrar">
-                        <span class="text-light" aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanelFormDeleteProduct">
                         <ContentTemplate>
-                            <div>
-                                <h4 style="text-align: center">Datos del Producto a Transferir</h4>
-                                <hr class="my-4">
-                                <div class="form-row">
-                                    <div class="col-md-4 p-2">
-                                        <b>Nombre del Producto:</b> ... 
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Código Producto:</b> 08418652
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Dirección:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit 
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Marca:</b> ...
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Producto:</b> ...
-                                    </div>
-
-                                    <div class="col-md-4 p-2">
-                                        <b>U. Medida:</b> ...
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Dimensiones:</b> ... 
-                                    </div>
-
-                                    <div class="col-md-4 p-2">
-                                        <b>Material:</b> Goku Uzumaki
-                                    </div>
-
-                                    <div class="col-md-4 p-2">
-                                        <b>Categoría</b> ... 
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Decripción:</b> ...
-                                    </div>
-                                    <div>
-                                        <h4 style="text-align: center; margin-top: 40px; color: #73B7FE">Llena los siguientes campos para confirmar</h4>
-                                    </div>
-
-
-                                    <asp:TextBox Visible="false" TextMode="Number" placeholder="Id Bodega" runat="server" ID="TextBox4" class="form-control" />
-                                    <asp:TextBox Visible="false" TextMode="Number" placeholder="Id Producto" runat="server" ID="TextBox5" class="form-control" />
-                                    <asp:TextBox Visible="false" TextMode="Number" placeholder="Id Precio Compra" runat="server" ID="TextBox6" class="form-control" />
-                                    <asp:TextBox Visible="false" placeholder="Bodega" runat="server" ID="TextBox7" class="form-control" />
-
-                                    <div class="col-md-6 p-2">
-                                        <h6 style="margin-left: 10px">Cantidad a Transferir</h6>
-                                        <div style="display: flex; margin-left: 10px">
-                                            <asp:TextBox placeholder="Cantidad" runat="server" ID="TextBox8" class="form-control" />
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card card-shadow">
+                                        <div class="card-header text-center">
+                                            <h4>Eliminar producto</h4>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6 p-2">
-                                        <h6 style="margin-left: 10px">Bodega de Destino</h6>
-                                        <div style="display: flex; margin-left: 10px">
-                                            <asp:DropDownList CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
+                                        <div class="card-body">
+                                            <div class="row mt-3">
+                                                <div class="col-md-5">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item text-center"><strong>Código:</strong> <span id="ProductDetailCode"></span></li>
+                                                                <li class="list-group-item"><strong>Producto:</strong>  <span id="ProductName"></span></li>
+                                                                <li class="list-group-item"><strong>Categoría:</strong> <span id="CategoryName"></span></li>
+                                                                <li class="list-group-item"><strong>Marca:</strong> <span id="BrandName"></span></li>
+                                                                <li class="list-group-item"><strong>Dimensiones:</strong>   <span id="Dimensions"></span></li>
+                                                                <li class="list-group-item"><strong>Material:</strong>  <span id="MaterialName"></span></li>
+                                                                <li class="list-group-item"><strong>Unidades:</strong>  <span id="StocksQuantity"></span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <asp:TextBox runat="server" ID="txtStocksQuantity" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtMeasureUnitBaseId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtMeasureUnitPurchasedId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtMeasureUnitTypeId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtProductStockId" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtLotNumber" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtStocksDetailCode" ReadOnly="true" Visible="false" />
+                                                            <asp:TextBox runat="server" ID="txtCurrentStocks" ReadOnly="true" Visible="false" />
+                                                            <div class="form-row">
+                                                                <div class="form-group col">
+                                                                    <asp:Label Text="Titulo" runat="server" />
+                                                                    <asp:TextBox runat="server" ID="txtDeleteTitle" placeholder="Titulo" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-8">
+                                                                    <asp:Label Text="Unidad" runat="server" />
+                                                                    <asp:DropDownList ID="DropDownListUnitsMeasure" CssClass="form-control" runat="server">
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <asp:Label Text="Cantidad" runat="server" />
+                                                                    <asp:TextBox runat="server" TextMode="Number" ID="txtDeleteQuantity" placeholder="Cantidad" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col">
+                                                                    <asp:Label Text="Descripción" runat="server" />
+                                                                    <asp:TextBox runat="server" ID="txtDeleteDescription" placeholder="Descripcion" CssClass="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-md-3 p-1">
+                                                                    <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
+                                                                </div>
+                                                                <div class="col-md-3 p-1">
+                                                                    <asp:Button runat="server" Text="Eliminar" OnClientClick="ShowLoader(true)" OnClick="btnDeleteProductFromStocks_Click" ID="btnDeleteProductFromStocks" CssClass="btn btn-danger btn-block" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div style="width: 100%; margin: 20px; min-width: 150px; text-align: center">
-                                        <asp:Button runat="server" Text="Confirmar" CssClass="btn btn-success" Style="margin-left: 10px" />
-                                        <asp:Button ID="Button2" runat="server" Text="Cancelar" CssClass="btn btn-danger" Style="margin-left: 10px" />
                                     </div>
                                 </div>
                             </div>
                         </ContentTemplate>
+                        <Triggers>
+                        </Triggers>
                     </asp:UpdatePanel>
                 </div>
             </div>
         </div>
     </div>
+    <%-- End Modal section --%>
 
-    <%-- Fin Sección del modal --%>
-    <div class="ml-2 p-3">
-        <asp:MultiView ID="ProductWaresause" ActiveViewIndex="0" runat="server">
-            <asp:View runat="server">
-                <asp:UpdatePanel runat="server" ID="UpdatePanel2">
-                    <ContentTemplate>
-                        <div class="d-flex justify-content-end">
-                            <asp:Button ID="Listmove" OnClick="Listmove_Click" class="btn btn-primary" type="button" runat="server" Text="Pendientes" />
-                        </div>
-                        <h1 style="color: #1F2126; text-align: center;">Existencias en Bodega</h1>
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <asp:TextBox placeholder="Buscar" runat="server" ID="txtOrdNumber" class="form-control" />
-                            </div>
-                            <div class="col-md-4">
-                                <asp:Button class="btn btn-primary" type="button" runat="server" Text="Buscar" />
-                            </div>
-                            <div class="col-md-4">
-                                <div style="margin-right: 15px; width: 100%; display: flex;">
-                                    <asp:DropDownList CssClass="form-control" Width="100%" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-
-                        <%-- Tabla --%>
-                        <div style="max-width: 100%; overflow-x: scroll; display: inline-block; min-width: 30%; max-height: 250px; overflow-y: scroll" class="TableContainer mt-2 col-md-12">
-                            <table class="table">
-                                <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                                    ID="GridViewCategories" CssClass="table table-hover" CellPadding="5">
-                                    <HeaderStyle CssClass="thead-dark" />
-                                    <Columns>
-                                        <asp:BoundField HeaderText="ID" />
-                                        <asp:BoundField HeaderText="Nombre" />
-                                        <asp:BoundField HeaderText="Iniciales" />
-                                        <asp:BoundField HeaderText="Codigo" />
-                                        <asp:BoundField HeaderText="Cargo" />
-                                        <asp:BoundField HeaderText="Creado en" />
-                                        <asp:BoundField HeaderText="Creado por" />
-                                        <asp:BoundField HeaderText="Actualizado en" />
-                                        <asp:BoundField HeaderText="Actualizado por" />
-                                        <asp:BoundField HeaderText="Eliminado" />
-                                        <asp:TemplateField HeaderText="Opciones">
-                                            <ItemTemplate>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAlertError">
-                                                    Eliminar
-                                                </button>
-                                                <%--<button id="btnToasts" class="btn btn-success">Ver toasts</button>--%>
-                                                <asp:Button ID="btnMove" OnClick="btnMove_Click" Text="Transferir" runat="server" CssClass="btn btn-success" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </table>
-                        </div>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:PostBackTrigger ControlID="btnDelete" />
-                        <asp:PostBackTrigger ControlID="Listmove" />
-                    </Triggers>
-                </asp:UpdatePanel>
-            </asp:View>
-
-            <asp:View runat="server">
-                <asp:UpdatePanel runat="server" ID="UpdatePanel3">
-                    <ContentTemplate>
-                        <div style="border: 1px solid #e4e4e4; padding: 8px; border-radius: 5px; background-color: #fff; margin-top: 15px">
-                            <div class="form-row p-3">
-                                <div class="d-flex justify-content-center">
-                                    <h4>Datos del Producto a Eliminar</h4>
-                                </div>
-                                <hr class="my-4">
-                                <div class="form-row">
-                                    <div class="col-md-4 p-2">
-                                        <b>Nombre del Producto:</b> ... 
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Código Producto:</b> 08418652
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Dirección:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit 
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Marca:</b> ...
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Producto:</b> ...
-                                    </div>
-
-                                    <div class="col-md-4 p-2">
-                                        <b>U. Medida:</b> ...
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Dimensiones:</b> ... 
-                                    </div>
-
-                                    <div class="col-md-4 p-2">
-                                        <b>Material:</b> Goku Uzumaki
-                                    </div>
-
-                                    <div class="col-md-4 p-2">
-                                        <b>Categoría</b> ... 
-                                    </div>
-                                    <div class="col-md-4 p-2">
-                                        <b>Decripción:</b> ...
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-center">
-                                    <h4 style="margin-top: 40px; color: #73B7FE">Llena los siguientes campos para confirmar</h4>
-                                </div>
-                                <asp:TextBox Visible="false" TextMode="Number" placeholder="Id Bodega" runat="server" ID="txtWarehouseId" class="form-control" />
-                                <asp:TextBox Visible="false" TextMode="Number" placeholder="Id Producto" runat="server" ID="txtProductId" class="form-control" />
-                                <asp:TextBox Visible="false" TextMode="Number" placeholder="Id Precio Compra" runat="server" ID="txtPriceOrders" class="form-control" />
-                                <asp:TextBox Visible="false" placeholder="Bodega" runat="server" ID="txtExistences" class="form-control" />
-                                <div class="col-md-12">
-                                    <h6 style="margin-left: 10px">Título</h6>
-                                    <div style="display: flex; margin-left: 10px">
-                                        <asp:TextBox placeholder="Título" runat="server" ID="TextBox2" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6 style="margin-left: 10px">Cantidad a restar</h6>
-                                    <div style="display: flex; margin-left: 10px">
-                                        <asp:TextBox placeholder="Cantidad" runat="server" ID="TextBox1" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6 style="margin-left: 10px">Descripción</h6>
-                                    <div style="display: flex; margin-left: 10px">
-                                        <asp:TextBox placeholder="Descripción" runat="server" ID="TextBox3" class="form-control" />
-                                    </div>
-                                </div>
-                                <div style="width: 100%; margin: 20px; min-width: 150px; text-align: center">
-                                    <asp:Button runat="server" Text="Confirmar" CssClass="btn btn-success" Style="margin-left: 10px" />
-                                    <asp:Button ID="btnCancel" OnClick="btnCancel_Click" runat="server" Text="Cancelar" CssClass="btn btn-danger" Style="margin-left: 10px" />
-                                </div>
-                            </div>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:PostBackTrigger ControlID="btnCancel" />
-                    </Triggers>
-                </asp:UpdatePanel>
-            </asp:View>
-
-            <asp:View runat="server">
-                <asp:UpdatePanel runat="server" ID="UpdatePanel4">
-                    <ContentTemplate>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Nombre completo</th>
-                                            <th scope="col">Rol</th>
-                                            <th scope="col">Nombre de Usuario</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Danny López</td>
-                                            <td>Root</td>
-                                            <td>DlopezS98</td>
-                                            <td>Activo</td>
-                                            <td>
-                                                <asp:Button Text="Eliminar" runat="server" CssClass="btn btn-danger" />
-                                                <button data-toggle="modal" data-target="#ventanaModal" class="btn btn-primary">Editar</button>
-                                                <%--<asp:Button data-open="odmodal" ID="Button1" OnClientClick="ShowModalDetail()" Text="Editar" runat="server" CssClass="btnPrimary" />--%>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </asp:View>
-        </asp:MultiView>
-    </div>
-
-    <%--    <div class="d-flex align-items-end flex-column bd-highlight mb-1" style="height: 200px;">
-        <div class="mt-auto p-2 bd-highlight">
-            <div id="toast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                    </svg>
-                    <ul class="mt-3">
-                        <li><a><i style="width: 100%; height: 100%;" class="fas fa-info mr-4 text-warning"></i></a></li>
-                    </ul>
-                    <strong class="mr-auto">Mensaje</strong>
-                    <small>Justo ahora</small>
-                </div>
-                <div class="toast-body">
-                    Producto agregado a la tabla de tranferencias
-                    <div class="d-flex justify-content-end mt-3">
-                        <asp:Button CssClass="btn btn-success" Text="Vamos" runat="server" ID="btnList" OnClick="btnList_Click" />
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center">Existencias en bodegas</h4>
                     </div>
                 </div>
             </div>
         </div>
-    </div>--%>
+        <div class="row mt-3">
+            <div class="col mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <asp:MultiView ActiveViewIndex="0" runat="server" ID="MultiViewProductStocks">
+                            <asp:View runat="server">
+                                <asp:UpdatePanel runat="server" ID="UpdatePanelForProductStocks">
+                                    <ContentTemplate>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <div class="card card-shadow">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="form-row align-items-center">
+                                                                            <div class="form-group col-md-4">
+                                                                                <asp:Label Text="Buscar" runat="server" />
+                                                                                <asp:TextBox runat="server" ID="txtSearchProductStocks" CssClass="form-control" placeholder="Buscar..." />
+                                                                            </div>
+                                                                            <div class="form-group col-md-3">
+                                                                                <asp:Label Text="Fecha Inicio" runat="server" />
+                                                                                <asp:TextBox runat="server" CssClass="form-control" ID="PickerStartDateProductStocks" TextMode="Date" />
+                                                                            </div>
+                                                                            <div class="form-group col-md-3">
+                                                                                <asp:Label Text="Fecha Final" runat="server" />
+                                                                                <asp:TextBox runat="server" CssClass="form-control" ID="PickerEndDateProductStocks" TextMode="Date" />
+                                                                            </div>
+                                                                            <div class="form-group col-md-2">
+                                                                                <br />
+                                                                                <asp:Button Text="Filtrar" runat="server" ID="btnSearchProductStocks" OnClick="btnSearchProductStocks_Click" CssClass="btn btn-primary btn-block" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-4">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body table-responsive mt-3 mb-3">
+                                                                        <asp:GridView runat="server" DataKeyNames="LotNumber" AutoGenerateColumns="false"
+                                                                            ID="GridViewProductStocks" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewProductStocks_RowCommand">
+                                                                            <HeaderStyle CssClass="thead-dark" />
+                                                                            <Columns>
+                                                                                <asp:BoundField HeaderText="Código de lote" DataField="LotNumber" />
+                                                                                <asp:BoundField HeaderText="Proveedor" DataField="SupplierName" />
+                                                                                <asp:BoundField HeaderText="Cantidad productos" DataField="Quantity" />
+                                                                                <asp:BoundField HeaderText="Total" DataField="TotalAmount" />
+                                                                                <asp:BoundField HeaderText="Fecha" DataField="CreatedAt" />
+                                                                                <asp:BoundField HeaderText="Realizada por" DataField="CreatedBy" />
+                                                                                <asp:BoundField HeaderText="Ultima Actualización" DataField="UpdatedAt" />
+                                                                                <asp:BoundField HeaderText="Actualizada por" DataField="UpdatedBy" />
+                                                                                <asp:BoundField HeaderText="Estado" DataField="Available" />
+                                                                                <asp:TemplateField HeaderText="Opciones">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkShowStocksDetails" ToolTip="Detalle de existencias"
+                                                                                            CommandName="cmdShowStocksDetail" runat="server">Ver registros</asp:LinkButton>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:PostBackTrigger ControlID="GridViewProductStocks" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </asp:View>
+                            <asp:View runat="server">
+                                <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                                    <ContentTemplate>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <div class="card card-shadow">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <asp:TextBox runat="server" ID="txtLotNumberForStockDetails" placeholder="LotNumber" CssClass="form-control" Visible="false" ReadOnly="true" />
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col">
+                                                                                        <asp:Label Text="Filtrar" runat="server" />
+                                                                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearchStocksDetails" placeholder="Buscar..." />
+                                                                                    </div>
+                                                                                    <div class="form-group col">
+                                                                                        <asp:Label Text="Filtro por bodegas" runat="server" />
+                                                                                        <asp:DropDownList AutoPostBack="true" ID="DropDownListWarehousesFilter" OnSelectedIndexChanged="DropDownListWarehousesFilter_SelectedIndexChanged" CssClass="form-control" runat="server">
+                                                                                        </asp:DropDownList>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <br />
+                                                                                    <asp:Button CssClass="btn btn-primary btn-block" runat="server" Text="Buscar" ID="btnSearchStocksDetails" OnClick="btnSearchStocksDetails_Click" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3 text-right">
+                                                                                <div class="form-group">
+                                                                                    <asp:Button CssClass="btn btn-primary" runat="server" Text="Regresar" ID="btnGoBackToMainView" OnClick="btnGoBackToMainView_Click" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-4">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body table-responsive mt-3 mb-3">
+                                                                        <asp:GridView runat="server" DataKeyNames="LotNumber, StocksCode" AutoGenerateColumns="false"
+                                                                            ID="GridViewStocksDetails" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewStocksDetails_RowCommand">
+                                                                            <HeaderStyle CssClass="thead-dark" />
+                                                                            <Columns>
+                                                                                <asp:BoundField HeaderText="Código" DataField="LotNumber" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Producto" DataField="StocksCode" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
+                                                                                <asp:BoundField HeaderText="Código producto" DataField="ProductDetailCode" />
+                                                                                <asp:BoundField HeaderText="Producto" DataField="ProductName" />
+                                                                                <asp:BoundField HeaderText="Marca" DataField="BrandName" />
+                                                                                <asp:BoundField HeaderText="Categoría" DataField="CategoryName" />
+                                                                                <asp:BoundField HeaderText="Dimensiones" DataField="Dimensions" />
+                                                                                <asp:BoundField HeaderText="Material" DataField="MaterialName" />
+                                                                                <asp:BoundField HeaderText="Unidad compra" DataField="PurchaseUnitName" />
+                                                                                <asp:BoundField HeaderText="Compra Unidad inicial" DataField="OriginalQuantity" />
+                                                                                <asp:BoundField HeaderText="Unidad actual" DataField="StocksQuantityStr" />
+                                                                                <asp:BoundField HeaderText="Unidad base" DataField="UnitBaseName" />
+                                                                                <asp:BoundField HeaderText="Conversion" DataField="ConversionValueStr" />
+                                                                                <asp:BoundField HeaderText="Precio unidad compra" DataField="SalePriceStr" />
+                                                                                <asp:BoundField HeaderText="Precio unidad base" DataField="SalePriceByUnitBaseStr" />
+                                                                                <asp:BoundField HeaderText="Fecha expiración" DataField="ExpirationDate" />
+                                                                                <asp:BoundField HeaderText="Estado" DataField="Available" />
+                                                                                <asp:TemplateField HeaderText="Opciones">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:LinkButton Font-Size="11px" OnClientClick="ShowLoader(true)" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkSelect" ToolTip="Transferir Producto"
+                                                                                            CommandName="cmdTransfer" runat="server">Transferir</asp:LinkButton>
+                                                                                        <asp:LinkButton Font-Size="11px" OnClientClick="ShowLoader(true)" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-danger btn-sm" ID="LinkDelete" ToolTip="Eliminar Producto"
+                                                                                            CommandName="cmdDelete" runat="server">Eliminar</asp:LinkButton>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:PostBackTrigger ControlID="btnGoBackToMainView" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </asp:View>
+                        </asp:MultiView>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Toast-Alert" class="toast">
+        <div id="Toast-Image-Type" class="toast-img"><i class="fas fa-exclamation"></i></div>
+        <div id="Toast-Body" class="toast-body">
+            <p id="Toast-Content" style="text-align: justify;">
+            </p>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
     <script>
-        //function launch_toast() {
-        //    $("#btnMove").click(function () {
-        //        $("#toast1").toast('show');
-        //    });
-        //}
-        function launch_toast() {
-            var el = document.getElementById("toast")
-            el.classList.add("show");
-            setTimeout(function () { el.classList.remove("show") }, 5000);
+
+        //(function () {
+        //    this.ShowLoader(true);
+        //    $('#ModalDeleteProduct').modal('show');
+        //}())
+        function ShowToaster(message, CssClass) {
+            var style = "toast-img-" + CssClass;
+
+            var image = document.getElementById('Toast-Image-Type');
+            image.classList.remove(style);
+            image.classList.add(style);
+
+            var alert = document.getElementById('Toast-Alert');
+            alert.classList.add("show");
+
+            var content = document.getElementById('Toast-Content');
+            content.innerHTML = message;
+
+            setTimeout(function () {
+                alert.classList.remove("show");
+                content.innerHTML = "";
+                image.classList.remove(style);
+            }, 5000);
+        }
+
+        function ShowLoader(status) {
+            console.log(status);
+            var spinner = document.getElementById('spinner-loader');
+            if (status) {
+                spinner.classList.remove("hide");
+                spinner.classList.add('show');
+            } else {
+                spinner.classList.add("hide");
+                //spinner.classList.remove("show");
+            }
+        }
+
+        function ShowModalDeleteProduct(StringStock) {
+            var Stock = JSON.parse(StringStock);
+            var ProductDetailCode = document.getElementById('ProductDetailCode');
+            var ProductName = document.getElementById('ProductName');
+            var CategoryName = document.getElementById('CategoryName');
+            var BrandName = document.getElementById('BrandName');
+            var Dimensions = document.getElementById('Dimensions');
+            var MaterialName = document.getElementById('MaterialName');
+            var StocksQuantity = document.getElementById('StocksQuantity');
+            ProductDetailCode.innerText = "#" + Stock.ProductDetailCode;
+            ProductName.innerText = Stock.ProductName;
+            CategoryName.innerText = Stock.CategoryName;
+            BrandName.innerText = Stock.BrandName;
+            Dimensions.innerText = Stock.Dimensions;
+            MaterialName.innerText = Stock.MaterialName;
+            StocksQuantity.innerText = Stock.StocksQuantity + " " + Stock.PurchaseUnitName;
+            setTimeout(function () { this.ShowLoader(false); $('#ModalDeleteProduct').modal('show') }, 350);
+        }
+
+        function ShowAlert(title, message, CssClass) {
+            setTimeout(function () {
+                this.ShowLoader(false);
+                $('#ModalWarehouses').modal('hide');
+                $('#ModalSuppliers').modal('hide');
+                const div = document.getElementById("section-alerts");
+                const divalert = document.createElement('div');
+                div.style.display = "block"
+                divalert.className = `alert alert-${CssClass} m-2 alert-dismissible fade show`;
+                const contentMessage = document.createTextNode(message);
+                const strong = document.createElement('strong');
+                strong.style.marginRight = "10px";
+                const contentTitle = document.createTextNode(title);
+                strong.appendChild(contentTitle);
+                divalert.appendChild(strong);
+                divalert.appendChild(contentMessage);
+                div.appendChild(divalert);
+                setTimeout(function () {
+                    $('.alert').alert('close')
+                    div.style.display = "none";
+                    divalert.remove();
+                }, 5000);
+            }, 1500);
         }
     </script>
 </asp:Content>

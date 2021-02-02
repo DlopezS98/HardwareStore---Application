@@ -64,6 +64,7 @@
     <Compile Include="Data\Catalogs\WarehouseRepository.cs" />
     <Compile Include="Data\PersonsRepository.cs" />
     <Compile Include="Data\ProductsAdmin\ProductsStocksRepository.cs" />
+    <Compile Include="Data\ProductsAdmin\RemovedProductsRepository.cs" />
     <Compile Include="Data\SysConfiguration\CurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

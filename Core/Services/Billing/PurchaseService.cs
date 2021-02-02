@@ -265,7 +265,7 @@ namespace HardwareStore.Core.Services.Billing
             try
             {
                 List<InvoicesDto> Invoices = new List<InvoicesDto>();
-                //Invoices = this._PurchaseRepository.GetPurhaseInvoices(StartDate, EndDate, Search);
+                Invoices = this._PurchaseRepository.GetPurhaseInvoices(StartDate, EndDate, Search);
                 return Invoices;
             }
             catch (Exception exc)

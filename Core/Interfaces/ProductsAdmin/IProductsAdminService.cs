@@ -17,5 +17,6 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
         List<WarehousesDropDto> ListWarehousesForDropDowns();
         List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
         Response DeleteProductFromStocks(DeleteProductDto dto);
+        List<RemovedProductsDto> GetRemovedProducts(DateTime StartDate, DateTime EndDate, string Search);
     }
 }

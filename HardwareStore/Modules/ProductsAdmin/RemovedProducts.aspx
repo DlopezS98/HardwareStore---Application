@@ -1,49 +1,132 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RemovedProducts.aspx.cs" Inherits="HardwareStore.Modules.ProductsAdmin.RemovedProducts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server" ID="UpdatePanel2">
-        <ContentTemplate>
-            <div class="p-3">
-                <h3 style="color: #1F2126; text-align: center; margin-top: 35px">Productos Dañados</h3>
-                <div class="form-row mt-4">
-                    <div class="col-md-6">
-                        <asp:TextBox placeholder="Buscar" runat="server" ID="txtOrdNumber" class="form-control" />
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center">Existencias en bodegas</h4>
                     </div>
-                    <div class="col-md-6 pl-4">
-                        <asp:Button class="btn btn-primary" type="button" runat="server" Text="Buscar" />
-                    </div>
-                </div>
-                <br />
-                <%-- Tabla --%>
-                <div style="max-width: 100%; overflow-x: scroll; display: inline-block; min-width: 30%; max-height: 250px; overflow-y: scroll" class="TableContainer mt-2 col-md-12">
-                    <table class="table">
-                        <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                            ID="GridViewCategories" CssClass="table table-hover" CellPadding="5">
-                            <HeaderStyle CssClass="thead-dark" />
-                            <Columns>
-                                <asp:BoundField HeaderText="ID" />
-                                <asp:BoundField HeaderText="Nombre" />
-                                <asp:BoundField HeaderText="Iniciales" />
-                                <asp:BoundField HeaderText="Codigo" />
-                                <asp:BoundField HeaderText="Cargo" />
-                                <asp:BoundField HeaderText="Creado en" />
-                                <asp:BoundField HeaderText="Creado por" />
-                                <asp:BoundField HeaderText="Actualizado en" />
-                                <asp:BoundField HeaderText="Actualizado por" />
-                                <asp:BoundField HeaderText="Eliminado" />
-                                <asp:TemplateField HeaderText="Opciones">
-                                    <ItemTemplate>
-                                        <asp:Button Text="Editar" runat="server" CssClass="btn btn-primary" />
-                                        <asp:Button Text="Eliminar" runat="server" CssClass="btn btn-danger" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </table>
                 </div>
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </div>
+        <div class="row mt-3">
+            <div class="col mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <%--<asp:MultiView ActiveViewIndex="0" runat="server" ID="MultiViewProductStocks">
+                            <asp:View runat="server">--%>
+                                <asp:UpdatePanel runat="server" ID="UpdatePanelForRemovedProducts">
+                                    <ContentTemplate>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <div class="card card-shadow">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="form-row align-items-center">
+                                                                            <div class="form-group col-md-4">
+                                                                                <asp:Label Text="Buscar" runat="server" />
+                                                                                <asp:TextBox runat="server" ID="txtSearchRemovedProducts" CssClass="form-control" placeholder="Buscar..." />
+                                                                            </div>
+                                                                            <div class="form-group col-md-3">
+                                                                                <asp:Label Text="Fecha Inicio" runat="server" />
+                                                                                <asp:TextBox runat="server" CssClass="form-control" ID="PickerStartDateRemovedProducts" TextMode="Date" />
+                                                                            </div>
+                                                                            <div class="form-group col-md-3">
+                                                                                <asp:Label Text="Fecha Final" runat="server" />
+                                                                                <asp:TextBox runat="server" CssClass="form-control" ID="PickerEndDateRemovedProducts" TextMode="Date" />
+                                                                            </div>
+                                                                            <div class="form-group col-md-2">
+                                                                                <br />
+                                                                                <asp:Button Text="Filtrar" runat="server" ID="btnSearchRemovedProducts" OnClick="btnSearchRemovedProducts_Click" CssClass="btn btn-primary btn-block" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-4">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body table-responsive mt-3 mb-3">
+                                                                        <asp:GridView runat="server" DataKeyNames="Id, LotNumber, ProductStocksId, ProductDetailCode" AutoGenerateColumns="false"
+                                                                            ID="GridViewRemovedProducts" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewRemovedProducts_RowCommand">
+                                                                            <HeaderStyle CssClass="thead-dark" />
+                                                                            <Columns>
+                                                                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Stock id" DataField="ProductStocksId" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Codigo producto" DataField="ProductDetailCode" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Código de lote" DataField="LotNumber" />
+                                                                                <asp:BoundField HeaderText="Bodega" DataField="WarehouseName" />
+                                                                                <asp:BoundField HeaderText="Titulo" DataField="Title" />
+                                                                                <asp:BoundField HeaderText="Descripción" DataField="Description" />
+                                                                                <asp:BoundField HeaderText="Unidad" DataField="MeasureUnitName" />
+                                                                                <asp:BoundField HeaderText="Cantidad" DataField="UnitQuantity" />
+                                                                                <asp:BoundField HeaderText="Unidad base" DataField="UnitBaseName" />
+                                                                                <asp:BoundField HeaderText="Unidades" DataField="ConversionQuantity" />
+                                                                                <asp:BoundField HeaderText="Fecha" DataField="DisplayDate" />
+                                                                                <asp:BoundField HeaderText="Realizada por" DataField="CreatedBy" />
+                                                                                <asp:TemplateField HeaderText="Opciones">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-primary btn-sm" ID="LinkRemovedProducts" ToolTip="Detalles"
+                                                                                            CommandName="cmdShowDetails" runat="server">Producto</asp:LinkButton>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <%--<asp:PostBackTrigger ControlID="GridViewProductStocks" />--%>
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                        <%--</asp:MultiView>--%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Toast-Alert" class="toast">
+        <div id="Toast-Image-Type" class="toast-img"><i class="fas fa-exclamation"></i></div>
+        <div id="Toast-Body" class="toast-body">
+            <p id="Toast-Content" style="text-align: justify;">
+            </p>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptSection" runat="server">
+    <script>
+        function ShowToaster(message, CssClass) {
+            var style = "toast-img-" + CssClass;
+
+            var image = document.getElementById('Toast-Image-Type');
+            image.classList.remove(style);
+            image.classList.add(style);
+
+            var alert = document.getElementById('Toast-Alert');
+            alert.classList.add("show");
+
+            var content = document.getElementById('Toast-Content');
+            content.innerHTML = message;
+
+            setTimeout(function () {
+                alert.classList.remove("show");
+                content.innerHTML = "";
+                image.classList.remove(style);
+            }, 5000);
+        }
+    </script>
 </asp:Content>

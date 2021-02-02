@@ -197,5 +197,20 @@ namespace HardwareStore.Core.Services.ProductsAdmin
                 throw exc;
             }
         }
+
+        public List<RemovedProductsDto> GetRemovedProducts(DateTime StartDate, DateTime EndDate, string Search)
+        {
+            try
+            {
+                List<RemovedProductsDto> list = new List<RemovedProductsDto>();
+                list = this._RemovedProductsRepository.GetRemovedProducts(StartDate, EndDate, Search);
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
     }
 }

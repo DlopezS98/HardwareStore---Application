@@ -63,6 +63,7 @@ namespace HardwareStore.Infrastructure.Data
         public DbSet<StocksDetailsDto> StocksDetailsDto { get; set; }
         public DbSet<SalesInvoiceDto> MyPropeSalesInvoiceDtorty { get; set; }
         public DbSet<SalesDetailsDto> SalesDetailsDto { get; set; }
+        public DbSet<RemovedProductsDto> RemovedProductsDto { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -71,6 +72,7 @@ namespace HardwareStore.Infrastructure.Data
             modelBuilder.Ignore<WarehousesDto>();
             modelBuilder.Ignore<SalesInvoiceDto>();
             modelBuilder.Ignore<SalesDetailsDto>();
+            modelBuilder.Ignore<RemovedProductsDto>();
             modelBuilder.Entity<ProductStocksDto>().HasKey(x => x.LotNumber);
             modelBuilder.Entity<StocksDetailsDto>().HasKey(x => new { x.LotNumber, x.StocksCode });
             modelBuilder.Entity<CurrencyExchange>().ToTable("CurrencyExchange").HasKey(x => x.Id);

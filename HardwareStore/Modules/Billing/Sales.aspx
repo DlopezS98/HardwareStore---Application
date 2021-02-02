@@ -45,7 +45,7 @@
                             </div>
                             <div class="table-responsive mt-3">
                                 <asp:GridView runat="server" DataKeyNames="LotNumber, StocksCode" AutoGenerateColumns="false"
-                                    ID="GridViewStocksDetails" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewStocksDetails_RowCommand">
+                                    ID="GridViewStocksDetails" CssClass="mGrid table table-hover" CellPadding="5" OnRowCommand="GridViewStocksDetails_RowCommand">
                                     <HeaderStyle CssClass="thead-dark" />
                                     <Columns>
                                         <asp:BoundField HeaderText="Código" DataField="LotNumber" Visible="false" />
@@ -104,7 +104,7 @@
                         <ContentTemplate>
                             <div class="table-responsive mt-3">
                                 <asp:GridView runat="server" DataKeyNames="Id, InvoiceNumber" AutoGenerateColumns="false"
-                                    ID="GridViewInvoceDetails" CssClass="table table-hover" CellPadding="5">
+                                    ID="GridViewInvoceDetails" CssClass="mGrid table table-hover" CellPadding="5">
                                     <HeaderStyle CssClass="thead-dark" />
                                     <Columns>
                                         <asp:BoundField HeaderText="Id" DataField="LotNumber" Visible="false" />
@@ -229,10 +229,10 @@
                                                                 <div class="card">
                                                                     <div class="card-body table-responsive mt-3 mb-3">
                                                                         <asp:GridView runat="server" DataKeyNames="Id" AutoGenerateColumns="false"
-                                                                            ID="GridViewSaleInvoices" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewSaleInvoices_RowCommand">
+                                                                            ID="GridViewSaleInvoices" CssClass="mGrid table table-hover" CellPadding="5" OnRowCommand="GridViewSaleInvoices_RowCommand">
                                                                             <HeaderStyle CssClass="thead-dark" />
                                                                             <Columns>
-                                                                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />                                                                                
                                                                                 <asp:BoundField HeaderText="N° Factura" DataField="InvoiceNumber" />
                                                                                 <asp:BoundField HeaderText="Cliente" DataField="CustomerName" />
                                                                                 <asp:BoundField HeaderText="Moneda local" DataField="LocalCurrency" />
@@ -308,7 +308,7 @@
                                                                 <div class="card">
                                                                     <div class="card-body table-responsive mt-3 mb-3">
                                                                         <asp:GridView runat="server" DataKeyNames="LotNumber" AutoGenerateColumns="false"
-                                                                            ID="GridViewProductStocks" CssClass="table table-hover" CellPadding="5" OnRowCommand="GridViewProductStocks_RowCommand">
+                                                                            ID="GridViewProductStocks" CssClass="mGrid table table-hover" CellPadding="5" OnRowCommand="GridViewProductStocks_RowCommand">
                                                                             <HeaderStyle CssClass="thead-dark" />
                                                                             <Columns>
                                                                                 <asp:BoundField HeaderText="Código de lote" DataField="LotNumber" />
@@ -594,7 +594,7 @@
                                                     <div class="card-body">
                                                         <div class="table-responsive mt-3 mb-3">
                                                             <asp:GridView runat="server" DataKeyNames="StocksCode" AutoGenerateColumns="false"
-                                                                ID="GridViewSaleDetails" CssClass="table" CellPadding="5" OnRowCommand="GridViewSaleDetails_RowCommand">
+                                                                ID="GridViewSaleDetails" CssClass="mGrid table" CellPadding="5" OnRowCommand="GridViewSaleDetails_RowCommand">
                                                                 <HeaderStyle CssClass="thead-dark" />
                                                                 <Columns>
                                                                     <asp:BoundField HeaderText="Código" DataField="StocksCode" Visible="false" />

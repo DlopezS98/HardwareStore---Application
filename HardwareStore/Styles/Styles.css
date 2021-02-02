@@ -17,6 +17,16 @@ form{
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
 
+
+/*Gridviews*/
+.mGrid th {
+    text-align: center;
+}
+
+.mGrid td {
+    text-align: center;
+}
+
 /*Validaciones*/
 .ctrlvalidate {
     /*    visibility: hidden;*/
@@ -31,7 +41,7 @@ form{
     bottom: 125%;
     left: 70%;
     margin-left: -60px;
-    border: 0.1px solid #851722;   
+    border: 0.1px solid #851722;
     /* Fade in tooltip */
     /*    opacity: 0;
     transition: opacity 0.3s;*/

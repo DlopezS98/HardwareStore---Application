@@ -14,7 +14,6 @@
                                         <img style="height: 200px; width: 170px" runat="server" src="~/Images/img1.png" class="card-img-top" alt="...">
                                     </div>
                                     <div class="card-body">
-
                                         <h5 class="card-title">Existencias en bodegas</h5>
                                         <p class="card-text">Gestiona Movimientos de Productos</p>
                                         <asp:Button CssClass="btn btn-primary" runat="server" Text="Ver" ID="btnProductWarehouse" OnClick="btnProductWarehouse_Click" />

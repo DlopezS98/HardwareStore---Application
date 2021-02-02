@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="table-responsive mt-3">
                                     <asp:GridView runat="server" DataKeyNames="Code" AutoGenerateColumns="false"
-                                        ID="GridViewProductDetails" OnRowCommand="GridViewProductDetails_RowCommand" CssClass="table table-hover" CellPadding="5">
+                                        ID="GridViewProductDetails" OnRowCommand="GridViewProductDetails_RowCommand" CssClass="mGrid table table-hover" CellPadding="5">
                                         <HeaderStyle CssClass="thead-dark" />
                                         <Columns>
                                             <asp:BoundField HeaderText="Código" DataField="Code" />
@@ -89,7 +89,7 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <div class="table-responsive mt-3">
-                                    <asp:GridView runat="server" AutoGenerateColumns="false" ID="GridviewInvoiceDetails" CssClass="table table-hover" CellPadding="5">
+                                    <asp:GridView runat="server" AutoGenerateColumns="false" ID="GridviewInvoiceDetails" CssClass="mGrid table table-hover" CellPadding="5">
                                         <HeaderStyle CssClass="thead-dark" />
                                         <Columns>
                                             <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
@@ -313,7 +313,7 @@
                                                                     <div class="card">
                                                                         <div class="card-body table-responsive mt-3 mb-3">
                                                                             <asp:GridView runat="server" DataKeyNames="Id, InvoiceNumber" AutoGenerateColumns="false"
-                                                                                ID="GridViewInvoices" CssClass="table" CellPadding="5" OnRowCommand="GridViewInvoices_RowCommand">
+                                                                                ID="GridViewInvoices" CssClass="mGrid table" CellPadding="5" OnRowCommand="GridViewInvoices_RowCommand">
                                                                                 <HeaderStyle CssClass="thead-dark" />
                                                                                 <Columns>
                                                                                     <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
@@ -591,7 +591,7 @@
                                                                     </div>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtSupplierInvoiceNumber" placeholder="Número de factura" />
-                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator5" ValidationGroup="DetailsGroup" ControlToValidate="txtSupplierInvoiceNumber">
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator5" ValidationGroup="DetailsGroup2" ControlToValidate="txtSupplierInvoiceNumber">
                                                                             <div class="ctrlvalidate">
                                                                                 <div style="color: #fff">
                                                                                     Campo requerido  
@@ -606,7 +606,7 @@
                                                                     <div class="input-group">
                                                                         <asp:DropDownList ID="ddlstSuppliers" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
-                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator6" ValidationGroup="DetailsGroup" ControlToValidate="ddlstSuppliers">
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator6" ValidationGroup="DetailsGroup2" ControlToValidate="ddlstSuppliers">
                                                                             <div class="ctrlvalidate">
                                                                                 <div style="color: #fff">
                                                                                     Campo requerido  
@@ -624,7 +624,7 @@
                                                         <div class="card-body">
                                                             <div class="table-responsive mt-3 mb-3">
                                                                 <asp:GridView runat="server" DataKeyNames="Code, WarehouseId" AutoGenerateColumns="false"
-                                                                    ID="GridViewPurchaseDetails" CssClass="table" CellPadding="5" OnRowCommand="GridViewPurchaseDetails_RowCommand">
+                                                                    ID="GridViewPurchaseDetails" CssClass="mGrid table" CellPadding="5" OnRowCommand="GridViewPurchaseDetails_RowCommand">
                                                                     <HeaderStyle CssClass="thead-dark" />
                                                                     <Columns>
                                                                         <asp:BoundField HeaderText="Código" DataField="Code" />
@@ -677,7 +677,7 @@
                                                                     <label>Impuesto</label>
                                                                     <div class="input-group">
                                                                         <asp:TextBox runat="server" TextMode="Number" step="0.01" ID="txtTotalTax" placeholder="Impuesto" CssClass="form-control" />
-                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator7" ValidationGroup="DetailsGroup" ControlToValidate="txtTotalTax">
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator7" ValidationGroup="DetailsGroup2" ControlToValidate="txtTotalTax">
                                                                             <div class="ctrlvalidate">
                                                                                 <div style="color: #fff">
                                                                                     Campo requerido  
@@ -694,7 +694,7 @@
                                                                     <label for="txtTotalDiscount">Descuento</label>
                                                                     <div class="input-group">
                                                                         <asp:TextBox TextMode="Number" runat="server" step="1" ID="txtTotalDiscount" placeholder="Descuento" CssClass="form-control" />
-                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator8" ValidationGroup="DetailsGroup" ControlToValidate="txtTotalDiscount">
+                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator8" ValidationGroup="DetailsGroup2" ControlToValidate="txtTotalDiscount">
                                                                             <div class="ctrlvalidate">
                                                                                 <div style="color: #fff">
                                                                                     Campo requerido  
@@ -724,7 +724,7 @@
                                                                     <asp:Button runat="server" Text="Calcular" ID="btnRecalculatePurchaseTotal" OnClick="btnRecalculatePurchaseTotal_Click" CssClass="btn btn-success btn-block" />
                                                                 </div>
                                                                 <div class="col-lg-2 p-1">
-                                                                    <asp:Button ValidationGroup="DetailsGroup" runat="server" Text="Registrar Orden" ID="btnGeneratePurchase" OnClick="btnGeneratePurchase_Click" CssClass="btn btn-success btn-block" />
+                                                                    <asp:Button ValidationGroup="DetailsGroup2" runat="server" Text="Registrar Orden" ID="btnGeneratePurchase" OnClick="btnGeneratePurchase_Click" CssClass="btn btn-success btn-block" />
                                                                 </div>
                                                                 <div class="col-lg-2 p-1">
                                                                     <asp:Button runat="server" Text="Cancelar" ID="btnPurchaseCancel" OnClick="btnPurchaseCancel_Click" CssClass="btn btn-danger btn-block" />

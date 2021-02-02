@@ -137,7 +137,7 @@ namespace HardwareStore.Modules.Billing
             this.DropDownListCustomers.Items.Insert(0, new ListItem("Seleccione el cliente", "0"));
         }
 
-        public void LoadGridVewSaleInvoces(DateTime? StartDate, DateTime? EndDate, string Search = "")
+        public void LoadGridVewSaleInvoces( DateTime? StartDate, DateTime? EndDate, string Search = "")
         {
             DateTime Start, End;
             List<SalesInvoiceDto> Invoices = new List<SalesInvoiceDto>();

@@ -246,6 +246,7 @@
     <Content Include="Styles\main.css" />
     <Content Include="Styles\OdModalStyle.css" />
     <Content Include="Styles\SideBarStyle.css" />
+    <Content Include="Styles\Spinner.css" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Toast.css" />
     <Content Include="Styles\util.css" />

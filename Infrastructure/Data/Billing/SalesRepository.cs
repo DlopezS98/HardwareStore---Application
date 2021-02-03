@@ -112,10 +112,8 @@ namespace HardwareStore.Infrastructure.Data.Billing
             try
             {
                 DataTable dt = new DataTable();
-                SqlParameter invoiceid = new SqlParameter("@InvoiceId", SqlDbType.Int); invoiceid.Direction = ParameterDirection.Input;
-                invoiceid.Value = InvoiceId;
-                //list = this._dbContext.Database.SqlQuery<SalesDetailsDto>("[dbo].[Sp_ListSalesDetails] @InvoiceId", invoiceid).ToList();
-                dt = this._dbContext.Database.SqlQuery<DataTable>("[dbo].[Sp_ListSalesDetails] @InvoiceId", invoiceid).FirstOrDefault();
+                string query = string.Format("[dbo].[Sp_ListSalesDetails] {0}", InvoiceId);
+                dt = this.GetInformation(query);
                 return dt;
             }
             catch (Exception exc)
@@ -138,6 +136,22 @@ namespace HardwareStore.Infrastructure.Data.Billing
                 enddate.Value = EndDate.ToString("yyyy-MM-dd");
                 list = this._dbContext.Database.SqlQuery<SalesInvoiceDto>("EXEC [dbo].[Sp_ListSaleInvoices] @Search, @StartDate, @EndDate", search, startdate, enddate).ToList();
                 return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public DataTable GetDataTableSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                string query = string.Format("EXEC [dbo].[Sp_ListSaleInvoices] '{0}', '{1}', '{2}'", Search, StartDate.ToString("yyyy-MM-dd"), EndDate.ToString("yyyy-MM-dd"));
+                dt = this.GetInformation(query);
+                return dt;
             }
             catch (Exception exc)
             {

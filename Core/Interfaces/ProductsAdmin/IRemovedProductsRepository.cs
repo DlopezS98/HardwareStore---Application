@@ -2,6 +2,7 @@
 using HardwareStore.Core.Entities.ProductsAdmin;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,5 +13,6 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
     {
         void RegisterRemovedProducts(RemovedProducts Rmprod);
         List<RemovedProductsDto> GetRemovedProducts(DateTime StartDate, DateTime EndDate, string Search);
+        DataTable GetDataTableRemovedProducts(DateTime StartDate, DateTime EndDate, string Search);
     }
 }

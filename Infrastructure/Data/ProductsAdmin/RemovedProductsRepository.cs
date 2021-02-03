@@ -40,6 +40,22 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
             }
         }
 
+        public DataTable GetDataTableRemovedProducts(DateTime StartDate, DateTime EndDate, string Search)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                string query = string.Format("EXEC [dbo].[Sp_ListRemovedProducts] '{0}', '{1}',  '{2}'", StartDate.ToString("yyyy-MM-dd"), EndDate.ToString("yyyy-MM-dd"), Search);
+                dt = this.GetInformation(query);
+                return dt;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
         public void RegisterRemovedProducts(RemovedProducts Rmprod)
         {
             try

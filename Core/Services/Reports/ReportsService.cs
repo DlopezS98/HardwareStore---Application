@@ -48,13 +48,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<ProductStocksDto> GetProductStocks(string Search, DateTime StartDate, DateTime EndDate)
+        public DataTable GetProductStocks(string Search, DateTime StartDate, DateTime EndDate)
         {
             try
             {
-                List<ProductStocksDto> list = new List<ProductStocksDto>();
-                list = this._StocksRepository.GetProductStocks(Search, true, StartDate, EndDate);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._StocksRepository.GetDataTableProductStocks(Search, true, StartDate, EndDate);
+                return dt;
             }
             catch (Exception exc)
             {
@@ -63,13 +63,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<StocksDetailsDto> GetProductStocksDetails(string LotNumber, string Search, int WarehouseId)
+        public DataTable GetProductStocksDetails(string LotNumber, string Search, int WarehouseId)
         {
             try
             {
-                List<StocksDetailsDto> list = new List<StocksDetailsDto>();
-                list = this._StocksRepository.GetProductStocksDetails(LotNumber, Search, WarehouseId);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._StocksRepository.GetDataTableProductStocksDetails(LotNumber, Search, WarehouseId);
+                return dt;
             }
             catch (Exception exc)
             {
@@ -78,13 +78,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<InvoiceDetailsDto> GetPurchaseInvoiceDetails(int InvoiceId)
+        public DataTable GetPurchaseInvoiceDetails(int InvoiceId)
         {
             try
             {
-                List<InvoiceDetailsDto> list = new List<InvoiceDetailsDto>();
-                list = this._PurchaseRepository.GetPurchaseInvoiceDetails(InvoiceId);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._PurchaseRepository.GetPurchaseInvoiceDetailsFromDataBase(InvoiceId);
+                return dt;
             }
             catch (Exception exc)
             {
@@ -93,13 +93,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<InvoicesDto> GetPurhaseInvoices(DateTime StartDate, DateTime EndDate, string Search)
+        public DataTable GetPurhaseInvoices(DateTime StartDate, DateTime EndDate, string Search)
         {
             try
             {
-                List<InvoicesDto> list = new List<InvoicesDto>();
-                list = this._PurchaseRepository.GetPurhaseInvoices(StartDate, EndDate, Search);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._PurchaseRepository.GetPurchaseInvoicesFromDataBase(StartDate, EndDate, Search);
+                return dt;
             }
             catch (Exception exc)
             {
@@ -108,13 +108,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<RemovedProductsDto> GetRemovedProducts(DateTime StartDate, DateTime EndDate, string Search)
+        public DataTable GetRemovedProducts(DateTime StartDate, DateTime EndDate, string Search)
         {
             try
             {
-                List<RemovedProductsDto> list = new List<RemovedProductsDto>();
-                list = this._RemovedProductsRepository.GetRemovedProducts(StartDate, EndDate, Search);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._RemovedProductsRepository.GetDataTableRemovedProducts(StartDate, EndDate, Search);
+                return dt;
             }
             catch (Exception exc)
             {
@@ -138,13 +138,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<SalesDetailsDto> ListSalesDetails(int InvoiceId)
+        public DataTable ListSalesDetails(int InvoiceId)
         {
             try
             {
-                List<SalesDetailsDto> list = new List<SalesDetailsDto>();
-                list = this._SalesRepository.ListSalesDetails(InvoiceId);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._SalesRepository.GetDataTableSalesDetails(InvoiceId);
+                return dt;
             }
             catch (Exception exc)
             {
@@ -153,13 +153,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<SalesInvoiceDto> ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)
+        public DataTable ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)
         {
             try
             {
-                List<SalesInvoiceDto> list = new List<SalesInvoiceDto>();
-                list = this._SalesRepository.ListSalesInvoices(StartDate, EndDate, Search);
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._SalesRepository.GetDataTableSalesInvoices(StartDate, EndDate, Search);
+                return dt;
             }
             catch (Exception exc)
             {

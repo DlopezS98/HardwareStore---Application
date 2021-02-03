@@ -3,6 +3,7 @@ using HardwareStore.Core.DTOs.ProductsAdmin;
 using HardwareStore.Core.Entities.ProductsAdmin;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,5 +18,7 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
         List<StocksDetailsDto> GetProductStocksDetails(string LotNumber, string Search, int WarehouseId);
         StocksDetailsDto GetStocksDetail(string StocksCode);
         void UpdateStocksDetails(List<StocksUpdateDto> dto);
+        DataTable GetDataTableProductStocksDetails(string LotNumber, string Search, int WarehouseId);
+        DataTable GetDataTableProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate);
     }
 }

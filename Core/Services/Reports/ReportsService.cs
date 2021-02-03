@@ -7,6 +7,7 @@ using HardwareStore.Core.Interfaces.ProductsAdmin;
 using HardwareStore.Core.Interfaces.Reports;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,13 +123,13 @@ namespace HardwareStore.Core.Services.Reports
             }
         }
 
-        public List<ProductDetailsDto> ListAllProductDetails()
+        public DataTable GetProductDetailsFromDatabase(bool Deleted, string Search)
         {
             try
             {
-                List<ProductDetailsDto> list = new List<ProductDetailsDto>();
-                list = this._ProductsRepository.ListAllProductDetails();
-                return list;
+                DataTable dt = new DataTable();
+                dt = this._ProductsRepository.GetProductDetailsFromDatabase(Deleted, Search);
+                return dt;
             }
             catch (Exception exc)
             {

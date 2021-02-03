@@ -23,6 +23,8 @@ namespace HardwareStore.Modules.ProductsAdmin
         public ICommonServices CommonService { get; set; }
         private string UserName;
         private string UserKey = "Current_Username";
+        private List<StocksDetailsDto> TempList { get; set; }
+        private string TempListKey = "StocksPendingToTransfer";
 
         public void LoadGridViewProductStocks(DateTime? Start, DateTime? End, string search = "")
         {

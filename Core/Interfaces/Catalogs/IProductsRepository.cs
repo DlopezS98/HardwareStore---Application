@@ -13,6 +13,6 @@ namespace HardwareStore.Core.Interfaces.Catalogs
         List<ProductDetailsDto> ListAllProductDetails(Boolean Deleted, string Search);
         ProductDetailsDto GetAProductDetail(string Code);
         List<ProductDetailsDto> ListAllProductDetails();
-        DataTable GetProductDetailsFromDatabase(Boolean Deleted, string Search);
+        DataTable GetProductDetailsFromDatabase(bool Deleted, string Search);
     }
 }

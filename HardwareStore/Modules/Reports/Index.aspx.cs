@@ -1,5 +1,4 @@
-﻿using HardwareStore.Core.DTOs.Catalogs;
-using HardwareStore.Core.Interfaces;
+﻿using HardwareStore.Core.Interfaces;
 using HardwareStore.Core.Interfaces.Reports;
 using Ninject;
 using Ninject.Web;
@@ -10,6 +9,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Reporting.WebForms;
+using System.ComponentModel;
+using HardwareStore.Core.Interfaces.Catalogs;
 
 namespace HardwareStore.Modules.Reports
 {
@@ -17,20 +19,23 @@ namespace HardwareStore.Modules.Reports
     {
         [Inject]
         public IReportsService ReportService { get; set; }
-        [Inject]
-        public ICommonServices CommonService { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                this.LoadProductReport();
+            }
         }
 
         private void LoadProductReport()
         {
-            //DataTable dt = new DataTable();
-            //List<ProductDetailsDto> list = new List<ProductDetailsDto>();
-            //list = this.ReportService.ListAllProductDetails();
-            //dt = this.CommonService.ToDataTable(list);
-            //reportviewer1.datasourcer = dt;
+            DataTable dt = new DataTable();
+            dt = this.ReportService.GetProductDetailsFromDatabase(false, "");
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportDataSource Rdlc = new ReportDataSource("DataSetProductReport", dt);
+            ReportViewer1.LocalReport.DataSources.Add(Rdlc);
+            ReportViewer1.LocalReport.Refresh();
+            //MultiviewReports.ActiveViewIndex = 1;
         }
     }
 }

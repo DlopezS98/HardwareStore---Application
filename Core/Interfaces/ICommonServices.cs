@@ -1,5 +1,6 @@
 ﻿using HardwareStore.Core.DTOs.SysConfiguration;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace HardwareStore.Core.Interfaces
     {
         string GetInitials(string Name);
         TupleConversionDto GetConversionValue(int IdConvertFrom, int IdConvertTo, double? Value);
-        DataTable ToDataTable<T>(IEnumerable<T> list);
+        DataTable ToDataTable<T>(IList data);
     }
 }

@@ -187,5 +187,28 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
                 throw exc;
             }
         }
+
+        public DataTable GetDataTableProductStocks(string Search, bool Available, DateTime StartDate, DateTime EndDate)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+                SqlParameter available = new SqlParameter("@Available", SqlDbType.Bit); available.Direction = ParameterDirection.Input;
+                SqlParameter startdate = new SqlParameter("@StartDate", SqlDbType.VarChar); startdate.Direction = ParameterDirection.Input;
+                SqlParameter enddate = new SqlParameter("@EndDate", SqlDbType.VarChar); enddate.Direction = ParameterDirection.Input;
+                search.Value = Search;
+                available.Value = Available;
+                startdate.Value = StartDate.ToString("yyyy-MM-dd");
+                enddate.Value = EndDate.ToString("yyyy-MM-dd");
+                dt = this._dbContext.Database.SqlQuery<DataTable>("EXEC [dbo].[Sp_ListProductStocks] @Search, @Available, @StartDate, @EndDate", search, available, startdate, enddate).FirstOrDefault();
+                return dt;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
     }
 }

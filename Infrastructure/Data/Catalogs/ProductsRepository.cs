@@ -3,6 +3,7 @@ using HardwareStore.Core.Interfaces.Catalogs;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,25 @@ namespace HardwareStore.Infrastructure.Data.Catalogs
                 throw exc;
             }
         }
+
+        //public DataTable GetDataTableProductStocks(bool Deleted, string Search)
+        //{
+        //    try
+        //    {
+        //        DataTable dt = new DataTable();
+        //        SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+        //        SqlParameter deleted = new SqlParameter("@Deleted", SqlDbType.Bit); deleted.Direction = ParameterDirection.Input;
+        //        search.Value = Search;
+        //        deleted.Value = Deleted;
+        //        dt = this._dbContext.Database.SqlQuery<DataTable>("EXEC [dbo].[Sp_ListProductStocks] @Deleted, @Search", deleted, search).FirstOrDefault();
+        //        return dt;
+        //    }
+        //    catch (Exception exc)
+        //    {
+
+        //        throw exc;
+        //    }
+        //}
 
         public List<ProductDetailsDto> ListAllProductDetails()
         {

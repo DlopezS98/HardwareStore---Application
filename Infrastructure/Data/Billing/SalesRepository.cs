@@ -107,6 +107,24 @@ namespace HardwareStore.Infrastructure.Data.Billing
             }
         }
 
+        public DataTable GetDataTableSalesDetails(int InvoiceId)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter invoiceid = new SqlParameter("@InvoiceId", SqlDbType.Int); invoiceid.Direction = ParameterDirection.Input;
+                invoiceid.Value = InvoiceId;
+                //list = this._dbContext.Database.SqlQuery<SalesDetailsDto>("[dbo].[Sp_ListSalesDetails] @InvoiceId", invoiceid).ToList();
+                dt = this._dbContext.Database.SqlQuery<DataTable>("[dbo].[Sp_ListSalesDetails] @InvoiceId", invoiceid).FirstOrDefault();
+                return dt;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
         public List<SalesInvoiceDto> ListSalesInvoices(DateTime StartDate, DateTime EndDate, string Search)
         {
             try

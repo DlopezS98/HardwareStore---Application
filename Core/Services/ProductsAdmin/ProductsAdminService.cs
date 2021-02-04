@@ -1,6 +1,7 @@
 ﻿using HardwareStore.Core.DTOs;
 using HardwareStore.Core.DTOs.Catalogs;
 using HardwareStore.Core.DTOs.ProductsAdmin;
+using HardwareStore.Core.Entities;
 using HardwareStore.Core.Entities.ProductsAdmin;
 using HardwareStore.Core.Interfaces.Catalogs;
 using HardwareStore.Core.Interfaces.ProductsAdmin;
@@ -18,13 +19,18 @@ namespace HardwareStore.Core.Services.ProductsAdmin
         private readonly IWarehouseRepository _WarehouseRepository;
         private readonly IMeasureUnitsRepository _MeasureUnitsRepository;
         private readonly IRemovedProductsRepository _RemovedProductsRepository;
+        private readonly IPendingTransfersRepository _PendingTransfersRepository;
+        private readonly ITranfersRepository _TranfersRepository;
+
         public ProductsAdminService(IProductsStocksRepository _StocksRepository, IWarehouseRepository _WarehouseRepository, IMeasureUnitsRepository _MeasureUnitsRepository,
-                                    IRemovedProductsRepository _RemovedProductsRepository)
+                                    IRemovedProductsRepository _RemovedProductsRepository, IPendingTransfersRepository _PendingTransfersRepository, ITranfersRepository _TranfersRepository)
         {
             this._StocksRepository = _StocksRepository;
             this._WarehouseRepository = _WarehouseRepository;
             this._MeasureUnitsRepository = _MeasureUnitsRepository;
             this._RemovedProductsRepository = _RemovedProductsRepository;
+            this._PendingTransfersRepository = _PendingTransfersRepository;
+            this._TranfersRepository = _TranfersRepository;
         }
 
         public Response DeleteProductFromStocks(DeleteProductDto dto)
@@ -205,6 +211,174 @@ namespace HardwareStore.Core.Services.ProductsAdmin
                 List<RemovedProductsDto> list = new List<RemovedProductsDto>();
                 list = this._RemovedProductsRepository.GetRemovedProducts(StartDate, EndDate, Search);
                 return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public Response CreatePendingTransfer(PendingTranfersModelDto dto)
+        {
+            try
+            {
+                List<PendingTranfersDto> list = new List<PendingTranfersDto>();
+                list = this.GetPendingTransferProducts("", Enums.TransferStatus.Pending);
+                var alreadyexits = list.Exists(x => x.TargetWarehouseId == dto.TargetWarehouseId && x.ProductDetailCode == dto.ProductDetailCode);
+                if (alreadyexits)
+                {
+                    return new Response() { Title = "¡Error al transferir el producto!", Message = "El producto ya existe en la cola", Success = false };
+                }
+                else
+                {
+                    this._PendingTransfersRepository.CreatePendingTransfer(dto);
+                    return new Response() { Title = "¡Operación exitosa!", Message = "Se ha trasnferido a la lista de espera", Success = true };
+                }
+
+            }
+            catch (Exception exc)
+            {
+
+                return new Response() { Title = "¡Error al transferir el producto a la lista de espera!", Message = exc.Message, Success = false };
+            }
+        }
+
+        public Response UpdatePendingTranfer(string Code, PendingTranfersModelDto dto)
+        {
+            try
+            {
+                //PendingTranfersDto pending = new PendingTranfersDto();
+                List<PendingTranfersDto> list = new List<PendingTranfersDto>();
+                list = this.GetPendingTransferProducts("", Enums.TransferStatus.Pending);
+                //pending = this.GetPendingTransferProduct(Code);
+                var alreadyexits = list.Exists(x => x.TargetWarehouseId == dto.TargetWarehouseId && x.ProductDetailCode == dto.ProductDetailCode);
+                if (alreadyexits)
+                {
+                    return new Response() { Title = "¡Error al transferir el producto!", Message = "El producto ya existe en la cola", Success = false };
+
+                }
+                else
+                {
+                    this._PendingTransfersRepository.UpdatePendingTranfer(Code, dto);
+                    return new Response() { Title = "¡Operación exitosa!", Message = "Se ha actualizado el producto", Success = true };
+                }
+            }
+            catch (Exception exc)
+            {
+
+                return new Response() { Title = "¡Error al actualizar el producto!", Message = exc.Message, Success = false };
+            }
+        }
+
+        public Response DeleteProductFromTransferList(string Code, string User)
+        {
+            try
+            {
+                this._PendingTransfersRepository.DeleteProductFromTransferList(Code, User);
+                return new Response() { Title = "¡Operación exitosa!", Message = "Se ha eliminado el producto sastisfactoriamente", Success = true };
+            }
+            catch (Exception exc)
+            {
+
+                return new Response() { Title = "¡Error al eliminar el producto!", Message = exc.Message, Success = false };
+            }
+        }
+
+        public List<PendingTranfersDto> GetPendingTransferProducts(string Search, Enums.TransferStatus Status)
+        {
+            try
+            {
+                List<PendingTranfersDto> list = new List<PendingTranfersDto>();
+                list = this._PendingTransfersRepository.GetPendingTransferProducts(Search, Status);
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public PendingTranfersDto GetPendingTransferProduct(string Code)
+        {
+            try
+            {
+                PendingTranfersDto dto = new PendingTranfersDto();
+                dto = this._PendingTransfersRepository.GetPendingTransferProduct(Code);
+                return dto;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public void CreateTranfer(List<PendingTranfersDto> list, string User)
+        {
+            try
+            {
+                ProductTransferDto dto = new ProductTransferDto();
+                dto.TotalProducts = list.Count;
+                dto.CreatedBy = User;
+                dto.UpdatedBy = User;
+                dto.TranferStatus = Enums.TransferStatus.Done;
+
+                this._TranfersRepository.CreateTranfer(dto);
+                
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+
+        public List<PendingTranfersDto> ListTransfers(string Search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Response GenerateTransferTransaction(List<PendingTranfersDto> list, string User)
+        {
+            try
+            {
+                this.CreateTranfer(list, User);
+                this._TranfersRepository.CreateTranfersDetails(list);
+                return new Response() { Title = "¡Operación exitosa!", Message = "Se han transferido los productos", Success = true };
+            }
+            catch (Exception exc)
+            {
+
+                return new Response() { Title = "¡Error al Transferir los productos!", Message = exc.Message, Success = false };
+            }
+        }
+
+        private List<StocksUpdateDto> MapStocksDetailsDecrement(List<PendingTranfersDto> list)
+        {
+            try
+            {
+                double stock;
+                List<StocksUpdateDto> details = new List<StocksUpdateDto>();
+                //List<TempSaleList> temp = new List<TempSaleList>();
+                //temp = Sales.Details;
+                foreach (PendingTranfersDto item in list)
+                {
+                    stock = 0;
+                    StocksUpdateDto data = new StocksUpdateDto();
+                    StocksDetailsDto dto = new StocksDetailsDto();
+                    dto = this.GetAStocksDetail(item.StocksCode);
+                    data.UnitBaseQuantity = (double)dto.ConversionValue - item.ConversionQuantity;
+                    stock = this.GetConversionValue(dto.UnitBaseId, dto.PurchaseUnitId, data.UnitBaseQuantity);
+                    data.UnitPurchasedQuantity = stock;
+                    data.LotNumber = dto.LotNumber;
+                    data.StockCode = dto.StocksCode;
+                    details.Add(data);
+                }
+
+                return details;
             }
             catch (Exception exc)
             {

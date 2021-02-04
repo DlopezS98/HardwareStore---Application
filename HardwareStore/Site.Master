@@ -21,8 +21,8 @@
     <%--<webopt:bundlereference runat="server" path="~/Content/css" />--%>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link runat="server" type="text/css" href="~/Styles/Toast.css" rel="stylesheet" media="screen" />
-    <link runat="server" type="text/css" href="~/Styles/Spinner.css" rel="stylesheet" media="screen"/>
-    <link runat="server" type="text/css" href="~/Styles/Toast.css" rel="stylesheet" media="screen"/>
+    <link runat="server" type="text/css" href="~/Styles/Spinner.css" rel="stylesheet" media="screen" />
+    <link runat="server" type="text/css" href="~/Styles/Toast.css" rel="stylesheet" media="screen" />
 </head>
 <body>
     <form runat="server">
@@ -54,9 +54,6 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Iniciar sesión <span class="sr-only">(current)</span></a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle dropdown-menu-right" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones
                                 </a>
@@ -85,14 +82,20 @@
 
             <section class="sidevar-grid">
                 <div class="sidebar">
-                    <ul style="padding-top: 100px">
+                    <div class="d-flex justify-content-center mt-2">
+                        <img style="height: 55px; width: 50px" runat="server" src="~/Images/Avatar.png" />
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <label style="color: #fff" runat="server">Nombre de Usuario</label>
+                    </div>
+                    <ul style="padding-top: 20px">
                         <li><a href="/Default.aspx"><i class="fas fa-home mr-4"></i>Home</a></li>
                         <li><a href="/Modules/Billing/Sales.aspx"><i class="fa fa-cash-register fa-lg mr-4"></i>Ventas</a></li>
                         <li><a href="/Modules/Billing/Purchases.aspx"><i class="fa fa-file-invoice fa-lg mr-4"></i>Compras</a></li>
                         <li><a href="/Modules/Catalogs/MainCatalogs.aspx"><i class="fa fa-grip-horizontal fa-lg mr-4"></i>Catálogos</a></li>
                         <li><a href="/Modules/ProductsAdmin/AdministrationIndex.aspx"><i class="fa fa-cogs fa-lg mr-3"></i>Existencias</a></li>
                         <li><a href="/Modules/Reports/Index.aspx"><i class="fa fa-receipt fa-lg mr-4"></i>Reportes</a></li>
-                        <li><a href="/Modules/Security.Module/MainSecurity.aspx"><i class="fa fa-shield-alt fa-lg mr-4"></i>Seguridad</a></li>
+                        <li><a href="/Modules/UsersAdmin/UserRoles.aspx"><i class="fa fa-shield-alt fa-lg mr-4"></i>Seguridad</a></li>
                         <li><a href="/Modules/System/Info.aspx"><i class="fa fa-cog mr-4"></i>Configuración</a></li>
                     </ul>
                 </div>

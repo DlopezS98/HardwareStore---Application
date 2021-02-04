@@ -180,16 +180,49 @@
     <Content Include="fonts\Roboto-Regular.ttf" />
     <Content Include="fonts\Roboto-Thin.ttf" />
     <Content Include="fonts\Roboto-ThinItalic.ttf" />
-    <Content Include="Data\ProductsReports\ProductsReport.xsc">
-      <DependentUpon>ProductsReport.xsd</DependentUpon>
+    <Content Include="Data\ExistenciesReports\ExistenciesProducts.xsc">
+      <DependentUpon>ExistenciesProducts.xsd</DependentUpon>
     </Content>
-    <None Include="Data\ProductsReports\ProductsReport.xsd">
+    <None Include="Data\ExistenciesReports\ExistenciesProducts.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProductsReport.Designer.cs</LastGenOutput>
+      <LastGenOutput>ExistenciesProducts.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Data\ProductsReports\ProductsReport.xss">
-      <DependentUpon>ProductsReport.xsd</DependentUpon>
+    <Content Include="Data\ExistenciesReports\ExistenciesProducts.xss">
+      <DependentUpon>ExistenciesProducts.xsd</DependentUpon>
+    </Content>
+    <Content Include="Data\PurchaseReports\PurchaseReport.xsc">
+      <DependentUpon>PurchaseReport.xsd</DependentUpon>
+    </Content>
+    <Content Include="Data\ProductsReports\ProductReport.xsc">
+      <DependentUpon>ProductReport.xsd</DependentUpon>
+    </Content>
+    <None Include="Data\ProductsReports\ProductReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductReport.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Data\ProductsReports\ProductReport.xss">
+      <DependentUpon>ProductReport.xsd</DependentUpon>
+    </Content>
+    <None Include="Data\PurchaseReports\PurchaseReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PurchaseReport.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Data\PurchaseReports\PurchaseReport.xss">
+      <DependentUpon>PurchaseReport.xsd</DependentUpon>
+    </Content>
+    <Content Include="Data\SalesReports\SalesReport.xsc">
+      <DependentUpon>SalesReport.xsd</DependentUpon>
+    </Content>
+    <None Include="Data\SalesReports\SalesReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SalesReport.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Data\SalesReports\SalesReport.xss">
+      <DependentUpon>SalesReport.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\Avatar.png" />
@@ -278,19 +311,6 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Styles\main.css" />
     <Content Include="Styles\OdModalStyle.css" />
     <Content Include="Styles\SideBarStyle.css" />
@@ -340,10 +360,25 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Data\ProductsReports\ProductsReport.Designer.cs">
+    <Compile Include="Data\ExistenciesReports\ExistenciesProducts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProductsReport.xsd</DependentUpon>
+      <DependentUpon>ExistenciesProducts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ProductsReports\ProductReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PurchaseReports\PurchaseReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SalesReports\SalesReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SalesReport.xsd</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -552,7 +587,6 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -563,10 +597,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\PurchasesReports\" />
-    <Folder Include="Data\RemovedProductsReports\" />
-    <Folder Include="Data\SalesReports\" />
-    <Folder Include="Data\StocksReports\" />
+    <Folder Include="Data\DamagedProductsReports\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -590,7 +621,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Data\ProductsReports\ProductsReport.rdlc" />
+    <EmbeddedResource Include="Data\ExistenciesReports\ExistenciesReport.rdlc" />
+    <EmbeddedResource Include="Data\ProductsReports\ProductReport.rdlc" />
+    <EmbeddedResource Include="Data\PurchaseReports\PurchaseReport.rdlc" />
+    <EmbeddedResource Include="Data\SalesReports\SalesReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

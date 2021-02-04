@@ -29,7 +29,7 @@
                             <h5 class="card-title">Reporte</h5>
                             <p class="card-text">Crea un nuevo reporte</p>
                             <div style="margin-top: 15px">
-                                <a href="/Modules/Reports.Module/MainReports.aspx" class="btn btn-primary">Vamos</a>
+                                <a href="/Modules/Reports/Index.aspx" class="btn btn-primary">Vamos</a>
                             </div>
                         </div>
                     </div>

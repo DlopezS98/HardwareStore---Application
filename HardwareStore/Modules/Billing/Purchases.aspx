@@ -135,14 +135,14 @@
                                                     <asp:Label Text="Nombre" runat="server" />
                                                     <div class="input-group">
                                                         <asp:TextBox runat="server" ID="txtFormWhsWarehouseName" placeholder="Nombre bodega" CssClass="form-control" />
-                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator9" ValidationGroup="DetailsGroupModal" ControlToValidate="txtTotalDiscount">
+                                                        <%--<asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator9" ValidationGroup="DetailsGroupModal" ControlToValidate="txtTotalDiscount">
                                                          <div class="ctrlvalidate">
                                                               <div style="color: #fff">
                                                                    Campo requerido  
                                                               </div>
                                                               <div class="fas fa-sort-down position-absolute"></div>
                                                           </div>                                                      
-                                                        </asp:RequiredFieldValidator>
+                                                        </asp:RequiredFieldValidator>--%>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -158,7 +158,7 @@
                                                         <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
                                                     </div>
                                                     <div class="col-lg-3 p-1">
-                                                        <asp:Button runat="server" ValidationGroup="DetailsGroupModal" Text="Agregar" ID="btnCreateNewWarehouse" OnClick="btnCreateNewWarehouse_Click" CssClass="btn btn-success btn-block" />
+                                                        <asp:Button runat="server" Text="Agregar" ID="btnCreateNewWarehouse" OnClick="btnCreateNewWarehouse_Click" CssClass="btn btn-success btn-block" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -398,16 +398,17 @@
                                                                     <div class="input-group">
                                                                         <asp:DropDownList ID="ddlstWarehouses" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
-                                                                        <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator10" ValidationGroup="DetailsGroup" ControlToValidate="ddlstWarehouses">
+                                                                        <%--<asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator10" ValidationGroup="DetailsGroup" ControlToValidate="ddlstWarehouses">
                                                                             <div class="ctrlvalidate">
                                                                                 <div style="color: #fff">
                                                                                     Campo requerido  
                                                                                  </div>
                                                                                 <div class="fas fa-sort-down position-absolute"></div>
                                                                             </div>                                                      
-                                                                        </asp:RequiredFieldValidator>
+                                                                        </asp:RequiredFieldValidator>--%>
                                                                         <div class="input-group-append">
-                                                                            <a href="~/Modules/Catalogs/Warehouses.aspx" runat="server" class="btn btn-success btn-sm">+</a>
+                                                                            <%--<a href="~/Modules/Catalogs/Warehouses.aspx" runat="server" class="btn btn-success btn-sm">+</a>--%>
+                                                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalWarehouses">...</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>

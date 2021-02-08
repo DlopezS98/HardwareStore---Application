@@ -93,7 +93,7 @@ namespace HardwareStore.App_Start
             kernel.Bind<IRemovedProductsRepository>().To<RemovedProductsRepository>();
             kernel.Bind<IPendingTransfersRepository>().To<PendingTransfersRepository>();
             kernel.Bind<IReportsService>().To<ReportsService>();
-            kernel.Bind<ITranfersRepository>().To<TranfersRepository>();
+            kernel.Bind<ITransfersRepository>().To<TransfersRepository>();
         }
     }
 }

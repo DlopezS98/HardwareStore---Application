@@ -98,6 +98,7 @@
     <Compile Include="DTOs\ProductsAdmin\StocksDetailsDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksUpdateDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\TransferDetailsDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\TransfersDto.cs" />
     <Compile Include="DTOs\Response.cs" />
     <Compile Include="DTOs\SysConfiguration\CurrencyExchangeDto.cs" />
     <Compile Include="DTOs\SysConfiguration\ForeignCurrencyDropDto.cs" />
@@ -154,7 +155,7 @@
     <Compile Include="Interfaces\ProductsAdmin\IProductsAdminService.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IRemovedProductsRepository.cs" />
-    <Compile Include="Interfaces\ProductsAdmin\ITranfersRepository.cs" />
+    <Compile Include="Interfaces\ProductsAdmin\ITransfersRepository.cs" />
     <Compile Include="Interfaces\Reports\IReportsService.cs" />
     <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,6 +29,7 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
         //Response CreateTranfer(List<PendingTranfersDto> list, string User);
         //Response CreateTranfersDetails(List<PendingTranfersDto> list);
         Response GenerateTransferTransaction(List<PendingTranfersDto> list, string User);
-        List<PendingTranfersDto> ListTransfers(string Search);
+        List<TransferDetailsDto> ListTransfersDetails(int TransferId, string Search);
+        List<TransfersDto> ListProductTransfer(string Search, DateTime StartDate, DateTime EndDate);
     }
 }

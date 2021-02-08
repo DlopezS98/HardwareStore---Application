@@ -183,6 +183,17 @@
     <Content Include="Data\ExistenciesReports\ExistenciesProducts.xsc">
       <DependentUpon>ExistenciesProducts.xsd</DependentUpon>
     </Content>
+    <Content Include="Data\DamagedProductsReports\DamagedProducts.xsc">
+      <DependentUpon>DamagedProducts.xsd</DependentUpon>
+    </Content>
+    <None Include="Data\DamagedProductsReports\DamagedProducts.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DamagedProducts.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Data\DamagedProductsReports\DamagedProducts.xss">
+      <DependentUpon>DamagedProducts.xsd</DependentUpon>
+    </Content>
     <None Include="Data\ExistenciesReports\ExistenciesProducts.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -239,6 +250,7 @@
     <Content Include="Images\img2.png" />
     <Content Include="Images\img3.png" />
     <Content Include="Images\lista-tareas.png" />
+    <Content Include="Images\lOGO.png" />
     <Content Include="Images\Marcas.png" />
     <Content Include="Images\mensajero-trabajando.png" />
     <Content Include="Images\product.png" />
@@ -359,6 +371,11 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DamagedProductsReports\DamagedProducts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DamagedProducts.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\ExistenciesReports\ExistenciesProducts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -597,7 +614,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\DamagedProductsReports\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -621,6 +637,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Data\DamagedProductsReports\DamagedProductsReport.rdlc" />
     <EmbeddedResource Include="Data\ExistenciesReports\ExistenciesReport.rdlc" />
     <EmbeddedResource Include="Data\ProductsReports\ProductReport.rdlc" />
     <EmbeddedResource Include="Data\PurchaseReports\PurchaseReport.rdlc" />

@@ -23,17 +23,17 @@ namespace HardwareStore.Modules.Reports
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                this.LoadDDListWarehouses();
-                this.LoaddlProductModule();
-            }
+            //if (!IsPostBack)
+            //{
+            //    this.LoadDDListWarehouses();
+            //    this.LoaddlProductModule();
+            //}
         }
         //Reporte de Productos
-        private void LoadProductReport()
+        private void LoadProductReport(string Search)
         {
             DataTable dt = new DataTable();
-            dt = this.ReportService.GetProductDetailsFromDatabase(false, "");
+            dt = this.ReportService.GetProductDetailsFromDatabase(false, Search);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource Rdlc = new ReportDataSource("DataSetProduct", dt);
             ReportViewer1.LocalReport.DataSources.Add(Rdlc);
@@ -41,26 +41,31 @@ namespace HardwareStore.Modules.Reports
             MultiviewReports.ActiveViewIndex = 1;
         }
 
+        protected void btnSearchProducts_Click(Object sender, EventArgs e)
+        {
+            string Search = btnSearchProducts.Text;
+            this.LoadProductReport(Search);
+        }
         protected void btnNewProductReport_Click(Object sender, EventArgs e)
         {
-            this.LoadProductReport();            
+            this.LoadProductReport("");            
         }
 
-        protected void ddlistFilterByWarehousesModuleProduct_SelectedIndexChanged(Object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(ddlistFilterByWarehousesModuleProduct.SelectedValue);
-            this.LoadExistencies(id);
-        }
+        //protected void ddlistFilterByWarehousesModuleProduct_SelectedIndexChanged(Object sender, EventArgs e)
+        //{
+        //    int id = Convert.ToInt32(ddlistFilterByWarehousesModuleProduct.SelectedValue);
+        //    this.LoadExistencies(id);
+        //}
 
-        private void LoaddlProductModule()
-        {
-            var list = this.ReportService.ListWarehousesForDropDowns();
-            this.ddlistFilterByWarehousesModuleProduct.DataSource = list;
-            this.ddlistFilterByWarehousesModuleProduct.DataTextField = "Name";
-            this.ddlistFilterByWarehousesModuleProduct.DataValueField = "Id";
-            this.ddlistFilterByWarehousesModuleProduct.DataBind();
-            this.ddlistFilterByWarehousesModuleProduct.Items.Insert(0, new ListItem("----[Todas las bodegas]----", "0"));
-        }
+        //private void LoaddlProductModule()
+        //{
+        //    var list = this.ReportService.ListWarehousesForDropDowns();
+        //    this.ddlistFilterByWarehousesModuleProduct.DataSource = list;
+        //    this.ddlistFilterByWarehousesModuleProduct.DataTextField = "Name";
+        //    this.ddlistFilterByWarehousesModuleProduct.DataValueField = "Id";
+        //    this.ddlistFilterByWarehousesModuleProduct.DataBind();
+        //    this.ddlistFilterByWarehousesModuleProduct.Items.Insert(0, new ListItem("----[Todas las bodegas]----", "0"));
+        //}
 
         //Reporte Compras
 
@@ -109,7 +114,7 @@ namespace HardwareStore.Modules.Reports
             ReportViewer3.LocalReport.Refresh();
         }
 
-        protected void btnFilterSale_Click(DateTime? StartDate, DateTime? EndDate, string Search = "")
+        protected void btnFilterSale_Click(Object sender, EventArgs e)
         {
             DateTime StartSale = Convert.ToDateTime(StartDateSale.Text);
             DateTime EndSale = Convert.ToDateTime(EndDateSale.Text);
@@ -156,14 +161,51 @@ namespace HardwareStore.Modules.Reports
         }
 
         //Llenando drop de Bodegas
-        public void LoadDDListWarehouses()
+        //public void LoadDDListWarehouses()
+        //{
+        //    var list = this.ReportService.ListWarehousesForDropDowns();
+        //    this.ddlistFilterByWarehouses.DataSource = list;
+        //    this.ddlistFilterByWarehouses.DataTextField = "Name";
+        //    this.ddlistFilterByWarehouses.DataValueField = "Id";
+        //    this.ddlistFilterByWarehouses.DataBind();
+        //    this.ddlistFilterByWarehouses.Items.Insert(0, new ListItem("----[Todas las bodegas]----", "0"));
+        //}
+
+
+        //Productos Dañados
+        private void LoadReportDamagedProducts(DateTime StartDate, DateTime EndDate)
         {
-            var list = this.ReportService.ListWarehousesForDropDowns();
-            this.ddlistFilterByWarehouses.DataSource = list;
-            this.ddlistFilterByWarehouses.DataTextField = "Name";
-            this.ddlistFilterByWarehouses.DataValueField = "Id";
-            this.ddlistFilterByWarehouses.DataBind();
-            this.ddlistFilterByWarehouses.Items.Insert(0, new ListItem("----[Todas las bodegas]----", "0"));
+            DataTable dtdp = new DataTable();
+            dtdp = this.ReportService.GetRemovedProducts(StartDate, EndDate, "");
+            ReportViewer5.LocalReport.DataSources.Clear();
+            ReportDataSource Rdlc = new ReportDataSource("DataSetDamagedProducts", dtdp);
+            ReportViewer5.LocalReport.DataSources.Add(Rdlc);
+            ReportViewer5.LocalReport.Refresh();
         }
+
+        protected void btnDamagedProducts_Click(Object sender, EventArgs e)
+        {
+            DateTime Start = DateTime.Parse("1998-10-01");
+            DateTime End = DateTime.Now;
+            this.LoadReportDamagedProducts(Start, End);
+            MultiviewReports.ActiveViewIndex = 5;
+        }
+
+        protected void btnFilterDamagedProducts_Click(Object sender, EventArgs e)
+        {
+            DateTime StartSale = Convert.ToDateTime(txtStartDatePD.Text);
+            DateTime EndSale = Convert.ToDateTime(txtEndDatePD.Text);
+            if (EndSale > StartSale)
+            {
+                this.LoadReportDamagedProducts(StartSale, EndSale);
+                return;
+            }
+            else
+            {
+                string ShowModalDate = "ModalDate()";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowModalDate, true);
+            }
+        }
+
     }
 }

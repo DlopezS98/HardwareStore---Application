@@ -90,10 +90,14 @@
     <Compile Include="DTOs\Catalogs\WarehousesDropDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\DeleteProductDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\PendingTranfersDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\PendingTranfersModelDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\ProductStocksDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\ProductTransferDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\RemovedProductsDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksDetailsDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksUpdateDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\TransferDetailsDto.cs" />
     <Compile Include="DTOs\Response.cs" />
     <Compile Include="DTOs\SysConfiguration\CurrencyExchangeDto.cs" />
     <Compile Include="DTOs\SysConfiguration\ForeignCurrencyDropDto.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="Entities\Catalogs\UnitConversion.cs" />
     <Compile Include="Entities\Catalogs\UnitTypes.cs" />
     <Compile Include="Entities\Catalogs\Warehouses.cs" />
+    <Compile Include="Entities\Enums.cs" />
     <Compile Include="Entities\Persons.cs" />
     <Compile Include="Entities\ProductsAdmin\DetailProductStocks.cs" />
     <Compile Include="Entities\ProductsAdmin\PendingTransfers.cs" />
@@ -145,9 +150,11 @@
     <Compile Include="Interfaces\ISpecification.cs" />
     <Compile Include="Interfaces\Catalogs\ISuppliersRepository.cs" />
     <Compile Include="Interfaces\Catalogs\IWarehouseRepository.cs" />
+    <Compile Include="Interfaces\ProductsAdmin\IPendingTransfersRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsAdminService.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IRemovedProductsRepository.cs" />
+    <Compile Include="Interfaces\ProductsAdmin\ITranfersRepository.cs" />
     <Compile Include="Interfaces\Reports\IReportsService.cs" />
     <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

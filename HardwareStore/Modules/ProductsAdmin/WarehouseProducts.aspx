@@ -104,6 +104,96 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanelForTransferModal">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card card-shadow">
+                                        <div class="card-header text-center">
+                                            <h4>Transferir producto</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <asp:TextBox runat="server" ID="txtStockCodeTransfer" ReadOnly="true" Visible="false" />
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <asp:Label Text="Código" runat="server" />
+                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtProductDetailCodeTransfer" placeholder="Código" ReadOnly="true" />
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <asp:Label Text="Producto" runat="server" />
+                                                    <asp:TextBox runat="server" ID="txtProductNameTransfer" CssClass="form-control" placeholder="Producto" ReadOnly="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label Text="Bodega destino" runat="server" />
+                                                <div class="input-group">
+                                                    <asp:DropDownList ID="DropDownListTargetWarehouse" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator9" ValidationGroup="TransferPorductForm" ControlToValidate="DropDownListTargetWarehouse">
+                                                         <div class="ctrlvalidate">
+                                                              <div style="color: #fff">
+                                                                   Campo requerido  
+                                                              </div>
+                                                              <div class="fas fa-sort-down position-absolute"></div>
+                                                          </div>                                                      
+                                                    </asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label Text="Unidad a transferir" runat="server" />
+                                                <div class="input-group">
+                                                    <asp:DropDownList ID="DropDownListMeasureUnitsToTransfer" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator1" ValidationGroup="TransferPorductForm" ControlToValidate="DropDownListMeasureUnitsToTransfer">
+                                                         <div class="ctrlvalidate">
+                                                              <div style="color: #fff">
+                                                                   Campo requerido  
+                                                              </div>
+                                                              <div class="fas fa-sort-down position-absolute"></div>
+                                                          </div>                                                      
+                                                    </asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label Text="Unidades" runat="server" />
+                                                <div class="input-group">
+                                                    <asp:TextBox runat="server" ID="txtUnitQuantityToTransfer" TextMode="Number" placeholder="Cantidad" CssClass="form-control" />
+                                                    <asp:RequiredFieldValidator Font-Size="10" ForeColor="Red" runat="server" ID="RequiredFieldValidator2" ValidationGroup="TransferPorductForm" ControlToValidate="txtUnitQuantityToTransfer">
+                                                         <div class="ctrlvalidate">
+                                                              <div style="color: #fff">
+                                                                   Campo requerido  
+                                                              </div>
+                                                              <div class="fas fa-sort-down position-absolute"></div>
+                                                          </div>
+                                                    </asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-3 p-1">
+                                                    <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
+                                                </div>
+                                                <div class="col-lg-3 p-1">
+                                                    <asp:Button runat="server" ValidationGroup="TransferPorductForm" Text="Transferir" ID="btnConfirmProductTrasnfer" OnClick="btnConfirmProductTrasnfer_Click" CssClass="btn btn-success btn-block" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+    </div>
     <%-- End Modal section --%>
 
     <div class="container mt-4">

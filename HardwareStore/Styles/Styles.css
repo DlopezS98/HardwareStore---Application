@@ -105,7 +105,7 @@ header {
 .section-alert {
     position: fixed;
     width: 178vh;
-    z-index: 1000;
+    z-index: 1200;
     right: 30px;
     top: 100px;
     height: 51px;

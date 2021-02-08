@@ -86,7 +86,7 @@
                         <img style="height: 55px; width: 50px" runat="server" src="~/Images/Avatar.png" />
                     </div>
                     <div class="d-flex justify-content-center mt-2">
-                        <label style="color: #fff" runat="server">Nombre de Usuario</label>
+                        <label style="color: #fff" runat="server">Danny López</label>
                     </div>
                     <ul style="padding-top: 20px">
                         <li><a href="/Default.aspx"><i class="fas fa-home mr-4"></i>Home</a></li>

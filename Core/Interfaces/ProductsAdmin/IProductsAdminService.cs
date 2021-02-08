@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static HardwareStore.Core.Entities.Enums;
 
 namespace HardwareStore.Core.Interfaces.ProductsAdmin
 {
@@ -18,5 +19,16 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
         List<MeasureUnitsDropDto> ListMeasureUnitForDropdownsByType(int TypeId);
         Response DeleteProductFromStocks(DeleteProductDto dto);
         List<RemovedProductsDto> GetRemovedProducts(DateTime StartDate, DateTime EndDate, string Search);
+
+        Response CreatePendingTransfer(PendingTranfersModelDto dto);
+        Response UpdatePendingTranfer(string Code, PendingTranfersModelDto dto);
+        Response DeleteProductFromTransferList(string Code, string User);
+        List<PendingTranfersDto> GetPendingTransferProducts(string Search, TransferStatus Status);
+        PendingTranfersDto GetPendingTransferProduct(string Code);
+
+        //Response CreateTranfer(List<PendingTranfersDto> list, string User);
+        //Response CreateTranfersDetails(List<PendingTranfersDto> list);
+        Response GenerateTransferTransaction(List<PendingTranfersDto> list, string User);
+        List<PendingTranfersDto> ListTransfers(string Search);
     }
 }

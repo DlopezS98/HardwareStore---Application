@@ -64,8 +64,10 @@
     <Compile Include="Data\Catalogs\SuppliersReporsitory.cs" />
     <Compile Include="Data\Catalogs\WarehouseRepository.cs" />
     <Compile Include="Data\PersonsRepository.cs" />
+    <Compile Include="Data\ProductsAdmin\PendingTransfersRepository.cs" />
     <Compile Include="Data\ProductsAdmin\ProductsStocksRepository.cs" />
     <Compile Include="Data\ProductsAdmin\RemovedProductsRepository.cs" />
+    <Compile Include="Data\ProductsAdmin\TranfersRepository.cs" />
     <Compile Include="Data\SysConfiguration\CurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

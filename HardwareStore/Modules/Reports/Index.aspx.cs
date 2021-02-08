@@ -104,10 +104,21 @@ namespace HardwareStore.Modules.Reports
         }
 
         //Reporte  Ventas
-        private void LoadSale(DateTime StartDate, DateTime EndDate)
+        private void LoadSale(DateTime? StartDate, DateTime? EndDate, string search = "")
         {
+            DateTime Start, End;
             DataTable dts = new DataTable();
-            dts = this.ReportService.ListSalesInvoices(StartDate, EndDate, "");
+            if (StartDate != null && EndDate != null)
+            {
+                dts = this.ReportService.ListSalesInvoices((DateTime)StartDate, (DateTime)EndDate, search);
+            }
+            else
+            {
+                Start = Convert.ToDateTime("1998-10-01");
+                End = DateTime.Now.AddDays(1);
+                dts = this.ReportService.ListSalesInvoices(Start, End, search);
+            }
+
             ReportViewer3.LocalReport.DataSources.Clear();
             ReportDataSource Rdlc = new ReportDataSource("DataSetSale", dts);
             ReportViewer3.LocalReport.DataSources.Add(Rdlc);
@@ -116,17 +127,7 @@ namespace HardwareStore.Modules.Reports
 
         protected void btnFilterSale_Click(Object sender, EventArgs e)
         {
-            DateTime StartSale = Convert.ToDateTime(StartDateSale.Text);
-            DateTime EndSale = Convert.ToDateTime(EndDateSale.Text);
-            if (EndSale > StartSale)
-            {
-                this.LoadSale(StartSale, EndSale);
-                return;
-            }
-            else { 
-            string ShowModalDate = "ModalDate()";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowModalDate, true);
-            }
+            
         }
 
         protected void btnSaleReport_Click(Object sender, EventArgs e)
@@ -207,5 +208,27 @@ namespace HardwareStore.Modules.Reports
             }
         }
 
+        protected void btnNewReportSale_Click(object sender, EventArgs e)
+        {
+            string startdatestring = StartDateSale.Text;
+            string enddatestring = EndDateSale.Text;
+            if(startdatestring != "" && enddatestring != "")
+            {
+                DateTime StartSale = Convert.ToDateTime(startdatestring);
+                DateTime EndSale = Convert.ToDateTime(enddatestring);
+                if (EndSale > StartSale)
+                {
+                    this.LoadSale(StartSale, EndSale, txtSearchSale.Text);
+                    return;
+                }
+                else
+                {
+                    string ShowModalDate = "ModalDate()";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", ShowModalDate, true);
+                }
+            }
+
+            this.LoadSale(null, null, txtSearchSale.Text);
+        }
     }
 }

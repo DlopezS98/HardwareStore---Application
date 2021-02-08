@@ -183,7 +183,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group mt-4">
-                                    <asp:Button Text="Filtrar" ID="btnNewReportSale" CssClass="btn btn-primary" runat="server" />
+                                    <asp:Button Text="Filtrar" ID="btnNewReportSale" OnClick="btnNewReportSale_Click" CssClass="btn btn-primary" runat="server" />
                                 </div>
                             </div>
                         </div>

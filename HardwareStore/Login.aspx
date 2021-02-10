@@ -57,7 +57,7 @@
 
                                     <div class="wrap-input100 validate-input m-b-18" data-validate="Contraseña">
                                         <span class="label-input100">Contraseña</span>
-                                        <input runat="server" id="txtPassword" class="input100" type="password" name="pass" placeholder="Enter password" />
+                                        <input runat="server" id="txtPassword" class="input100" type="password" name="pass" placeholder="Escribe tu Contraseña" />
                                         <span class="focus-input100"></span>
                                     </div>
 

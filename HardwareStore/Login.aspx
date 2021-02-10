@@ -46,41 +46,43 @@
                                 <span class="login100-form-title-1">Ferretería Sánchez
                                 </span>
                             </div>
-
-                            <form class="login100-form validate-form">
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                    <span class="label-input100">Usuario</span>
-                                    <input runat="server" id="txtUserName" class="input100" type="text" name="username" placeholder="Nombre de Usuario" />
-                                    <span class="focus-input100"></span>
-                                </div>
-
-                                <div class="wrap-input100 validate-input m-b-18" data-validate="Contraseña">
-                                    <span class="label-input100">Contraseña</span>
-                                    <input runat="server" id="txtPassword" class="input100" type="password" name="pass" placeholder="Enter password" />
-                                    <span class="focus-input100"></span>
-                                </div>
-
-                                <div class="flex-sb-m w-full p-b-30">
-                                    <div class="contact100-form-checkbox">
-                                        <input runat="server" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
-                                        <label class="label-checkbox100" for="ckb1">
-                                            Recordarme
-                                        </label>
+                            <div class="p-4">
+                            <div style="padding-left: 150px; padding-right: 50px">
+                                <form class="login100-form validate-form">
+                                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                                        <span class="label-input100">Usuario</span>
+                                        <input runat="server" id="txtUserName" class="input100" type="text" name="username" placeholder="Nombre de Usuario" />
+                                        <span class="focus-input100"></span>
                                     </div>
 
-                                    <div>
-                                        <a href="#" class="txt1">Olvidaste tu contraseña?
-                                        </a>
+                                    <div class="wrap-input100 validate-input m-b-18" data-validate="Contraseña">
+                                        <span class="label-input100">Contraseña</span>
+                                        <input runat="server" id="txtPassword" class="input100" type="password" name="pass" placeholder="Enter password" />
+                                        <span class="focus-input100"></span>
                                     </div>
-                                </div>
 
-                                <div class="container-login100-form-btn">
-                                    <asp:Button Text="Entrar" runat="server" OnClientClick="ShowLoader(true)" ID="btnLoggin" OnClick="btnLoggin_Click" CssClass="btn btn-success" />
-                                    <%--                        <button class="login100-form-btn">
+                                    <div class="flex-sb-m w-full p-b-30">
+                                        <div class="contact100-form-checkbox">
+                                            <input runat="server" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
+                                            <label class="label-checkbox100" for="ckb1">
+                                                Recordarme
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <a href="#" class="txt1">Olvidaste tu contraseña?
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="container-login100-form-btn">
+                                        <asp:Button Text="Entrar" runat="server" OnClientClick="ShowLoader(true)" ID="btnLoggin" OnClick="btnLoggin_Click" CssClass="btn btn-success" />
+                                        <%--                        <button class="login100-form-btn">
                             Entrar
                         </button>--%>
-                                </div>
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

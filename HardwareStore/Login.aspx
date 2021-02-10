@@ -37,6 +37,15 @@
             </div>
         </div>
 
+        <div id="Toast-Alert" class="toast">
+            <div id="Toast-Image-Type" class="toast-img"><i class="fas fa-exclamation"></i></div>
+            <div id="Toast-Body" class="toast-body">
+                <p id="Toast-Content" style="text-align: justify;">
+                    Producto agregado al detalle!
+                </p>
+            </div>
+        </div>
+
         <asp:UpdatePanel runat="server" ID="updatepanelforuserloggin">
             <ContentTemplate>
                 <div class="limiter">
@@ -89,14 +98,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
 
-        <div id="Toast-Alert" class="toast">
-            <div id="Toast-Image-Type" class="toast-img"><i class="fas fa-exclamation"></i></div>
-            <div id="Toast-Body" class="toast-body">
-                <p id="Toast-Content" style="text-align: justify;">
-                    Producto agregado al detalle!
-                </p>
-            </div>
-        </div>
+        
     </form>
 
     <!--===============================================================================================-->
@@ -115,12 +117,13 @@
     <!--===============================================================================================-->
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
-    <script src="js/main.js"></script>
+    <script src="/Scripts/main.js"></script>
     <script>
         function ShowToaster(message, CssClass) {
             var style = "toast-img-" + CssClass;
 
             var image = document.getElementById('Toast-Image-Type');
+            console.log(image);
             image.classList.remove(style);
             image.classList.add(style);
 

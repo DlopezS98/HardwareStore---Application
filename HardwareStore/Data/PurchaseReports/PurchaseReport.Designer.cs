@@ -285,7 +285,7 @@ namespace HardwareStore.Data.PurchaseReports {
             
             private global::System.Data.DataColumn columnSupplierInvoiceNumber;
             
-            private global::System.Data.DataColumn columnInvoicesNumber;
+            private global::System.Data.DataColumn columnInvoiceNumber;
             
             private global::System.Data.DataColumn columnTax;
             
@@ -358,9 +358,9 @@ namespace HardwareStore.Data.PurchaseReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn InvoicesNumberColumn {
+            public global::System.Data.DataColumn InvoiceNumberColumn {
                 get {
-                    return this.columnInvoicesNumber;
+                    return this.columnInvoiceNumber;
                 }
             }
             
@@ -449,13 +449,13 @@ namespace HardwareStore.Data.PurchaseReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string Id, string SupplierName, string SupplierInvoiceNumber, string InvoicesNumber, string Tax, string Subtotal, string Discount, string TotalAmount, string CreationDate, string CreatedBy) {
+            public DataTable1Row AddDataTable1Row(string Id, string SupplierName, string SupplierInvoiceNumber, string InvoiceNumber, string Tax, string Subtotal, string Discount, string TotalAmount, string CreationDate, string CreatedBy) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         SupplierName,
                         SupplierInvoiceNumber,
-                        InvoicesNumber,
+                        InvoiceNumber,
                         Tax,
                         Subtotal,
                         Discount,
@@ -487,7 +487,7 @@ namespace HardwareStore.Data.PurchaseReports {
                 this.columnId = base.Columns["Id"];
                 this.columnSupplierName = base.Columns["SupplierName"];
                 this.columnSupplierInvoiceNumber = base.Columns["SupplierInvoiceNumber"];
-                this.columnInvoicesNumber = base.Columns["InvoicesNumber"];
+                this.columnInvoiceNumber = base.Columns["InvoiceNumber"];
                 this.columnTax = base.Columns["Tax"];
                 this.columnSubtotal = base.Columns["Subtotal"];
                 this.columnDiscount = base.Columns["Discount"];
@@ -505,8 +505,8 @@ namespace HardwareStore.Data.PurchaseReports {
                 base.Columns.Add(this.columnSupplierName);
                 this.columnSupplierInvoiceNumber = new global::System.Data.DataColumn("SupplierInvoiceNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSupplierInvoiceNumber);
-                this.columnInvoicesNumber = new global::System.Data.DataColumn("InvoicesNumber", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInvoicesNumber);
+                this.columnInvoiceNumber = new global::System.Data.DataColumn("InvoiceNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInvoiceNumber);
                 this.columnTax = new global::System.Data.DataColumn("Tax", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTax);
                 this.columnSubtotal = new global::System.Data.DataColumn("Subtotal", typeof(string), null, global::System.Data.MappingType.Element);
@@ -710,17 +710,17 @@ namespace HardwareStore.Data.PurchaseReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string InvoicesNumber {
+            public string InvoiceNumber {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.InvoicesNumberColumn]));
+                        return ((string)(this[this.tableDataTable1.InvoiceNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'InvoicesNumber\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'InvoiceNumber\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.InvoicesNumberColumn] = value;
+                    this[this.tableDataTable1.InvoiceNumberColumn] = value;
                 }
             }
             
@@ -858,14 +858,14 @@ namespace HardwareStore.Data.PurchaseReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsInvoicesNumberNull() {
-                return this.IsNull(this.tableDataTable1.InvoicesNumberColumn);
+            public bool IsInvoiceNumberNull() {
+                return this.IsNull(this.tableDataTable1.InvoiceNumberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetInvoicesNumberNull() {
-                this[this.tableDataTable1.InvoicesNumberColumn] = global::System.Convert.DBNull;
+            public void SetInvoiceNumberNull() {
+                this[this.tableDataTable1.InvoiceNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

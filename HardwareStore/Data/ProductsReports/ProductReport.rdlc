@@ -713,7 +713,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSetProduct</DataSetName>
             <Top>4.46773cm</Top>
-            <Left>0.20388cm</Left>
+            <Left>2.23592cm</Left>
             <Height>1.2cm</Height>
             <Width>24.37575cm</Width>
             <Style>
@@ -722,55 +722,6 @@
               </Border>
             </Style>
           </Tablix>
-          <Rectangle Name="Rectangle1">
-            <ReportItems>
-              <Textbox Name="Textbox24">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Reporte de Productos</Value>
-                        <Style>
-                          <FontFamily>Segoe UI</FontFamily>
-                          <FontSize>18pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>0.37042cm</Top>
-                <Left>7.81455cm</Left>
-                <Height>1.10132cm</Height>
-                <Width>11.44291cm</Width>
-                <Style>
-                  <Border>
-                    <Style>Dashed</Style>
-                  </Border>
-                  <VerticalAlign>Middle</VerticalAlign>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </ReportItems>
-            <KeepTogether>true</KeepTogether>
-            <Height>1.91735cm</Height>
-            <Width>25.10134cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <BackgroundColor>#ffba5a</BackgroundColor>
-            </Style>
-          </Rectangle>
           <Chart Name="Chart1">
             <ChartCategoryHierarchy>
               <ChartMembers>
@@ -780,12 +731,12 @@
                       <GroupExpression>=Fields!CreatedAt.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
-                  <Label>=Fields!CreatedAt.Value</Label>
                   <SortExpressions>
                     <SortExpression>
                       <Value>=Fields!CreatedAt.Value</Value>
                     </SortExpression>
                   </SortExpressions>
+                  <Label>=Fields!CreatedAt.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -1117,10 +1068,10 @@
             </ChartNoDataMessage>
             <DataSetName>DataSetProduct</DataSetName>
             <Top>6.26745cm</Top>
-            <Left>8.5213cm</Left>
+            <Left>10.55334cm</Left>
             <Height>4.92062cm</Height>
             <Width>10.41866cm</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -1130,12 +1081,62 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
+          <Rectangle Name="Rectangle1">
+            <ReportItems>
+              <Textbox Name="Textbox2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Reporte de Productos</Value>
+                        <Style>
+                          <FontFamily>Segoe UI</FontFamily>
+                          <FontSize>18pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>0.37042cm</Top>
+                <Left>9.86188cm</Left>
+                <Height>1.09771cm</Height>
+                <Width>10.6404cm</Width>
+                <Style>
+                  <Border>
+                    <Style>Dashed</Style>
+                  </Border>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Height>1.79842cm</Height>
+            <Width>29.16542cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#ffba5a</BackgroundColor>
+            </Style>
+          </Rectangle>
           <Image Name="Logo">
             <Source>Embedded</Source>
             <Value>lOGO</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>2.09374cm</Top>
-            <Left>9.10651cm</Left>
+            <Top>2.30591cm</Top>
+            <Left>10.86229cm</Left>
             <Height>1.8609cm</Height>
             <Width>9.05791cm</Width>
             <ZIndex>3</ZIndex>
@@ -1149,7 +1150,7 @@
         <Height>6.92709in</Height>
         <Style />
       </Body>
-      <Width>9.88242in</Width>
+      <Width>11.48245in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

@@ -287,9 +287,7 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             private global::System.Data.DataColumn columnStocksCode;
             
-            private global::System.Data.DataColumn columnWarehauseId;
-            
-            private global::System.Data.DataColumn columnWarehauseName;
+            private global::System.Data.DataColumn columnWarehouseName;
             
             private global::System.Data.DataColumn columnProductDetailCode;
             
@@ -307,7 +305,9 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             private global::System.Data.DataColumn columnUnitTypeId;
             
-            private global::System.Data.DataColumn columnConversionValue;
+            private global::System.Data.DataColumn columnCorversionValue;
+            
+            private global::System.Data.DataColumn columnCategoryName;
             
             private global::System.Data.DataColumn columnMaterialName;
             
@@ -315,7 +315,7 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             private global::System.Data.DataColumn columnOriginalQuantity;
             
-            private global::System.Data.DataColumn columnStocksQuality;
+            private global::System.Data.DataColumn columnStocksQuantity;
             
             private global::System.Data.DataColumn columnPurchasePrice;
             
@@ -325,7 +325,7 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             private global::System.Data.DataColumn columnExpirationDate;
             
-            private global::System.Data.DataColumn columnAvialable;
+            private global::System.Data.DataColumn columnAvailable;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -394,17 +394,9 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn WarehauseIdColumn {
+            public global::System.Data.DataColumn WarehouseNameColumn {
                 get {
-                    return this.columnWarehauseId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn WarehauseNameColumn {
-                get {
-                    return this.columnWarehauseName;
+                    return this.columnWarehouseName;
                 }
             }
             
@@ -474,9 +466,17 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ConversionValueColumn {
+            public global::System.Data.DataColumn CorversionValueColumn {
                 get {
-                    return this.columnConversionValue;
+                    return this.columnCorversionValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CategoryNameColumn {
+                get {
+                    return this.columnCategoryName;
                 }
             }
             
@@ -506,9 +506,9 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn StocksQualityColumn {
+            public global::System.Data.DataColumn StocksQuantityColumn {
                 get {
-                    return this.columnStocksQuality;
+                    return this.columnStocksQuantity;
                 }
             }
             
@@ -546,9 +546,9 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn AvialableColumn {
+            public global::System.Data.DataColumn AvailableColumn {
                 get {
-                    return this.columnAvialable;
+                    return this.columnAvailable;
                 }
             }
             
@@ -594,8 +594,7 @@ namespace HardwareStore.Data.ExistenciesReports {
                         string LotNumber, 
                         string SupplierName, 
                         string StocksCode, 
-                        string WarehauseId, 
-                        string WarehauseName, 
+                        string WarehouseName, 
                         string ProductDetailCode, 
                         string ProductName, 
                         string BrandName, 
@@ -604,24 +603,24 @@ namespace HardwareStore.Data.ExistenciesReports {
                         string UnitBaseId, 
                         string UnitBaseName, 
                         string UnitTypeId, 
-                        string ConversionValue, 
+                        string CorversionValue, 
+                        string CategoryName, 
                         string MaterialName, 
                         string Dimensions, 
                         string OriginalQuantity, 
-                        string StocksQuality, 
+                        string StocksQuantity, 
                         string PurchasePrice, 
                         string SalePrice, 
                         string SalePriceByUnitBase, 
                         string ExpirationDate, 
-                        string Avialable) {
+                        string Available) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ProductStocksId,
                         LotNumber,
                         SupplierName,
                         StocksCode,
-                        WarehauseId,
-                        WarehauseName,
+                        WarehouseName,
                         ProductDetailCode,
                         ProductName,
                         BrandName,
@@ -630,16 +629,17 @@ namespace HardwareStore.Data.ExistenciesReports {
                         UnitBaseId,
                         UnitBaseName,
                         UnitTypeId,
-                        ConversionValue,
+                        CorversionValue,
+                        CategoryName,
                         MaterialName,
                         Dimensions,
                         OriginalQuantity,
-                        StocksQuality,
+                        StocksQuantity,
                         PurchasePrice,
                         SalePrice,
                         SalePriceByUnitBase,
                         ExpirationDate,
-                        Avialable};
+                        Available};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -666,8 +666,7 @@ namespace HardwareStore.Data.ExistenciesReports {
                 this.columnLotNumber = base.Columns["LotNumber"];
                 this.columnSupplierName = base.Columns["SupplierName"];
                 this.columnStocksCode = base.Columns["StocksCode"];
-                this.columnWarehauseId = base.Columns["WarehauseId"];
-                this.columnWarehauseName = base.Columns["WarehauseName"];
+                this.columnWarehouseName = base.Columns["WarehouseName"];
                 this.columnProductDetailCode = base.Columns["ProductDetailCode"];
                 this.columnProductName = base.Columns["ProductName"];
                 this.columnBrandName = base.Columns["BrandName"];
@@ -676,16 +675,17 @@ namespace HardwareStore.Data.ExistenciesReports {
                 this.columnUnitBaseId = base.Columns["UnitBaseId"];
                 this.columnUnitBaseName = base.Columns["UnitBaseName"];
                 this.columnUnitTypeId = base.Columns["UnitTypeId"];
-                this.columnConversionValue = base.Columns["ConversionValue"];
+                this.columnCorversionValue = base.Columns["CorversionValue"];
+                this.columnCategoryName = base.Columns["CategoryName"];
                 this.columnMaterialName = base.Columns["MaterialName"];
                 this.columnDimensions = base.Columns["Dimensions"];
                 this.columnOriginalQuantity = base.Columns["OriginalQuantity"];
-                this.columnStocksQuality = base.Columns["StocksQuality"];
+                this.columnStocksQuantity = base.Columns["StocksQuantity"];
                 this.columnPurchasePrice = base.Columns["PurchasePrice"];
                 this.columnSalePrice = base.Columns["SalePrice"];
                 this.columnSalePriceByUnitBase = base.Columns["SalePriceByUnitBase"];
                 this.columnExpirationDate = base.Columns["ExpirationDate"];
-                this.columnAvialable = base.Columns["Avialable"];
+                this.columnAvailable = base.Columns["Available"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -699,10 +699,8 @@ namespace HardwareStore.Data.ExistenciesReports {
                 base.Columns.Add(this.columnSupplierName);
                 this.columnStocksCode = new global::System.Data.DataColumn("StocksCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStocksCode);
-                this.columnWarehauseId = new global::System.Data.DataColumn("WarehauseId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWarehauseId);
-                this.columnWarehauseName = new global::System.Data.DataColumn("WarehauseName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWarehauseName);
+                this.columnWarehouseName = new global::System.Data.DataColumn("WarehouseName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWarehouseName);
                 this.columnProductDetailCode = new global::System.Data.DataColumn("ProductDetailCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductDetailCode);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -719,16 +717,18 @@ namespace HardwareStore.Data.ExistenciesReports {
                 base.Columns.Add(this.columnUnitBaseName);
                 this.columnUnitTypeId = new global::System.Data.DataColumn("UnitTypeId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUnitTypeId);
-                this.columnConversionValue = new global::System.Data.DataColumn("ConversionValue", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnConversionValue);
+                this.columnCorversionValue = new global::System.Data.DataColumn("CorversionValue", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCorversionValue);
+                this.columnCategoryName = new global::System.Data.DataColumn("CategoryName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCategoryName);
                 this.columnMaterialName = new global::System.Data.DataColumn("MaterialName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaterialName);
                 this.columnDimensions = new global::System.Data.DataColumn("Dimensions", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDimensions);
                 this.columnOriginalQuantity = new global::System.Data.DataColumn("OriginalQuantity", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginalQuantity);
-                this.columnStocksQuality = new global::System.Data.DataColumn("StocksQuality", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStocksQuality);
+                this.columnStocksQuantity = new global::System.Data.DataColumn("StocksQuantity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStocksQuantity);
                 this.columnPurchasePrice = new global::System.Data.DataColumn("PurchasePrice", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPurchasePrice);
                 this.columnSalePrice = new global::System.Data.DataColumn("SalePrice", typeof(string), null, global::System.Data.MappingType.Element);
@@ -737,8 +737,8 @@ namespace HardwareStore.Data.ExistenciesReports {
                 base.Columns.Add(this.columnSalePriceByUnitBase);
                 this.columnExpirationDate = new global::System.Data.DataColumn("ExpirationDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpirationDate);
-                this.columnAvialable = new global::System.Data.DataColumn("Avialable", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAvialable);
+                this.columnAvailable = new global::System.Data.DataColumn("Available", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAvailable);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -945,33 +945,17 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string WarehauseId {
+            public string WarehouseName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.WarehauseIdColumn]));
+                        return ((string)(this[this.tableDataTable1.WarehouseNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'WarehauseId\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'WarehouseName\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.WarehauseIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string WarehauseName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTable1.WarehauseNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'WarehauseName\' de la tabla \'DataTable1\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable1.WarehauseNameColumn] = value;
+                    this[this.tableDataTable1.WarehouseNameColumn] = value;
                 }
             }
             
@@ -1105,17 +1089,33 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ConversionValue {
+            public string CorversionValue {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.ConversionValueColumn]));
+                        return ((string)(this[this.tableDataTable1.CorversionValueColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ConversionValue\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CorversionValue\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.ConversionValueColumn] = value;
+                    this[this.tableDataTable1.CorversionValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CategoryName {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.CategoryNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CategoryName\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.CategoryNameColumn] = value;
                 }
             }
             
@@ -1169,17 +1169,17 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string StocksQuality {
+            public string StocksQuantity {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.StocksQualityColumn]));
+                        return ((string)(this[this.tableDataTable1.StocksQuantityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'StocksQuality\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'StocksQuantity\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.StocksQualityColumn] = value;
+                    this[this.tableDataTable1.StocksQuantityColumn] = value;
                 }
             }
             
@@ -1249,17 +1249,17 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Avialable {
+            public string Available {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.AvialableColumn]));
+                        return ((string)(this[this.tableDataTable1.AvailableColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Avialable\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Available\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.AvialableColumn] = value;
+                    this[this.tableDataTable1.AvailableColumn] = value;
                 }
             }
             
@@ -1313,26 +1313,14 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsWarehauseIdNull() {
-                return this.IsNull(this.tableDataTable1.WarehauseIdColumn);
+            public bool IsWarehouseNameNull() {
+                return this.IsNull(this.tableDataTable1.WarehouseNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetWarehauseIdNull() {
-                this[this.tableDataTable1.WarehauseIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsWarehauseNameNull() {
-                return this.IsNull(this.tableDataTable1.WarehauseNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetWarehauseNameNull() {
-                this[this.tableDataTable1.WarehauseNameColumn] = global::System.Convert.DBNull;
+            public void SetWarehouseNameNull() {
+                this[this.tableDataTable1.WarehouseNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1433,14 +1421,26 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsConversionValueNull() {
-                return this.IsNull(this.tableDataTable1.ConversionValueColumn);
+            public bool IsCorversionValueNull() {
+                return this.IsNull(this.tableDataTable1.CorversionValueColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetConversionValueNull() {
-                this[this.tableDataTable1.ConversionValueColumn] = global::System.Convert.DBNull;
+            public void SetCorversionValueNull() {
+                this[this.tableDataTable1.CorversionValueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCategoryNameNull() {
+                return this.IsNull(this.tableDataTable1.CategoryNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCategoryNameNull() {
+                this[this.tableDataTable1.CategoryNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1481,14 +1481,14 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsStocksQualityNull() {
-                return this.IsNull(this.tableDataTable1.StocksQualityColumn);
+            public bool IsStocksQuantityNull() {
+                return this.IsNull(this.tableDataTable1.StocksQuantityColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetStocksQualityNull() {
-                this[this.tableDataTable1.StocksQualityColumn] = global::System.Convert.DBNull;
+            public void SetStocksQuantityNull() {
+                this[this.tableDataTable1.StocksQuantityColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1541,14 +1541,14 @@ namespace HardwareStore.Data.ExistenciesReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsAvialableNull() {
-                return this.IsNull(this.tableDataTable1.AvialableColumn);
+            public bool IsAvailableNull() {
+                return this.IsNull(this.tableDataTable1.AvailableColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetAvialableNull() {
-                this[this.tableDataTable1.AvialableColumn] = global::System.Convert.DBNull;
+            public void SetAvailableNull() {
+                this[this.tableDataTable1.AvailableColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -53,14 +53,16 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <a style="text-decoration: none; color: #fff; margin-left: 88%" href="#">Cerrar Sesión</a>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown">
+                            
+<%--                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle dropdown-menu-right" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="#">Cerrar Sesión</a>
                                 </div>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                 </nav>
@@ -82,7 +84,7 @@
 
             <section class="sidevar-grid">
                 <div class="sidebar">
-                    <div class="d-flex justify-content-center mt-2">
+                    <div class="d-flex justify-content-center mt-4">
                         <img style="height: 55px; width: 50px" runat="server" src="~/Images/Avatar.png" />
                     </div>
                     <div class="d-flex justify-content-center mt-2">

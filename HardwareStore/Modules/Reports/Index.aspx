@@ -10,13 +10,13 @@
             <asp:MultiView runat="server" ID="MultiviewReports" ActiveViewIndex="0">
                 <%-- Vista Principal --%>
                 <asp:View runat="server">
-                    <div style="border-top: 1px solid #C82333" class="container p-4 card mt-4 shadow rounded">
+                    <div style="border-top: 2px solid #C82333" class="container p-4 card mt-4 shadow rounded">
                         <div class="d-flex justify-content-center m-4">
                             <h3>Reportes</h3>
                         </div>
                         <div class="dropdown-divider mb-5">
                         </div>
-                        <div class="row mt-2 mb-5 flex-lg-wrap">
+                        <div class="row mt-2 mb-5 flex-lg-wrap d-flex justify-content-center">
                             <div class="col-lg-3">
                                 <div class="card shadow rounded m-2">
                                     <div class="card-body">
@@ -62,9 +62,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="card shadow rounded m-2">
+                                <div class="card shadow rounded m-2 mt-4">
                                     <div class="card-body">
-                                        <h5 class="card-title text-center">Productos Dañados</h5>
+                                        <h5 class="card-title text-center">Productos Eliminados</h5>
                                         <%--<p class="card-text">Puedes crear reportes de existencias de productos</p>--%>
                                         <div class="d-flex justify-content-center">
                                             <asp:Button ID="btnDamagedProducts" OnClick="btnDamagedProducts_Click" CssClass="btn btn-primary" Text="Crear Reporte" runat="server" />
@@ -215,7 +215,7 @@
                             </div>
                         </div>
                         <rsweb:ReportViewer ID="ReportViewer4" runat="server" Width="100%">
-                            <LocalReport ReportPath="Data\ExistenciesReports\ExistenciesReport.rdlc">
+                            <LocalReport ReportPath="Data\ExistenciesReports\ExistenciesProducts.rdlc">
                             </LocalReport>
                         </rsweb:ReportViewer>
                     </div>

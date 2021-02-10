@@ -74,7 +74,7 @@ namespace HardwareStore.Modules.Reports
             DataTable dtp = new DataTable();
             dtp = this.ReportService.GetPurhaseInvoices(StartDate, EndDate, "");
             ReportViewer2.LocalReport.DataSources.Clear();
-            ReportDataSource Rdlc = new ReportDataSource("DataSet2", dtp);
+            ReportDataSource Rdlc = new ReportDataSource("DataSetPurchase", dtp);
             ReportViewer2.LocalReport.DataSources.Add(Rdlc);
             ReportViewer2.LocalReport.Refresh();            
         }
@@ -144,7 +144,7 @@ namespace HardwareStore.Modules.Reports
             DataTable dte = new DataTable();
             dte = this.ReportService.GetProductStocksDetails("0", "", WarehouseId);
             ReportViewer4.LocalReport.DataSources.Clear(); 
-            ReportDataSource Rdlc = new ReportDataSource("DataSetE", dte);
+            ReportDataSource Rdlc = new ReportDataSource("DataSetExistencies", dte);
             ReportViewer4.LocalReport.DataSources.Add(Rdlc);
             ReportViewer4.LocalReport.Refresh();
         }

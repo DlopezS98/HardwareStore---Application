@@ -281,7 +281,7 @@ namespace HardwareStore.Data.DamagedProductsReports {
             
             private global::System.Data.DataColumn columnId;
             
-            private global::System.Data.DataColumn columnWarehauseName;
+            private global::System.Data.DataColumn columnWarehouseName;
             
             private global::System.Data.DataColumn columnProductName;
             
@@ -354,9 +354,9 @@ namespace HardwareStore.Data.DamagedProductsReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn WarehauseNameColumn {
+            public global::System.Data.DataColumn WarehouseNameColumn {
                 get {
-                    return this.columnWarehauseName;
+                    return this.columnWarehouseName;
                 }
             }
             
@@ -511,7 +511,7 @@ namespace HardwareStore.Data.DamagedProductsReports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DataTable1Row AddDataTable1Row(
                         string Id, 
-                        string WarehauseName, 
+                        string WarehouseName, 
                         string ProductName, 
                         string Title, 
                         string Description, 
@@ -529,7 +529,7 @@ namespace HardwareStore.Data.DamagedProductsReports {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
-                        WarehauseName,
+                        WarehouseName,
                         ProductName,
                         Title,
                         Description,
@@ -567,7 +567,7 @@ namespace HardwareStore.Data.DamagedProductsReports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
-                this.columnWarehauseName = base.Columns["WarehauseName"];
+                this.columnWarehouseName = base.Columns["WarehouseName"];
                 this.columnProductName = base.Columns["ProductName"];
                 this.columnTitle = base.Columns["Title"];
                 this.columnDescription = base.Columns["Description"];
@@ -589,8 +589,8 @@ namespace HardwareStore.Data.DamagedProductsReports {
             private void InitClass() {
                 this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnId);
-                this.columnWarehauseName = new global::System.Data.DataColumn("WarehauseName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWarehauseName);
+                this.columnWarehouseName = new global::System.Data.DataColumn("WarehouseName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWarehouseName);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductName);
                 this.columnTitle = new global::System.Data.DataColumn("Title", typeof(string), null, global::System.Data.MappingType.Element);
@@ -777,17 +777,17 @@ namespace HardwareStore.Data.DamagedProductsReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string WarehauseName {
+            public string WarehouseName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.WarehauseNameColumn]));
+                        return ((string)(this[this.tableDataTable1.WarehouseNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'WarehauseName\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'WarehouseName\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.WarehauseNameColumn] = value;
+                    this[this.tableDataTable1.WarehouseNameColumn] = value;
                 }
             }
             
@@ -1029,14 +1029,14 @@ namespace HardwareStore.Data.DamagedProductsReports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsWarehauseNameNull() {
-                return this.IsNull(this.tableDataTable1.WarehauseNameColumn);
+            public bool IsWarehouseNameNull() {
+                return this.IsNull(this.tableDataTable1.WarehouseNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetWarehauseNameNull() {
-                this[this.tableDataTable1.WarehauseNameColumn] = global::System.Convert.DBNull;
+            public void SetWarehouseNameNull() {
+                this[this.tableDataTable1.WarehouseNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

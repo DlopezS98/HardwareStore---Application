@@ -1,6 +1,7 @@
 ﻿using HardwareStore.Core.Entities.Catalogs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace HardwareStore.Core.Entities.Security
         public string UpdatedBy { get; set; }
         public bool Deleted { get; set; }
 
+        [ForeignKey("EmployeeId")]
         public virtual Employees Employees { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
     }

@@ -68,6 +68,7 @@
     <Compile Include="Data\ProductsAdmin\ProductsStocksRepository.cs" />
     <Compile Include="Data\ProductsAdmin\RemovedProductsRepository.cs" />
     <Compile Include="Data\ProductsAdmin\TransfersRepository.cs" />
+    <Compile Include="Data\Security\UsersRepository.cs" />
     <Compile Include="Data\SysConfiguration\CurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

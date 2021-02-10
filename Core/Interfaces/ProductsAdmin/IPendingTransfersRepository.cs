@@ -13,7 +13,7 @@ namespace HardwareStore.Core.Interfaces.ProductsAdmin
     {
         void CreatePendingTransfer(PendingTranfersModelDto dto);
         void UpdatePendingTranfer(string Code, PendingTranfersModelDto dto);
-        void DeleteProductFromTransferList(string Code, string User);
+        void UpdateProductStatusInTransferList(string Code, string User, TransferStatus status);
         List<PendingTranfersDto> GetPendingTransferProducts(string Search, TransferStatus Status);
         PendingTranfersDto GetPendingTransferProduct(string Code);
         DataTable GetDataTablePendingTransferProducts(string Search, TransferStatus Status);

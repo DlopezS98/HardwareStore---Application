@@ -50,6 +50,7 @@
                                         <div class="card-body">
                                             <asp:TextBox runat="server" ID="txtStockCodeTransfer" ReadOnly="true" Visible="false" />
                                             <asp:TextBox runat="server" ID="txtEditPendingTransferCode" ReadOnly="true" Visible="false" />
+                                            <asp:TextBox runat="server" ID="txtEditWarehouseId" ReadOnly="true" Visible="false" />
                                             <div class="form-row">
                                                 <div class="form-group col-lg-6">
                                                     <asp:Label Text="Código" runat="server" />
@@ -109,7 +110,7 @@
                                                     <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-warning btn-block" data-dismiss="modal" aria-label="cerrar" />
                                                 </div>
                                                 <div class="col-lg-3 p-1">
-                                                    <asp:Button runat="server" ValidationGroup="TransferPorductForm" Text="Guardar" ID="btnConfirmProductTrasnfer" OnClick="btnConfirmProductTrasnfer_Click" CssClass="btn btn-success btn-block" />
+                                                    <asp:Button runat="server" ValidationGroup="TransferPorductForm" Text="Guardar" ID="btnConfirmUpdateProductTrasnfer" OnClick="btnConfirmUpdateProductTrasnfer_Click" CssClass="btn btn-success btn-block" />
                                                 </div>
                                             </div>
                                         </div>
@@ -118,6 +119,75 @@
                             </div>
                         </ContentTemplate>
                         <Triggers>
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalTransferDetails" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="min-width: 1300px;">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h4 class="text-light">Detalle de Trasnferencia: </h4>
+                    <div id="section_Transfers_info"><strong id="strong_info_Transfers"></strong></div>
+                    <button class="close text-light" data-dismiss="modal" aria-label="cerrar">
+                        <span class="text-light" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanelForTransfersDetails">
+                        <ContentTemplate>
+                            <div class="row">
+                                <asp:TextBox runat="server" ID="txtProductTransferId" placeholder="transfer id" CssClass="form-control" Visible="false" ReadOnly="true" />
+                                <div class="col-lg-4">
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            <asp:Label Text="Filtrar" runat="server" />
+                                            <asp:TextBox CssClass="form-control" runat="server" ID="txtSearchTransferDetails" placeholder="Buscar..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 mt-4">
+                                    <div class="form-group">
+                                        <asp:Button CssClass="btn btn-primary btn-block" runat="server" Text="Buscar" ID="btnSearchTransferDetailsFilter" OnClick="btnSearchTransferDetailsFilter_Click" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive mt-3">
+                                <asp:GridView runat="server" DataKeyNames="Id, StocksCode, ProductDetailCode" AutoGenerateColumns="false"
+                                    ID="GridViewTransferDetails" CssClass="mGrid table" CellPadding="5">
+                                    <HeaderStyle CssClass="thead-dark" />
+                                    <Columns>
+                                        <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                        <asp:BoundField HeaderText="Code" DataField="Code" Visible="false" />
+                                        <asp:BoundField HeaderText="Lote" DataField="LotNumber" />
+                                        <asp:BoundField HeaderText="Proveedor" DataField="SupplierName" />
+                                        <asp:BoundField HeaderText="Codigo Producto" DataField="ProductDetailCode" />
+                                        <asp:BoundField HeaderText="Producto" DataField="ProductName" />
+                                        <asp:BoundField HeaderText="Bodega origen" DataField="SourceWarehouse" />
+                                        <asp:BoundField HeaderText="Bodega Destino" DataField="TargetWarehouse" />
+                                        <asp:BoundField HeaderText="Unidad Base" DataField="UnitBaseName" />
+                                        <asp:BoundField HeaderText="Unidad transferencia" DataField="TargetUnitName" />
+                                        <asp:BoundField HeaderText="Cantidad" DataField="UnitQuantity" />
+                                        
+                                        <%--<asp:TemplateField HeaderText="Opciones">
+                                            <ItemTemplate>
+                                                <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                    CssClass="btn btn-primary btn-sm mb-3" ID="EditLink" ToolTip="Editar Producto"
+                                                    CommandName="cmdEdit" runat="server">Editar</asp:LinkButton>
+                                                <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                    CssClass="btn btn-danger btn-sm" ID="DeleteLink" ToolTip="Eliminar Producto"
+                                                    CommandName="cmdDelete" runat="server">Eliminar</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <%--<asp:PostBackTrigger ControlID="GridViewStocksDetails" />--%>
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>
@@ -172,7 +242,7 @@
                                                                                 <asp:Button Text="Filtrar" runat="server" ID="btnPendingTransferFilter" OnClick="btnPendingTransferFilter_Click" CssClass="btn btn-primary btn-block" />
                                                                             </div>
                                                                             <div class="form-group col text-right">
-                                                                                <asp:Button Text="Transferir todo" runat="server" ID="SendAllProductsToGenerateTransfer" OnClick="SendAllProductsToGenerateTransfer_Click" CssClass="btn btn-primary" />
+                                                                                <asp:Button Text="Transferir todo" runat="server" ID="SendAllProductsToGenerateTransfer" OnClientClick="ShowLoader(true)" OnClick="SendAllProductsToGenerateTransfer_Click" CssClass="btn btn-primary" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -232,6 +302,69 @@
                             <div class="tab-pane fade show active" id="newpurchase-content" role="tabpanel" aria-labelledby="newpurchase-tab">
                                 <asp:UpdatePanel runat="server" ID="UpdatePanelForTranfersMain">
                                     <ContentTemplate>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <div class="card card-shadow">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <asp:TextBox runat="server" ID="txtTransferCode" placeholder="Code" CssClass="form-control" Visible="false" ReadOnly="true" />
+                                                                        <div class="form-row align-items-center">
+                                                                            <div class="form-group col-lg-4">
+                                                                                <asp:Label Text="Buscar" runat="server" />
+                                                                                <asp:TextBox runat="server" ID="txtSearchProductTransfers" CssClass="form-control" placeholder="Buscar..." />
+                                                                            </div>
+                                                                            <div class="form-group col-lg-3">
+                                                                                <asp:Label Text="Fecha Inicio" runat="server" />
+                                                                                <asp:TextBox runat="server" CssClass="form-control" ID="TransfersDatePickerStartDate" TextMode="Date" />
+                                                                            </div>
+                                                                            <div class="form-group col-lg-3">
+                                                                                <asp:Label Text="Fecha Final" runat="server" />
+                                                                                <asp:TextBox runat="server" CssClass="form-control" ID="TransfersDatePickerEndDate" TextMode="Date" />
+                                                                            </div>
+                                                                            <div class="form-group col-lg-2">
+                                                                                <br />
+                                                                                <asp:Button Text="Filtrar" runat="server" ID="btnTransfersFilter" OnClick="btnTransfersFilter_Click" CssClass="btn btn-primary btn-block" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-4">
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <asp:TextBox runat="server" ID="TextBox2" ReadOnly="true" Visible="false" />
+                                                                    <div class="card-body table-responsive mt-3 mb-3">
+                                                                        <asp:GridView runat="server" DataKeyNames="Id, Code" AutoGenerateColumns="false"
+                                                                            ID="GridViewProductsTransfers" CssClass="Grid table" CellPadding="5" OnRowCommand="GridViewProductsTransfers_RowCommand">
+                                                                            <HeaderStyle CssClass="thead-dark" />
+                                                                            <Columns>
+                                                                                <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
+                                                                                <asp:BoundField HeaderText="Codigo transferencia" DataField="Code"/>
+                                                                                <asp:BoundField HeaderText="Total producto" DataField="TotalProducts" />                                                                                <asp:BoundField HeaderText="Fecha creación" DataField="CreatedAt" />
+                                                                                <asp:BoundField HeaderText="Fecha actualzación" DataField="UpdatedAt" />
+                                                                                <asp:BoundField HeaderText="Realizada por" DataField="CreatedBy" />
+                                                                                <asp:BoundField HeaderText="Actualizada por" DataField="UpdatedBy" />
+                                                                                <asp:TemplateField HeaderText="Opciones">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:LinkButton Font-Size="11px" Height="28px" Width="80px"
+                                                                                            CssClass="btn btn-primary btn-sm mb-3" OnClientClick="ShowLoader(true)" ID="DetailsLink" ToolTip="Detalle transferencia"
+                                                                                            CommandName="cmdDetails" runat="server">Detalles</asp:LinkButton>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </ContentTemplate>
                                     <Triggers>
                                         <%--<asp:PostBackTrigger ControlID="btnAddToPurchaseDetailList" />--%>
@@ -317,6 +450,21 @@
                     divalert.remove();
                 }, 5000);
             }, 1500);
+        }
+
+        function ShowModalTransferDetails(code) {
+            setTimeout(function () {
+                this.ShowLoader(false);
+                document.getElementById("strong_info_Transfers").remove();
+                let div = document.getElementById("section_Transfers_info");
+                let strong_info = document.createElement("strong");
+                let message = "#" + code;
+                let inner_content = document.createTextNode(message);
+                strong_info.style.marginLeft = "10px"; strong_info.classList.add("text-light"); strong_info.setAttribute("id", "strong_info_Transfers");
+                strong_info.appendChild(inner_content);
+                div.appendChild(strong_info);
+                setTimeout(function () { $('#ModalTransferDetails').modal('show') }, 350);
+            }, 1500)
         }
     </script>
 </asp:Content>

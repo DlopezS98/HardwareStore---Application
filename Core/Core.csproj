@@ -89,6 +89,7 @@
     <Compile Include="DTOs\Catalogs\SuppliersDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDropDto.cs" />
     <Compile Include="DTOs\Catalogs\WarehousesDto.cs" />
+    <Compile Include="DTOs\LoginResponse.cs" />
     <Compile Include="DTOs\ProductsAdmin\DeleteProductDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\PendingTranfersDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\PendingTranfersModelDto.cs" />
@@ -98,7 +99,9 @@
     <Compile Include="DTOs\ProductsAdmin\StocksDetailsDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\StocksUpdateDto.cs" />
     <Compile Include="DTOs\ProductsAdmin\TransferDetailsDto.cs" />
+    <Compile Include="DTOs\ProductsAdmin\TransfersDto.cs" />
     <Compile Include="DTOs\Response.cs" />
+    <Compile Include="DTOs\Security\UserDto.cs" />
     <Compile Include="DTOs\SysConfiguration\CurrencyExchangeDto.cs" />
     <Compile Include="DTOs\SysConfiguration\ForeignCurrencyDropDto.cs" />
     <Compile Include="DTOs\SysConfiguration\LocalCurrencyDropDto.cs" />
@@ -154,8 +157,10 @@
     <Compile Include="Interfaces\ProductsAdmin\IProductsAdminService.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IProductsStocksRepository.cs" />
     <Compile Include="Interfaces\ProductsAdmin\IRemovedProductsRepository.cs" />
-    <Compile Include="Interfaces\ProductsAdmin\ITranfersRepository.cs" />
+    <Compile Include="Interfaces\ProductsAdmin\ITransfersRepository.cs" />
     <Compile Include="Interfaces\Reports\IReportsService.cs" />
+    <Compile Include="Interfaces\Security\ISecurityService.cs" />
+    <Compile Include="Interfaces\Security\IUsersRepository.cs" />
     <Compile Include="Interfaces\SysConfiguration\ICurrenciesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Billing\SalesServices.cs" />
@@ -163,6 +168,7 @@
     <Compile Include="Services\CommonServices.cs" />
     <Compile Include="Services\ProductsAdmin\ProductsAdminService.cs" />
     <Compile Include="Services\Reports\ReportsService.cs" />
+    <Compile Include="Services\Security\SecurityService.cs" />
     <Compile Include="Specifications\BaseSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +178,6 @@
   <ItemGroup>
     <Folder Include="Entities\Reports\" />
     <Folder Include="Interfaces\Providers\" />
-    <Folder Include="Interfaces\Security\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

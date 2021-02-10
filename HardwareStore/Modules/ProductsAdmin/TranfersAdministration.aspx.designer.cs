@@ -60,6 +60,15 @@ namespace HardwareStore.Modules.ProductsAdmin
         protected global::System.Web.UI.WebControls.TextBox txtEditPendingTransferCode;
 
         /// <summary>
+        /// txtEditWarehouseId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEditWarehouseId;
+
+        /// <summary>
         /// txtProductDetailCodeTransfer control.
         /// </summary>
         /// <remarks>
@@ -132,13 +141,58 @@ namespace HardwareStore.Modules.ProductsAdmin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
-        /// btnConfirmProductTrasnfer control.
+        /// btnConfirmUpdateProductTrasnfer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmProductTrasnfer;
+        protected global::System.Web.UI.WebControls.Button btnConfirmUpdateProductTrasnfer;
+
+        /// <summary>
+        /// UpdatePanelForTransfersDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelForTransfersDetails;
+
+        /// <summary>
+        /// txtProductTransferId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductTransferId;
+
+        /// <summary>
+        /// txtSearchTransferDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchTransferDetails;
+
+        /// <summary>
+        /// btnSearchTransferDetailsFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchTransferDetailsFilter;
+
+        /// <summary>
+        /// GridViewTransferDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewTransferDetails;
 
         /// <summary>
         /// UpdatePanelForInvoiceList control.
@@ -202,5 +256,68 @@ namespace HardwareStore.Modules.ProductsAdmin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelForTranfersMain;
+
+        /// <summary>
+        /// txtTransferCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTransferCode;
+
+        /// <summary>
+        /// txtSearchProductTransfers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchProductTransfers;
+
+        /// <summary>
+        /// TransfersDatePickerStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TransfersDatePickerStartDate;
+
+        /// <summary>
+        /// TransfersDatePickerEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TransfersDatePickerEndDate;
+
+        /// <summary>
+        /// btnTransfersFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTransfersFilter;
+
+        /// <summary>
+        /// TextBox2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+
+        /// <summary>
+        /// GridViewProductsTransfers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewProductsTransfers;
     }
 }

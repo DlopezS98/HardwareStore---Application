@@ -25,6 +25,9 @@ namespace HardwareStore.App_Start
     using HardwareStore.Core.Services.ProductsAdmin;
     using HardwareStore.Core.Interfaces.Reports;
     using HardwareStore.Core.Services.Reports;
+    using HardwareStore.Core.Interfaces.Security;
+    using HardwareStore.Core.Services.Security;
+    using HardwareStore.Infrastructure.Data.Security;
 
     public static class NinjectWebCommon 
     {
@@ -93,7 +96,9 @@ namespace HardwareStore.App_Start
             kernel.Bind<IRemovedProductsRepository>().To<RemovedProductsRepository>();
             kernel.Bind<IPendingTransfersRepository>().To<PendingTransfersRepository>();
             kernel.Bind<IReportsService>().To<ReportsService>();
-            kernel.Bind<ITranfersRepository>().To<TranfersRepository>();
+            kernel.Bind<ITransfersRepository>().To<TransfersRepository>();
+            kernel.Bind<ISecurityService>().To<SecurityService>();
+            kernel.Bind<IUsersRepository>().To<UsersRepository>();
         }
     }
 }

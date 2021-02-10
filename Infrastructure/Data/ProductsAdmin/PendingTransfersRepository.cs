@@ -53,13 +53,13 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
             }
         }
 
-        public void DeleteProductFromTransferList(string Code, string User)
+        public void UpdateProductStatusInTransferList(string Code, string User, TransferStatus status)
         {
             try
             {
                 PendingTransfers pdt = new PendingTransfers();
                 pdt = this._dbContext.PendingTransfers.FirstOrDefault(x => x.Code == Code);
-                pdt.TransferStatus = TransferStatus.Canceled;
+                pdt.TransferStatus = status;
                 pdt.UpdatedBy = User;
                 pdt.UpdatedAt = DateTime.Now;
                 this._dbContext.SaveChanges();

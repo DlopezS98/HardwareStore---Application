@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace HardwareStore.Infrastructure.Data.ProductsAdmin
 {
-    public class TranfersRepository : EntityRepository, ITranfersRepository
+    public class TransfersRepository : EntityRepository, ITransfersRepository
     {
         private SqlCommand Command;
         private readonly ApplicationContext _dbContext;
-        public TranfersRepository(ApplicationContext _dbContext) : base(_dbContext)
+        public TransfersRepository(ApplicationContext _dbContext) : base(_dbContext)
         {
+            this._dbContext = _dbContext;
         }
 
         public void CreateTranfer(ProductTransferDto dto)
@@ -54,7 +55,7 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
                     {
                         Command = new SqlCommand();
                         Command.Connection = Connection;
-                        Command.CommandText = "[dbo].[Sp_CreateDetailProductStocks]";
+                        Command.CommandText = "[dbo].[Sp_CreateTransferDetails]";
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@ProductStocksId", e.ProductStocksId);
                         Command.Parameters.AddWithValue("@LotNumber", e.LotNumber);
@@ -77,9 +78,44 @@ namespace HardwareStore.Infrastructure.Data.ProductsAdmin
             }
         }
 
-        public List<PendingTranfersDto> ListTransfers(string Search)
+        public List<TransfersDto> ListProductTransfer(string Search, DateTime StartDate, DateTime EndDate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<TransfersDto> list = new List<TransfersDto>();
+                SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+                SqlParameter startdate = new SqlParameter("@StartDate", SqlDbType.VarChar); startdate.Direction = ParameterDirection.Input;
+                SqlParameter enddate = new SqlParameter("@EndDate", SqlDbType.VarChar); enddate.Direction = ParameterDirection.Input;
+                search.Value = Search;
+                startdate.Value = StartDate.ToString("yyyy-MM-dd");
+                enddate.Value = EndDate.ToString("yyyy-MM-dd");
+                list = this._dbContext.Database.SqlQuery<TransfersDto>("EXEC [dbo].[Sp_ListProductsTransfer] @Search, @StartDate, @EndDate", search, startdate, enddate).ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+        }
+
+        public List<TransferDetailsDto> ListTransfersDetails(int TransferId, string Search)
+        {
+            try
+            {
+                List<TransferDetailsDto> list = new List<TransferDetailsDto>();
+                SqlParameter search = new SqlParameter("@Search", SqlDbType.VarChar); search.Direction = ParameterDirection.Input;
+                SqlParameter transferid = new SqlParameter("@TransferId", SqlDbType.Int); search.Direction = ParameterDirection.Input;
+                search.Value = Search;
+                transferid.Value = TransferId;
+                list = this._dbContext.Database.SqlQuery<TransferDetailsDto>("EXEC [dbo].[Sp_ListTransferDetails] @TransferId, @Search", transferid, search).ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
         }
     }
 }

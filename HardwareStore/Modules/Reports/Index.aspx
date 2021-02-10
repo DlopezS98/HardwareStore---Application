@@ -207,11 +207,10 @@
                                 <input runat="server" type="date" id="Date2" class="form-control" />
                             </div>--%>
                             <div class="col-lg-3">
-                                <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlistFilterByWarehouses" OnSelectedIndexChanged="ddlistFilterByWarehouses_SelectedIndexChanged" CssClass="form-control">
-                                </asp:DropDownList>
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txrSearchExistencies" placeholder="Buscar" />
                             </div>
                             <div class="col-lg-3">
-                                <asp:Button Text="Filtrar" ID="Button1" CssClass="btn btn-primary" runat="server" />
+                                <asp:Button Text="Buscar" ID="Button1" CssClass="btn btn-primary" runat="server" />
                             </div>
                         </div>
                         <rsweb:ReportViewer ID="ReportViewer4" runat="server" Width="100%">

@@ -119,7 +119,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox23</rd:DefaultName>
                 <Top>0.12394cm</Top>
-                <Left>7.89083cm</Left>
+                <Left>1.65016cm</Left>
                 <Height>1.10132cm</Height>
                 <Width>11.44291cm</Width>
                 <Style>
@@ -136,7 +136,7 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Height>1.46756cm</Height>
-            <Width>28.25392cm</Width>
+            <Width>15.45782cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -148,8 +148,8 @@
             <Source>Embedded</Source>
             <Value>lOGO</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>1.56828cm</Top>
-            <Left>9.23158cm</Left>
+            <Top>1.64395cm</Top>
+            <Left>3.00328cm</Left>
             <Height>1.8609cm</Height>
             <Width>9.05791cm</Width>
             <ZIndex>1</ZIndex>
@@ -163,22 +163,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.4525cm</Width>
+                  <Width>2.35478cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.48962cm</Width>
+                  <Width>1.90212cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.95575cm</Width>
+                  <Width>1.9677cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.0875cm</Width>
+                  <Width>3.33977cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.26729cm</Width>
+                  <Width>1.99729cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.10854cm</Width>
+                  <Width>2.64583cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -194,7 +194,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Product Name</Value>
+                                  <Value>Producto</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -230,7 +230,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Title</Value>
+                                  <Value>Título</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -266,7 +266,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Warehouse Name</Value>
+                                  <Value>Bodegas</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -302,7 +302,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Lot Number</Value>
+                                  <Value>Lote</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -338,7 +338,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Created At</Value>
+                                  <Value>Fecha</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -374,7 +374,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Created By</Value>
+                                  <Value>Creado Por</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -629,10 +629,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSetDamagedProducts</DataSetName>
-            <Top>3.83328cm</Top>
-            <Left>3.70099cm</Left>
+            <Top>3.50485cm</Top>
+            <Left>0.49953cm</Left>
             <Height>1.2cm</Height>
-            <Width>21.36121cm</Width>
+            <Width>14.20749cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -955,7 +955,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Título del gráfico</Caption>
+                <Caption>Productos</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -985,8 +985,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSetDamagedProducts</DataSetName>
-            <Top>6.34683cm</Top>
-            <Left>10.31558cm</Left>
+            <Top>5.26204cm</Top>
+            <Left>4.00557cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
             <ZIndex>3</ZIndex>
@@ -1003,7 +1003,7 @@
         <Height>4.76934in</Height>
         <Style />
       </Body>
-      <Width>11.12359in</Width>
+      <Width>6.08575in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

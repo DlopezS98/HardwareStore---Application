@@ -17,6 +17,9 @@ form{
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
 
+.reportsStyle{
+    width: 55%
+}
 
 /*Gridviews*/
 .mGrid th {

@@ -155,11 +155,11 @@ namespace HardwareStore.Modules.Reports
             MultiviewReports.ActiveViewIndex = 4;
         }
 
-        protected void ddlistFilterByWarehouses_SelectedIndexChanged(Object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(ddlistFilterByWarehouses.SelectedValue);
-            this.LoadExistencies(id);
-        }
+        //protected void ddlistFilterByWarehouses_SelectedIndexChanged(Object sender, EventArgs e)
+        //{
+        //    int id = Convert.ToInt32(ddlistFilterByWarehouses.SelectedValue);
+        //    this.LoadExistencies(id);
+        //}
 
         //Llenando drop de Bodegas
         //public void LoadDDListWarehouses()

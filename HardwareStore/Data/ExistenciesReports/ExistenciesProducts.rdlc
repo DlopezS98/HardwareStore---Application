@@ -151,7 +151,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox23</rd:DefaultName>
                 <Top>0.28269cm</Top>
-                <Left>8.79328cm</Left>
+                <Left>2.0464cm</Left>
                 <Height>1.10132cm</Height>
                 <Width>11.44291cm</Width>
                 <Style>
@@ -168,7 +168,7 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Height>1.89089cm</Height>
-            <Width>28.201cm</Width>
+            <Width>15.57891cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -181,7 +181,7 @@
             <Value>lOGO</Value>
             <Sizing>FitProportional</Sizing>
             <Top>2.38478cm</Top>
-            <Left>10.18266cm</Left>
+            <Left>3.30349cm</Left>
             <Height>1.8609cm</Height>
             <Width>9.05791cm</Width>
             <ZIndex>1</ZIndex>
@@ -195,25 +195,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.23542cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.10312cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.14249cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.05021cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.89146cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.01083cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.99729cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -714,9 +714,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSetExistencies</DataSetName>
             <Top>4.73287cm</Top>
-            <Left>5.55308cm</Left>
+            <Left>0.57891cm</Left>
             <Height>1.2cm</Height>
-            <Width>17.5cm</Width>
+            <Width>14.43082cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1069,8 +1069,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSetExistencies</DataSetName>
-            <Top>6.79662cm</Top>
-            <Left>8.79328cm</Left>
+            <Top>6.47912cm</Top>
+            <Left>2.0464cm</Left>
             <Height>5.74083cm</Height>
             <Width>10.96604cm</Width>
             <ZIndex>3</ZIndex>
@@ -1087,7 +1087,7 @@
         <Height>5.30059in</Height>
         <Style />
       </Body>
-      <Width>11.10275in</Width>
+      <Width>6.13343in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

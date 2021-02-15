@@ -640,7 +640,7 @@
                                                                         <asp:BoundField HeaderText="Precio compra" DataField="PurchasePriceStr" />
                                                                         <asp:BoundField HeaderText="Cantidad" DataField="Quantity" />
                                                                         <asp:BoundField HeaderText="Subtotal" DataField="SubtotalStr" />
-                                                                        <asp:BoundField HeaderText="Discount" DataField="DiscountStr" />
+                                                                        <asp:BoundField HeaderText="Descuento" DataField="DiscountStr" />
                                                                         <asp:BoundField HeaderText="IVA" DataField="TaxStr" />
                                                                         <asp:BoundField HeaderText="Total" DataField="TotalStr" />
                                                                         <asp:TemplateField HeaderText="Opciones">
